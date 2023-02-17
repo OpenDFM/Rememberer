@@ -1,1 +1,7 @@
 window_dump_html.html
+
+__pycache__
+
+backup-configs/
+data-backup/
+llmdemo*

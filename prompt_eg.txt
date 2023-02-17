@@ -1,0 +1,174 @@
+Given a task desciption, a screen representation in simplified html, and an instruction sentence at the current step, I need to take an appropriate action according to the given information to finish the underlying task. Available actions are:
+
+INPUT(element_id, text)
+CLICK(element_id)
+SCROLL(direction)
+
+Available directions include: UP, DOWN, LEFT, RIGHT.
+
+For example, given the input:
+
+```
+Task:
+Search an article to learn how to hide gauges.
+Then, access the article "How to Hide Gauges"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="wikihow toolbar logo" id="1" clickable="false">
+<img class="search button" alt="Search" id="2" clickable="true">
+<div class="webView" id="3" clickable="true"></div>
+<div class="statusBarBackground" id="4" clickable="false"></div>
+Instruction:
+---
+
+I will answer as
+
+INPUT(2, hide gauges)
+
+Another yet example:
+
+```
+Task:
+Search an article to learn how to hide gauges.
+Then, access the article "How to Hide Gauges"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<input class="search src text" value="Do ruby rose hair " type="text" id="1" clickable="true">
+<img class="search close btn" alt="Clear query" id="2" clickable="true">
+<div class="header container" id="3" clickable="false"></div>
+<div class="header top watch" id="4" clickable="false"></div>
+<div class="siteNotice" id="5" clickable="false"></div>
+<div class="search adblock top" id="6" clickable="false"></div>
+<div id="7" clickable="true">How to Do Ruby Rose Hair</div>
+<div id="8" clickable="true">• </div>
+<p id="9" clickable="true">41,446 views</p>
+<div id="10" clickable="true">• </div>
+<p id="11" clickable="true">Updated</p>
+<p id="12" clickable="true">2 years ago</p>
+<div id="13" clickable="true">• </div>
+<p id="14" clickable="true">Expert Co-Authored</p>
+<div id="15" clickable="true">How to Dye Your Hair Rose Gold</div>
+<div id="16" clickable="true">• </div>
+<p id="17" clickable="true">48,548 views</p>
+<div id="18" clickable="true">• </div>
+<p id="19" clickable="true">Updated</p>
+<p id="20" clickable="true">3 years ago</p>
+<div id="21" clickable="true">• </div>
+<p id="22" clickable="true">Expert Co-Authored</p>
+<div id="23" clickable="true">How to Do a Hair Mask for Frizzy Hair</div>
+<div id="24" clickable="true">• </div>
+<p id="25" clickable="true">29,415 views</p>
+<div id="26" clickable="true">• </div>
+<p id="27" clickable="true">Updated</p>
+<p id="28" clickable="true">2 years ago</p>
+<div id="29" clickable="true">• </div>
+<p id="30" clickable="true">Expert Co-Authored</p>
+<div id="31" clickable="true">How to Do 1920s Hair</div>
+<div id="32" clickable="true">• </div>
+<p id="33" clickable="true">194,834 views</p>
+<div id="34" clickable="true">• </div>
+<p id="35" clickable="true">Updated</p>
+<p id="36" clickable="true">1 year ago</p>
+<div id="37" clickable="true">• </div>
+<p id="38" clickable="true">Expert Co-Authored</p>
+<div id="39" clickable="true">How to Do 50s Hair</div>
+<div id="40" clickable="true">• </div>
+<p id="41" clickable="true">39,890 views</p>
+<div id="42" clickable="true">• </div>
+<p id="43" clickable="true">Updated</p>
+<p id="44" clickable="true">1 year ago</p>
+<div id="45" clickable="true">• </div>
+<p id="46" clickable="true">Expert Co-Authored</p>
+<div id="47" clickable="true">How to Do 70s Hair</div>
+<div id="48" clickable="true">• </div>
+<p id="49" clickable="true">69,458 views</p>
+<div id="50" clickable="true">• </div>
+<p id="51" clickable="true">Updated</p>
+<p id="52" clickable="true">1 year ago</p>
+<div id="53" clickable="true">• </div>
+<p id="54" clickable="true">Expert Co-Authored</p>
+<div id="55" clickable="true">How to Do Goku Hair</div>
+<div id="56" clickable="true">• </div>
+<p id="57" clickable="true">44,049 views</p>
+<div class="statusBarBackground" id="58" clickable="false"></div>
+Instruction:
+Access the article "How to Do Ruby Rose Hair"
+---
+
+The answer will be:
+
+CLICK(7)
+
+Now the new input:
+
+```
+Task:
+Search an article to learn how to hide gauges.
+Then, access the article "How to Hide Gauges"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<input class="search src text" value="hide gauges " type="text" id="1" clickable="true">
+<img class="search close btn" alt="Clear query" id="2" clickable="true">
+<div class="header container" id="3" clickable="false"></div>
+<div class="header top watch" id="4" clickable="false"></div>
+<div class="siteNotice" id="5" clickable="false"></div>
+<div class="search adblock top" id="6" clickable="false"></div>
+<div id="7" clickable="true">How to Hide Gauges</div>
+<div id="8" clickable="true">• </div>
+<p id="9" clickable="true">138,732 views</p>
+<div id="10" clickable="true">• </div>
+<p id="11" clickable="true">Updated</p>
+<p id="12" clickable="true"> 1 year ago</p>
+<div id="13" clickable="true">How to Clean Ear Gauges</div>
+<div id="14" clickable="true">• </div>
+<p id="15" clickable="true">64,126 views</p>
+<div id="16" clickable="true">• </div>
+<p id="17" clickable="true">Updated</p>
+<p id="18" clickable="true"> 4 years ago</p>
+<div id="19" clickable="true">How to Check a Crochet Gauge</div>
+<div id="20" clickable="true">• </div>
+<p id="21" clickable="true">90,812 views</p>
+<div id="22" clickable="true">• </div>
+<p id="23" clickable="true">Updated</p>
+<p id="24" clickable="true"> 3 years ago</p>
+<div id="25" clickable="true">How to Gauge Your Ears</div>
+<div id="26" clickable="true">• </div>
+<p id="27" clickable="true">2,258,979 views</p>
+<div id="28" clickable="true">• </div>
+<p id="29" clickable="true">Updated</p>
+<p id="30" clickable="true"> 4 weeks ago</p>
+<div id="31" clickable="true">How to Gauge Wire</div>
+<div id="32" clickable="true">• </div>
+<p id="33" clickable="true">226,188 views</p>
+<div id="34" clickable="true">• </div>
+<p id="35" clickable="true">Updated</p>
+<p id="36" clickable="true"> 6 months ago</p>
+<div id="37" clickable="true">• </div>
+<p id="38" clickable="true">Expert Co-Authored</p>
+<div class="search adblock middle" id="39" clickable="false"></div>
+<div id="40" clickable="true">How to Install a Car Volt Amp Gauge</div>
+<div id="41" clickable="true">• </div>
+<p id="42" clickable="true">273,578 views</p>
+<div id="43" clickable="true">• </div>
+<p id="44" clickable="true">Updated</p>
+<p id="45" clickable="true"> 2 years ago</p>
+<div id="46" clickable="true">How to Build a Rain Gauge</div>
+<div id="47" clickable="true">• </div>
+<p id="48" clickable="true">400,239 views</p>
+<div id="49" clickable="true">• </div>
+<p id="50" clickable="true">Updated</p>
+<p id="51" clickable="true"> 2 weeks ago</p>
+<div id="52" clickable="true">• </div>
+<p id="53" clickable="true">Expert Co-Authored</p>
+<div id="54" clickable="true">How to Close Gauged Ears</div>
+<div id="55" clickable="true">• </div>
+<p id="56" clickable="true">966,967 views</p>
+<div id="57" clickable="true">• </div>
+<p id="58" clickable="true">Updated</p>
+<p id="59" clickable="true"> 5 months ago</p>
+<div class="statusBarBackground" id="60" clickable="false"></div>
+Instruction:
+Access the article "How to Hide Gauges"
+---
+
+So the next action is
