@@ -1,0 +1,88 @@
+Given a task desciption, a screen representation in simplified html, and an instruction sentence at the current step, I need to take an appropriate action according to the given information to finish the underlying task. Available actions are:
+
+INPUT(element_id, text)
+CLICK(element_id)
+SCROLL(direction)
+
+Available directions include: UP, DOWN, LEFT, RIGHT.
+
+For example, given the input:
+
+```
+Task:
+Search an article to learn how to hide gauges.
+Then, access the article "How to Hide Gauges"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="wikihow toolbar logo" id="1" clickable="false">
+<img class="search button" alt="Search" id="2" clickable="true">
+<div class="webView" id="3" clickable="true"></div>
+<div class="statusBarBackground" id="4" clickable="false"></div>
+Instruction:
+---
+
+I will answer as
+
+INPUT(2, hide gauges)
+
+Another yet example:
+
+```
+Task:
+Search an article to learn how to be a good friend to a guy.
+Then, access the article "How to Be a Good Friend to a Guy"
+Then, check the author page of Trudi Griffin, LPC, MS.
+Then, access the article "How to Overcome Fear"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="search button" alt="Search" id="1" clickable="true">
+<div class="header container" id="2" clickable="false"></div>
+<div class="header top watch" id="3" clickable="false"></div>
+<div class="siteNotice" id="4" clickable="false"></div>
+<img alt="Trudi Griffin, LPC, MS" id="5" clickable="false">
+<p id="6" clickable="true">Website</p>
+<p id="7" clickable="true">+ Follow</p>
+<div class="author social" id="8" clickable="false"></div>
+<div id="9" clickable="false">Trudi Griffin, LPC, MS</div>
+<div id="10" clickable="false">Professional Counselor</div>
+<div id="11" clickable="false">Trudi Griffin is a Licensed Professional Counselor in Wisconsin specializing in Addictions and Mental Health. She provides therapy to people who struggle with addictions, mental health, and trauma in community health settings and private practice. She received her MS in Clinical Mental Health Counseling from Marquette University in 2011.</div>
+<div id="12" clickable="false"></div>
+<p id="13" clickable="false">wikiHow's Editorial Process</p>
+<p id="14" clickable="false">wikiHow partners with over 1000+ experts from a wide range of fields to ensure our content is accurate and based on well-established research and testimony. Content Managers conduct interviews and work closely with each expert to review information, answer reader questions, and add credible advice. </p>
+<div class="statusBarBackground" id="15" clickable="false"></div>
+Instruction:
+Access the article "How to Overcome Fear"
+---
+
+The answer will be:
+
+SCROLL(DOWN)
+
+Now the new input:
+
+```
+Task:
+Search an article to learn how to be a good friend to a guy.
+Then, access the article "How to Be a Good Friend to a Guy"
+Then, check the author page of Trudi Griffin, LPC, MS.
+Then, access the article "How to Overcome Fear"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="search button" alt="Search" id="1" clickable="true">
+<div class="header container" id="2" clickable="false"></div>
+<div id="3" clickable="true">Like any other destructive behavior that disrupts your everyday life, watching porn can become an addiction. Below are steps you can take to find out if you do indeed have a problem you should be concerned about, ways to...</div>
+<div id="4" clickable="true">How to</div>
+<div id="5" clickable="true">Handle a Cheating Girlfriend</div>
+<div id="6" clickable="true">Infidelity is difficult to handle. If you found out your girlfriend is cheating, you're likely finding it difficult to trust her again and move forward. In order to cope, you need to evaluate if the relationship is wor...</div>
+<div id="7" clickable="true">How to</div>
+<div id="8" clickable="true">Stop Laughing at Inappropriate Times</div>
+<div id="9" clickable="true">Although laughing at inappropriate times can be embarrassing, it’s actually a natural reaction for some people when they’re facing a highly stressful situation. This could be because laughter makes you feel better ab...</div>
+<div id="10" clickable="true">How to</div>
+<div id="11" clickable="true">Deal With a Boyfriend Who Is Mean when Angry</div>
+<div id="12" clickable="true">It’s not fun to deal with an angry person. It’s even worse when that person is your boyfriend and his anger causes him to say or do things that are mean and hurtful. Whether it’s name calling, insults, or yelling, ...</div>
+<div class="statusBarBackground" id="13" clickable="false"></div>
+Instruction:
+Access the article "How to Overcome Fear"
+---
+
+So the next action is

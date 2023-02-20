@@ -4,9 +4,7 @@ INPUT(element_id, text)
 CLICK(element_id)
 SCROLL(direction)
 
-Available directions include: UP, DOWN, LEFT, RIGHT.
-
-For example, given the input:
+Usually I will click the correct link to access the willing contents or search or scroll down if it is not present on the current screen. For example, given the input:
 
 ```
 Task:
