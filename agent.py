@@ -8,17 +8,20 @@ from typing import Dict, Pattern, Match, List
 from typing import Optional
 import numpy as np
 
-class Agent:
+import abc
+
+class Agent(abc.ABC):
+    #  class Agent {{{ # 
     def __init__( self
-                , prompt_template: str
+                #, prompt_template: str
                 ):
         #  method __init__ {{{ # 
         """
         Args:
-            prompt_template (str): template of the prompt
+            #prompt_template (str): template of the prompt
         """
 
-        self._prompt_template: str = prompt_template
+        #self._prompt_template: str = prompt_template
 
         self._action_pattern: Pattern[str] =\
                 re.compile(r"^(?P<atype>\w+)\((?P<arg1>\w+)(?:,\s*(?P<arg2>.+))?\)$")
@@ -73,16 +76,11 @@ class Agent:
                                         )
         screen_representation: str = "".join(screen_representation)
 
-        print("Task:")
-        print(task)
-        print("Screen:")
-        print(screen_representation.strip())
-        print("Instruction:")
-        print(instruction)
-        print("Action History:")
-        print("\n".join(self._action_history))
+        action_str: str = self._get_action( task
+                                          , screen_representation.strip()
+                                          , instruction
+                                          )
 
-        action_str: str = input("Please input the next action:")
         self._action_history.append(action_str)
 
         action_match: Match[str] = self._action_pattern.match(action_str)
@@ -122,3 +120,37 @@ class Agent:
                            }
         return {"action_type": np.array(VhIoWrapper.ActionType.NOTHING)}
         #  }}} method __call__ # 
+
+    @abc.abstractmethod
+    def _get_action( self
+                   , task: str
+                   , screen: str
+                   , instruction: str
+                   ) -> str:
+        raise NotImplementedError()
+    #  }}} class Agent # 
+
+class ManualAgent(Agent):
+    #  class ManualAgent {{{ # 
+    def __init__(self):
+        super(ManualAgent, self).__init__()
+
+    def _get_action( self
+                   , task: str
+                   , screen: str
+                   , instruction: str
+                   ) -> str:
+        #  method _get_action {{{ # 
+        print("Task:")
+        print(task)
+        print("Screen:")
+        print(screen)
+        print("Instruction:")
+        print(instruction)
+        print("Action History:")
+        print("\n".join(self._action_history))
+
+        action_str: str = input("Please input the next action:")
+        return action_str
+        #  }}} method _get_action # 
+    #  }}} class ManualAgent # 
