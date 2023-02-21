@@ -1,6 +1,7 @@
 window_dump_html.html
 weights
 logs
+openaiconfig.yaml
 
 __pycache__
 tags

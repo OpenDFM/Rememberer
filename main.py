@@ -55,7 +55,7 @@ def main():
     # TODO
     with open(args.prompt_template) as f:
         prompt_template: str = f.read()
-    model = agent.Agent(prompt_template=prompt_template)
+    model = agent.ManualAgent()
 
     env = android_env.load( args.task_path
                           , args.avd_name

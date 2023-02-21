@@ -1,5 +1,6 @@
 import vh_to_html
 import re
+import openai
 
 import lxml.etree
 import lxml.html
@@ -9,6 +10,7 @@ from typing import Optional
 import numpy as np
 
 import abc
+import logging
 
 class Agent(abc.ABC):
     #  class Agent {{{ # 
@@ -154,3 +156,58 @@ class ManualAgent(Agent):
         return action_str
         #  }}} method _get_action # 
     #  }}} class ManualAgent # 
+
+class AutoAgent(Agent):
+    #  class AutoAgent {{{ # 
+    def __init__( self
+                , prompt_template: str
+                , api_key: str
+                , model: str = "text-davinci-003" # or maybe "engine"? not sure
+                , max_tokens: int = 20
+                , temperature: float = 0.1
+                , request_timeout: float = 3.
+                ):
+        #  method __init__ {{{ # 
+        """
+        Args:
+            prompt_template (str): template of the prompt
+        """
+
+        self._prompt_template: str = prompt_template
+        self._api_key: str = api_key
+        self._model: str = model
+        self._max_tokens: int = max_tokens
+        self._temperature: float = temperature
+        self._request_timeout: float = request_timeout
+
+        openai.api_key = api_key
+        #  }}} method __init__ # 
+
+    def _get_action( self
+                   , task: str
+                   , screen: str
+                   , instruction: str
+                   ) -> str:
+        #  method _get_action {{{ # 
+        prompt = self._prompt_template.format( command=task
+                                             , html=screen
+                                             , instruction=instruction
+                                             , actions="\n".join(self._action_history)
+                                             )
+        try:
+            completion = openai.Completion.create( model=self._model
+                                                 , max_tokens=self._max_tokens
+                                                 , temperature=self._temperature
+                                                 , request_timeout=self._request_timeout
+                                                 )
+        except openai.error.TimeoutError:
+            return "NOTHING"
+
+        logging.debug( "Return: {text: %s, reason: %s}"
+                     , completion.choices[0].text
+                     , completion.choices[0].finish_reason
+                     )
+
+        return completion.choices[0].text.strip()
+        #  }}} method _get_action # 
+    #  }}} class AutoAgent # 
