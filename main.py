@@ -12,14 +12,23 @@ from android_env.wrappers import VhIoWrapper
 from transformers import AutoTokenizer
 import dm_env
 
+from typing import Dict
+import numpy as np
+
 def main():
+    #  Command Line Options {{{ # 
     parser = argparse.ArgumentParser()
+
     parser.add_argument("--log-dir", default="logs", type=str)
 
     parser.add_argument("--task-path", type=str)
     parser.add_argument("--avd-name", type=str)
     parser.add_argument("--tokenizer-path", type=str)
+
+    parser.add_argument("--prompt-template", type=str)
+
     args: argparse.Namespace = parser.parse_args()
+    #  }}} Command Line Options # 
 
     #  Config Logger {{{ # 
     logger = logging.getLogger()
@@ -43,7 +52,10 @@ def main():
     logger.addHandler(stdout_handler)
     #  }}} Config Logger # 
 
-    model = agent.Agent() # TODO
+    # TODO
+    with open(args.prompt_template) as f:
+        prompt_template: str = f.read()
+    model = agent.Agent(prompt_template=prompt_template)
 
     env = android_env.load( args.task_path
                           , args.avd_name
@@ -59,16 +71,20 @@ def main():
                           )
     env = VhIoWrapper( env
                      , AutoTokenizer.from_pretrained(args.tokenizer_path)
+                     , nb_click_frames=3
+                     , nb_scroll_frmaes=10
                      )
 
     max_nb_steps = 100
     for i in range(env.nb_tasks):
+        model.reset()
         step: dm_env.TimeStep = env.switch_task(i)
         command: str = "\n".join(env.command())
         instruction: str = "\n".join(env.task_instructions())
 
         nb_steps = 0
         reward: float = step.reward
+        succeeds: bool = True
         while not step.last():
             action: Dict[str, np.ndarray]\
                     = model( command
@@ -81,10 +97,13 @@ def main():
             reward += step.reward
 
             nb_steps += 1
-            if nb_steps>=100:
+            if nb_steps>=max_nb_steps:
+                succeeds = False
                 break
 
-        # TODO: several logging
+        logger.info( "TaskId: %d, #Steps: %d, Reward: %f, Succeds: %s"
+                   , i, nb_steps, reward, str(succeeds)
+                   )
 
 if __name__ == "__main__":
     main()

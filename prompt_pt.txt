@@ -17,6 +17,9 @@ Screen:
 <div class="webView" id="3" clickable="true"></div>
 <div class="statusBarBackground" id="4" clickable="false"></div>
 Instruction:
+
+Action History:
+
 ---
 
 I will answer as
@@ -92,6 +95,8 @@ Screen:
 <div class="statusBarBackground" id="58" clickable="false"></div>
 Instruction:
 Access the article "How to Do Ruby Rose Hair"
+Action History:
+INPUT(2, do ruby rose hair)
 ---
 
 The answer will be:
@@ -107,6 +112,8 @@ Screen:
 {html}
 Instruction:
 {instruction}
+Action History:
+{actions}
 ---
 
 So the next action is
