@@ -7,6 +7,7 @@ import os.path
 import sys
 import yaml
 import datetime
+import string
 
 import agent
 import android_env
@@ -72,7 +73,7 @@ def main():
 
     #  Build Agent and Environment {{{ # 
     with open(args.prompt_template) as f:
-        prompt_template: str = f.read()
+        prompt_template = string.Template(f.read())
     with open(args.config) as f:
         openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
     model = agent.AutoAgent( prompt_template=prompt_template

@@ -107,13 +107,13 @@ Now the new input:
 
 ```
 Task:
-{command}
+${command}
 Screen:
-{html}
+${html}
 Instruction:
-{instruction}
+${instruction}
 Action History:
-{actions}
+${actions}
 ---
 
 So the next action is

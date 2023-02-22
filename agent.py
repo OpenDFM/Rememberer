@@ -8,6 +8,7 @@ from android_env.wrappers import VhIoWrapper
 from typing import Dict, Pattern, Match, List
 from typing import Optional
 import numpy as np
+import string
 
 import abc
 import logging
@@ -166,7 +167,7 @@ class ManualAgent(Agent):
 class AutoAgent(Agent):
     #  class AutoAgent {{{ # 
     def __init__( self
-                , prompt_template: str
+                , prompt_template: string.Template
                 , api_key: str
                 , model: str = "text-davinci-003" # or maybe "engine"? not sure
                 , max_tokens: int = 20
@@ -176,12 +177,12 @@ class AutoAgent(Agent):
         #  method __init__ {{{ # 
         """
         Args:
-            prompt_template (str): template of the prompt
+            prompt_template (string.Template): template of the prompt
         """
 
         super(AutoAgent, self).__init__()
 
-        self._prompt_template: str = prompt_template
+        self._prompt_template: string.Template = prompt_template
         self._api_key: str = api_key
         self._model: str = model
         self._max_tokens: int = max_tokens
@@ -199,11 +200,12 @@ class AutoAgent(Agent):
                    , instruction: str
                    ) -> str:
         #  method _get_action {{{ # 
-        prompt = self._prompt_template.format( command=task
-                                             , html=screen
-                                             , instruction=instruction
-                                             , actions="\n".join(self._action_history)
-                                             )
+        prompt: str = self._prompt_template.safe_substitute(
+                                                command=task
+                                              , html=screen
+                                              , instruction=instruction
+                                              , actions="\n".join(self._action_history)
+                                              )
         try:
             completion = openai.Completion.create( model=self._model
                                                  , prompt=prompt
