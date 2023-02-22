@@ -95,22 +95,24 @@ class Agent(abc.ABC):
             argument1: Optional[str] = action_match.group("arg1")
             argument2: Optional[str] = action_match.group("arg2")
             if action_type=="CLICK":
-                if argument1 is not None\
+                if len(html_elements)>0\
+                        and argument1 is not None\
                         and argument1.isdecimal():
                     return { "action_type": np.array(VhIoWrapper.ActionType.CLICK)
                            , "element_id": np.clip( np.array(int(argument1))
                                                   , 0
-                                                  , len(html_elements)
+                                                  , len(html_elements)-1
                                                   )
                            }
             if action_type=="INPUT":
-                if argument1 is not None\
+                if len(html_elements)>0\
+                        and argument1 is not None\
                         and argument1.isdecimal()\
                         and argument2 is not None:
                     return { "action_type": np.array(VhIoWrapper.ActionType.INPUT)
                            , "element_id": np.clip( np.array(int(argument1))
                                                   , 0
-                                                  , len(html_elements)
+                                                  , len(html_elements)-1
                                                   )
                            , "text": np.array(argument2, dtype=np.object_)
                            }
@@ -218,9 +220,9 @@ class AutoAgent(Agent):
             return "NOTHING"
 
         logger.debug( "Return: {text: %s, reason: %s}"
-                     , completion.choices[0].text
-                     , completion.choices[0].finish_reason
-                     )
+                    , repr(completion.choices[0].text)
+                    , repr(completion.choices[0].finish_reason)
+                    )
 
         return completion.choices[0].text.strip()
         #  }}} method _get_action # 

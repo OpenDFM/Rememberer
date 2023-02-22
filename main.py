@@ -60,14 +60,14 @@ def main():
     debug_handler.setFormatter(formatter)
     stdout_handler.setFormatter(formatter)
 
-    stdout_handler.addFilter(logging.Filter("main"))
+    #stdout_handler.addFilter(logging.Filter("main"))
     stdout_handler.addFilter(logging.Filter("agent"))
 
     logger.addHandler(file_handler)
     logger.addHandler(debug_handler)
     logger.addHandler(stdout_handler)
 
-    logger = logging.getLogger("main")
+    logger = logging.getLogger("agent")
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
@@ -81,6 +81,7 @@ def main():
                            , temperature=args.temperature
                            , request_timeout=args.request_timeout
                            )
+    #model = agent.ManualAgent()
 
     env = android_env.load( args.task_path
                           , args.avd_name
@@ -99,9 +100,11 @@ def main():
                      , nb_click_frames=3
                      , nb_scroll_frmaes=10
                      )
+
+    logger.info("The environment is ready.")
     #  }}} Build Agent and Environment # 
 
-    max_nb_steps = 30
+    max_nb_steps = 15
     #for i in range(env.nb_tasks):
     for i in range(3, 6):
         model.reset()

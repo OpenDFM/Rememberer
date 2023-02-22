@@ -28,5 +28,17 @@ leftstring A3 = "apply_cc_cream-0"
 let B3 = 3
 let C3 = 3
 let D3 = 1
-goto A3
+leftstring A4 = "be_a_good_friend_to_a_guy-4"
+let B4 = 5
+let C4 = 4
+let D4 = 1
+leftstring A5 = "buy_stocks_(for_beginners)-6"
+let B5 = 11
+let C5 = 4
+let D5 = 1
+leftstring A6 = "bypass_youtube's_regional_filter-6"
+let B6 = 10
+let C6 = 3
+let D6 = 1
+goto D6
 movetosheet "Sheet1"
