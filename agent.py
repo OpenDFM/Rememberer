@@ -118,13 +118,13 @@ class Agent(abc.ABC):
                            }
             if action_type=="SCROLL":
                 if argument1 is not None\
-                        and argument1 in { "LEFT"
-                                         , "UP"
-                                         , "RIGHT"
-                                         , "DOWN"
-                                         }:
+                        and argument1.upper() in { "LEFT"
+                                                 , "UP"
+                                                 , "RIGHT"
+                                                 , "DOWN"
+                                                 }:
                     return { "action_type": np.array(VhIoWrapper.ActionType.SCROLL)
-                           , "direction": np.array(VhIoWrapper.Direction[argument1])
+                           , "direction": np.array(VhIoWrapper.ScrollDirection[argument1.upper()])
                            }
         return {"action_type": np.array(VhIoWrapper.ActionType.NOTHING)}
         #  }}} method __call__ # 
