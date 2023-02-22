@@ -9,7 +9,7 @@ nb_frozen_rows 0
 nb_frozen_cols 0
 nb_frozen_screenrows 0
 nb_frozen_screencols 0
-format A 50 2 0
+format A 48 2 0
 format B 10 0 0
 format D 10 0 0
 leftstring A0 = "Env Name"
@@ -40,5 +40,21 @@ leftstring A6 = "bypass_youtube's_regional_filter-6"
 let B6 = 10
 let C6 = 3
 let D6 = 1
-goto D6
+leftstring A7 = "call_the_czech_republic_from_the_united_states-4"
+let B7 = 2
+let C7 = 2
+let D7 = 1
+leftstring A8 = "change_a_lightbulb_in_a_recessed_light-8"
+let B8 = 2
+let C8 = 2
+let D8 = 1
+leftstring A9 = "clean_utensils-7"
+let B9 = 4
+let C9 = 3
+let D9 = 1
+leftstring A10 = "clean_yourself_in_the_bath-0"
+let B10 = 3
+let C10 = 3
+let D10 = 1
+goto A7
 movetosheet "Sheet1"
