@@ -11,6 +11,10 @@ import numpy as np
 
 import abc
 import logging
+import datetime
+import time
+
+logger = logging.getLogger("agent")
 
 class Agent(abc.ABC):
     #  class Agent {{{ # 
@@ -173,12 +177,16 @@ class AutoAgent(Agent):
             prompt_template (str): template of the prompt
         """
 
+        super(AutoAgent, self).__init__()
+
         self._prompt_template: str = prompt_template
         self._api_key: str = api_key
         self._model: str = model
         self._max_tokens: int = max_tokens
         self._temperature: float = temperature
         self._request_timeout: float = request_timeout
+
+        self._last_request_time: datetime.datetime = datetime.datetime.now()
 
         openai.api_key = api_key
         #  }}} method __init__ # 
@@ -196,14 +204,20 @@ class AutoAgent(Agent):
                                              )
         try:
             completion = openai.Completion.create( model=self._model
+                                                 , prompt=prompt
                                                  , max_tokens=self._max_tokens
                                                  , temperature=self._temperature
                                                  , request_timeout=self._request_timeout
                                                  )
-        except openai.error.TimeoutError:
+            request_time = datetime.datetime.now()
+            timedelta: datetime.timedelta = request_time - self._last_request_time
+            timedelta: float = timedelta.total_seconds()
+            if 3.1 - timedelta > 0.:
+                time.sleep(3.1-timedelta)
+        except:
             return "NOTHING"
 
-        logging.debug( "Return: {text: %s, reason: %s}"
+        logger.debug( "Return: {text: %s, reason: %s}"
                      , completion.choices[0].text
                      , completion.choices[0].finish_reason
                      )
