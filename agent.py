@@ -1,6 +1,7 @@
 import vh_to_html
 import re
 import openai
+import json
 
 import lxml.etree
 import lxml.html
@@ -207,17 +208,18 @@ class AutoAgent(Agent):
                                               , actions="\n".join(self._action_history)
                                               )
         try:
+            request_time = datetime.datetime.now()
+            timedelta: datetime.timedelta = request_time - self._last_request_time
+            timedelta: float = timedelta.total_seconds()
+            if 3.1 - timedelta > 0.:
+                time.sleep(3.1-timedelta)
             completion = openai.Completion.create( model=self._model
                                                  , prompt=prompt
                                                  , max_tokens=self._max_tokens
                                                  , temperature=self._temperature
                                                  , request_timeout=self._request_timeout
                                                  )
-            request_time = datetime.datetime.now()
-            timedelta: datetime.timedelta = request_time - self._last_request_time
-            timedelta: float = timedelta.total_seconds()
-            if 3.1 - timedelta > 0.:
-                time.sleep(3.1-timedelta)
+            self._last_request_time = datetime.datetime.now()
         except:
             return "NOTHING"
 
@@ -229,3 +231,34 @@ class AutoAgent(Agent):
         return completion.choices[0].text.strip()
         #  }}} method _get_action # 
     #  }}} class AutoAgent # 
+
+class ReplayAgent(Agent):
+    #  class ReproducingAgent {{{ # 
+    def __init__(self, replay_file: str):
+        #  method __init__ {{{ # 
+        super(ReplayAgent, self).__init__()
+
+        self._replay: List[str] = []
+        with open(replay_file) as f:
+            for l in f:
+                log_item: Dict[str, str] = json.loads(l)
+                self._replay.append(log_item["text"].strip())
+
+        self._index: int = -1
+
+        self._last_request_time: datetime.datetime = datetime.datetime.now()
+        #  }}} method __init__ # 
+
+    def _get_action(self, *args) -> str:
+        #  method _get_action {{{ # 
+        request_time = datetime.datetime.now()
+        timedelta: datetime.timedelta = request_time - self._last_request_time
+        timedelta: float = timedelta.total_seconds()
+        if 3.1 - timedelta > 0.:
+            time.sleep(3.1-timedelta)
+        self._last_request_time = datetime.datetime.now()
+        self._index += 1
+        self._index %= len(self._replay)
+        return self._replay[self._index]
+        #  }}} method _get_action # 
+    #  }}} class ReproducingAgent # 

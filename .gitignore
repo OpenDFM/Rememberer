@@ -3,6 +3,7 @@ weights
 logs
 logs-historyless/
 openaiconfig.yaml
+visualization
 
 __pycache__
 tags
@@ -10,3 +11,6 @@ tags
 backup-configs/
 data-backup/
 llmdemo*
+
+snapshots
+branch-config/
