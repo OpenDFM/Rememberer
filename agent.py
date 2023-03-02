@@ -43,6 +43,8 @@ class Agent(abc.ABC):
                 , task: str
                 , screen: lxml.etree.Element
                 , instruction: str
+                , reward: float
+                , total_reward: float
                 ) -> Dict[str, np.ndarray]:
         #  method __call__ {{{ # 
         """
@@ -50,6 +52,8 @@ class Agent(abc.ABC):
             task (str): task description
             screen (lxml.etree.Element): screen view hierarchy
             instruction (str): step instruction
+            reward (float): the last reward
+            total_reward (float): the total history reward
 
         Returns:
             Dict[str, np.ndarray]: dict like
@@ -87,6 +91,8 @@ class Agent(abc.ABC):
         action_str: str = self._get_action( task
                                           , screen_representation.strip()
                                           , instruction
+                                          , reward
+                                          , total_reward
                                           )
 
         self._action_history.append(action_str)
@@ -149,6 +155,8 @@ class ManualAgent(Agent):
                    , task: str
                    , screen: str
                    , instruction: str
+                   , reward: float
+                   , total_reward: float
                    ) -> str:
         #  method _get_action {{{ # 
         print("Task:")
@@ -159,6 +167,10 @@ class ManualAgent(Agent):
         print(instruction)
         print("Action History:")
         print("\n".join(self._action_history))
+        print("Last Reward:")
+        print("{:.1f}".format(reward))
+        print("Total Reward:")
+        print("{:.1f}".format(total_reward))
 
         action_str: str = input("Please input the next action:")
         return action_str
@@ -199,6 +211,8 @@ class AutoAgent(Agent):
                    , task: str
                    , screen: str
                    , instruction: str
+                   , reward: float
+                   , total_reward: float
                    ) -> str:
         #  method _get_action {{{ # 
         prompt: str = self._prompt_template.safe_substitute(
@@ -206,6 +220,8 @@ class AutoAgent(Agent):
                                               , html=screen
                                               , instruction=instruction
                                               , actions="\n".join(self._action_history)
+                                              , reward="{:.1f}".format(reward)
+                                              , total_reward="{:.1f}".format(total_reward)
                                               )
         try:
             request_time = datetime.datetime.now()

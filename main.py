@@ -124,8 +124,8 @@ def main():
                            #, temperature=args.temperature
                            #, request_timeout=args.request_timeout
                            #)
-    #model = agent.ManualAgent()
-    model = agent.ReplayAgent(args.replay_file)
+    model = agent.ManualAgent()
+    #model = agent.ReplayAgent(args.replay_file)
 
     env = android_env.load( args.task_path
                           , args.avd_name
@@ -138,6 +138,7 @@ def main():
                           , unify_vocabulary=os.path.join( args.tokenizer_path
                                                          , "vocab.txt"
                                                          )
+                          , with_view_hierarchy=True
                           )
     env = VhIoWrapper( env
                      , AutoTokenizer.from_pretrained(args.tokenizer_path)
@@ -148,7 +149,7 @@ def main():
     logger.info("The environment is ready.")
     #  }}} Build Agent and Environment # 
 
-    os.makedirs(args.dump_path, exist_ok=True)
+    #os.makedirs(args.dump_path, exist_ok=True)
 
     max_nb_steps = 15
     for i in range(env.nb_tasks):
@@ -159,11 +160,11 @@ def main():
         instruction: str = "\n".join(env.task_instructions())
 
         nb_steps = 0
-        dump( args.dump_path, nb_steps, command
-            , step.observation["pixels"]
-            , step.observation["view_hierarchy"]
-            , instruction
-            )
+        #dump( args.dump_path, nb_steps, command
+            #, step.observation["pixels"]
+            #, step.observation["view_hierarchy"]
+            #, instruction
+            #)
 
         reward: float = step.reward
         succeeds: bool = True
@@ -172,6 +173,8 @@ def main():
                     = model( command
                            , step.observation["view_hierarchy"]
                            , instruction
+                           , step.reward
+                           , reward
                            )
             step = env.step(action)
             if len(env.task_instructions())>0:
@@ -179,11 +182,11 @@ def main():
             reward += step.reward
 
             nb_steps += 1
-            dump( args.dump_path, nb_steps, command
-                , step.observation["pixels"]
-                , step.observation["view_hierarchy"]
-                , instruction
-                )
+            #dump( args.dump_path, nb_steps, command
+                #, step.observation["pixels"]
+                #, step.observation["view_hierarchy"]
+                #, instruction
+                #)
 
             if nb_steps>=max_nb_steps:
                 succeeds = False
