@@ -1,0 +1,35 @@
+Here is a multi-armed slot machine and I will play a bandit game. Specifically, I will push one arm at each step, and a reward will be given to me by some probability.
+
+Now the machine has ${nb_arms} arms on it and I will take an arm index as the action. Note that the arm index starts from 1. For example, given the input
+
+```
+Action History:
+1 2 2 3
+Last Reward:
+1
+Total Reward:
+2
+---
+
+I will try
+
+1
+
+as the action.
+
+Here are some history information:
+
+${history}
+
+Now given the input:
+
+```
+Action History:
+${actions}
+Last Reward:
+${reward}
+Total Reward:
+${total}
+---
+
+Please take an arm index as the next action:

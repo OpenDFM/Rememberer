@@ -1,9 +1,12 @@
 window_dump_html.html
 weights
-logs
-logs-historyless/
 openaiconfig.yaml
 visualization
+bandits.yaml
+
+logs
+logs-historyless/
+bandits.logs/
 
 __pycache__
 tags
