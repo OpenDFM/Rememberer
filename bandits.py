@@ -69,10 +69,10 @@ class BanditsEnv:
             Step: step information
         """
 
-        if action<0:
+        if action==0:
             return Step(0)
 
-        action: np.int64 = np.clip(action, 0, len(self)-1)
+        action: np.int64 = np.clip(action, 1, len(self))-1
         predicate: float = self._rng.random()
         if predicate<self._probabilities[action]:
             reward = 1
@@ -292,20 +292,19 @@ class AutoAgent(Agent):
 
             action_text: str = completion.choices[0].text.strip()
             #action_text: str = input(prompt)
-        except:
-            return -1
 
-        run_logger.debug( "Returns: {\"text\": %s, \"reason\": %s}"
-                        , repr(completion.choices[0].text)
-                        , repr(completion.choices[0].finish_reason)
-                        )
+            run_logger.debug( "Returns: {\"text\": %s, \"reason\": %s}"
+                            , repr(completion.choices[0].text)
+                            , repr(completion.choices[0].finish_reason)
+                            )
 
-        try:
-            action = int(np.clip(int(action_text)-1, 0, self._nb_arms-1))
+            action = int(np.clip(int(action_text), 1, self._nb_arms))
         except:
-            action = -1
+            action = 0
 
         self._action_history.append(action)
+        run_logger.debug("Action: %d", action)
+
         return action
         #  }}} method __call__ # 
     #  }}} class AutoAgent # 

@@ -6,7 +6,7 @@ Now the machine has ${nb_arms} arms on it and I will take an arm index as the ac
 Action History:
 1 2 2 3
 Last Reward:
-1
+0
 Total Reward:
 2
 ---
