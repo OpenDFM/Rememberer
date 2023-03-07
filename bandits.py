@@ -42,8 +42,8 @@ class BanditsEnv:
         self._rng: np.random.Generator = np.random.default_rng(seed)
         #  }}} function __init__ # 
 
-    def reset(self, seed: Optional[int] = None) -> Step:
-        #  function reset {{{ # 
+    def refresh(self, seed: Optional[int] = None) -> Step:
+        #  function refresh {{{ # 
         """
         Args:
             seed (Optional[int]): an optional new random seed
@@ -57,7 +57,10 @@ class BanditsEnv:
         self._rng = np.random.default_rng(self._seed)
 
         return Step(reward=0)
-        #  }}} function reset # 
+        #  }}} function refresh # 
+
+    def reset(self) -> Step:
+        return Step(reward=0)
 
     def step(self, action: int) -> Step:
         #  function step {{{ # 
@@ -78,6 +81,8 @@ class BanditsEnv:
             reward = 1
         else:
             reward = 0
+
+        run_logger.debug("%d, %.3f, %.2f", action, predicate, self._probabilities[action])
 
         return Step(reward)
         #  }}} function step # 
@@ -391,7 +396,7 @@ if __name__ == "__main__":
 
     #  Workflow {{{ # 
     max_nb_steps = 15
-    nb_turns = 15
+    nb_turns = 5
     for i in range(nb_turns):
         step_record: List[Step] = []
         action_record: List[int] = []
