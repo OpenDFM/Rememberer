@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from typing import Sequence, Optional, Union
-from typing import NamedTuple, List, Dict
+from typing import NamedTuple, List, Dict, Deque
 import numpy as np
 import abc
 
@@ -16,7 +16,8 @@ import logging
 import argparse
 
 import openai
-import itertools
+#import itertools
+import collections
 
 run_logger = logging.getLogger("agent")
 
@@ -145,10 +146,20 @@ class HistoryReplay:
                           ] = {None: {}}
 
         self._gamma: float = gamma
+        self._multi_gamma: float = gamma ** n_step_flatten
+        self._filter: np.ndarray = np.logspace( 0, n_step_flatten
+                                              , num=n_step_flatten
+                                              , endpoint=False
+                                              , base=self._gamma
+                                              )[::-1] # (n,)
+
         self._step_penalty: float = step_penalty
         self._learning_rate: float = learning_rate
         self._n_step_flatten: int = n_step_flatten
-        self._multi_gamma: float = gamma ** self._n_step_flatten
+
+        self._action_buffer: Deque[Optional[int]] = collections.deque(maxlen=self._n_step_flatten)
+        self._observation_buffer: Deque[int] = collections.deque(maxlen=self._n_step_flatten+1)
+        self._reward_buffer: Deque[int] = collections.deque(maxlen=self._n_step_flatten)
         #  }}} method __init__ # 
 
     def __getitem__(self, last_reward: int) -> ActionDict:
@@ -164,38 +175,77 @@ class HistoryReplay:
         return self._record[None]
         #  }}} method __getitem__ # 
 
-    def update(self, steps: List[Step], actions: List[int]):
+    def update(self, step: Step, action: Optional[int] = None):
         #  method update {{{ # 
         """
         Args:
-            steps (List[Step]): list with length L of Step as the record of the
-              observations and rewards
-            actions (List[int]): list with length (L-1) of int as the record of
-              the taken actions
+            step (Step): the new state transited to after `action` is performed
+            action (Optional[int]): the preformed action, may be null if it is
+              the initial state
         """
 
-        assert len(steps)==len(actions)+1
-        rewards = np.array( list( map( lambda st: st.reward
-                                     , steps
-                                     )
-                                )
-                          , dtype=np.float32
-                          ) # (L,)
-        convolved_rewards = np.convolve( rewards
-                                       , np.logspace( 0, self._n_step_flatten
-                                                    , num=self._n_step_flatten
-                                                    , endpoint=False
-                                                    , base=self._gamma
-                                                    )[::-1] # (n,)
+        self._action_buffer.append(action)
+        self._observation_buffer.append(step.reward)
+        self._reward_buffer.append(step.reward)
+        if len(self._observation_buffer)<self._observation_buffer.maxlen:
+            return
+        
+        observation: int = self._observation_buffer[0]
+        action: int = self._action_buffer[0]
+        observation_: int = self._observation_buffer[-1]
+        reward: int = self._reward_buffer[0]
+
+        action_dict: HistoryReplay.ActionDict = self._record[None] # observation
+        if action not in action_dict:
+            action_dict[action] = { "reward": 0.
+                                  , "qvalue": 0.
+                                  , "number": 0
+                                  }
+        action_record: Dict[str, Union[int, float]] = action_dict[action]
+
+        number: int = action_record["number"]
+        number_: int = number + 1
+        action_record["number"] = number_
+
+        action_record["reward"] = float(number)/number_ * action_record["reward"]\
+                                + 1./number_ * float(reward)
+
+        qvalue: float = action_record["qvalue"]
+        new_estimation: float = float( np.convolve( np.asarray(self._reward_buffer, dtype=np.float32) # (n,)
+                                                  , self._filter # (n,)
+                                                  , mode="valid"
+                                                  )[0]
+                                     )\
+                              + self._multi_gamma * max( map( lambda rcd: rcd["qvalue"]
+                                                            , self._record[None].values() # observation_
+                                                            )
+                                                       )
+        update: float = new_estimation-qvalue
+        action_record["qvalue"] += self._learning_rate*update
+        #  }}} method update # 
+
+    def new_trajectory(self):
+        #  method new_trajectory {{{ # 
+        if len(self._action_buffer)<=1:
+            self._action_buffer.clear()
+            self._observation_buffer.clear()
+            self._reward_buffer.clear()
+            return
+
+        if self._action_buffer[0] is None:
+            self._action_buffer.popleft()
+            self._reward_buffer.popleft()
+
+        rewards = np.asarray(self._reward_buffer, dtype=np.float32) # (n',)
+        convolved_rewards = np.convolve( rewards, self._filter
                                        , mode="full"
-                                       )[self._n_step_flatten:] # (L-1,)
-        for obsvt, act, n_obsvt\
-                , rwd, accml_rwd in itertools.zip_longest( steps[:-1]
-                                                         , actions
-                                                         , steps[self._n_step_flatten:]
-                                                         , rewards[1:]
-                                                         , convolved_rewards
-                                                         ):
+                                       )[self._n_step_flatten-1:] # (n',)
+
+        for obsvt, act, rwd, cvl_rwd in zip( self._observation_buffer[:-1]
+                                           , self._action_buffer
+                                           , self._reward_buffer
+                                           , convolved_rewards
+                                           ):
             action_dict: HistoryReplay.ActionDict = self._record[None] # obsvt
             if act not in action_dict:
                 action_dict[act] = { "reward": 0.
@@ -203,6 +253,7 @@ class HistoryReplay:
                                    , "number": 0
                                    }
             action_record: Dict[str, Union[int, float]] = action_dict[act]
+            
             number: int = action_record["number"]
             number_: int = number + 1
             action_record["number"] = number_
@@ -211,14 +262,14 @@ class HistoryReplay:
                                     + 1./number_ * float(rwd)
 
             qvalue: float = action_record["qvalue"]
-            new_estimation: float = float(accml_rwd)\
-                                  + self._multi_gamma * max( map( lambda rcd: rcd["qvalue"]
-                                                                , self._record[None].values() # n_obsvt
-                                                                )
-                                                           )
+            new_estimation: float = float(cvl_rwd)
             update: float = new_estimation-qvalue
             action_record["qvalue"] += self._learning_rate*update
-        #  }}} method update # 
+
+        self._action_buffer.clear()
+        self._observation_buffer.clear()
+        self._reward_buffer.clear()
+        #  }}} method new_trajectory # 
 
     def __str__(self) -> str:
         return yaml.dump(self._record, Dumper=yaml.Dumper)
@@ -238,6 +289,7 @@ class AutoAgent(Agent):
                 ):
         #  method __init__ {{{ # 
         self._nb_arms: int = nb_arms
+        self._action_list: str = " ".join(map(str, range(1, self._nb_arms+1)))
 
         self._prompt_template: string.Template = prompt_template
         self._api_key: str = api_key
@@ -256,15 +308,17 @@ class AutoAgent(Agent):
 
     def reset(self):
         self._action_history = []
+        self._history_replay.new_trajectory()
 
     def __call__(self, last_reward: int, total_reward: int) -> int:
         #  method __call__ {{{ # 
         action_dict: HistoryReplay.ActionDict = self._history_replay[last_reward]
-        history_str = "\n".join( ["| Actions | Rewards | Accumulated Rewards |"]\
+        history_str = "\n".join( ["| Actions | Rewards | Accumulated Rewards | Samples |"]\
                                + [ "| "\
                                  + " | ".join( [ str(act)
                                                , "{:.2f}".format(rcd["reward"])
                                                , "{:.2f}".format(rcd["qvalue"])
+                                               , "{:d}".format(rcd["number"])
                                                ]
                                              )\
                                  + " |" for act, rcd in action_dict.items()
@@ -272,6 +326,7 @@ class AutoAgent(Agent):
                                )
         prompt: str = self._prompt_template.safe_substitute(
                                                 nb_arms=self._nb_arms
+                                              , action_list=self._action_list
                                               , history=history_str
                                               , actions=" ".join( map( str
                                                                      , self._action_history
@@ -395,15 +450,16 @@ if __name__ == "__main__":
     #  }}} Build Environment and Agent # 
 
     #  Workflow {{{ # 
-    max_nb_steps = 15
+    max_nb_steps = 5
     nb_turns = 5
     for i in range(nb_turns):
-        step_record: List[Step] = []
-        action_record: List[int] = []
+        #step_record: List[Step] = []
+                                    #action_record: List[int] = []
 
         model.reset()
         step: Step = env.reset()
-        step_record.append(step)
+        history_replay.update(step)
+        #step_record.append(step)
 
         reward: int = step.reward
         for j in range(max_nb_steps):
@@ -411,10 +467,11 @@ if __name__ == "__main__":
             step = env.step(action)
             reward += step.reward
 
-            step_record.append(step)
-            action_record.append(action)
+            history_replay.update(step, action)
+            #step_record.append(step)
+            #action_record.append(action)
 
-        history_replay.update(step_record, action_record)
+        #history_replay.update(step_record, action_record)
         run_logger.info(str(history_replay))
 
         run_logger.info( "\x1b[42mEND!\x1b[0m TrajecId: %d, Reward: %d"

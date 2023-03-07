@@ -1,15 +1,19 @@
 Here is a multi-armed slot machine and I will play a bandit game. Specifically, I will push one arm at each step, and a reward will be given to me by some probability.
 
-The machine has ${nb_arms} arms on it and I will take an arm index as the action. Note that the arm index starts from 1. For example, given the value estimation table, action history, past rewards as the input:
+The machine has ${nb_arms} arms on it and I will take an arm index as the action. Thus the available actions are
+
+${action_list}
+
+For example, given the value estimation table, action history, past rewards as the input:
 
 ```
 Value Estimation:
-| Actions | Rewards | Accumulated Rewards |
-| 1 | 0.28 | 0.31 |
-| 2 | 0.50 | 0.50 |
-| 3 | 0.00 | 0.00 |
-| 4 | 0.10 | 0.12 |
-| 5 | 0.91 | 0.79 |
+| Actions | Rewards | Accumulated Rewards | Samples |
+| 1 | 0.28 | 0.31 | 10 |
+| 2 | 0.50 | 0.50 | 11 |
+| 3 | 0.00 | 0.00 | 18 |
+| 4 | 0.10 | 0.12 | 9 |
+| 5 | 0.91 | 0.79 | 10 |
 Action History:
 5 5 2 1 5
 Last Reward:
@@ -18,7 +22,15 @@ Total Reward:
 4
 ---
 
-I will try
+I'm willing to try the actions with greater reward estimations like:
+
+5 2
+
+or the less-explored actions like:
+
+4
+
+This time, I will try
 
 5
 
@@ -35,4 +47,4 @@ Total Reward:
 ${total}
 ---
 
-I will try
+I'm willing to try the actions with greater reward estimations like:
