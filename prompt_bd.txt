@@ -4,16 +4,10 @@ The machine has ${nb_arms} arms on it and I will take an arm index as the action
 
 ${action_list}
 
-For example, given the value estimation table, action history, past rewards as the input:
+For example, given the input:
 
 ```
-Value Estimation:
-| Actions | Rewards | Accumulated Rewards | Samples |
-| 1 | 0.28 | 0.31 | 10 |
-| 2 | 0.50 | 0.50 | 11 |
-| 3 | 0.00 | 0.00 | 18 |
-| 4 | 0.10 | 0.12 | 9 |
-| 5 | 0.91 | 0.79 | 10 |
+Action Advice: 5 2
 Action History:
 5 5 2 1 5
 Last Reward:
@@ -22,23 +16,14 @@ Total Reward:
 4
 ---
 
-I'm willing to try the actions with greater reward estimations like:
-
-5 2
-
-or the less-explored actions like:
-
-4
-
-This time, I will try
+The action may be:
 
 5
 
 Now the new input:
 
 ```
-Value Estimation:
-${history}
+Action Advice: ${advice}
 Action History:
 ${actions}
 Last Reward:
@@ -47,4 +32,4 @@ Total Reward:
 ${total}
 ---
 
-I'm willing to try the actions with greater reward estimations like:
+The action may be:

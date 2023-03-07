@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from typing import Sequence, Optional, Union
-from typing import NamedTuple, List, Dict, Deque
+from typing import NamedTuple, List, Dict, Deque, Set
 import numpy as np
 import abc
 
@@ -282,6 +282,8 @@ class AutoAgent(Agent):
                 , history_replay: HistoryReplay
                 , prompt_template: string.Template
                 , api_key: str
+                , advantage_threshold: float = 0.1
+                , exploration_threshold: int = 3
                 , model: str = "text-davinci-003"
                 , max_tokens: int = 5
                 , temperature: float = 0.1
@@ -290,6 +292,9 @@ class AutoAgent(Agent):
         #  method __init__ {{{ # 
         self._nb_arms: int = nb_arms
         self._action_list: str = " ".join(map(str, range(1, self._nb_arms+1)))
+
+        self._advantage_threshold: float = advantage_threshold
+        self._exploration_threshold: int = exploration_threshold
 
         self._prompt_template: string.Template = prompt_template
         self._api_key: str = api_key
@@ -304,6 +309,7 @@ class AutoAgent(Agent):
         self._action_history: List[int] = []
 
         openai.api_key = api_key
+        self._rng: np.random.Generator = np.random.default_rng()
         #  }}} method __init__ # 
 
     def reset(self):
@@ -313,21 +319,62 @@ class AutoAgent(Agent):
     def __call__(self, last_reward: int, total_reward: int) -> int:
         #  method __call__ {{{ # 
         action_dict: HistoryReplay.ActionDict = self._history_replay[last_reward]
-        history_str = "\n".join( ["| Actions | Rewards | Accumulated Rewards | Samples |"]\
-                               + [ "| "\
-                                 + " | ".join( [ str(act)
-                                               , "{:.2f}".format(rcd["reward"])
-                                               , "{:.2f}".format(rcd["qvalue"])
-                                               , "{:d}".format(rcd["number"])
-                                               ]
-                                             )\
-                                 + " |" for act, rcd in action_dict.items()
+
+        actions_by_advantage: List[int] = list(sorted( action_dict
+                                                     , key=(lambda act: action_dict[act]["reward"])
+                                                     , reverse=True
+                                                     )
+                                              )
+        if len(actions_by_advantage)==0:
+            action_advices: Set[int] = set()
+        elif len(actions_by_advantage)==1:
+            action_advices: Set[int] = set(actions_by_advantage)
+        else:
+            action_advices: Set[int] = set(actions_by_advantage[0:1])\
+                                            if actions_by_advantage[0]-actions_by_advantage[1]>self._advantage_threshold\
+                                            else set(actions_by_advantage[0:2])
+        avg_exploration_time: np.float64 = np.mean( np.asarray(
+                                                        list( map( lambda rcd: rcd["number"]
+                                                                 , action_dict.values()
+                                                                 )
+                                                            )
+                                                      )
+                                                  )
+        #run_logger.info(str(action_advices))
+        less_explored_actions: Set[int] = set( filter( lambda act:
+                                                          avg_exploration_time-action_dict[act]["number"]\
+                                                                  if act in action_dict\
+                                                                  else avg_exploration_time\
+                                                              >= self._exploration_threshold
+                                                     , range(1, self._nb_arms+1)
+                                                     )
+                                             )
+        interaction: Set[int] = action_advices & less_explored_actions
+        symmetric: Set[int] = action_advices ^ less_explored_actions
+        #priors: np.ndarray = self._rng.permutation(np.array(list(interaction), dtype=np.int32))
+        #inferiors: np.ndarray = self._rng.permutation(np.array(list(symmetric), dtype=np.int32))
+        #action_advices = np.concatenate([priors, inferiors])
+        weight = np.concatenate( [ np.full((len(interaction),), 2.)
+                                 , np.full((len(symmetric),), 1.)
                                  ]
                                )
+        if len(weight)>0:
+            weight /= np.sum(weight)
+            action_advices = self._rng.choice( np.concatenate( [ np.array(list(interaction), dtype=np.int32)
+                                                               , np.array(list(symmetric), dtype=np.int32)
+                                                               ]
+                                                             )
+                                             , size=(len(interaction)+len(symmetric),)
+                                             , replace=False
+                                             , p=weight
+                                             )
+        else:
+            action_advices = np.empty((0,))
+
         prompt: str = self._prompt_template.safe_substitute(
                                                 nb_arms=self._nb_arms
                                               , action_list=self._action_list
-                                              , history=history_str
+                                              , advice=" ".join(map(str, action_advices))
                                               , actions=" ".join( map( str
                                                                      , self._action_history
                                                                      )
@@ -450,31 +497,21 @@ if __name__ == "__main__":
     #  }}} Build Environment and Agent # 
 
     #  Workflow {{{ # 
-    max_nb_steps = 5
-    nb_turns = 5
-    for i in range(nb_turns):
-        #step_record: List[Step] = []
-                                    #action_record: List[int] = []
+    max_nb_steps = 25
+    model.reset()
+    step: Step = env.reset()
+    history_replay.update(step)
+    reward: int = step.reward
+    for i in range(max_nb_steps):
+        action: int = model(step.reward, reward)
+        step = env.step(action)
+        reward += step.reward
 
-        model.reset()
-        step: Step = env.reset()
-        history_replay.update(step)
-        #step_record.append(step)
+        history_replay.update(step, action)
 
-        reward: int = step.reward
-        for j in range(max_nb_steps):
-            action: int = model(step.reward, reward)
-            step = env.step(action)
-            reward += step.reward
+    run_logger.info(str(history_replay))
 
-            history_replay.update(step, action)
-            #step_record.append(step)
-            #action_record.append(action)
-
-        #history_replay.update(step_record, action_record)
-        run_logger.info(str(history_replay))
-
-        run_logger.info( "\x1b[42mEND!\x1b[0m TrajecId: %d, Reward: %d"
-                       , i, reward
-                       )
+    run_logger.info( "\x1b[42mEND!\x1b[0m TrajecId: %d, Reward: %d"
+                   , i, reward
+                   )
     #  }}} Workflow # 
