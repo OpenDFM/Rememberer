@@ -118,13 +118,13 @@ def main():
         prompt_template = string.Template(f.read())
     with open(args.config) as f:
         openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
-    model = agent.AutoAgent( prompt_template=prompt_template
-                           , api_key=openaiconfig["api_key"]
-                           , max_tokens=args.max_tokens
-                           , temperature=args.temperature
-                           , request_timeout=args.request_timeout
-                           )
-    #model = agent.ManualAgent()
+    #model = agent.AutoAgent( prompt_template=prompt_template
+                           #, api_key=openaiconfig["api_key"]
+                           #, max_tokens=args.max_tokens
+                           #, temperature=args.temperature
+                           #, request_timeout=args.request_timeout
+                           #)
+    model = agent.ManualAgent()
     #model = agent.ReplayAgent(args.replay_file)
 
     env = android_env.load( args.task_path

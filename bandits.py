@@ -189,7 +189,7 @@ class HistoryReplay:
         self._reward_buffer.append(step.reward)
         if len(self._observation_buffer)<self._observation_buffer.maxlen:
             return
-        
+
         observation: int = self._observation_buffer[0]
         action: int = self._action_buffer[0]
         observation_: int = self._observation_buffer[-1]

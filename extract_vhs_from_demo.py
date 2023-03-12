@@ -11,12 +11,12 @@ import os.path
 from typing import List, Dict
 from typing import Any
 
-demo_directory = "llmdemo-data/"
-demo_list: List[str] = list( filter( lambda f: f.endswith(".pkl.prs")
+demo_directory = "llmdemo-data-extra.out/"
+demo_list: List[str] = list( filter( lambda f: f.endswith(".pkl")
                                    , os.listdir(demo_directory)
                                    )
                            )
-vh_directory = "llmdemo-vh"
+vh_directory = "llmdemo-vh-extra/"
 
 for dem in demo_list:
     with open(os.path.join(demo_directory, dem), "rb") as f:
