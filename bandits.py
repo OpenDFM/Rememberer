@@ -179,8 +179,9 @@ class HistoryReplay:
         #  method update {{{ # 
         """
         Args:
-            step (Step): the new state transited to after `action` is performed
-            action (Optional[int]): the preformed action, may be null if it is
+            step (Step): the new state transitted to after `action` is
+              performed
+            action (Optional[int]): the performed action, may be null if it is
               the initial state
         """
 
@@ -253,7 +254,7 @@ class HistoryReplay:
                                    , "number": 0
                                    }
             action_record: Dict[str, Union[int, float]] = action_dict[act]
-            
+
             number: int = action_record["number"]
             number_: int = number + 1
             action_record["number"] = number_
