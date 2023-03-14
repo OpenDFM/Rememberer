@@ -5,17 +5,60 @@ import abc
 
 import numpy as np
 import collections
+import itertools
+
+import logging
+
+logger = logging.getLogger("agent.history")
 
 class Matcher(abc.ABC):
     #  class Matcher {{{ # 
     def __init__(self, query: "HistoryReplay.Key"):
         #  method __init__ {{{ # 
-        self._query = query
+        self._query: HistoryReplay.Key = query
         #  }}} method __init__ # 
 
     def __call__(self, key: "HistoryReplay.Key") -> float:
         raise NotImplementedError
     #  }}} class Matcher # 
+
+class LCSNodeMatcher(Matcher):
+    #  class LCSNodeMatcher {{{ # 
+    def __init__(self, query: "HistoryReplay.Key"):
+        #  method __init__ {{{ # 
+        super(LCSNodeMatcher, self).__init__(query)
+
+        screen: str
+        screen, _, _ = self._query
+        self._node_sequence: List[str] = list( map( lambda n: n[1:n.index(" ")]
+                                                  , screen.splitlines()
+                                                  )
+                                             )
+        #  }}} method __init__ # 
+
+    def __call__(self, key: "HistoryReplay.Key") -> float:
+        #  method __call__ {{{ # 
+        key_screen: str = key[0]
+        #  }}} method __call__ # 
+        key_node_sequence: List[str] = list( map( lambda n: n[1:n.index(" ")]
+                                                , key_screen.splitlines()
+                                                )
+                                           )
+
+        n: int = len(self._node_sequence)
+        m: int = len(key_node_sequence)
+        lcs_matrix: np.ndarray = np.zeros((n+1, m+1), dtype=np.int32)
+        for i, j in itertools.product( range(1, n+1)
+                                     , range(1, m+1)
+                                     ):
+            lcs_matrix[i, j] = lcs_matrix[i-1, j-1] + 1 if self._node_sequence[i]==key_node_sequence[j]\
+                                                        else max( lcs_matrix[i-1, j]
+                                                                , lcs_matrix[i, j-1]
+                                                                )
+        lcs: np.int32 = lcs_matrix[n, m]
+        length: int = max(n, m)
+        return float(lcs)/length
+    #  }}} class LCSNodeMatcher # 
 
 class HistoryReplay:
     #  class HistoryReplay {{{ # 
