@@ -115,18 +115,21 @@ def convert_tree(node: lxml.etree.Element) ->\
         if n.get("bounds")=="[0,0][0,0]":
             continue
         if len(list(n))==0:
+            bounds_match = bounds_pattern.match(n.get("bounds"))
+            bbox: List[int] = list( map( int
+                                       , bounds_match.groups()
+                                       )
+                                  )
+            if bbox[0]==bbox[2] or bbox[1]==bbox[3]:
+                continue
+
             html_element: lxml.html.Element = convert_node(n)
             html_element.set("id", str(id_counter))
             html_element.set("clickable", n.get("clickable"))
             result_list.append(html_element)
             id_counter += 1
 
-            bounds_match = bounds_pattern.match(n.get("bounds"))
-            bbox_list.append( list( map( int
-                                       , bounds_match.groups()
-                                       )
-                                  )
-                            )
+            bbox_list.append(bbox)
     return result_list, bbox_list
     #  }}} function convert_tree # 
 

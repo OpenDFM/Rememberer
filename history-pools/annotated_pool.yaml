@@ -1,0 +1,90 @@
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+  <img class="search button" alt="Search" id="2" clickable="true">
+  <div class="webView" id="3" clickable="true"></div>
+  <div class="statusBarBackground" id="4" clickable="false"></div>
+- |
+  Search an article to learn how to be a good friend to a guy.
+  Then, access the article "How to Be a Good Friend to a Guy"
+  Then, check the author page of Trudi Griffin, LPC, MS.
+  Then, access the article "How to Overcome Fear"
+- ''
+:
+  INPUT(2, be a good friend to a guy):
+    reward: 1.0
+    number: 1
+
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <input class="search src text" value="Be good friend to guy " type="text" id="1" clickable="true">
+  <img class="search close btn" alt="Clear query" id="2" clickable="true">
+  <div class="header container" id="3" clickable="false"></div>
+  <div class="header top watch" id="4" clickable="false"></div>
+  <div class="siteNotice" id="5" clickable="false"></div>
+  <div class="search adblock top" id="6" clickable="false"></div>
+  <div id="7" clickable="true">How to Be a Good Friend to a Guy</div>
+  <div id="8" clickable="true">• </div>
+  <p id="9" clickable="true">562,039 views</p>
+  <div id="10" clickable="true">• </div>
+  <p id="11" clickable="true">Updated</p>
+  <p id="12" clickable="true">2 years ago</p>
+  <div id="13" clickable="true">• </div>
+  <p id="14" clickable="true">Expert Co-Authored</p>
+  <div id="15" clickable="true">How to Be Good Friends With a Girl (Guys)</div>
+  <div id="16" clickable="true">• </div>
+  <p id="17" clickable="true">646,594 views</p>
+  <div id="18" clickable="true">• </div>
+  <p id="19" clickable="true">Updated</p>
+  <p id="20" clickable="true">11 months ago</p>
+  <div id="21" clickable="true">• </div>
+  <p id="22" clickable="true">Expert Co-Authored</p>
+  <div id="23" clickable="true">How to Be Friends with Guys</div>
+  <div id="24" clickable="true">• </div>
+  <p id="25" clickable="true">564,672 views</p>
+  <div id="26" clickable="true">• </div>
+  <p id="27" clickable="true">Updated</p>
+  <p id="28" clickable="true">9 months ago</p>
+  <div id="29" clickable="true">How to Be a Good Friend</div>
+  <div id="30" clickable="true">• </div>
+  <p id="31" clickable="true">2,480,373 views</p>
+  <div id="32" clickable="true">• </div>
+  <p id="33" clickable="true">Updated</p>
+  <p id="34" clickable="true">9 months ago</p>
+  <div id="35" clickable="true">• </div>
+  <p id="36" clickable="true">Expert Co-Authored</p>
+  <div id="37" clickable="true">How to Become Friends With a Guy</div>
+  <div id="38" clickable="true">• </div>
+  <p id="39" clickable="true">282,162 views</p>
+  <div id="40" clickable="true">• </div>
+  <p id="41" clickable="true">Updated</p>
+  <p id="42" clickable="true">1 year ago</p>
+  <div id="43" clickable="true">• </div>
+  <p id="44" clickable="true">Expert Co-Authored</p>
+  <div id="45" clickable="true">How to Be a Good Prom Date (for Guys)</div>
+  <div id="46" clickable="true">• </div>
+  <p id="47" clickable="true">372,578 views</p>
+  <div id="48" clickable="true">• </div>
+  <p id="49" clickable="true">Updated</p>
+  <p id="50" clickable="true">6 months ago</p>
+  <div id="51" clickable="true">• </div>
+  <p id="52" clickable="true">Expert Co-Authored</p>
+  <div id="53" clickable="true">How to Make a Guy Feel Good</div>
+  <div id="54" clickable="true">• </div>
+  <p id="55" clickable="true">177,345 views</p>
+  <div id="56" clickable="true">• </div>
+  <p id="57" clickable="true">Updated</p>
+  <p id="58" clickable="true">1 year ago</p>
+  <div class="statusBarBackground" id="59" clickable="false"></div>
+- |
+  Search an article to learn how to be a good friend to a guy.
+  Then, access the article "How to Be a Good Friend to a Guy"
+  Then, check the author page of Trudi Griffin, LPC, MS.
+  Then, access the article "How to Overcome Fear"
+- Access the article "How to Be a Good Friend to a Guy"
+:
+  CLICK(7):
+    reward: 1.0
+    number: 1
