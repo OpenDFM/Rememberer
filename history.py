@@ -6,6 +6,7 @@ import abc
 import numpy as np
 import collections
 import itertools
+import yaml
 
 import logging
 
@@ -66,11 +67,18 @@ class HistoryReplay:
                , str # task description
                , str # step instruction
                ]
+    InfoDict = Dict[ str
+                   , Union[ float
+                          , int
+                          , List[str]
+                          ]
+                   ]
     ActionDict = Dict[ str
                      , Dict[ str
                            , Union[int, float]
                            ]
                      ]
+    Record = Dict[str, Union[InfoDict, ActionDict]]
 
     def __init__( self
                 , item_capacity: Optional[int]
@@ -81,6 +89,7 @@ class HistoryReplay:
                 , update_mode: str = "mean"
                 , learning_rate: float = 0.1
                 , n_step_flatten: int = 1
+                , action_history_update_mode: str = "shortest"
                 ):
         #  method __init__ {{{ # 
         """
@@ -98,10 +107,13 @@ class HistoryReplay:
             learning_rate (float): learning rate
             n_step_flatten (int): flatten the calculation of the estimated q
               value up to `n_step_flatten` steps
+
+            action_history_update_mode (str): "longest", "shortest", "newest",
+              or "oldest"
         """
 
         self._record: Dict[ HistoryReplay.Key
-                          , HistoryReplay.ActionDict
+                          , HistoryReplay.Record
                           ] = {}
 
         self._item_capacity: Optional[int] = item_capacity
@@ -122,10 +134,15 @@ class HistoryReplay:
         self._learning_rate: float = learning_rate
         self._n_step_flatten: int = n_step_flatten
 
+        self._action_history_update_mode: str = action_history_update_mode
+
         self._action_buffer: Deque[Optional[str]] = collections.deque(maxlen=self._n_step_flatten)
+        self._action_history: List[str] = []
         self._observation_buffer: Deque[HistoryReplay.Key]\
                 = collections.deque(maxlen=self._n_step_flatten+1)
-        self._reward_buffer: Deque[float] = collections.deque(maxlen=self._n_step_flatten)
+        self._reward_buffer: Deque[float] = collections.deque(maxlen=self._n_step_flatten+1)
+        self._total_reward: float = 0.
+        self._total_reward_buffer: Deque[float] = collections.deque(maxlen=self._n_step_flatten+1)
 
         self._similarity_matrix: np.ndarray = np.zeros( (self._item_capacity, self._item_capacity)
                                                       , dtype=np.float32
@@ -136,7 +153,8 @@ class HistoryReplay:
         #  }}} method __init__ # 
 
     def __getitem__(self, request: Key) ->\
-            List[ Tuple[ ActionDict
+            List[ Tuple[ Key
+                       , Record
                        , float
                        ]
                 ]:
@@ -146,7 +164,7 @@ class HistoryReplay:
             request (Key): the observation
 
         Returns:
-            List[Tuple[ActionDict, float]]: the retrieved action-state value
+            List[Tuple[Key, Record, float]]: the retrieved action-state value
               estimations sorted by matching scores
         """
 
@@ -156,19 +174,23 @@ class HistoryReplay:
                          , self._record.keys()
                          )
                     )
-        candidates: List[ Tuple[ HistoryReplay.ActionDict
+        candidates: List[ Tuple[ HistoryReplay.Record
                                , float
                                ]
                         ] = list( sorted( zip( self._record.keys()
+                                             , map(lambda k: self._record[k], self._record.keys())
                                              , match_scores
                                              )
-                                        , key=(lambda itm: itm[1])
+                                        , key=(lambda itm: itm[2])
+                                        , reverse=True
                                         )
                                 )
         return candidates
         #  }}} method __getitem__ # 
 
-    def update(self, step: Key, reward: float, action: Optional[str]):
+    def update( self
+              , step: Key, reward: float, action: Optional[str]
+              ):
         #  method update {{{ # 
         """
         Args:
@@ -179,20 +201,32 @@ class HistoryReplay:
         """
 
         self._action_buffer.append(action)
+        if action is not None:
+            self._action_history.append(action)
         self._observation_buffer.append(step)
         self._reward_buffer.append(reward)
+        self._total_reward += reward
+        self._total_reward_buffer.append(self._total_reward)
         if len(self._observation_buffer)<self._observation_buffer.maxlen:
             return
 
         step = self._observation_buffer[0]
         action: str = self._action_buffer[0]
         #step_: HistoryReplay.Key = self._observation_buffer[-1]
-        reward: float = self._reward_buffer[0]
+        reward: float = self._reward_buffer[1]
 
-        if not self._insert_key(step):
+        action_history: List[str] = self._action_history[:-self._n_step_flatten]
+        last_reward: float = self._reward_buffer[0]
+        total_reward: float = self._total_reward_buffer[0]
+
+        if not self._insert_key( step
+                               , action_history
+                               , last_reward
+                               , total_reward
+                               ):
             return
 
-        action_dict: HistoryReplay.ActionDict = self._record[step]
+        action_dict: HistoryReplay.ActionDict = self._record[step]["action_dict"]
         self._update_action_record(action_dict, action, reward, 0.)
         self._prune_action(action_dict)
         #  }}} method update # 
@@ -202,33 +236,57 @@ class HistoryReplay:
         if len(self._action_buffer)<1\
                 or len(self._action_buffer)==1 and self._action_buffer[0] is None:
             self._action_buffer.clear()
+            self._action_history.clear()
             self._observation_buffer.clear()
             self._reward_buffer.clear()
+            self._total_reward_buffer.clear()
+
             return
 
         if self._action_buffer[0] is None:
             self._action_buffer.popleft()
-            self._reward_buffer.popleft()
+            #self._reward_buffer.popleft()
 
-        rewards = np.asarray(self._reward_buffer, dtype=np.float32)
+        rewards = np.asarray(self._reward_buffer[1:], dtype=np.float32)
         convolved_rewards = np.convolve( rewards, self._filter
                                        , mode="full"
                                        )[self._n_step_flatten-1:]
 
-        for k, act, rwd, cvl_rwd in zip( self._observation_buffer[:-1]
-                                       , self._action_buffer
-                                       , self._reward_buffer
-                                       , convolved_rewards
-                                       ):
-            if not self._insert_key(k):
+        end_point: Optional[int] = -len(self._action_buffer)
+
+        for k, act, rwd, cvl_rwd\
+                , e_p, l_rwd, ttl_rwd in zip( self._observation_buffer[:-1]
+                                            , self._action_buffer
+                                            , self._reward_buffer
+                                            , convolved_rewards
+                                            , range(end_point, 0)
+                                            , self._reward_buffer[:-1]
+                                            , self._total_reward_buffer[:-1]
+                                            ):
+            action_history: List[str] = self._action_history[:e_p]
+            if not self._insert_key( k
+                                   , action_history
+                                   , l_rwd
+                                   , ttl_rwd
+                                   ):
                 continue
 
-            action_dict: HistoryReplay.ActionDict = self._record[k]
-            self._update_action_record(action_dict, act, rwd, float(cvl_rwd))
+            action_dict: HistoryReplay.ActionDict = self._record[k]["action_dict"]
+            self._update_action_record(action_dict, act, float(rwd), float(cvl_rwd))
             self._prune_action(action_dict)
+
+        self._action_buffer.clear()
+        self._action_history.clear()
+        self._observation_buffer.clear()
+        self._reward_buffer.clear()
+        self._total_reward_buffer.clear()
         #  }}} method new_trajectory # 
 
-    def _insert_key(self, key: Key) -> bool:
+    def _insert_key( self, key: Key
+                   , action_history: List[str]
+                   , last_reward: float
+                   , total_reward: float
+                   ) -> bool:
         #  method _insert_key {{{ # 
         if key not in self._record:
             #  Insertion Policy (Static Capacity Limie) {{{ # 
@@ -261,14 +319,52 @@ class HistoryReplay:
                 similarities[drop_index] = 0.
                 self._similarity_matrix[drop_index, :] = similarities
                 self._similarity_matrix[:, drop_index] = similarities
-                self._record[key] = {}
+                self._record[key] = { "other_info": { "action_history": action_history
+                                                    , "last_reward": last_reward
+                                                    , "total_reward": total_reward
+                                                    , "number": 1
+                                                    }
+                                    , "action_dict": {}
+                                    }
             else:
                 new_index: int = len(self._record)
                 self._keys.append(key)
                 self._similarity_matrix[new_index, :new_index] = similarities
                 self._similarity_matrix[:new_index, new_index] = similarities
-                self._record[key] = {}
+                self._record[key] = { "other_info": { "action_history": action_history
+                                                    , "last_reward": last_reward
+                                                    , "total_reward": total_reward
+                                                    , "number": 1
+                                                    }
+                                    , "action_dict": {}
+                                    }
             #  }}} Insertion Policy (Static Capacity Limie) # 
+        else:
+            other_info: HistoryReplay.InfoDict = self._record[key]["other_info"]
+
+            if self._action_history_update_mode=="longest"\
+                    and len(action_history) >= other_info["action_history"]:
+                other_info["action_history"] = action_history
+            elif self._action_history_update_mode=="shortest"\
+                    and len(action_history) <= other_info["action_history"]:
+                other_info["action_history"] = action_history
+            elif self._action_history_update_mode=="newest":
+                other_info["action_history"] = action_history
+            elif self._action_history_update_mode=="oldest":
+                pass
+
+            number: int = other_info["number"]
+            number_: int = number + 1
+            other_info["number"] = number_
+
+            if self._update_mode=="mean":
+                other_info["last_reward"] = float(number)/number_ * other_info["last_reward"]\
+                                          + 1./number_ * last_reward
+                other_info["total_reward"] = float(number)/number_ * other_info["total_reward"]\
+                                           + 1./number_ * total_reward
+            elif self._update_mode=="const":
+                other_info["last_reward"] += self._learning_rate * (last_reward-other_info["last_reward"])
+                other_info["total_reward"] += self._learning_rate * (total_reward-other_info["total_reward"])
         return True
         #  }}} method _insert_key # 
 
@@ -306,4 +402,12 @@ class HistoryReplay:
                                    )
             del action_dict[worst_action]
         #  }}} method _remove_action # 
+
+    def __str__(self) -> str:
+        return yaml.dump(self._record, Dumper=yaml.Dumper)
+    def load_yaml(self, yaml_file: str):
+        #  method load_yaml {{{ # 
+        with open(yaml_file) as f:
+            self._record = yaml.load(f, Loader=yaml.Loader)
+        #  }}} method load_yaml # 
     #  }}} class HistoryReplay # 

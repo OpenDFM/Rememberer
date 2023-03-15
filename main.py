@@ -15,6 +15,7 @@ import android_env
 from android_env.wrappers import VhIoWrapper
 from transformers import AutoTokenizer
 import dm_env
+import history
 
 from typing import Dict
 import numpy as np
@@ -68,6 +69,16 @@ def main():
     parser.add_argument("--avd-name", type=str)
     parser.add_argument("--tokenizer-path", type=str)
 
+    parser.add_argument("--load-replay", type=str)
+    parser.add_argument("--item-capacity", type=int)
+    parser.add_argument("--action-capacity", type=int)
+    parser.add_argument("--matcher", default="lcs", type=str, choices=["lcs"])
+    parser.add_argument("--gamma", default=1., type=float)
+    parser.add_argument("--step-penalty", default=0., type=float)
+    parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
+    parser.add_argument("--learning-rate", default=0.1, type=float)
+    parser.add_argument("--n-step-flatten", default=1, type=int)
+
     parser.add_argument("--prompt-template", type=str)
     parser.add_argument("--max-tokens", default=20, type=int)
     parser.add_argument("--temperature", default=0.1, type=float)
@@ -114,8 +125,27 @@ def main():
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
-    with open(args.prompt_template) as f:
+    matcher_functions: Dict[str, type(history.Matcher)] = { "lcs": history.LCSNodeMatcher }
+    history_replay = history.HistoryReplay( args.item_capacity
+                                          , args.action_capacity
+                                          , matcher=matcher_functions[args.matcher]
+                                          , gamma=args.gamma
+                                          , step_penalty=args.step_penalty
+                                          , update_mode=args.update_mode
+                                          , learning_rate=args.learning_rate
+                                          , n_step_flatten=args.n_step_flatten
+                                          )
+
+    with open(os.path.join(args.prompt_template, "prompt_pth.txt")) as f:
         prompt_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "input_template.txt")) as f:
+        input_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
+        advice_template = string.Template(f.read())
+    template_group = agent.AutoAgent.TemplateGroup( whole_template=prompt_template
+                                                  , input_template=input_template
+                                                  , advice_template=advice_template
+                                                  )
     with open(args.config) as f:
         openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
     #model = agent.AutoAgent( prompt_template=prompt_template

@@ -333,7 +333,7 @@ class AutoAgent(Agent):
         else:
             action_advices: Set[int] = set(actions_by_advantage[0:1])\
                                             if actions_by_advantage[0]-actions_by_advantage[1]>self._advantage_threshold\
-                                            else set(actions_by_advantage[0:2])
+                                          else set(actions_by_advantage[0:2])
         avg_exploration_time: np.float64 = np.mean( np.asarray(
                                                         list( map( lambda rcd: rcd["number"]
                                                                  , action_dict.values()
@@ -343,10 +343,10 @@ class AutoAgent(Agent):
                                                   )
         #run_logger.info(str(action_advices))
         less_explored_actions: Set[int] = set( filter( lambda act:
-                                                          avg_exploration_time-action_dict[act]["number"]\
+                                                          ( avg_exploration_time-action_dict[act]["number"]\
                                                                   if act in action_dict\
-                                                                  else avg_exploration_time\
-                                                              >= self._exploration_threshold
+                                                                  else avg_exploration_time
+                                                          ) >= self._exploration_threshold
                                                      , range(1, self._nb_arms+1)
                                                      )
                                              )

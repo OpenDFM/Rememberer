@@ -2,14 +2,16 @@ import vh_to_html
 import re
 import openai
 import json
+import itertools
 
 import lxml.etree
 import lxml.html
 from android_env.wrappers import VhIoWrapper
-from typing import Dict, Pattern, Match, List
+from typing import Dict, Pattern, Match, List, NamedTuple
 from typing import Optional
 import numpy as np
 import string
+import history
 
 import abc
 import logging
@@ -179,23 +181,41 @@ class ManualAgent(Agent):
 
 class AutoAgent(Agent):
     #  class AutoAgent {{{ # 
+
+    class TemplateGroup(NamedTuple):
+        #  class TemplateGroup {{{ # 
+        whole_template: string.Template
+        input_template: string.Template
+        advice_template: string.Template
+        #  }}} class TemplateGroup # 
+
     def __init__( self
-                , prompt_template: string.Template
+                , history_replay: history.HistoryReplay
+                , prompt_templates: TemplateGroup
                 , api_key: str
-                , model: str = "text-davinci-003" # or maybe "engine"? not sure
+                , model: str = "text-davinci-003"
                 , max_tokens: int = 20
                 , temperature: float = 0.1
                 , request_timeout: float = 3.
+                , manual: bool = False
                 ):
         #  method __init__ {{{ # 
         """
         Args:
-            prompt_template (string.Template): template of the prompt
+            history_replay (history.HistoryReplay): history replay
+            prompt_templates (TemplateGroup): templates for the prompt
+            api_key (str): openai api key
+            model (str): the model to use
+            max_tokens (int): max number of tokens to generate
+            temperature (float): generating temperature
+            request_timeout (float): waiting time for the client to timeout
+            manual (bool): if a human is waiting the prompt to decide instead
+              of sending it to the model
         """
 
         super(AutoAgent, self).__init__()
 
-        self._prompt_template: string.Template = prompt_template
+        self._prompt_templates: AutoAgent.TemplateGroup = prompt_templates
         self._api_key: str = api_key
         self._model: str = model
         self._max_tokens: int = max_tokens
@@ -204,8 +224,22 @@ class AutoAgent(Agent):
 
         self._last_request_time: datetime.datetime = datetime.datetime.now()
 
+        self._history_replay: history_replay.HistoryReplay = history_replay
+
         openai.api_key = api_key
+        self._rng: np.random.Generator = np.random.default_rng()
         #  }}} method __init__ # 
+
+    def _random_action( self, screen: str) -> str:
+        #  method _random_action {{{ # 
+        nb_elements: int = len(screen.splitlines())
+        action: np.int64 = self._rng.integers(nb_elements+4)
+
+        directions = ["LEFT", "UP", "RIGHT", "DOWN"]
+        if action<4:
+            return "SCROLL({:})".format(directions[action])
+        return "CLICK({:d})".format(action-4)
+        #  }}} method _random_action # 
 
     def _get_action( self
                    , task: str
@@ -215,14 +249,70 @@ class AutoAgent(Agent):
                    , total_reward: float
                    ) -> str:
         #  method _get_action {{{ # 
+        candidates: List[ Tuple[ history.HistoryReplay.Key
+                               , history.HistoryReplay.Record
+                               , float
+                               ]
+                        ] = self._history_replay[(screen, task, instruction)]
+
+        examplars: List[str] = []
+        for i, cdd in enumerate(candidates[:min(len(candidates), 2)]):
+            key: history.HistoryReplay.Key
+            record: history.HistoryReplay.Record
+            key, record, _ = cdd
+            info_dict: history.HistoryReplay.InfoDict = record["other_info"]
+
+            action_dict: history.HistoryReplay.ActionDict = record["action_dict"]
+            actions: List[Tuple[str, float]] = sorted( map( lambda itm: (itm[0], itm[1]["reward"])
+                                                          , action_dict.items()
+                                                          )
+                                                     , key=(lambda itm: itm[1])
+                                                     , reverse=True
+                                                     )
+
+            if actions[0][1]<=0.:
+                encouraged: List[Tuple[str, float]] = [ ( self._random_action(key[0])
+                                                        , self._rng.random()/0.5
+                                                        )
+                                                      ]
+            else:
+                encouraged: List[Tuple[str, float]] = actions[:1]
+            encouraged: str = "\n".join( map( lambda act: "{:} -> {:.1f}".format(act[0], act[1])
+                                            , encouraged
+                                            )
+                                       )
+
+            if actions[-1][1]>0.:
+                discouraged: List[Tuple[str, float]] = [ ( self._random_action(key[0])
+                                                         , 0.
+                                                         )
+                                                       ]
+            else:
+                discouraged: List[Tuple[str, float]] = list( itertools.takewhile( lambda itm: itm[1]==0.
+                                                                                , reversed(actions)
+                                                                                )
+                                                           )
+            discouraged: str = "\n".join( map( lambda act: "{:} -> {:.1f}".format(act[0], act[1])
+                                             , discouraged
+                                             )
+                                        )
+
+            examplar: str = "Example {:d}:\n\n".format(i+1)\
+                          + self._prompt_templates.input_template.safe_substitute(
+                                                                     command=key[1]
+                                                                   , html=key[0]
+                                                                   , instruction=key[2]
+                                                                   , actions="\n".join(info_dict["action_history"])
+                                                                   , reward="{:.1f}".format(info_dict["last_reward"])
+                                                                   , total_reward="{:.1f}".format(info_dict["total_reward"])
+                                                                   )\
+                          + self._prompt_templates.advice_template.safe_substitute(
+                                                                     encouraged=encouraged
+                                                                   , discouraged=discouraged
+                                                                   )
+
+        # TODO
         prompt: str = self._prompt_template.safe_substitute(
-                                                command=task
-                                              , html=screen
-                                              , instruction=instruction
-                                              , actions="\n".join(self._action_history)
-                                              , reward="{:.1f}".format(reward)
-                                              , total_reward="{:.1f}".format(total_reward)
-                                              )
         try:
             request_time = datetime.datetime.now()
             timedelta: datetime.timedelta = request_time - self._last_request_time
