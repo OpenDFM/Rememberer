@@ -12,10 +12,8 @@ Search an article to learn how to hide gauges.
 Then, access the article "How to Hide Gauges"
 Screen:
 <button alt="Open navigation drawer" id="0" clickable="true"></button>
-<img class="wikihow toolbar logo" id="1" clickable="false">
-<img class="search button" alt="Search" id="2" clickable="true">
-<div class="webView" id="3" clickable="true"></div>
-<div class="statusBarBackground" id="4" clickable="false"></div>
+<img class="search button" alt="Search" id="1" clickable="true">
+<div class="webView" id="2" clickable="true"></div>
 Instruction:
 
 Action History:
@@ -28,7 +26,7 @@ Total Reward:
 
 I will answer as
 
-INPUT(2, hide gauges)
+INPUT(1, hide gauges)
 
 Another yet example:
 
@@ -41,66 +39,61 @@ Screen:
 <button alt="Open navigation drawer" id="0" clickable="true"></button>
 <input class="search src text" value="Do ruby rose hair " type="text" id="1" clickable="true">
 <img class="search close btn" alt="Clear query" id="2" clickable="true">
-<div class="header container" id="3" clickable="false"></div>
-<div class="header top watch" id="4" clickable="false"></div>
-<div class="siteNotice" id="5" clickable="false"></div>
-<div class="search adblock top" id="6" clickable="false"></div>
-<div id="7" clickable="true">How to Do Ruby Rose Hair</div>
-<div id="8" clickable="true">• </div>
-<p id="9" clickable="true">41,446 views</p>
-<div id="10" clickable="true">• </div>
-<p id="11" clickable="true">Updated</p>
-<p id="12" clickable="true">2 years ago</p>
-<div id="13" clickable="true">• </div>
-<p id="14" clickable="true">Expert Co-Authored</p>
-<div id="15" clickable="true">How to Dye Your Hair Rose Gold</div>
-<div id="16" clickable="true">• </div>
-<p id="17" clickable="true">48,548 views</p>
-<div id="18" clickable="true">• </div>
-<p id="19" clickable="true">Updated</p>
-<p id="20" clickable="true">3 years ago</p>
-<div id="21" clickable="true">• </div>
-<p id="22" clickable="true">Expert Co-Authored</p>
-<div id="23" clickable="true">How to Do a Hair Mask for Frizzy Hair</div>
-<div id="24" clickable="true">• </div>
-<p id="25" clickable="true">29,415 views</p>
-<div id="26" clickable="true">• </div>
-<p id="27" clickable="true">Updated</p>
-<p id="28" clickable="true">2 years ago</p>
-<div id="29" clickable="true">• </div>
-<p id="30" clickable="true">Expert Co-Authored</p>
-<div id="31" clickable="true">How to Do 1920s Hair</div>
-<div id="32" clickable="true">• </div>
-<p id="33" clickable="true">194,834 views</p>
-<div id="34" clickable="true">• </div>
-<p id="35" clickable="true">Updated</p>
-<p id="36" clickable="true">1 year ago</p>
-<div id="37" clickable="true">• </div>
-<p id="38" clickable="true">Expert Co-Authored</p>
-<div id="39" clickable="true">How to Do 50s Hair</div>
-<div id="40" clickable="true">• </div>
-<p id="41" clickable="true">39,890 views</p>
-<div id="42" clickable="true">• </div>
-<p id="43" clickable="true">Updated</p>
-<p id="44" clickable="true">1 year ago</p>
-<div id="45" clickable="true">• </div>
-<p id="46" clickable="true">Expert Co-Authored</p>
-<div id="47" clickable="true">How to Do 70s Hair</div>
-<div id="48" clickable="true">• </div>
-<p id="49" clickable="true">69,458 views</p>
-<div id="50" clickable="true">• </div>
-<p id="51" clickable="true">Updated</p>
-<p id="52" clickable="true">1 year ago</p>
-<div id="53" clickable="true">• </div>
-<p id="54" clickable="true">Expert Co-Authored</p>
-<div id="55" clickable="true">How to Do Goku Hair</div>
-<div id="56" clickable="true">• </div>
-<p id="57" clickable="true">44,049 views</p>
-<div class="statusBarBackground" id="58" clickable="false"></div>
+<div id="3" clickable="true">How to Do Ruby Rose Hair</div>
+<div id="4" clickable="true">• </div>
+<p id="5" clickable="true">41,446 views</p>
+<div id="6" clickable="true">• </div>
+<p id="7" clickable="true">Updated</p>
+<p id="8" clickable="true">2 years ago</p>
+<div id="9" clickable="true">• </div>
+<p id="10" clickable="true">Expert Co-Authored</p>
+<div id="11" clickable="true">How to Dye Your Hair Rose Gold</div>
+<div id="12" clickable="true">• </div>
+<p id="13" clickable="true">48,548 views</p>
+<div id="14" clickable="true">• </div>
+<p id="15" clickable="true">Updated</p>
+<p id="16" clickable="true">3 years ago</p>
+<div id="17" clickable="true">• </div>
+<p id="18" clickable="true">Expert Co-Authored</p>
+<div id="19" clickable="true">How to Do a Hair Mask for Frizzy Hair</div>
+<div id="20" clickable="true">• </div>
+<p id="21" clickable="true">29,415 views</p>
+<div id="22" clickable="true">• </div>
+<p id="23" clickable="true">Updated</p>
+<p id="24" clickable="true">2 years ago</p>
+<div id="25" clickable="true">• </div>
+<p id="26" clickable="true">Expert Co-Authored</p>
+<div id="27" clickable="true">How to Do 1920s Hair</div>
+<div id="28" clickable="true">• </div>
+<p id="29" clickable="true">194,834 views</p>
+<div id="30" clickable="true">• </div>
+<p id="31" clickable="true">Updated</p>
+<p id="32" clickable="true">1 year ago</p>
+<div id="33" clickable="true">• </div>
+<p id="34" clickable="true">Expert Co-Authored</p>
+<div id="35" clickable="true">How to Do 50s Hair</div>
+<div id="36" clickable="true">• </div>
+<p id="37" clickable="true">39,890 views</p>
+<div id="38" clickable="true">• </div>
+<p id="39" clickable="true">Updated</p>
+<p id="40" clickable="true">1 year ago</p>
+<div id="41" clickable="true">• </div>
+<p id="42" clickable="true">Expert Co-Authored</p>
+<div id="43" clickable="true">How to Do 70s Hair</div>
+<div id="44" clickable="true">• </div>
+<p id="45" clickable="true">69,458 views</p>
+<div id="46" clickable="true">• </div>
+<p id="47" clickable="true">Updated</p>
+<p id="48" clickable="true">1 year ago</p>
+<div id="49" clickable="true">• </div>
+<p id="50" clickable="true">Expert Co-Authored</p>
+<div id="51" clickable="true">How to Do Goku Hair</div>
+<div id="52" clickable="true">• </div>
+<p id="53" clickable="true">44,049 views</p>
 Instruction:
 Access the article "How to Do Ruby Rose Hair"
 Action History:
-INPUT(2, do ruby rose hair)
+INPUT(1, do ruby rose hair)
 Last Reward:
 1.0
 Total Reward:
@@ -109,7 +102,7 @@ Total Reward:
 
 The answer will be:
 
-CLICK(7)
+CLICK(3)
 
 Now the new input:
 
