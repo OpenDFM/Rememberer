@@ -1,0 +1,14 @@
+```
+Task:
+${command}
+Screen:
+${html}
+Instruction:
+${instruction}
+Action History:
+${actions}
+Last Reward:
+${reward}
+Total Reward:
+${total_reward}
+---
