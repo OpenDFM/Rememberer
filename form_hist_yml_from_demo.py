@@ -74,7 +74,7 @@ for dem in demo_list:
                     , task
                     , ""
                     )
-                  ] = { "INPUT(1, {:})".format(step0[34:-1]):
+                  ] = { "INPUT(2, {:})".format(step0[34:-1]):
                             { "reward": 1.0
                             , "number": 1
                             }

@@ -12,8 +12,10 @@ Search an article to learn how to hide gauges.
 Then, access the article "How to Hide Gauges"
 Screen:
 <button alt="Open navigation drawer" id="0" clickable="true"></button>
-<img class="search button" alt="Search" id="1" clickable="true">
-<div class="webView" id="2" clickable="true"></div>
+<img class="wikihow toolbar logo" id="1" clickable="false">
+<img class="search button" alt="Search" id="2" clickable="true">
+<div class="webView" id="3" clickable="true"></div>
+<div class="statusBarBackground" id="4" clickable="false"></div>
 Instruction:
 
 Action History:
@@ -26,7 +28,7 @@ Total Reward:
 
 I will answer as
 
-INPUT(1, hide gauges)
+INPUT(2, hide gauges)
 
 Another yet example:
 
@@ -90,10 +92,11 @@ Screen:
 <div id="51" clickable="true">How to Do Goku Hair</div>
 <div id="52" clickable="true">• </div>
 <p id="53" clickable="true">44,049 views</p>
+<div class="statusBarBackground" id="54" clickable="false"></div>
 Instruction:
 Access the article "How to Do Ruby Rose Hair"
 Action History:
-INPUT(1, do ruby rose hair)
+INPUT(2, do ruby rose hair)
 Last Reward:
 1.0
 Total Reward:
