@@ -1,0 +1,23 @@
+```
+Task:
+Search an article to learn how to hide gauges.
+Then, access the article "How to Hide Gauges"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="wikihow toolbar logo" id="1" clickable="false">
+<img class="search button" alt="Search" id="2" clickable="true">
+<div class="webView" id="3" clickable="true"></div>
+<div class="statusBarBackground" id="4" clickable="false"></div>
+Instruction:
+
+Action History:
+
+Last Reward:
+0.0
+Total Reward:
+0.0
+---
+
+The next action will be
+
+INPUT(2, hide gauges)
