@@ -42,7 +42,7 @@ task_definition_directory = "../android_env/apps/wikihow/templates.miniout"
 
 Key = Tuple[str, str, str]
 ActionDict = Dict[str, Dict[str, Union[int, float]]]
-history_record: Dict[Key, ActionDict] = {}
+history_record: Dict[Key, Dict[str, Any]] = {}
 
 with open("llmdemo-vh/step_0.html") as f:
     init_html: str = f.read()
@@ -70,15 +70,27 @@ for dem in demo_list:
     task: str = "\n".join(task)
 
     # first step
+    action: str = "INPUT(2, {:})".format(step0[34:-1])
     history_record[ ( init_html
                     , task
                     , ""
                     )
-                  ] = { "INPUT(2, {:})".format(step0[34:-1]):
-                            { "reward": 1.0
+                  ] = { "other_info": { "action_history": []
+                                      , "last_reward": 0.
+                                      , "total_reward": 0.
+                                      , "number": 1
+                                      }
+                      , "action_dict": {
+                          action: {
+                              "reward": 1.0
                             , "number": 1
                             }
+                        }
                       }
+
+    action_history: List[str] = [action]
+    last_reward = 1.
+    total_reward = 1.
 
     # succeeding step
     trajectory: List[Dict[str, Any]] = record_dict["trajectories"][0]
@@ -180,10 +192,20 @@ for dem in demo_list:
                         , task
                         , instruction
                         )
-                      ] = { action: { "reward": reward
-                                    , "number": 1
-                                    }
+                      ] = { "other_info": { "action_history": action_history.copy()
+                                          , "last_reward": last_reward
+                                          , "total_reward": total_reward
+                                          }
+                          , "action_dict": {
+                              action: { "reward": reward
+                                      , "number": 1
+                                      }
+                            }
                           }
+
+        action_history.append(action)
+        last_reward += 1.
+        total_reward += 1.
 
 #print(len(history_record))
 with open("history-pools/annotated_pool-auto.yaml", "w") as f:

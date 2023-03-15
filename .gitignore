@@ -11,6 +11,7 @@ bandits.logs/
 __pycache__
 tags
 tags-opts
+.syncthing.*.tmp
 
 backup-configs/
 data-backup/

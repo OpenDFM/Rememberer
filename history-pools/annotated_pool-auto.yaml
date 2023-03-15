@@ -56,9 +56,19 @@
 
   Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
 - Access the article "How to Install the Google Play Store on an Amazon Fire"
-: SCROLL(DOWN):
-    number: 1
-    reward: 0.0
+: action_dict:
+    SCROLL(DOWN):
+      number: 1
+      reward: 0.0
+  other_info:
+    action_history:
+    - INPUT(2, bypass youtube's regional filter)
+    - CLICK(3)
+    - CLICK(5)
+    - CLICK(5)
+    - CLICK(5)
+    last_reward: 3.0
+    total_reward: 3.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -112,9 +122,16 @@
 
   Then, access the about page to learn why people trust wikihow.'
 - Access the about page to learn why people trust wikihow.
-: CLICK(4):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(4):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, do ruby rose hair)
+    - CLICK(3)
+    last_reward: 2.0
+    total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -165,9 +182,16 @@
 
   Then, check the reference list'
 - Check the reference list
-: CLICK(13):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(13):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, clean utensils)
+    - CLICK(3)
+    last_reward: 2.0
+    total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -224,9 +248,16 @@
 
   Then, access the article "How to Overcome Fear"'
 - Check the author page of Trudi Griffin, LPC, MS.
-: CLICK(11):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(11):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, be a good friend to a guy)
+    - CLICK(3)
+    last_reward: 2.0
+    total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -280,9 +311,16 @@
 
   Then, access the article "How to Research a Stock"'
 - Access the page of category Financial Stocks
-: CLICK(7):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(7):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, buy stocks (for beginners))
+    - CLICK(3)
+    last_reward: 2.0
+    total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -333,9 +371,16 @@
 
   Then, access the about page to learn why people trust wikihow.'
 - Access the about page to learn why people trust wikihow.
-: CLICK(4):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(4):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, apply cc cream)
+    - CLICK(3)
+    last_reward: 2.0
+    total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -387,9 +432,16 @@
 
   Then, check the reference list'
 - Check the reference list
-: CLICK(13):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(13):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, address a letter to england)
+    - CLICK(3)
+    last_reward: 2.0
+    total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -440,9 +492,16 @@
 
   Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
 - Access the page of category Computers and Electronics
-: CLICK(5):
-    number: 1
-    reward: 0.0
+: action_dict:
+    CLICK(5):
+      number: 1
+      reward: 0.0
+  other_info:
+    action_history:
+    - INPUT(2, bypass youtube's regional filter)
+    - CLICK(3)
+    last_reward: 2.0
+    total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -483,9 +542,17 @@
 
   Then, access the article "How to Overcome Fear"'
 - Access the article "How to Overcome Fear"
-: SCROLL(DOWN):
-    number: 1
-    reward: 0.0
+: action_dict:
+    SCROLL(DOWN):
+      number: 1
+      reward: 0.0
+  other_info:
+    action_history:
+    - INPUT(2, be a good friend to a guy)
+    - CLICK(3)
+    - CLICK(11)
+    last_reward: 3.0
+    total_reward: 3.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -552,9 +619,17 @@
 
   Then, access the article "How to Research a Stock"'
 - Access the article "How to Research a Stock"
-: SCROLL(DOWN):
-    number: 1
-    reward: 0.0
+: action_dict:
+    SCROLL(DOWN):
+      number: 1
+      reward: 0.0
+  other_info:
+    action_history:
+    - INPUT(2, buy stocks (for beginners))
+    - CLICK(3)
+    - CLICK(7)
+    last_reward: 3.0
+    total_reward: 3.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -571,9 +646,15 @@
 
   Then, check the reference list'
 - ''
-: INPUT(2, address a letter to england):
+: action_dict:
+    INPUT(2, address a letter to england):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -590,9 +671,15 @@
 
   Then, access the about page to learn why people trust wikihow.'
 - ''
-: INPUT(2, apply cc cream):
+: action_dict:
+    INPUT(2, apply cc cream):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -611,9 +698,15 @@
 
   Then, access the article "How to Overcome Fear"'
 - ''
-: INPUT(2, be a good friend to a guy):
+: action_dict:
+    INPUT(2, be a good friend to a guy):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -632,9 +725,15 @@
 
   Then, access the article "How to Research a Stock"'
 - ''
-: INPUT(2, buy stocks (for beginners)):
+: action_dict:
+    INPUT(2, buy stocks (for beginners)):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -653,9 +752,15 @@
 
   Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
 - ''
-: INPUT(2, bypass youtube's regional filter):
+: action_dict:
+    INPUT(2, bypass youtube's regional filter):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -670,9 +775,15 @@
 
   Then, access the article "How to Call the Czech Republic From the United States"'
 - ''
-: INPUT(2, call the czech republic from the united states):
+: action_dict:
+    INPUT(2, call the czech republic from the united states):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -687,9 +798,15 @@
 
   Then, access the article "How to Change a Lightbulb in a Recessed Light"'
 - ''
-: INPUT(2, change a lightbulb in a recessed light):
+: action_dict:
+    INPUT(2, change a lightbulb in a recessed light):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -706,9 +823,15 @@
 
   Then, check the reference list'
 - ''
-: INPUT(2, clean utensils):
+: action_dict:
+    INPUT(2, clean utensils):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -725,9 +848,15 @@
 
   Then, access the about page to learn why people trust wikihow.'
 - ''
-: INPUT(2, do ruby rose hair):
+: action_dict:
+    INPUT(2, do ruby rose hair):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -742,9 +871,15 @@
 
   Then, access the article "How to Hide Gauges"'
 - ''
-: INPUT(2, hide gauges):
+: action_dict:
+    INPUT(2, hide gauges):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
     number: 1
-    reward: 1.0
+    total_reward: 0.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -866,9 +1001,15 @@
 
   Then, access the article "How to Overcome Fear"'
 - Access the article "How to Be a Good Friend to a Guy"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, be a good friend to a guy)
+    last_reward: 1.0
+    total_reward: 1.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -985,9 +1126,15 @@
 
   Then, access the about page to learn why people trust wikihow.'
 - Access the article "How to Do Ruby Rose Hair"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, do ruby rose hair)
+    last_reward: 1.0
+    total_reward: 1.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1107,9 +1254,15 @@
 
   Then, check the reference list'
 - Access the article "How to Address a Letter to England"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, address a letter to england)
+    last_reward: 1.0
+    total_reward: 1.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1226,9 +1379,15 @@
 
   Then, access the about page to learn why people trust wikihow.'
 - Access the article "How to Apply CC Cream"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, apply cc cream)
+    last_reward: 1.0
+    total_reward: 1.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1350,9 +1509,15 @@
 
   Then, access the article "How to Research a Stock"'
 - Access the article "How to Buy Stocks (for Beginners)"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, buy stocks (for beginners))
+    last_reward: 1.0
+    total_reward: 1.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1464,9 +1629,15 @@
 
   Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
 - Access the article "How to Bypass YouTube's Regional Filter"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, bypass youtube's regional filter)
+    last_reward: 1.0
+    total_reward: 1.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1584,9 +1755,15 @@
 
   Then, access the article "How to Call the Czech Republic From the United States"'
 - Access the article "How to Call the Czech Republic From the United States"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, call the czech republic from the united states)
+    last_reward: 1.0
+    total_reward: 1.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1702,9 +1879,15 @@
 
   Then, access the article "How to Change a Lightbulb in a Recessed Light"'
 - Access the article "How to Change a Lightbulb in a Recessed Light"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, change a lightbulb in a recessed light)
+    last_reward: 1.0
+    total_reward: 1.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1824,9 +2007,15 @@
 
   Then, check the reference list'
 - Access the article "How to Clean Utensils"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, clean utensils)
+    last_reward: 1.0
+    total_reward: 1.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1943,6 +2132,12 @@
 
   Then, access the article "How to Hide Gauges"'
 - Access the article "How to Hide Gauges"
-: CLICK(3):
-    number: 1
-    reward: 1.0
+: action_dict:
+    CLICK(3):
+      number: 1
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, hide gauges)
+    last_reward: 1.0
+    total_reward: 1.0
