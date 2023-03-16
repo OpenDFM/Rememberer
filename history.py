@@ -58,7 +58,15 @@ class LCSNodeMatcher(Matcher):
                                                                 )
         lcs: np.int32 = lcs_matrix[n, m]
         length: int = max(n, m)
-        return float(lcs)/length
+        similarity: float = float(lcs)/length
+
+        logger.debug("Req: %s", " ".join(self._node_sequence))
+        logger.debug("Key: %s", " ".join(key_node_sequence))
+        logger.debug( "LCS: %d, L1: %d, L2: %d, Sim: %.2f"
+                    , lcs, n, m, similarity
+                    )
+
+        return similarity
     #  }}} class LCSNodeMatcher # 
 
 class HistoryReplay:
@@ -189,7 +197,7 @@ class HistoryReplay:
         #  }}} method __getitem__ # 
 
     def update( self
-              , step: Key, reward: float, action: Optional[str]
+              , step: Key, reward: float, action: Optional[str]=None
               ):
         #  method update {{{ # 
         """

@@ -83,6 +83,8 @@ def main():
     parser.add_argument("--max-tokens", default=20, type=int)
     parser.add_argument("--temperature", default=0.1, type=float)
     parser.add_argument("--request-timeout", default=3., type=float)
+    parser.add_argument("--manual", action="store_true")
+    parser.add_argument("--train", action="store_true")
 
     parser.add_argument("--replay-file", type=str)
     parser.add_argument("--dump-path", type=str)
@@ -104,22 +106,30 @@ def main():
                                                      )
                                        )
     stdout_handler = logging.StreamHandler(sys.stdout)
+    sdebug_handler = logging.FileHandler( os.path.join( args.log_dir
+                                                      , "sdebug-{:}.log".format(datetime_str)
+                                                      )
+                                        )
 
     file_handler.setLevel(logging.INFO)
     debug_handler.setLevel(logging.DEBUG)
     stdout_handler.setLevel(logging.INFO)
+    sdebug_handler.setLevel(logging.DEBUG)
 
     formatter = logging.Formatter(fmt="\x1b[1;33m[%(asctime)s \x1b[31m%(levelname)s \x1b[32m%(module)s/%(lineno)d-%(processName)s\x1b[1;33m] \x1b[0m%(message)s")
     file_handler.setFormatter(formatter)
     debug_handler.setFormatter(formatter)
     stdout_handler.setFormatter(formatter)
+    sdebug_handler.setFormatter(formatter)
 
     #stdout_handler.addFilter(logging.Filter("main"))
     stdout_handler.addFilter(logging.Filter("agent"))
+    sdebug_handler.addFilter(logging.Filter("agent"))
 
     logger.addHandler(file_handler)
     logger.addHandler(debug_handler)
     logger.addHandler(stdout_handler)
+    logger.addHandler(sdebug_handler)
 
     logger = logging.getLogger("agent")
     #  }}} Config Logger # 
@@ -135,6 +145,7 @@ def main():
                                           , learning_rate=args.learning_rate
                                           , n_step_flatten=args.n_step_flatten
                                           )
+    history_replay.load_yaml(args.load_replay)
 
     with open(os.path.join(args.prompt_template, "prompt_pth.txt")) as f:
         prompt_template = string.Template(f.read())
@@ -148,13 +159,16 @@ def main():
                                                   )
     with open(args.config) as f:
         openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
-    #model = agent.AutoAgent( prompt_template=prompt_template
-                           #, api_key=openaiconfig["api_key"]
-                           #, max_tokens=args.max_tokens
-                           #, temperature=args.temperature
-                           #, request_timeout=args.request_timeout
-                           #)
-    model = agent.ManualAgent()
+    model = agent.AutoAgent( history_replay=history_replay
+                           , prompt_templates=template_group
+                           , api_key=openaiconfig["api_key"]
+                           , max_tokens=args.max_tokens
+                           , temperature=args.temperature
+                           , request_timeout=args.request_timeout
+                           , manual=args.manual
+                           , train=args.train
+                           )
+    #model = agent.ManualAgent()
     #model = agent.ReplayAgent(args.replay_file)
 
     env = android_env.load( args.task_path

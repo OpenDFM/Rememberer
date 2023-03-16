@@ -198,19 +198,24 @@ class AutoAgent(Agent):
                 , temperature: float = 0.1
                 , request_timeout: float = 3.
                 , manual: bool = False
+                , train: bool = True
                 ):
         #  method __init__ {{{ # 
         """
         Args:
             history_replay (history.HistoryReplay): history replay
             prompt_templates (TemplateGroup): templates for the prompt
+
             api_key (str): openai api key
             model (str): the model to use
             max_tokens (int): max number of tokens to generate
             temperature (float): generating temperature
             request_timeout (float): waiting time for the client to timeout
+
             manual (bool): if a human is waiting the prompt to decide instead
               of sending it to the model
+            train (bool): indicats whether the history replay should be updated
+              or not
         """
 
         super(AutoAgent, self).__init__()
@@ -222,6 +227,9 @@ class AutoAgent(Agent):
         self._temperature: float = temperature
         self._request_timeout: float = request_timeout
 
+        self._manual: bool = manual
+        self._train: bool = train
+
         self._last_request_time: datetime.datetime = datetime.datetime.now()
 
         self._history_replay: history_replay.HistoryReplay = history_replay
@@ -229,6 +237,10 @@ class AutoAgent(Agent):
         openai.api_key = api_key
         self._rng: np.random.Generator = np.random.default_rng()
         #  }}} method __init__ # 
+
+    def reset(self):
+        super(AutoAgent, self).reset()
+        self._history_replay.new_trajectory()
 
     def _random_action( self, screen: str) -> str:
         #  method _random_action {{{ # 
@@ -249,13 +261,26 @@ class AutoAgent(Agent):
                    , total_reward: float
                    ) -> str:
         #  method _get_action {{{ # 
+        #  Replay Updating {{{ # 
+        last_action: Optional[str] = self._action_history[-1]\
+                                        if len(self._action_history)>0\
+                                      else None
+        self._history_replay.update( (screen, task, instruction)
+                                   , reward
+                                   , last_action
+                                   )
+        #  }}} Replay Updating # 
+
+
         candidates: List[ Tuple[ history.HistoryReplay.Key
                                , history.HistoryReplay.Record
                                , float
                                ]
                         ] = self._history_replay[(screen, task, instruction)]
 
+        #  Construct Examplars {{{ # 
         examplars: List[str] = []
+        #  Contruct one Examplar {{{ # 
         for i, cdd in enumerate(candidates[:min(len(candidates), 2)]):
             key: history.HistoryReplay.Key
             record: history.HistoryReplay.Record
@@ -306,35 +331,66 @@ class AutoAgent(Agent):
                                                                    , reward="{:.1f}".format(info_dict["last_reward"])
                                                                    , total_reward="{:.1f}".format(info_dict["total_reward"])
                                                                    )\
+                          + "\n"\
                           + self._prompt_templates.advice_template.safe_substitute(
                                                                      encouraged=encouraged
                                                                    , discouraged=discouraged
-                                                                   )
+                                                                   )\
+            examplars.append(examplar)
+        #  }}} Contruct one Examplar # 
+        example_str: str = "\n".join(examplars)
+        #  }}} Construct Examplars # 
 
-        # TODO
-        prompt: str = self._prompt_template.safe_substitute(
+        #  Construct New Input {{{ # 
+        new_input: str = self._prompt_templates.input_template.safe_substitute(
+                                                                command=task
+                                                              , html=screen
+                                                              , instruction=instruction
+                                                              , actions="\n".join(self._action_history)
+                                                              , reward="{:.1f}".format(reward)
+                                                              , total_reward="{:.1f}".format(total_reward)
+                                                              )
+        #  }}} Construct New Input # 
+
+        prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str
+                                                                           , new_input=new_input
+                                                                           )
         try:
-            request_time = datetime.datetime.now()
-            timedelta: datetime.timedelta = request_time - self._last_request_time
-            timedelta: float = timedelta.total_seconds()
-            if 3.1 - timedelta > 0.:
-                time.sleep(3.1-timedelta)
-            completion = openai.Completion.create( model=self._model
-                                                 , prompt=prompt
-                                                 , max_tokens=self._max_tokens
-                                                 , temperature=self._temperature
-                                                 , request_timeout=self._request_timeout
-                                                 )
-            self._last_request_time = datetime.datetime.now()
+            #  Fetch Response {{{ # 
+            if not self._manual:
+                request_time = datetime.datetime.now()
+                timedelta: datetime.timedelta = request_time - self._last_request_time
+                timedelta: float = timedelta.total_seconds()
+                if 3.1 - timedelta > 0.:
+                    time.sleep(3.1-timedelta)
+                completion = openai.Completion.create( model=self._model
+                                                     , prompt=prompt
+                                                     , max_tokens=self._max_tokens
+                                                     , temperature=self._temperature
+                                                     , request_timeout=self._request_timeout
+                                                     )
+                self._last_request_time = datetime.datetime.now()
+
+                logger.debug( "Return: {text: %s, reason: %s}"
+                            , repr(completion.choices[0].text)
+                            , repr(completion.choices[0].finish_reason)
+                            )
+
+                response: str = completion.choices[0].text.strip()
+            else:
+                response: str = input(prompt)
+            #  }}} Fetch Response # 
+
+            #  Parse Action Text {{{ # 
+            encouraged_result: str = response.split("Disc", maxsplit=1)[0]
+            encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
+            encouraged_results: List[str] = encouraged_result.strip().splitlines()
+            action_text: str = encouraged_results[0]
+            #  }}} Parse Action Text # 
         except:
-            return "NOTHING"
+            action_text: str = "NOTHING"
 
-        logger.debug( "Return: {text: %s, reason: %s}"
-                    , repr(completion.choices[0].text)
-                    , repr(completion.choices[0].finish_reason)
-                    )
-
-        return completion.choices[0].text.strip()
+        return action_text
         #  }}} method _get_action # 
     #  }}} class AutoAgent # 
 
