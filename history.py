@@ -40,7 +40,6 @@ class LCSNodeMatcher(Matcher):
     def __call__(self, key: "HistoryReplay.Key") -> float:
         #  method __call__ {{{ # 
         key_screen: str = key[0]
-        #  }}} method __call__ # 
         key_node_sequence: List[str] = list( map( lambda n: n[1:n.index(" ")]
                                                 , key_screen.splitlines()
                                                 )
@@ -52,7 +51,7 @@ class LCSNodeMatcher(Matcher):
         for i, j in itertools.product( range(1, n+1)
                                      , range(1, m+1)
                                      ):
-            lcs_matrix[i, j] = lcs_matrix[i-1, j-1] + 1 if self._node_sequence[i]==key_node_sequence[j]\
+            lcs_matrix[i, j] = lcs_matrix[i-1, j-1] + 1 if self._node_sequence[i-1]==key_node_sequence[j-1]\
                                                         else max( lcs_matrix[i-1, j]
                                                                 , lcs_matrix[i, j-1]
                                                                 )
@@ -67,6 +66,7 @@ class LCSNodeMatcher(Matcher):
                     )
 
         return similarity
+        #  }}} method __call__ # 
     #  }}} class LCSNodeMatcher # 
 
 class HistoryReplay:
@@ -155,7 +155,7 @@ class HistoryReplay:
         self._similarity_matrix: np.ndarray = np.zeros( (self._item_capacity, self._item_capacity)
                                                       , dtype=np.float32
                                                       )
-        self._index_pool: Deque[int] = collections.deque(range(self._item_capacity))
+        #self._index_pool: Deque[int] = collections.deque(range(self._item_capacity))
         #self._index_dict: Dict[HistoryReplay.Key, int] = {}
         self._keys: List[HistoryReplay] = []
         #  }}} method __init__ # 
@@ -296,6 +296,9 @@ class HistoryReplay:
                    , total_reward: float
                    ) -> bool:
         #  method _insert_key {{{ # 
+
+        logger.debug("Record: %d, Keys: %d", len(self._record), len(self._keys))
+
         if key not in self._record:
             #  Insertion Policy (Static Capacity Limie) {{{ # 
             matcher: Matcher = self._matcher(key)
@@ -417,5 +420,9 @@ class HistoryReplay:
         #  method load_yaml {{{ # 
         with open(yaml_file) as f:
             self._record = yaml.load(f, Loader=yaml.Loader)
+            self._keys = list(self._record.keys())
         #  }}} method load_yaml # 
+    def save_yaml(self, yaml_file: str):
+        with open(yaml_file, "w") as f:
+            yaml.dump(self._record, f, Dumper=yaml.Dumper)
     #  }}} class HistoryReplay # 

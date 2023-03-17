@@ -17,7 +17,7 @@ from transformers import AutoTokenizer
 import dm_env
 import history
 
-from typing import Dict
+from typing import Dict, List
 import numpy as np
 
 import lxml.etree
@@ -70,6 +70,7 @@ def main():
     parser.add_argument("--tokenizer-path", type=str)
 
     parser.add_argument("--load-replay", type=str)
+    parser.add_argument("--save-replay", type=str)
     parser.add_argument("--item-capacity", type=int)
     parser.add_argument("--action-capacity", type=int)
     parser.add_argument("--matcher", default="lcs", type=str, choices=["lcs"])
@@ -195,6 +196,7 @@ def main():
 
     #os.makedirs(args.dump_path, exist_ok=True)
 
+    #  Work Flow {{{ # 
     max_nb_steps = 15
     for i in range(env.nb_tasks):
     #for i in [10]:
@@ -239,6 +241,9 @@ def main():
         logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, TaskName: %s, #Steps: %d, Reward: %.1f, Succeds: %s"
                    , i, env.task_id, nb_steps, reward, str(succeeds)
                    )
+    #  }}} Work Flow # 
+
+    history_replay.save_yaml(args.save_replay)
 
 if __name__ == "__main__":
     main()
