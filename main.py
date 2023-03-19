@@ -243,7 +243,8 @@ def main():
                    )
     #  }}} Work Flow # 
 
-    history_replay.save_yaml(args.save_replay)
+    if args.train:
+        history_replay.save_yaml(args.save_replay)
 
 if __name__ == "__main__":
     main()

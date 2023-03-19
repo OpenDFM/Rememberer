@@ -262,13 +262,14 @@ class AutoAgent(Agent):
                    ) -> str:
         #  method _get_action {{{ # 
         #  Replay Updating {{{ # 
-        last_action: Optional[str] = self._action_history[-1]\
-                                        if len(self._action_history)>0\
-                                      else None
-        self._history_replay.update( (screen, task, instruction)
-                                   , reward
-                                   , last_action
-                                   )
+        if self._train:
+            last_action: Optional[str] = self._action_history[-1]\
+                                            if len(self._action_history)>0\
+                                          else None
+            self._history_replay.update( (screen, task, instruction)
+                                       , reward
+                                       , last_action
+                                       )
         #  }}} Replay Updating # 
 
 
@@ -355,52 +356,52 @@ class AutoAgent(Agent):
         prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str.strip()
                                                                            , new_input=new_input.strip()
                                                                            )
-        #try:
-        #  Fetch Response {{{ # 
-        if not self._manual:
-            request_time = datetime.datetime.now()
-            timedelta: datetime.timedelta = request_time - self._last_request_time
-            timedelta: float = timedelta.total_seconds()
-            if 3.1 - timedelta > 0.:
-                time.sleep(3.1-timedelta)
-            completion = openai.Completion.create( model=self._model
-                                                 , prompt=prompt
-                                                 , max_tokens=self._max_tokens
-                                                 , temperature=self._temperature
-                                                 , request_timeout=self._request_timeout
-                                                 )
-            self._last_request_time = datetime.datetime.now()
+        try:
+            #  Fetch Response {{{ # 
+            if not self._manual:
+                request_time = datetime.datetime.now()
+                timedelta: datetime.timedelta = request_time - self._last_request_time
+                timedelta: float = timedelta.total_seconds()
+                if 3.1 - timedelta > 0.:
+                    time.sleep(3.1-timedelta)
+                completion = openai.Completion.create( model=self._model
+                                                     , prompt=prompt
+                                                     , max_tokens=self._max_tokens
+                                                     , temperature=self._temperature
+                                                     , request_timeout=self._request_timeout
+                                                     )
+                self._last_request_time = datetime.datetime.now()
 
-            logger.debug( "Return: {text: %s, reason: %s}"
-                        , repr(completion.choices[0].text)
-                        , repr(completion.choices[0].finish_reason)
-                        )
+                logger.debug( "Return: {text: %s, reason: %s}"
+                            , repr(completion.choices[0].text)
+                            , repr(completion.choices[0].finish_reason)
+                            )
 
-            response: str = completion.choices[0].text.strip()
-        else:
-            single_line_response: str = input(prompt)
-            response: List[str] = []
-            while single_line_response!="":
-                response.append(single_line_response)
-                single_line_response = input()
-            response: str = "\n".join(response)
+                response: str = completion.choices[0].text.strip()
+            else:
+                single_line_response: str = input(prompt)
+                response: List[str] = []
+                while single_line_response!="":
+                    response.append(single_line_response)
+                    single_line_response = input()
+                response: str = "\n".join(response)
 
-            logger.debug( "Response: %s"
-                        , response
-                        )
-        #  }}} Fetch Response # 
+                logger.debug( "Response: %s"
+                            , response
+                            )
+            #  }}} Fetch Response # 
 
-        #  Parse Action Text {{{ # 
-        encouraged_result: str = response.split("Disc", maxsplit=1)[0]
-        encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
-        encouraged_results: List[str] = list( map( lambda rsl: rsl.split("->", maxsplit=1)[0].strip()
-                                                 , encouraged_result.strip().splitlines()
-                                                 )
-                                            )
-        action_text: str = encouraged_results[0]
-        #  }}} Parse Action Text # 
-        #except:
-            #action_text: str = "NOTHING"
+            #  Parse Action Text {{{ # 
+            encouraged_result: str = response.split("Disc", maxsplit=1)[0]
+            encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
+            encouraged_results: List[str] = list( map( lambda rsl: rsl.split("->", maxsplit=1)[0].strip()
+                                                     , encouraged_result.strip().splitlines()
+                                                     )
+                                                )
+            action_text: str = encouraged_results[0]
+            #  }}} Parse Action Text # 
+        except:
+            action_text: str = "NOTHING"
 
         logger.debug("Action: %s", action_text)
 
