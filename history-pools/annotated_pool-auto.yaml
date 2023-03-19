@@ -61,6 +61,7 @@
       number: 1
       reward: 0.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, bypass youtube's regional filter)
     - CLICK(3)
@@ -127,6 +128,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, do ruby rose hair)
     - CLICK(3)
@@ -187,6 +189,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, clean utensils)
     - CLICK(3)
@@ -253,6 +256,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, be a good friend to a guy)
     - CLICK(3)
@@ -316,6 +320,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, buy stocks (for beginners))
     - CLICK(3)
@@ -376,6 +381,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, apply cc cream)
     - CLICK(3)
@@ -437,6 +443,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, address a letter to england)
     - CLICK(3)
@@ -497,6 +504,7 @@
       number: 1
       reward: 0.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, bypass youtube's regional filter)
     - CLICK(3)
@@ -547,6 +555,7 @@
       number: 1
       reward: 0.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, be a good friend to a guy)
     - CLICK(3)
@@ -624,6 +633,7 @@
       number: 1
       reward: 0.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, buy stocks (for beginners))
     - CLICK(3)
@@ -651,6 +661,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -676,6 +687,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -703,6 +715,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -730,6 +743,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -757,6 +771,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -780,6 +795,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -803,6 +819,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -828,6 +845,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -853,6 +871,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -876,6 +895,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history: []
     last_reward: 0.0
     number: 1
@@ -1006,6 +1026,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, be a good friend to a guy)
     last_reward: 1.0
@@ -1131,6 +1152,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, do ruby rose hair)
     last_reward: 1.0
@@ -1259,6 +1281,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, address a letter to england)
     last_reward: 1.0
@@ -1384,6 +1407,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, apply cc cream)
     last_reward: 1.0
@@ -1514,6 +1538,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, buy stocks (for beginners))
     last_reward: 1.0
@@ -1634,6 +1659,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, bypass youtube's regional filter)
     last_reward: 1.0
@@ -1760,6 +1786,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, call the czech republic from the united states)
     last_reward: 1.0
@@ -1884,6 +1911,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, change a lightbulb in a recessed light)
     last_reward: 1.0
@@ -2012,6 +2040,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, clean utensils)
     last_reward: 1.0
@@ -2137,6 +2166,7 @@
       number: 1
       reward: 1.0
   other_info:
+    number: 1
     action_history:
     - INPUT(2, hide gauges)
     last_reward: 1.0

@@ -255,7 +255,7 @@ class HistoryReplay:
             self._action_buffer.popleft()
             #self._reward_buffer.popleft()
 
-        rewards = np.asarray(self._reward_buffer[1:], dtype=np.float32)
+        rewards = np.asarray(list(self._reward_buffer)[1:], dtype=np.float32)
         convolved_rewards = np.convolve( rewards, self._filter
                                        , mode="full"
                                        )[self._n_step_flatten-1:]
@@ -263,13 +263,13 @@ class HistoryReplay:
         end_point: Optional[int] = -len(self._action_buffer)
 
         for k, act, rwd, cvl_rwd\
-                , e_p, l_rwd, ttl_rwd in zip( self._observation_buffer[:-1]
+                , e_p, l_rwd, ttl_rwd in zip( list(self._observation_buffer)[:-1]
                                             , self._action_buffer
                                             , self._reward_buffer
                                             , convolved_rewards
                                             , range(end_point, 0)
-                                            , self._reward_buffer[:-1]
-                                            , self._total_reward_buffer[:-1]
+                                            , list(self._reward_buffer)[:-1]
+                                            , list(self._total_reward_buffer)[:-1]
                                             ):
             action_history: List[str] = self._action_history[:e_p]
             if not self._insert_key( k
@@ -354,10 +354,10 @@ class HistoryReplay:
             other_info: HistoryReplay.InfoDict = self._record[key]["other_info"]
 
             if self._action_history_update_mode=="longest"\
-                    and len(action_history) >= other_info["action_history"]:
+                    and len(action_history) >= len(other_info["action_history"]):
                 other_info["action_history"] = action_history
             elif self._action_history_update_mode=="shortest"\
-                    and len(action_history) <= other_info["action_history"]:
+                    and len(action_history) <= len(other_info["action_history"]):
                 other_info["action_history"] = action_history
             elif self._action_history_update_mode=="newest":
                 other_info["action_history"] = action_history

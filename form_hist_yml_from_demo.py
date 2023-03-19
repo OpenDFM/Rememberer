@@ -195,6 +195,7 @@ for dem in demo_list:
                       ] = { "other_info": { "action_history": action_history.copy()
                                           , "last_reward": last_reward
                                           , "total_reward": total_reward
+                                          , "number": 1
                                           }
                           , "action_dict": {
                               action: { "reward": reward

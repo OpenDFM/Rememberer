@@ -6,6 +6,7 @@ python main.py --log-dir logs-historyless/\
 			   --avd-name Pixel_2_API_30_ga_x64_1\
 			   --tokenizer-path ../deep_rl_zoo/weights/vilt-b32-mlm-tiny-tkn\
 			   --load-replay history-pools/annotated_pool-auto.yaml\
+			   --save-replay history-pools/annotated_pool-auto.u.yaml\
 			   --item-capacity 500\
 			   --action-capacity 10\
 			   --matcher lcs\

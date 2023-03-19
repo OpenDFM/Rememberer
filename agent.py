@@ -352,8 +352,8 @@ class AutoAgent(Agent):
                                                               )
         #  }}} Construct New Input # 
 
-        prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str
-                                                                           , new_input=new_input
+        prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str.strip()
+                                                                           , new_input=new_input.strip()
                                                                            )
         #try:
         #  Fetch Response {{{ # 
