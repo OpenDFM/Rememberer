@@ -1,0 +1,1297 @@
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="search button" alt="Search" id="1" clickable="true">
+
+  <div class="category banner title" id="2" clickable="true">Computers and Electronics</div>
+
+  <input class="category banner search input" type="text" id="3" clickable="true">
+
+  <button class="category banner submit" id="4" clickable="true"></button>
+
+  <p id="5" clickable="true">&lt;</p>
+
+  <div id="6" clickable="true"></div>
+
+  <div id="7" clickable="true">Computers and Electronics</div>
+
+  <p id="8" clickable="true">Do you need to </p>
+
+  <p id="9" clickable="true">check your hard disk space</p>
+
+  <p id="10" clickable="true"> or </p>
+
+  <p id="11" clickable="true">put pictures on a flash drive</p>
+
+  <p id="12" clickable="true">? The 1000+ articles in wikiHow''s Computers and Electronics
+  category can help. Get information covering a range of platforms and operating systems,
+  from </p>
+
+  <p id="13" clickable="true">turning on AirPlay</p>
+
+  <p id="14" clickable="true"> to </p>
+
+  <p id="15" clickable="true">connecting a PC to TV using an HDMI cable</p>
+
+  <p id="16" clickable="true">. Learn to </p>
+
+  <p id="17" clickable="true">check your computer''s system information</p>
+
+  <p id="18" clickable="true">, </p>
+
+  <p id="19" clickable="true">wipe a computer clean to start over</p>
+
+  <p id="20" clickable="true">, and much more.</p>
+
+  <div id="21" clickable="true">Featured Topics</div>
+
+  <img alt="-crop-250-100-150px-Computers-audio" id="22" clickable="true">
+
+  <div class="statusBarBackground" id="23" clickable="false"></div>'
+- 'Search an article to learn how to bypass youtube''s regional filter.
+
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+
+  Then, access the page of category Computers and Electronics
+
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
+- Access the article "How to Install the Google Play Store on an Amazon Fire"
+: action_dict:
+    SCROLL(DOWN):
+      number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - INPUT(2, bypass youtube's regional filter)
+    - CLICK(3)
+    - CLICK(5)
+    - CLICK(5)
+    - CLICK(5)
+    last_reward: 3.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
+  More options\" id=\"2\" clickable=\"true\">\n<p id=\"3\" clickable=\"true\">Learn\
+  \ why people </p>\n<p id=\"4\" clickable=\"true\">trust wikiHow</p>\n<p id=\"5\"\
+  \ clickable=\"true\">CELEBRITY STYLE</p>\n<p id=\"6\" clickable=\"false\"> \xBB\
+  </p>\n<p id=\"7\" clickable=\"true\">CELEBRITY INSPIRED HAIRSTYLES</p>\n<p id=\"\
+  8\" clickable=\"true\">How to Do Ruby Rose Hair</p>\n<p id=\"9\" clickable=\"false\"\
+  >Co-authored by</p>\n<p id=\"10\" clickable=\"false\"> </p>\n<p id=\"11\" clickable=\"\
+  true\">Ashley Adams</p>\n<button id=\"12\" clickable=\"true\">Last Updated: March\
+  \ 11, 2020</button>\n<div id=\"13\" clickable=\"false\">Ruby Rose has rocked a lot\
+  \ of chic, trendy styles throughout her career, but perhaps her most popular look\
+  \ was the style she wore in the hit show Orange is the New Black. Similar to an\
+  \ undercut, she left her hair long on the top, and shaved along the sides. Getting\
+  \ the perfect fade can be tricky, however, but with a pair of clippers and different\
+  \ guards, you can get the right look. If you really want to go all the way, use\
+  \ scissors and clippers to sculpt lines into the fade at the end.</div>\n<div id=\"\
+  14\" clickable=\"false\">Part 1 Part 1 of 3: Cutting the Base</div>\n<div id=\"\
+  15\" clickable=\"false\">1</div>\n<div id=\"16\" clickable=\"false\">Begin with\
+  \ clean hair. Wash your hair before cutting it to get the best results. Allow your\
+  \ hair to air dry fully or use a blow dryer to speed up the process. Though many\
+  \ haircuts are done on wet hair, your hair should be dry when using clippers.</div>\n\
+  <img alt=\"v4-460px-Do-Ruby-Rose-Hair-Step-1.jpg\" id=\"17\" clickable=\"false\"\
+  >\n<div class=\"statusBarBackground\" id=\"18\" clickable=\"false\"></div>"
+- 'Search an article to learn how to do ruby rose hair.
+
+  Then, access the article "How to Do Ruby Rose Hair"
+
+  Then, access the about page to learn why people trust wikihow.'
+- Access the about page to learn why people trust wikihow.
+: action_dict:
+    CLICK(4):
+      number: 1
+      qvalue: 1.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, do ruby rose hair)
+    - CLICK(3)
+    last_reward: 2.0
+    number: 1
+    total_reward: 2.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
+  More options\" id=\"2\" clickable=\"true\">\n<p id=\"3\" clickable=\"true\">Learn\
+  \ why people </p>\n<p id=\"4\" clickable=\"true\">trust wikiHow</p>\n<p id=\"5\"\
+  \ clickable=\"true\">FOOD AND ENTERTAINING</p>\n<p id=\"6\" clickable=\"false\"\
+  > \xBB</p>\n<p id=\"7\" clickable=\"true\">KITCHEN UTENSILS</p>\n<p id=\"8\" clickable=\"\
+  true\">How to Clean Utensils</p>\n<p id=\"9\" clickable=\"false\">Co-authored by</p>\n\
+  <p id=\"10\" clickable=\"false\"> </p>\n<p id=\"11\" clickable=\"true\">Melanie\
+  \ Garcia</p>\n<button id=\"12\" clickable=\"true\">Last Updated: March 19, 2021</button>\n\
+  <p id=\"13\" clickable=\"true\">References</p>\n<div id=\"14\" clickable=\"false\"\
+  >Utensils are quick and easy to clean. Simply wash the utensils with hot water and\
+  \ soap, or use the natural cleaning power of the sun, salt, and lemon if you\u2019\
+  re cleaning wooden utensils. If you want to sterilise the utensils, try soaking\
+  \ them in boiling water. Before you know it your utensils will be sparkling clean.</div>\n\
+  <div id=\"15\" clickable=\"false\">Method 1 Method 1 of 3: Washing Utensils by Hand</div>\n\
+  <div id=\"16\" clickable=\"false\"></div>\n<div id=\"17\" clickable=\"false\"></div>\n\
+  <div id=\"18\" clickable=\"false\">1</div>\n<div class=\"statusBarBackground\" id=\"\
+  19\" clickable=\"false\"></div>"
+- 'Search an article to learn how to clean utensils.
+
+  Then, access the article "How to Clean Utensils"
+
+  Then, check the reference list'
+- Check the reference list
+: action_dict:
+    CLICK(13):
+      number: 1
+      qvalue: 1.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, clean utensils)
+    - CLICK(3)
+    last_reward: 2.0
+    number: 1
+    total_reward: 2.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
+  More options\" id=\"2\" clickable=\"true\">\n<p id=\"3\" clickable=\"true\">Learn\
+  \ why people </p>\n<p id=\"4\" clickable=\"true\">trust wikiHow</p>\n<p id=\"5\"\
+  \ clickable=\"true\">FRIENDS</p>\n<p id=\"6\" clickable=\"false\"> \xBB</p>\n<p\
+  \ id=\"7\" clickable=\"true\">FORMING FRIENDSHIPS</p>\n<p id=\"8\" clickable=\"\
+  true\">How to Be a Good Friend to a Guy</p>\n<p id=\"9\" clickable=\"false\">Co-authored\
+  \ by</p>\n<p id=\"10\" clickable=\"false\"> </p>\n<p id=\"11\" clickable=\"true\"\
+  >Trudi Griffin, LPC, MS</p>\n<p id=\"12\" clickable=\"false\"> and </p>\n<p id=\"\
+  13\" clickable=\"true\">Amy Bobinger</p>\n<button id=\"14\" clickable=\"true\">Last\
+  \ Updated: December 7, 2020</button>\n<p id=\"15\" clickable=\"true\">References</p>\n\
+  <p id=\"16\" clickable=\"false\"> </p>\n<button id=\"17\" clickable=\"true\">Approved</button>\n\
+  <div id=\"18\" clickable=\"false\">Guys often tend to be less expressive than females,\
+  \ so it can be hard to know how to build a close, supportive friendship. However,\
+  \ guys are often very loyal to the people they do choose as their friends, so it's\
+  \ worth putting the time in when you find someone you like. By spending time hanging\
+  \ out and opening up a little at a time, you could end up with an awesome new friend!</div>\n\
+  <div id=\"19\" clickable=\"false\">Method 1 Method 1 of 3: Getting to Know Each\
+  \ Other</div>\n<img alt=\"v4-460px-Be-a-Good-Friend-to-a-Guy-Step-1-Version-3\"\
+  \ id=\"20\" clickable=\"false\">\n<div class=\"statusBarBackground\" id=\"21\" clickable=\"\
+  false\"></div>"
+- 'Search an article to learn how to be a good friend to a guy.
+
+  Then, access the article "How to Be a Good Friend to a Guy"
+
+  Then, check the author page of Trudi Griffin, LPC, MS.
+
+  Then, access the article "How to Overcome Fear"'
+- Check the author page of Trudi Griffin, LPC, MS.
+: action_dict:
+    CLICK(11):
+      number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, be a good friend to a guy)
+    - CLICK(3)
+    last_reward: 2.0
+    number: 1
+    total_reward: 2.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
+  More options\" id=\"2\" clickable=\"true\">\n<p id=\"3\" clickable=\"true\">Learn\
+  \ why people </p>\n<p id=\"4\" clickable=\"true\">trust wikiHow</p>\n<p id=\"5\"\
+  \ clickable=\"true\">INVESTMENTS AND TRADING</p>\n<p id=\"6\" clickable=\"false\"\
+  > \xBB</p>\n<p id=\"7\" clickable=\"true\">FINANCIAL STOCKS</p>\n<p id=\"8\" clickable=\"\
+  true\">How to Buy Stocks (for Beginners)</p>\n<p id=\"9\" clickable=\"false\">Co-authored\
+  \ by</p>\n<p id=\"10\" clickable=\"false\"> </p>\n<p id=\"11\" clickable=\"true\"\
+  >Ara Oghoorian, CPA</p>\n<button id=\"12\" clickable=\"true\">Last Updated: June\
+  \ 15, 2021</button>\n<p id=\"13\" clickable=\"true\">References</p>\n<p id=\"14\"\
+  \ clickable=\"false\"> </p>\n<button id=\"15\" clickable=\"true\">Approved</button>\n\
+  <div id=\"16\" clickable=\"false\">When you buy stocks, you are buying a small part\
+  \ of company. Twenty years ago, stocks were primarily bought with the advice of\
+  \ a stockbroker. Nowadays, anyone with a computer can buy or sell stocks with brokerage\
+  \ firm. If you are new to buying stocks, you may feel overwhelmed. But, with a little\
+  \ knowledge, you can buy your own stocks and make money from your investments.</div>\n\
+  <div id=\"17\" clickable=\"false\">Part 1 Part 1 of 3: Establishing a Framework\
+  \ for Investing</div>\n<img alt=\"v4-460px-Buy-Stocks-%28for-Beginners%29-Step-1-Version-2\"\
+  \ id=\"18\" clickable=\"false\">\n<div class=\"statusBarBackground\" id=\"19\" clickable=\"\
+  false\"></div>"
+- 'Search an article to learn how to buy stocks (for beginners).
+
+  Then, access the article "How to Buy Stocks (for Beginners)"
+
+  Then, access the page of category Financial Stocks
+
+  Then, access the article "How to Research a Stock"'
+- Access the page of category Financial Stocks
+: action_dict:
+    CLICK(7):
+      number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, buy stocks (for beginners))
+    - CLICK(3)
+    last_reward: 2.0
+    number: 1
+    total_reward: 2.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
+  More options\" id=\"2\" clickable=\"true\">\n<p id=\"3\" clickable=\"true\">Learn\
+  \ why people </p>\n<p id=\"4\" clickable=\"true\">trust wikiHow</p>\n<p id=\"5\"\
+  \ clickable=\"true\">MAKEUP</p>\n<p id=\"6\" clickable=\"false\"> \xBB</p>\n<p id=\"\
+  7\" clickable=\"true\">LEARNING TO USE MAKEUP</p>\n<p id=\"8\" clickable=\"true\"\
+  >How to Apply CC Cream</p>\n<p id=\"9\" clickable=\"false\">Co-authored by</p>\n\
+  <p id=\"10\" clickable=\"false\"> </p>\n<p id=\"11\" clickable=\"true\">Daniel Vann</p>\n\
+  <p id=\"12\" clickable=\"false\"> and </p>\n<p id=\"13\" clickable=\"true\">Sophia\
+  \ Latorre</p>\n<button id=\"14\" clickable=\"true\">Last Updated: December 3, 2020</button>\n\
+  <button id=\"15\" clickable=\"true\">Approved</button>\n<div id=\"16\" clickable=\"\
+  false\">CC, or \u201Ccolor control,\u201D cream is a lightweight makeup product\
+  \ that can be used in place of foundation or as a primer. CC cream helps hide skin\
+  \ imperfections, like redness or hyperpigmentation, while also protecting your skin\
+  \ from sun damage and treating blemishes, fine lines, and age spots. It\u2019s easy\
+  \ to apply, all you need are your fingers or a makeup brush!</div>\n<div id=\"17\"\
+  \ clickable=\"false\">Method 1 Method 1 of 2: Using CC Cream</div>\n<img alt=\"\
+  v4-460px-Apply-CC-Cream-Step-1.jpg\" id=\"18\" clickable=\"false\">\n<div class=\"\
+  statusBarBackground\" id=\"19\" clickable=\"false\"></div>"
+- 'Search an article to learn how to apply cc cream.
+
+  Then, access the article "How to Apply CC Cream"
+
+  Then, access the about page to learn why people trust wikihow.'
+- Access the about page to learn why people trust wikihow.
+: action_dict:
+    CLICK(4):
+      number: 1
+      qvalue: 1.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, apply cc cream)
+    - CLICK(3)
+    last_reward: 2.0
+    number: 1
+    total_reward: 2.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
+  More options\" id=\"2\" clickable=\"true\">\n<p id=\"3\" clickable=\"true\">Learn\
+  \ why people </p>\n<p id=\"4\" clickable=\"true\">trust wikiHow</p>\n<p id=\"5\"\
+  \ clickable=\"true\">STATIONERY</p>\n<p id=\"6\" clickable=\"false\"> \xBB</p>\n\
+  <p id=\"7\" clickable=\"true\">ADDRESSING ENVELOPES</p>\n<p id=\"8\" clickable=\"\
+  true\">How to Address a Letter to England</p>\n<p id=\"9\" clickable=\"false\">Co-authored\
+  \ by</p>\n<p id=\"10\" clickable=\"false\"> </p>\n<p id=\"11\" clickable=\"true\"\
+  >wikiHow Staff</p>\n<button id=\"12\" clickable=\"true\">Last Updated: February\
+  \ 12, 2020</button>\n<p id=\"13\" clickable=\"true\">References</p>\n<p id=\"14\"\
+  \ clickable=\"false\"> </p>\n<button id=\"15\" clickable=\"true\">Approved</button>\n\
+  <div id=\"16\" clickable=\"false\">If you have to send a letter to England, it\u2019\
+  s necessary that you address it correctly so that it gets delivered to the right\
+  \ destination. When addressing it, you\u2019ll want to include the recipient\u2019\
+  s name, address, and postcode on the bottom left of the envelope. Then, you\u2019\
+  ll need to put the proper postage on the envelope before sending the letter.</div>\n\
+  <div id=\"17\" clickable=\"false\">Method 1 Method 1 of 2: Addressing the Letter\
+  \ to England</div>\n<img alt=\"v4-460px-Address-a-Letter-to-England-Step-1-Version-4\"\
+  \ id=\"18\" clickable=\"false\">\n<div class=\"statusBarBackground\" id=\"19\" clickable=\"\
+  false\"></div>"
+- 'Search an article to learn how to address a letter to england.
+
+  Then, access the article "How to Address a Letter to England"
+
+  Then, check the reference list'
+- Check the reference list
+: action_dict:
+    CLICK(13):
+      number: 1
+      qvalue: 1.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, address a letter to england)
+    - CLICK(3)
+    last_reward: 2.0
+    number: 1
+    total_reward: 2.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
+  More options\" id=\"2\" clickable=\"true\">\n<p id=\"3\" clickable=\"true\">Learn\
+  \ why people </p>\n<p id=\"4\" clickable=\"true\">trust wikiHow</p>\n<p id=\"5\"\
+  \ clickable=\"true\">VIDEO HOSTING AND SHARING WEBSITES</p>\n<p id=\"6\" clickable=\"\
+  false\"> \xBB</p>\n<p id=\"7\" clickable=\"true\">YOUTUBE</p>\n<p id=\"8\" clickable=\"\
+  true\">How to Bypass YouTube's Regional Filter</p>\n<p id=\"9\" clickable=\"false\"\
+  >Written by</p>\n<p id=\"10\" clickable=\"false\"> </p>\n<p id=\"11\" clickable=\"\
+  true\">Jack Lloyd</p>\n<button id=\"12\" clickable=\"true\">Last Updated: June 2,\
+  \ 2021</button>\n<button id=\"13\" clickable=\"true\">Tested</button>\n<div id=\"\
+  14\" clickable=\"false\">This wikiHow teaches you how to view region-locked YouTube\
+  \ videos that display the \"video is unavailable in your country\" error. Doing\
+  \ so involves either using an online proxy service or using a Virtual Private Network\
+  \ (VPN) service to hide your computer's or smartphone's IP address. If you can't\
+  \ view YouTube content because your country censors it, using a VPN is most likely\
+  \ illegal and thus not recommended.</div>\n<div id=\"15\" clickable=\"false\">Method\
+  \ 1 Method 1 of 2: Using ProxFree</div>\n<img alt=\"v4-460px-Bypass-YouTube%27s-Regional-Filter-Step-1-Version-4\"\
+  \ id=\"16\" clickable=\"false\">\n<div class=\"statusBarBackground\" id=\"17\" clickable=\"\
+  false\"></div>"
+- 'Search an article to learn how to bypass youtube''s regional filter.
+
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+
+  Then, access the page of category Computers and Electronics
+
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
+- Access the page of category Computers and Electronics
+: action_dict:
+    CLICK(5):
+      number: 1
+      qvalue: 2.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - INPUT(2, bypass youtube's regional filter)
+    - CLICK(3)
+    last_reward: 2.0
+    number: 1
+    total_reward: 2.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="search button" alt="Search" id="1" clickable="true">
+
+  <img alt="Trudi Griffin, LPC, MS" id="2" clickable="false">
+
+  <p id="3" clickable="true">Website</p>
+
+  <p id="4" clickable="true">+ Follow</p>
+
+  <div id="5" clickable="false">Trudi Griffin, LPC, MS</div>
+
+  <div id="6" clickable="false">Professional Counselor</div>
+
+  <div id="7" clickable="false">Trudi Griffin is a Licensed Professional Counselor
+  in Wisconsin specializing in Addictions and Mental Health. She provides therapy
+  to people who struggle with addictions, mental health, and trauma in community health
+  settings and private practice. She received her MS in Clinical Mental Health Counseling
+  from Marquette University in 2011.</div>
+
+  <div id="8" clickable="false"></div>
+
+  <p id="9" clickable="false">wikiHow''s Editorial Process</p>
+
+  <p id="10" clickable="false">wikiHow partners with over 1000+ experts from a wide
+  range of fields to ensure our content is accurate and based on well-established
+  research and testimony. Content Managers conduct interviews and work closely with
+  each expert to review information, answer reader questions, and add credible advice.
+  </p>
+
+  <div class="statusBarBackground" id="11" clickable="false"></div>'
+- 'Search an article to learn how to be a good friend to a guy.
+
+  Then, access the article "How to Be a Good Friend to a Guy"
+
+  Then, check the author page of Trudi Griffin, LPC, MS.
+
+  Then, access the article "How to Overcome Fear"'
+- Access the article "How to Overcome Fear"
+: action_dict:
+    SCROLL(DOWN):
+      number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - INPUT(2, be a good friend to a guy)
+    - CLICK(3)
+    - CLICK(11)
+    last_reward: 3.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="search button" alt="Search" id="1" clickable="true">
+
+  <p id="2" clickable="true">&lt;</p>
+
+  <div id="3" clickable="true"></div>
+
+  <div id="4" clickable="true">Financial Stocks</div>
+
+  <p id="5" clickable="true">Learn everything you want about Financial Stocks with
+  the wikiHow Financial Stocks Category. Learn about topics such as </p>
+
+  <p id="6" clickable="true">How to Sell Stock Certificates</p>
+
+  <p id="7" clickable="true">, </p>
+
+  <p id="8" clickable="true">How to Calculate Daily Return of a Stock</p>
+
+  <p id="9" clickable="true">, </p>
+
+  <p id="10" clickable="true">How to Buy Stocks</p>
+
+  <p id="11" clickable="true">, and more with our helpful step-by-step instructions
+  with photos and videos.</p>
+
+  <div id="12" clickable="true">Featured Articles</div>
+
+  <img class="62e5362525923" alt="-crop-375-300-375px-nowatermark-Buy-Stocks-Step-10-Version-4.jpg"
+  id="13" clickable="true">
+
+  <p id="14" clickable="true">How to</p>
+
+  <div id="15" clickable="true">Buy Stocks</div>
+
+  <div id="16" clickable="true">Expert</div>
+
+  <img class="62e536252a75f" alt="-crop-375-300-375px-nowatermark-Build-a-Stock-Portfolio-Step-14-Version-2.jpg"
+  id="17" clickable="true">
+
+  <p id="18" clickable="true">How to</p>
+
+  <div id="19" clickable="true">Build a Stock Portfolio</div>
+
+  <div id="20" clickable="true">Expert</div>
+
+  <img class="62e536252f4f8" alt="-crop-375-300-375px-nowatermark-Invest-in-Stocks-Step-18.jpg"
+  id="21" clickable="true">
+
+  <div id="22" clickable="true">Expert</div>
+
+  <img class="62e536253447f" alt="-crop-375-300-375px-nowatermark-Invest-in-the-Stock-Market-Step-15-Version-3.jpg"
+  id="23" clickable="true">
+
+  <div id="24" clickable="true">Expert</div>
+
+  <div class="statusBarBackground" id="25" clickable="false"></div>'
+- 'Search an article to learn how to buy stocks (for beginners).
+
+  Then, access the article "How to Buy Stocks (for Beginners)"
+
+  Then, access the page of category Financial Stocks
+
+  Then, access the article "How to Research a Stock"'
+- Access the article "How to Research a Stock"
+: action_dict:
+    SCROLL(DOWN):
+      number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - INPUT(2, buy stocks (for beginners))
+    - CLICK(3)
+    - CLICK(7)
+    last_reward: 3.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to address a letter to england.
+
+  Then, access the article "How to Address a Letter to England"
+
+  Then, check the reference list'
+- ''
+: action_dict:
+    INPUT(2, address a letter to england):
+      number: 1
+      qvalue: 3.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to apply cc cream.
+
+  Then, access the article "How to Apply CC Cream"
+
+  Then, access the about page to learn why people trust wikihow.'
+- ''
+: action_dict:
+    INPUT(2, apply cc cream):
+      number: 1
+      qvalue: 3.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to be a good friend to a guy.
+
+  Then, access the article "How to Be a Good Friend to a Guy"
+
+  Then, check the author page of Trudi Griffin, LPC, MS.
+
+  Then, access the article "How to Overcome Fear"'
+- ''
+: action_dict:
+    INPUT(2, be a good friend to a guy):
+      number: 1
+      qvalue: 4.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to buy stocks (for beginners).
+
+  Then, access the article "How to Buy Stocks (for Beginners)"
+
+  Then, access the page of category Financial Stocks
+
+  Then, access the article "How to Research a Stock"'
+- ''
+: action_dict:
+    INPUT(2, buy stocks (for beginners)):
+      number: 1
+      qvalue: 4.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to bypass youtube''s regional filter.
+
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+
+  Then, access the page of category Computers and Electronics
+
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
+- ''
+: action_dict:
+    INPUT(2, bypass youtube's regional filter):
+      number: 1
+      qvalue: 4.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to call the czech republic from the united states.
+
+  Then, access the article "How to Call the Czech Republic From the United States"'
+- ''
+: action_dict:
+    INPUT(2, call the czech republic from the united states):
+      number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to change a lightbulb in a recessed light.
+
+  Then, access the article "How to Change a Lightbulb in a Recessed Light"'
+- ''
+: action_dict:
+    INPUT(2, change a lightbulb in a recessed light):
+      number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to clean utensils.
+
+  Then, access the article "How to Clean Utensils"
+
+  Then, check the reference list'
+- ''
+: action_dict:
+    INPUT(2, clean utensils):
+      number: 1
+      qvalue: 3.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to do ruby rose hair.
+
+  Then, access the article "How to Do Ruby Rose Hair"
+
+  Then, access the about page to learn why people trust wikihow.'
+- ''
+: action_dict:
+    INPUT(2, do ruby rose hair):
+      number: 1
+      qvalue: 3.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to hide gauges.
+
+  Then, access the article "How to Hide Gauges"'
+- ''
+: action_dict:
+    INPUT(2, hide gauges):
+      number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"Be good friend to guy \" type=\"text\"\
+  \ id=\"1\" clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear query\"\
+  \ id=\"2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to Be a Good\
+  \ Friend to a Guy</div>\n<div id=\"4\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  5\" clickable=\"true\">562,039 views</p>\n<div id=\"6\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"7\" clickable=\"true\">Updated</p>\n<p id=\"8\" clickable=\"true\"\
+  >2 years ago</p>\n<div id=\"9\" clickable=\"true\">\u2022 </div>\n<p id=\"10\" clickable=\"\
+  true\">Expert Co-Authored</p>\n<div id=\"11\" clickable=\"true\">How to Be Good\
+  \ Friends With a Girl (Guys)</div>\n<div id=\"12\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"13\" clickable=\"true\">646,594 views</p>\n<div id=\"14\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"15\" clickable=\"true\">Updated</p>\n<p id=\"16\" clickable=\"\
+  true\">11 months ago</p>\n<div id=\"17\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  18\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"19\" clickable=\"true\"\
+  >How to Be Friends with Guys</div>\n<div id=\"20\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"21\" clickable=\"true\">564,672 views</p>\n<div id=\"22\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"23\" clickable=\"true\">Updated</p>\n<p id=\"24\" clickable=\"\
+  true\">9 months ago</p>\n<div id=\"25\" clickable=\"true\">How to Be a Good Friend</div>\n\
+  <div id=\"26\" clickable=\"true\">\u2022 </div>\n<p id=\"27\" clickable=\"true\"\
+  >2,480,373 views</p>\n<div id=\"28\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  29\" clickable=\"true\">Updated</p>\n<p id=\"30\" clickable=\"true\">9 months ago</p>\n\
+  <div id=\"31\" clickable=\"true\">\u2022 </div>\n<p id=\"32\" clickable=\"true\"\
+  >Expert Co-Authored</p>\n<div id=\"33\" clickable=\"true\">How to Become Friends\
+  \ With a Guy</div>\n<div id=\"34\" clickable=\"true\">\u2022 </div>\n<p id=\"35\"\
+  \ clickable=\"true\">282,162 views</p>\n<div id=\"36\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"37\" clickable=\"true\">Updated</p>\n<p id=\"38\" clickable=\"\
+  true\">1 year ago</p>\n<div id=\"39\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  40\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"41\" clickable=\"true\"\
+  >How to Be a Good Prom Date (for Guys)</div>\n<div id=\"42\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"43\" clickable=\"true\">372,578 views</p>\n<div id=\"44\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"45\" clickable=\"true\">Updated</p>\n\
+  <p id=\"46\" clickable=\"true\">6 months ago</p>\n<div id=\"47\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"48\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  49\" clickable=\"true\">How to Make a Guy Feel Good</div>\n<div id=\"50\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"51\" clickable=\"true\">177,345 views</p>\n<div id=\"\
+  52\" clickable=\"true\">\u2022 </div>\n<p id=\"53\" clickable=\"true\">Updated</p>\n\
+  <p id=\"54\" clickable=\"true\">1 year ago</p>\n<div class=\"statusBarBackground\"\
+  \ id=\"55\" clickable=\"false\"></div>"
+- 'Search an article to learn how to be a good friend to a guy.
+
+  Then, access the article "How to Be a Good Friend to a Guy"
+
+  Then, check the author page of Trudi Griffin, LPC, MS.
+
+  Then, access the article "How to Overcome Fear"'
+- Access the article "How to Be a Good Friend to a Guy"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 3.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, be a good friend to a guy)
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"Do ruby rose hair \" type=\"text\" id=\"\
+  1\" clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear query\" id=\"\
+  2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to Do Ruby Rose Hair</div>\n\
+  <div id=\"4\" clickable=\"true\">\u2022 </div>\n<p id=\"5\" clickable=\"true\">41,446\
+  \ views</p>\n<div id=\"6\" clickable=\"true\">\u2022 </div>\n<p id=\"7\" clickable=\"\
+  true\">Updated</p>\n<p id=\"8\" clickable=\"true\">2 years ago</p>\n<div id=\"9\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"10\" clickable=\"true\">Expert Co-Authored</p>\n\
+  <div id=\"11\" clickable=\"true\">How to Dye Your Hair Rose Gold</div>\n<div id=\"\
+  12\" clickable=\"true\">\u2022 </div>\n<p id=\"13\" clickable=\"true\">48,548 views</p>\n\
+  <div id=\"14\" clickable=\"true\">\u2022 </div>\n<p id=\"15\" clickable=\"true\"\
+  >Updated</p>\n<p id=\"16\" clickable=\"true\">3 years ago</p>\n<div id=\"17\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"18\" clickable=\"true\">Expert Co-Authored</p>\n<div\
+  \ id=\"19\" clickable=\"true\">How to Do a Hair Mask for Frizzy Hair</div>\n<div\
+  \ id=\"20\" clickable=\"true\">\u2022 </div>\n<p id=\"21\" clickable=\"true\">29,415\
+  \ views</p>\n<div id=\"22\" clickable=\"true\">\u2022 </div>\n<p id=\"23\" clickable=\"\
+  true\">Updated</p>\n<p id=\"24\" clickable=\"true\">2 years ago</p>\n<div id=\"\
+  25\" clickable=\"true\">\u2022 </div>\n<p id=\"26\" clickable=\"true\">Expert Co-Authored</p>\n\
+  <div id=\"27\" clickable=\"true\">How to Do 1920s Hair</div>\n<div id=\"28\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"29\" clickable=\"true\">194,834 views</p>\n<div id=\"\
+  30\" clickable=\"true\">\u2022 </div>\n<p id=\"31\" clickable=\"true\">Updated</p>\n\
+  <p id=\"32\" clickable=\"true\">1 year ago</p>\n<div id=\"33\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"34\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  35\" clickable=\"true\">How to Do 50s Hair</div>\n<div id=\"36\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"37\" clickable=\"true\">39,890 views</p>\n<div id=\"38\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"39\" clickable=\"true\">Updated</p>\n\
+  <p id=\"40\" clickable=\"true\">1 year ago</p>\n<div id=\"41\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"42\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  43\" clickable=\"true\">How to Do 70s Hair</div>\n<div id=\"44\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"45\" clickable=\"true\">69,458 views</p>\n<div id=\"46\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"47\" clickable=\"true\">Updated</p>\n\
+  <p id=\"48\" clickable=\"true\">1 year ago</p>\n<div id=\"49\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"50\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  51\" clickable=\"true\">How to Do Goku Hair</div>\n<div id=\"52\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"53\" clickable=\"true\">44,049 views</p>\n<div class=\"\
+  statusBarBackground\" id=\"54\" clickable=\"false\"></div>"
+- 'Search an article to learn how to do ruby rose hair.
+
+  Then, access the article "How to Do Ruby Rose Hair"
+
+  Then, access the about page to learn why people trust wikihow.'
+- Access the article "How to Do Ruby Rose Hair"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, do ruby rose hair)
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"address letter to england \" type=\"text\"\
+  \ id=\"1\" clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear query\"\
+  \ id=\"2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to Address\
+  \ a Letter to England</div>\n<div id=\"4\" clickable=\"true\">\u2022 </div>\n<p\
+  \ id=\"5\" clickable=\"true\">672,245 views</p>\n<div id=\"6\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"7\" clickable=\"true\">Updated</p>\n<p id=\"8\" clickable=\"\
+  true\"> 4 months ago</p>\n<div id=\"9\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  10\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"11\" clickable=\"true\"\
+  >How to Write a Letter for Change of Address</div>\n<div id=\"12\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"13\" clickable=\"true\">1,449,729 views</p>\n<div\
+  \ id=\"14\" clickable=\"true\">\u2022 </div>\n<p id=\"15\" clickable=\"true\">Updated</p>\n\
+  <p id=\"16\" clickable=\"true\"> 3 weeks ago</p>\n<div id=\"17\" clickable=\"true\"\
+  >How to Address a Letter</div>\n<div id=\"18\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"19\" clickable=\"true\">631,461 views</p>\n<div id=\"20\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"21\" clickable=\"true\">Updated</p>\n<p id=\"22\" clickable=\"\
+  true\"> 3 weeks ago</p>\n<div id=\"23\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  24\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"25\" clickable=\"true\"\
+  >How to Address a Letter in Australia</div>\n<div id=\"26\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"27\" clickable=\"true\">214,361 views</p>\n<div id=\"28\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"29\" clickable=\"true\">Updated</p>\n<p id=\"30\"\
+  \ clickable=\"true\"> 4 days ago</p>\n<div id=\"31\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"32\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"33\" clickable=\"\
+  true\">How to Address a Formal Letter</div>\n<div id=\"34\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"35\" clickable=\"true\">160,793 views</p>\n<div id=\"36\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"37\" clickable=\"true\">Updated</p>\n<p id=\"38\"\
+  \ clickable=\"true\"> 4 months ago</p>\n<div id=\"39\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"40\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"41\"\
+  \ clickable=\"true\">How to Address the President in a Letter</div>\n<div id=\"\
+  42\" clickable=\"true\">\u2022 </div>\n<p id=\"43\" clickable=\"true\">60,963 views</p>\n\
+  <div id=\"44\" clickable=\"true\">\u2022 </div>\n<p id=\"45\" clickable=\"true\"\
+  >Updated</p>\n<p id=\"46\" clickable=\"true\"> 4 months ago</p>\n<div id=\"47\"\
+  \ clickable=\"true\">How to Address a Business Letter</div>\n<div id=\"48\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"49\" clickable=\"true\">19,757 views</p>\n<div id=\"\
+  50\" clickable=\"true\">\u2022 </div>\n<p id=\"51\" clickable=\"true\">Updated</p>\n\
+  <p id=\"52\" clickable=\"true\"> 6 months ago</p>\n<div id=\"53\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"54\" clickable=\"true\">Expert Co-Authored</p>\n<div class=\"\
+  statusBarBackground\" id=\"55\" clickable=\"false\"></div>"
+- 'Search an article to learn how to address a letter to england.
+
+  Then, access the article "How to Address a Letter to England"
+
+  Then, check the reference list'
+- Access the article "How to Address a Letter to England"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, address a letter to england)
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"apply cc cream \" type=\"text\" id=\"1\"\
+  \ clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear query\" id=\"\
+  2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to Apply CC Cream</div>\n\
+  <div id=\"4\" clickable=\"true\">\u2022 </div>\n<p id=\"5\" clickable=\"true\">172,915\
+  \ views</p>\n<div id=\"6\" clickable=\"true\">\u2022 </div>\n<p id=\"7\" clickable=\"\
+  true\">Updated</p>\n<p id=\"8\" clickable=\"true\">2 years ago</p>\n<div id=\"9\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"10\" clickable=\"true\">Expert Co-Authored</p>\n\
+  <div id=\"11\" clickable=\"true\">How to Apply BB Cream</div>\n<div id=\"12\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"13\" clickable=\"true\">1,105,975 views</p>\n<div\
+  \ id=\"14\" clickable=\"true\">\u2022 </div>\n<p id=\"15\" clickable=\"true\">Updated</p>\n\
+  <p id=\"16\" clickable=\"true\">2 years ago</p>\n<div id=\"17\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"18\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  19\" clickable=\"true\">How to Apply Cream Blush</div>\n<div id=\"20\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"21\" clickable=\"true\">139,726 views</p>\n<div id=\"\
+  22\" clickable=\"true\">\u2022 </div>\n<p id=\"23\" clickable=\"true\">Updated</p>\n\
+  <p id=\"24\" clickable=\"true\">1 year ago</p>\n<div id=\"25\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"26\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  27\" clickable=\"true\">How to Apply Cream Contour</div>\n<div id=\"28\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"29\" clickable=\"true\">21,819 views</p>\n<div id=\"\
+  30\" clickable=\"true\">\u2022 </div>\n<p id=\"31\" clickable=\"true\">Updated</p>\n\
+  <p id=\"32\" clickable=\"true\">2 years ago</p>\n<div id=\"33\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"34\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  35\" clickable=\"true\">How to Apply Cream Foundation</div>\n<div id=\"36\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"37\" clickable=\"true\">15,308 views</p>\n<div id=\"\
+  38\" clickable=\"true\">\u2022 </div>\n<p id=\"39\" clickable=\"true\">Updated</p>\n\
+  <p id=\"40\" clickable=\"true\">1 year ago</p>\n<div id=\"41\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"42\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  43\" clickable=\"true\">How to Apply Cream Highlighter</div>\n<div id=\"44\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"45\" clickable=\"true\">10,463 views</p>\n<div id=\"\
+  46\" clickable=\"true\">\u2022 </div>\n<p id=\"47\" clickable=\"true\">Updated</p>\n\
+  <p id=\"48\" clickable=\"true\">1 year ago</p>\n<div id=\"49\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"50\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  51\" clickable=\"true\">How to Apply Eye Cream</div>\n<div id=\"52\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"53\" clickable=\"true\">192,306 views</p>\n<div class=\"\
+  statusBarBackground\" id=\"54\" clickable=\"false\"></div>"
+- 'Search an article to learn how to apply cc cream.
+
+  Then, access the article "How to Apply CC Cream"
+
+  Then, access the about page to learn why people trust wikihow.'
+- Access the article "How to Apply CC Cream"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, apply cc cream)
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"buy stocks (for beginners) \" type=\"text\"\
+  \ id=\"1\" clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear query\"\
+  \ id=\"2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to Buy Stocks\
+  \ (for Beginners)</div>\n<div id=\"4\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  5\" clickable=\"true\">657,645 views</p>\n<div id=\"6\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"7\" clickable=\"true\">Updated</p>\n<p id=\"8\" clickable=\"true\"\
+  >1 year ago</p>\n<div id=\"9\" clickable=\"true\">\u2022 </div>\n<p id=\"10\" clickable=\"\
+  true\">Expert Co-Authored</p>\n<div id=\"11\" clickable=\"true\">How to Buy Stocks</div>\n\
+  <div id=\"12\" clickable=\"true\">\u2022 </div>\n<p id=\"13\" clickable=\"true\"\
+  >4,031,464 views</p>\n<div id=\"14\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  15\" clickable=\"true\">Updated</p>\n<p id=\"16\" clickable=\"true\">1 year ago</p>\n\
+  <div id=\"17\" clickable=\"true\">\u2022 </div>\n<p id=\"18\" clickable=\"true\"\
+  >Expert Co-Authored</p>\n<div id=\"19\" clickable=\"true\">How to Buy Common Stock</div>\n\
+  <div id=\"20\" clickable=\"true\">\u2022 </div>\n<p id=\"21\" clickable=\"true\"\
+  >41,346 views</p>\n<div id=\"22\" clickable=\"true\">\u2022 </div>\n<p id=\"23\"\
+  \ clickable=\"true\">Updated</p>\n<p id=\"24\" clickable=\"true\">1 year ago</p>\n\
+  <div id=\"25\" clickable=\"true\">How to Buy Indian Stocks</div>\n<div id=\"26\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"27\" clickable=\"true\">80,003 views</p>\n\
+  <div id=\"28\" clickable=\"true\">\u2022 </div>\n<p id=\"29\" clickable=\"true\"\
+  >Updated</p>\n<p id=\"30\" clickable=\"true\">1 year ago</p>\n<div id=\"31\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"32\" clickable=\"true\">Expert Co-Authored</p>\n<div\
+  \ id=\"33\" clickable=\"true\">How to Buy a DRIP Stock</div>\n<div id=\"34\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"35\" clickable=\"true\">105,009 views</p>\n<div id=\"\
+  36\" clickable=\"true\">\u2022 </div>\n<p id=\"37\" clickable=\"true\">Updated</p>\n\
+  <p id=\"38\" clickable=\"true\">1 year ago</p>\n<div id=\"39\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"40\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  41\" clickable=\"true\">How to Buy a Japanese Stock</div>\n<div id=\"42\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"43\" clickable=\"true\">34,776 views</p>\n<div id=\"\
+  44\" clickable=\"true\">\u2022 </div>\n<p id=\"45\" clickable=\"true\">Updated</p>\n\
+  <p id=\"46\" clickable=\"true\">3 years ago</p>\n<div id=\"47\" clickable=\"true\"\
+  >How to Buy Stock Without a Broker</div>\n<div id=\"48\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"49\" clickable=\"true\">418,267 views</p>\n<div id=\"50\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"51\" clickable=\"true\">Updated</p>\n<p id=\"52\"\
+  \ clickable=\"true\">1 year ago</p>\n<div id=\"53\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"54\" clickable=\"true\">Expert Co-Authored</p>\n<div class=\"statusBarBackground\"\
+  \ id=\"55\" clickable=\"false\"></div>"
+- 'Search an article to learn how to buy stocks (for beginners).
+
+  Then, access the article "How to Buy Stocks (for Beginners)"
+
+  Then, access the page of category Financial Stocks
+
+  Then, access the article "How to Research a Stock"'
+- Access the article "How to Buy Stocks (for Beginners)"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 3.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, buy stocks (for beginners))
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"bypass youtube's regional filter \" type=\"\
+  text\" id=\"1\" clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear\
+  \ query\" id=\"2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to\
+  \ Bypass YouTube's Regional Filter</div>\n<div id=\"4\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"5\" clickable=\"true\">935,320 views</p>\n<div id=\"6\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"7\" clickable=\"true\">Updated</p>\n<p id=\"8\" clickable=\"\
+  true\"> 2 weeks ago</p>\n<div id=\"9\" clickable=\"true\">How to Filter Explicit\
+  \ Content on YouTube Music on Android</div>\n<div id=\"10\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"11\" clickable=\"true\">21,593 views</p>\n<div id=\"12\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"13\" clickable=\"true\">Updated</p>\n<p id=\"14\"\
+  \ clickable=\"true\"> 2 weeks ago</p>\n<div id=\"15\" clickable=\"true\">How to\
+  \ Filter YouTube Search Results</div>\n<div id=\"16\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"17\" clickable=\"true\">68,331 views</p>\n<div id=\"18\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"19\" clickable=\"true\">Updated</p>\n<p id=\"20\"\
+  \ clickable=\"true\"> 7 months ago</p>\n<div id=\"21\" clickable=\"true\">Bypass\
+  \ Age Restrictions on YouTube Videos: 8 Simple Methods</div>\n<div id=\"22\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"23\" clickable=\"true\">2,673,435 views</p>\n<div\
+  \ id=\"24\" clickable=\"true\">\u2022 </div>\n<p id=\"25\" clickable=\"true\">Updated</p>\n\
+  <p id=\"26\" clickable=\"true\"> 1 month ago</p>\n<div id=\"27\" clickable=\"true\"\
+  >How to Bypass a Firewall or Internet Filter</div>\n<div id=\"28\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"29\" clickable=\"true\">2,248,246 views</p>\n<div\
+  \ id=\"30\" clickable=\"true\">\u2022 </div>\n<p id=\"31\" clickable=\"true\">Updated</p>\n\
+  <p id=\"32\" clickable=\"true\"> 2 weeks ago</p>\n<div id=\"33\" clickable=\"true\"\
+  >How to Bypass an Internet Filter With Tor</div>\n<div id=\"34\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"35\" clickable=\"true\">123,480 views</p>\n<div id=\"36\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"37\" clickable=\"true\">Updated</p>\n\
+  <p id=\"38\" clickable=\"true\"> 5 months ago</p>\n<div id=\"39\" clickable=\"true\"\
+  >How to Bypass the Mature Filter on deviantArt</div>\n<div id=\"40\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"41\" clickable=\"true\">420,558 views</p>\n<div id=\"\
+  42\" clickable=\"true\">\u2022 </div>\n<p id=\"43\" clickable=\"true\">Updated</p>\n\
+  <p id=\"44\" clickable=\"true\"> 7 months ago</p>\n<div id=\"45\" clickable=\"true\"\
+  >HOW TO</div>\n<div id=\"46\" clickable=\"true\">3 Easy Ways to Get Around ChatGPT\
+  \ Security Filters</div>\n<div id=\"47\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  48\" clickable=\"true\">271 views</p>\n<div class=\"statusBarBackground\" id=\"\
+  49\" clickable=\"false\"></div>"
+- 'Search an article to learn how to bypass youtube''s regional filter.
+
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+
+  Then, access the page of category Computers and Electronics
+
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
+- Access the article "How to Bypass YouTube's Regional Filter"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 3.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, bypass youtube's regional filter)
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"call czech from united states \" type=\"\
+  text\" id=\"1\" clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear\
+  \ query\" id=\"2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to\
+  \ Call the Czech Republic From the United States</div>\n<div id=\"4\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"5\" clickable=\"true\">20,384 views</p>\n<div id=\"\
+  6\" clickable=\"true\">\u2022 </div>\n<p id=\"7\" clickable=\"true\">Updated</p>\n\
+  <p id=\"8\" clickable=\"true\">1 year ago</p>\n<div id=\"9\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"10\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  11\" clickable=\"true\">How to Call the United States From the United Kingdom</div>\n\
+  <div id=\"12\" clickable=\"true\">\u2022 </div>\n<p id=\"13\" clickable=\"true\"\
+  >459,486 views</p>\n<div id=\"14\" clickable=\"true\">\u2022 </div>\n<p id=\"15\"\
+  \ clickable=\"true\">Updated</p>\n<p id=\"16\" clickable=\"true\">9 months ago</p>\n\
+  <div id=\"17\" clickable=\"true\">How to Call Iraq from the United States</div>\n\
+  <div id=\"18\" clickable=\"true\">\u2022 </div>\n<p id=\"19\" clickable=\"true\"\
+  >8,717 views</p>\n<div id=\"20\" clickable=\"true\">\u2022 </div>\n<p id=\"21\"\
+  \ clickable=\"true\">Updated</p>\n<p id=\"22\" clickable=\"true\">1 year ago</p>\n\
+  <div id=\"23\" clickable=\"true\">How to Call Ireland From the United States</div>\n\
+  <div id=\"24\" clickable=\"true\">\u2022 </div>\n<p id=\"25\" clickable=\"true\"\
+  >163,362 views</p>\n<div id=\"26\" clickable=\"true\">\u2022 </div>\n<p id=\"27\"\
+  \ clickable=\"true\">Updated</p>\n<p id=\"28\" clickable=\"true\">3 years ago</p>\n\
+  <div id=\"29\" clickable=\"true\">How to Call Israel from the United States</div>\n\
+  <div id=\"30\" clickable=\"true\">\u2022 </div>\n<p id=\"31\" clickable=\"true\"\
+  >45,610 views</p>\n<div id=\"32\" clickable=\"true\">\u2022 </div>\n<p id=\"33\"\
+  \ clickable=\"true\">Updated</p>\n<p id=\"34\" clickable=\"true\">1 year ago</p>\n\
+  <div id=\"35\" clickable=\"true\">How to Call Jamaica from the United States</div>\n\
+  <div id=\"36\" clickable=\"true\">\u2022 </div>\n<p id=\"37\" clickable=\"true\"\
+  >61,209 views</p>\n<div id=\"38\" clickable=\"true\">\u2022 </div>\n<p id=\"39\"\
+  \ clickable=\"true\">Updated</p>\n<p id=\"40\" clickable=\"true\">9 months ago</p>\n\
+  <div id=\"41\" clickable=\"true\">\u2022 </div>\n<p id=\"42\" clickable=\"true\"\
+  >Quality Tested</p>\n<div id=\"43\" clickable=\"true\">How to Call Mexico from the\
+  \ United States</div>\n<div id=\"44\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  45\" clickable=\"true\">1,417,037 views</p>\n<div id=\"46\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"47\" clickable=\"true\">Updated</p>\n<p id=\"48\" clickable=\"\
+  true\">1 year ago</p>\n<div id=\"49\" clickable=\"true\">How to Call Norway From\
+  \ the United States</div>\n<div id=\"50\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  51\" clickable=\"true\">45,306 views</p>\n<div id=\"52\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"53\" clickable=\"true\">Updated</p>\n<p id=\"54\" clickable=\"\
+  true\">3 years ago</p>\n<div class=\"statusBarBackground\" id=\"55\" clickable=\"\
+  false\"></div>"
+- 'Search an article to learn how to call the czech republic from the united states.
+
+  Then, access the article "How to Call the Czech Republic From the United States"'
+- Access the article "How to Call the Czech Republic From the United States"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 1.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, call the czech republic from the united states)
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"change recessed lightbulb \" type=\"text\"\
+  \ id=\"1\" clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear query\"\
+  \ id=\"2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to Change a\
+  \ Lightbulb in a Recessed Light</div>\n<div id=\"4\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"5\" clickable=\"true\">406,061 views</p>\n<div id=\"6\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"7\" clickable=\"true\">Updated</p>\n<p id=\"8\" clickable=\"\
+  true\">1 year ago</p>\n<div id=\"9\" clickable=\"true\">How to Dispose of Lightbulbs</div>\n\
+  <div id=\"10\" clickable=\"true\">\u2022 </div>\n<p id=\"11\" clickable=\"true\"\
+  >44,046 views</p>\n<div id=\"12\" clickable=\"true\">\u2022 </div>\n<p id=\"13\"\
+  \ clickable=\"true\">Updated</p>\n<p id=\"14\" clickable=\"true\">1 year ago</p>\n\
+  <div id=\"15\" clickable=\"true\">\u2022 </div>\n<p id=\"16\" clickable=\"true\"\
+  >Expert Co-Authored</p>\n<div id=\"17\" clickable=\"true\">How to Screw in a Lightbulb</div>\n\
+  <div id=\"18\" clickable=\"true\">\u2022 </div>\n<p id=\"19\" clickable=\"true\"\
+  >73,816 views</p>\n<div id=\"20\" clickable=\"true\">\u2022 </div>\n<p id=\"21\"\
+  \ clickable=\"true\">Updated</p>\n<p id=\"22\" clickable=\"true\">2 years ago</p>\n\
+  <div id=\"23\" clickable=\"true\">\u2022 </div>\n<p id=\"24\" clickable=\"true\"\
+  >Quality Tested</p>\n<div id=\"25\" clickable=\"true\">How to Replace a Microwave\
+  \ Lightbulb</div>\n<div id=\"26\" clickable=\"true\">\u2022 </div>\n<p id=\"27\"\
+  \ clickable=\"true\">281,876 views</p>\n<div id=\"28\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"29\" clickable=\"true\">Updated</p>\n<p id=\"30\" clickable=\"\
+  true\">1 year ago</p>\n<div id=\"31\" clickable=\"true\">How to Have Fun at Recess</div>\n\
+  <div id=\"32\" clickable=\"true\">\u2022 </div>\n<p id=\"33\" clickable=\"true\"\
+  >169 views</p>\n<div id=\"34\" clickable=\"true\">\u2022 </div>\n<p id=\"35\" clickable=\"\
+  true\">Updated</p>\n<p id=\"36\" clickable=\"true\">7 months ago</p>\n<div id=\"\
+  37\" clickable=\"true\">How to Install Recessed Lighting</div>\n<div id=\"38\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"39\" clickable=\"true\">84,373 views</p>\n<div id=\"\
+  40\" clickable=\"true\">\u2022 </div>\n<p id=\"41\" clickable=\"true\">Updated</p>\n\
+  <p id=\"42\" clickable=\"true\">1 year ago</p>\n<div id=\"43\" clickable=\"true\"\
+  >How to Manage Investments in a Recession</div>\n<div id=\"44\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"45\" clickable=\"true\">61,160 views</p>\n<div id=\"46\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"47\" clickable=\"true\">Updated</p>\n\
+  <p id=\"48\" clickable=\"true\">1 year ago</p>\n<div id=\"49\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"50\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  51\" clickable=\"true\">How to Protect Savings in a Recession</div>\n<div id=\"\
+  52\" clickable=\"true\">\u2022 </div>\n<p id=\"53\" clickable=\"true\">55,845 views</p>\n\
+  <div class=\"statusBarBackground\" id=\"54\" clickable=\"false\"></div>"
+- 'Search an article to learn how to change a lightbulb in a recessed light.
+
+  Then, access the article "How to Change a Lightbulb in a Recessed Light"'
+- Access the article "How to Change a Lightbulb in a Recessed Light"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 1.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, change a lightbulb in a recessed light)
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"clean utensils \" type=\"text\" id=\"1\"\
+  \ clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear query\" id=\"\
+  2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to Clean Utensils</div>\n\
+  <div id=\"4\" clickable=\"true\">\u2022 </div>\n<p id=\"5\" clickable=\"true\">25,435\
+  \ views</p>\n<div id=\"6\" clickable=\"true\">\u2022 </div>\n<p id=\"7\" clickable=\"\
+  true\">Updated</p>\n<p id=\"8\" clickable=\"true\"> 2 years ago</p>\n<div id=\"\
+  9\" clickable=\"true\">\u2022 </div>\n<p id=\"10\" clickable=\"true\">Expert Co-Authored</p>\n\
+  <div id=\"11\" clickable=\"true\">How to Clean Copper Utensils</div>\n<div id=\"\
+  12\" clickable=\"true\">\u2022 </div>\n<p id=\"13\" clickable=\"true\">9,377 views</p>\n\
+  <div id=\"14\" clickable=\"true\">\u2022 </div>\n<p id=\"15\" clickable=\"true\"\
+  >Updated</p>\n<p id=\"16\" clickable=\"true\"> 2 years ago</p>\n<div id=\"17\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"18\" clickable=\"true\">Expert Co-Authored</p>\n<div\
+  \ id=\"19\" clickable=\"true\">How to Clean and Disinfect Wooden Cooking Utensils</div>\n\
+  <div id=\"20\" clickable=\"true\">\u2022 </div>\n<p id=\"21\" clickable=\"true\"\
+  >291,123 views</p>\n<div id=\"22\" clickable=\"true\">\u2022 </div>\n<p id=\"23\"\
+  \ clickable=\"true\">Updated</p>\n<p id=\"24\" clickable=\"true\"> 1 month ago</p>\n\
+  <div id=\"25\" clickable=\"true\">\u2022 </div>\n<p id=\"26\" clickable=\"true\"\
+  >Expert Co-Authored</p>\n<div id=\"27\" clickable=\"true\">How to Get Your Toddler\
+  \ to Eat with Utensils</div>\n<div id=\"28\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"29\" clickable=\"true\">61,694 views</p>\n<div id=\"30\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"31\" clickable=\"true\">Updated</p>\n<p id=\"32\" clickable=\"\
+  true\"> 3 months ago</p>\n<div id=\"33\" clickable=\"true\">How to Clean Stainless\
+  \ Steel Cutlery</div>\n<div id=\"34\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  35\" clickable=\"true\">382,765 views</p>\n<div id=\"36\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"37\" clickable=\"true\">Updated</p>\n<p id=\"38\" clickable=\"\
+  true\"> 5 months ago</p>\n<div id=\"39\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  40\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"41\" clickable=\"true\"\
+  >How to Clean Your Penis</div>\n<div id=\"42\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"43\" clickable=\"true\">2,447,169 views</p>\n<div id=\"44\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"45\" clickable=\"true\">Updated</p>\n<p id=\"46\"\
+  \ clickable=\"true\"> 2 days ago</p>\n<div id=\"47\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"48\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"49\" clickable=\"\
+  true\">Easy &amp; Effective Ways to Clean Dirty Coins at Home</div>\n<div id=\"\
+  50\" clickable=\"true\">\u2022 </div>\n<p id=\"51\" clickable=\"true\">2,407,994\
+  \ views</p>\n<div id=\"52\" clickable=\"true\">\u2022 </div>\n<p id=\"53\" clickable=\"\
+  true\">Updated</p>\n<p id=\"54\" clickable=\"true\"> 7 days ago</p>\n<div class=\"\
+  statusBarBackground\" id=\"55\" clickable=\"false\"></div>"
+- 'Search an article to learn how to clean utensils.
+
+  Then, access the article "How to Clean Utensils"
+
+  Then, check the reference list'
+- Access the article "How to Clean Utensils"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, clean utensils)
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"hide gauges \" type=\"text\" id=\"1\" clickable=\"\
+  true\">\n<img class=\"search close btn\" alt=\"Clear query\" id=\"2\" clickable=\"\
+  true\">\n<div id=\"3\" clickable=\"true\">How to Hide Gauges</div>\n<div id=\"4\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"5\" clickable=\"true\">138,732 views</p>\n\
+  <div id=\"6\" clickable=\"true\">\u2022 </div>\n<p id=\"7\" clickable=\"true\">Updated</p>\n\
+  <p id=\"8\" clickable=\"true\"> 1 year ago</p>\n<div id=\"9\" clickable=\"true\"\
+  >How to Clean Ear Gauges</div>\n<div id=\"10\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"11\" clickable=\"true\">64,126 views</p>\n<div id=\"12\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"13\" clickable=\"true\">Updated</p>\n<p id=\"14\" clickable=\"\
+  true\"> 4 years ago</p>\n<div id=\"15\" clickable=\"true\">How to Check a Crochet\
+  \ Gauge</div>\n<div id=\"16\" clickable=\"true\">\u2022 </div>\n<p id=\"17\" clickable=\"\
+  true\">90,812 views</p>\n<div id=\"18\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  19\" clickable=\"true\">Updated</p>\n<p id=\"20\" clickable=\"true\"> 3 years ago</p>\n\
+  <div id=\"21\" clickable=\"true\">How to Gauge Your Ears</div>\n<div id=\"22\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"23\" clickable=\"true\">2,258,979 views</p>\n<div\
+  \ id=\"24\" clickable=\"true\">\u2022 </div>\n<p id=\"25\" clickable=\"true\">Updated</p>\n\
+  <p id=\"26\" clickable=\"true\"> 4 weeks ago</p>\n<div id=\"27\" clickable=\"true\"\
+  >How to Gauge Wire</div>\n<div id=\"28\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  29\" clickable=\"true\">226,188 views</p>\n<div id=\"30\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"31\" clickable=\"true\">Updated</p>\n<p id=\"32\" clickable=\"\
+  true\"> 6 months ago</p>\n<div id=\"33\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  34\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"35\" clickable=\"true\"\
+  >How to Install a Car Volt Amp Gauge</div>\n<div id=\"36\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"37\" clickable=\"true\">273,578 views</p>\n<div id=\"38\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"39\" clickable=\"true\">Updated</p>\n<p id=\"40\"\
+  \ clickable=\"true\"> 2 years ago</p>\n<div id=\"41\" clickable=\"true\">How to\
+  \ Build a Rain Gauge</div>\n<div id=\"42\" clickable=\"true\">\u2022 </div>\n<p\
+  \ id=\"43\" clickable=\"true\">400,239 views</p>\n<div id=\"44\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"45\" clickable=\"true\">Updated</p>\n<p id=\"46\" clickable=\"\
+  true\"> 2 weeks ago</p>\n<div id=\"47\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  48\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"49\" clickable=\"true\"\
+  >How to Close Gauged Ears</div>\n<div id=\"50\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"51\" clickable=\"true\">966,967 views</p>\n<div id=\"52\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"53\" clickable=\"true\">Updated</p>\n<p id=\"54\" clickable=\"\
+  true\"> 5 months ago</p>\n<div class=\"statusBarBackground\" id=\"55\" clickable=\"\
+  false\"></div>"
+- 'Search an article to learn how to hide gauges.
+
+  Then, access the article "How to Hide Gauges"'
+- Access the article "How to Hide Gauges"
+: action_dict:
+    CLICK(3):
+      number: 1
+      qvalue: 1.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - INPUT(2, hide gauges)
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0

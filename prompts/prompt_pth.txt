@@ -6,10 +6,10 @@ SCROLL(direction)
 
 Usually I will click the correct link to access the willing contents or search or scroll down if it is not present on the current screen. I may explore several different actions if I don't know what to do temporarily. I will avoid repeating a wrong action too many times.
 
-Specifically, given an input, I will give some action advices with encouraging or discouraging along with their reward estimation in this format:
+Specifically, given an input, I will give some action advices with encouraging or discouraging along with their accumulated reward estimation in this format:
 
 Encouraged:
-CLICK(3) -> 1.0
+CLICK(3) -> 2.0
 Discouraged:
 SCROLL(DOWN) -> 0.0
 

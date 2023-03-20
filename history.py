@@ -220,7 +220,7 @@ class HistoryReplay:
 
         step = self._observation_buffer[0]
         action: str = self._action_buffer[0]
-        #step_: HistoryReplay.Key = self._observation_buffer[-1]
+        step_: HistoryReplay.Key = self._observation_buffer[-1]
         reward: float = self._reward_buffer[1]
 
         action_history: List[str] = self._action_history[:-self._n_step_flatten]
@@ -234,8 +234,13 @@ class HistoryReplay:
                                ):
             return
 
+        new_estimation: np.float64 = np.convolve( np.asarray(self._reward_buffer, dtype=np.float32)[1:]
+                                                , self._filter
+                                                , mode="valid"
+                                                )[0]
+
         action_dict: HistoryReplay.ActionDict = self._record[step]["action_dict"]
-        self._update_action_record(action_dict, action, reward, 0.)
+        self._update_action_record(action_dict, action, reward, float(new_estimation), step_)
         self._prune_action(action_dict)
         #  }}} method update # 
 
@@ -255,7 +260,7 @@ class HistoryReplay:
             self._action_buffer.popleft()
             #self._reward_buffer.popleft()
 
-        rewards = np.asarray(list(self._reward_buffer)[1:], dtype=np.float32)
+        rewards = np.asarray(self._reward_buffer, dtype=np.float32)[1:]
         convolved_rewards = np.convolve( rewards, self._filter
                                        , mode="full"
                                        )[self._n_step_flatten-1:]
@@ -280,7 +285,7 @@ class HistoryReplay:
                 continue
 
             action_dict: HistoryReplay.ActionDict = self._record[k]["action_dict"]
-            self._update_action_record(action_dict, act, float(rwd), float(cvl_rwd))
+            self._update_action_record(action_dict, act, float(rwd), float(cvl_rwd), None)
             self._prune_action(action_dict)
 
         self._action_buffer.clear()
@@ -384,11 +389,13 @@ class HistoryReplay:
                              , action: str
                              , reward: float
                              , new_estimation: float
+                             , end_step: Optional[Key]
                              )\
             -> Dict[str, Union[int, float]]:
         #  method _update_action_record {{{ # 
         if action not in action_dict:
             action_dict[action] = { "reward": 0.
+                                  , "qvalue": 0.
                                   , "number": 0
                                   }
         action_record = action_dict[action]
@@ -397,11 +404,29 @@ class HistoryReplay:
         number_: int = number + 1
         action_record["number"] = number_
 
+        #  New Estimation of Q Value {{{ # 
+        if end_step is not None:
+            if end_step in self._record:
+                action_dict: HistoryReplay.ActionDict = self._record[end_step]["action_dict"]
+            else:
+                record: HistoryReplay.Record = self[end_step][0][1]
+                action_dict: HistoryReplay.ActionDict = record["action_dict"]
+            qvalue_: float = max(map(lambda act: act["qvalue"], action_dict.values()))
+            qvalue_ *= self._multi_gamma
+        else:
+            qvalue_: float = 0.
+        new_estimation = new_estimation + qvalue_
+        #  }}} New Estimation of Q Value # 
+
         if self._update_mode=="mean":
             action_record["reward"] = float(number)/number_ * action_record["reward"]\
                                     + 1./number_ * reward
+
+            action_record["qvalue"] = float(number)/number_ * action_record["qvalue"]\
+                                    + 1./number_ * new_estimation
         elif self._update_mode=="const":
             action_record["reward"] += self._learning_rate * (reward-action_record["reward"])
+            action_record["qvalue"] += self._learning_rate * (new_estimation-action_record["qvalue"])
         #  }}} method _update_action_record # 
 
     def _prune_action(self, action_dict: ActionDict):

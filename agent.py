@@ -272,7 +272,6 @@ class AutoAgent(Agent):
                                        )
         #  }}} Replay Updating # 
 
-
         candidates: List[ Tuple[ history.HistoryReplay.Key
                                , history.HistoryReplay.Record
                                , float
@@ -289,7 +288,7 @@ class AutoAgent(Agent):
             info_dict: history.HistoryReplay.InfoDict = record["other_info"]
 
             action_dict: history.HistoryReplay.ActionDict = record["action_dict"]
-            actions: List[Tuple[str, float]] = sorted( map( lambda itm: (itm[0], itm[1]["reward"])
+            actions: List[Tuple[str, float]] = sorted( map( lambda itm: (itm[0], itm[1]["qvalue"])
                                                           , action_dict.items()
                                                           )
                                                      , key=(lambda itm: itm[1])
