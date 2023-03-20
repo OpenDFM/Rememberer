@@ -17,6 +17,7 @@ import abc
 import logging
 import datetime
 import time
+import traceback
 
 logger = logging.getLogger("agent")
 
@@ -400,6 +401,7 @@ class AutoAgent(Agent):
             action_text: str = encouraged_results[0]
             #  }}} Parse Action Text # 
         except:
+            traceback.print_exc()
             action_text: str = "NOTHING"
 
         logger.debug("Action: %s", action_text)

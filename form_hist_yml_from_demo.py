@@ -205,7 +205,7 @@ for dem in demo_list:
                           }
 
         action_history.append(action)
-        last_reward += 1.
+        last_reward = 1.
         total_reward += 1.
 
 #print(len(history_record))

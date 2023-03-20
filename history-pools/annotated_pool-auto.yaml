@@ -68,7 +68,7 @@
     - CLICK(5)
     - CLICK(5)
     - CLICK(5)
-    last_reward: 3.0
+    last_reward: 1.0
     total_reward: 3.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
@@ -132,7 +132,7 @@
     action_history:
     - INPUT(2, do ruby rose hair)
     - CLICK(3)
-    last_reward: 2.0
+    last_reward: 1.0
     total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
@@ -193,7 +193,7 @@
     action_history:
     - INPUT(2, clean utensils)
     - CLICK(3)
-    last_reward: 2.0
+    last_reward: 1.0
     total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
@@ -260,7 +260,7 @@
     action_history:
     - INPUT(2, be a good friend to a guy)
     - CLICK(3)
-    last_reward: 2.0
+    last_reward: 1.0
     total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
@@ -324,7 +324,7 @@
     action_history:
     - INPUT(2, buy stocks (for beginners))
     - CLICK(3)
-    last_reward: 2.0
+    last_reward: 1.0
     total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
@@ -385,7 +385,7 @@
     action_history:
     - INPUT(2, apply cc cream)
     - CLICK(3)
-    last_reward: 2.0
+    last_reward: 1.0
     total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
@@ -447,7 +447,7 @@
     action_history:
     - INPUT(2, address a letter to england)
     - CLICK(3)
-    last_reward: 2.0
+    last_reward: 1.0
     total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
@@ -508,7 +508,7 @@
     action_history:
     - INPUT(2, bypass youtube's regional filter)
     - CLICK(3)
-    last_reward: 2.0
+    last_reward: 1.0
     total_reward: 2.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
@@ -560,7 +560,7 @@
     - INPUT(2, be a good friend to a guy)
     - CLICK(3)
     - CLICK(11)
-    last_reward: 3.0
+    last_reward: 1.0
     total_reward: 3.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
@@ -638,7 +638,7 @@
     - INPUT(2, buy stocks (for beginners))
     - CLICK(3)
     - CLICK(7)
-    last_reward: 3.0
+    last_reward: 1.0
     total_reward: 3.0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>

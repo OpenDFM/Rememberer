@@ -203,7 +203,7 @@ def main():
         model.reset()
         step: dm_env.TimeStep = env.switch_task(i)
         command: str = "\n".join(env.command())
-        instruction: str = "\n".join(env.task_instructions())
+        instruction: str = env.task_instructions(latest_only=True)
 
         nb_steps = 0
         #dump( args.dump_path, nb_steps, command
@@ -224,7 +224,7 @@ def main():
                            )
             step = env.step(action)
             if len(env.task_instructions())>0:
-                instruction = "\n".join(env.task_instructions())
+                instruction = env.task_instructions(latest_only=True)
             reward += step.reward
 
             nb_steps += 1
