@@ -1,7 +1,7 @@
 import vh_to_html
 import re
 import openai
-import json
+#import json
 import itertools
 
 import lxml.etree
@@ -404,12 +404,13 @@ class AutoAgent(Agent):
             action_text: str = encouraged_results[0]
             #  }}} Parse Action Text # 
         except Exception as e:
-            nonlocal ocounter
+            #nonlocal ocounter
             with io.StringIO() as bfr:
+                ocounter = globals()["ocounter"]
                 traceback.print_exc(file=bfr)
                 ologger.debug("%d: %s", ocounter, bfr.getvalue())
                 logger.debug("Response error %d, %s", ocounter, str(type(e)))
-                ocounter += 1
+                globals["ocounter"] += 1
             action_text: str = "NOTHING"
 
         logger.debug("Action: %s", action_text)
@@ -420,20 +421,30 @@ class AutoAgent(Agent):
 
 class ReplayAgent(Agent):
     #  class ReproducingAgent {{{ # 
-    def __init__(self, replay_file: str):
+    def __init__(self, replay_files: List[str]):
         #  method __init__ {{{ # 
         super(ReplayAgent, self).__init__()
 
-        self._replay: List[str] = []
-        with open(replay_file) as f:
-            for l in f:
-                log_item: Dict[str, str] = json.loads(l)
-                self._replay.append(log_item["text"].strip())
+        self._replay: List[List[str]] = []
+        for rpl_f in replay_files:
+            self._replay.append([])
+            with open(rpl_f) as f:
+                for l in f:
+                    #log_item: Dict[str, str] = json.loads(l)
+                    #self._replay[-1].append(log_item["text"].strip())
+                    self._replay[-1].append(l.strip())
 
+        self._replay_index: int = -1
         self._index: int = -1
 
         self._last_request_time: datetime.datetime = datetime.datetime.now()
         #  }}} method __init__ # 
+
+    def reset(self):
+        super(ReplayAgent, self).reset()
+        self._replay_index += 1
+        self._replay_index %= len(self._replay)
+        self._index = -1
 
     def _get_action(self, *args) -> str:
         #  method _get_action {{{ # 
@@ -444,7 +455,7 @@ class ReplayAgent(Agent):
             time.sleep(3.1-timedelta)
         self._last_request_time = datetime.datetime.now()
         self._index += 1
-        self._index %= len(self._replay)
-        return self._replay[self._index]
+        self._index %= len(self._replay[self._replay_index])
+        return self._replay[self._replay_index][self._index]
         #  }}} method _get_action # 
     #  }}} class ReproducingAgent # 

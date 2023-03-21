@@ -87,8 +87,8 @@ def main():
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
 
-    parser.add_argument("--replay-file", type=str)
-    parser.add_argument("--dump-path", type=str)
+    parser.add_argument("--replay-file", nargs="+", type=str)
+    parser.add_argument("--dump-path", nargs="+", type=str)
 
     args: argparse.Namespace = parser.parse_args()
     #  }}} Command Line Options # 
@@ -143,41 +143,41 @@ def main():
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
-    matcher_functions: Dict[str, type(history.Matcher)] = { "lcs": history.LCSNodeMatcher }
-    history_replay = history.HistoryReplay( args.item_capacity
-                                          , args.action_capacity
-                                          , matcher=matcher_functions[args.matcher]
-                                          , gamma=args.gamma
-                                          , step_penalty=args.step_penalty
-                                          , update_mode=args.update_mode
-                                          , learning_rate=args.learning_rate
-                                          , n_step_flatten=args.n_step_flatten
-                                          )
-    history_replay.load_yaml(args.load_replay)
-
-    with open(os.path.join(args.prompt_template, "prompt_pth.txt")) as f:
-        prompt_template = string.Template(f.read())
-    with open(os.path.join(args.prompt_template, "input_template.txt")) as f:
-        input_template = string.Template(f.read())
-    with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
-        advice_template = string.Template(f.read())
-    template_group = agent.AutoAgent.TemplateGroup( whole_template=prompt_template
-                                                  , input_template=input_template
-                                                  , advice_template=advice_template
-                                                  )
-    with open(args.config) as f:
-        openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
-    model = agent.AutoAgent( history_replay=history_replay
-                           , prompt_templates=template_group
-                           , api_key=openaiconfig["api_key"]
-                           , max_tokens=args.max_tokens
-                           , temperature=args.temperature
-                           , request_timeout=args.request_timeout
-                           , manual=args.manual
-                           , train=args.train
-                           )
+    #matcher_functions: Dict[str, type(history.Matcher)] = { "lcs": history.LCSNodeMatcher }
+    #history_replay = history.HistoryReplay( args.item_capacity
+                                          #, args.action_capacity
+                                          #, matcher=matcher_functions[args.matcher]
+                                          #, gamma=args.gamma
+                                          #, step_penalty=args.step_penalty
+                                          #, update_mode=args.update_mode
+                                          #, learning_rate=args.learning_rate
+                                          #, n_step_flatten=args.n_step_flatten
+                                          #)
+    #history_replay.load_yaml(args.load_replay)
+#
+    #with open(os.path.join(args.prompt_template, "prompt_pth.txt")) as f:
+        #prompt_template = string.Template(f.read())
+    #with open(os.path.join(args.prompt_template, "input_template.txt")) as f:
+        #input_template = string.Template(f.read())
+    #with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
+        #advice_template = string.Template(f.read())
+    #template_group = agent.AutoAgent.TemplateGroup( whole_template=prompt_template
+                                                  #, input_template=input_template
+                                                  #, advice_template=advice_template
+                                                  #)
+    #with open(args.config) as f:
+        #openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
+    #model = agent.AutoAgent( history_replay=history_replay
+                           #, prompt_templates=template_group
+                           #, api_key=openaiconfig["api_key"]
+                           #, max_tokens=args.max_tokens
+                           #, temperature=args.temperature
+                           #, request_timeout=args.request_timeout
+                           #, manual=args.manual
+                           #, train=args.train
+                           #)
     #model = agent.ManualAgent()
-    #model = agent.ReplayAgent(args.replay_file)
+    model = agent.ReplayAgent(args.replay_file)
 
     env = android_env.load( args.task_path
                           , args.avd_name
@@ -201,12 +201,11 @@ def main():
     logger.info("The environment is ready.")
     #  }}} Build Agent and Environment # 
 
-    #os.makedirs(args.dump_path, exist_ok=True)
-
     #  Work Flow {{{ # 
     max_nb_steps = 15
     for i in range(env.nb_tasks):
-    #for i in [0]:
+        os.makedirs(args.dump_path[i], exist_ok=True)
+
         model.reset()
         step: dm_env.TimeStep = env.switch_task(i)
         command: str = "\n".join(env.command())
@@ -214,11 +213,11 @@ def main():
 
         nb_steps = 0
         nb_nothing_steps = 0
-        #dump( args.dump_path, nb_steps, command
-            #, step.observation["pixels"]
-            #, step.observation["view_hierarchy"]
-            #, instruction
-            #)
+        dump( args.dump_path[i], nb_steps, command
+            , step.observation["pixels"]
+            , step.observation["view_hierarchy"]
+            , instruction
+            )
 
         reward: float = step.reward
         succeeds: bool = True
@@ -238,11 +237,11 @@ def main():
             if action["action_type"]==VhIoWrapper.ActionType.NOTHING:
                 nb_nothing_steps += 1
             nb_steps += 1
-            #dump( args.dump_path, nb_steps, command
-                #, step.observation["pixels"]
-                #, step.observation["view_hierarchy"]
-                #, instruction
-                #)
+            dump( args.dump_path[i], nb_steps, command
+                , step.observation["pixels"]
+                , step.observation["view_hierarchy"]
+                , instruction
+                )
 
             if nb_steps>=max_nb_steps:
                 succeeds = False
