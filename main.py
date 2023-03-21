@@ -111,21 +111,28 @@ def main():
                                                       , "sdebug-{:}.log".format(datetime_str)
                                                       )
                                         )
+    openai_error_handler = logging.FileHandler( os.path.join( args.log_dir
+                                                            , "openai-{:}.log".format(datetime_str)
+                                                            )
+                                              )
 
     file_handler.setLevel(logging.INFO)
     debug_handler.setLevel(logging.DEBUG)
     stdout_handler.setLevel(logging.INFO)
     sdebug_handler.setLevel(logging.DEBUG)
+    openai_error_handler.setLevel(logging.DEBUG)
 
     formatter = logging.Formatter(fmt="\x1b[1;33m[%(asctime)s \x1b[31m%(levelname)s \x1b[32m%(module)s/%(lineno)d-%(processName)s\x1b[1;33m] \x1b[0m%(message)s")
     file_handler.setFormatter(formatter)
     debug_handler.setFormatter(formatter)
     stdout_handler.setFormatter(formatter)
     sdebug_handler.setFormatter(formatter)
+    openai_error_handler.setFormatter(formatter)
 
     #stdout_handler.addFilter(logging.Filter("main"))
     stdout_handler.addFilter(logging.Filter("agent"))
     sdebug_handler.addFilter(logging.Filter("agent"))
+    openai_error_handler.addFilter(logging.Filter("openaiE"))
 
     logger.addHandler(file_handler)
     logger.addHandler(debug_handler)
@@ -206,6 +213,7 @@ def main():
         instruction: str = env.task_instructions(latest_only=True)
 
         nb_steps = 0
+        nb_nothing_steps = 0
         #dump( args.dump_path, nb_steps, command
             #, step.observation["pixels"]
             #, step.observation["view_hierarchy"]
@@ -227,6 +235,8 @@ def main():
                 instruction = env.task_instructions(latest_only=True)
             reward += step.reward
 
+            if action["action_type"]==VhIoWrapper.ActionType.NOTHING:
+                nb_nothing_steps += 1
             nb_steps += 1
             #dump( args.dump_path, nb_steps, command
                 #, step.observation["pixels"]
@@ -238,8 +248,8 @@ def main():
                 succeeds = False
                 break
 
-        logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, TaskName: %s, #Steps: %d, Reward: %.1f, Succeds: %s"
-                   , i, env.task_id, nb_steps, reward, str(succeeds)
+        logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, TaskName: %s, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
+                   , i, env.task_id, nb_steps, nb_nothing_steps, reward, str(succeeds)
                    )
     #  }}} Work Flow # 
 

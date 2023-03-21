@@ -18,8 +18,11 @@ import logging
 import datetime
 import time
 import traceback
+import io
 
 logger = logging.getLogger("agent")
+ocounter = 0
+ologger = logging.getLogger("openaiE")
 
 class Agent(abc.ABC):
     #  class Agent {{{ # 
@@ -400,8 +403,13 @@ class AutoAgent(Agent):
                                                 )
             action_text: str = encouraged_results[0]
             #  }}} Parse Action Text # 
-        except:
-            traceback.print_exc()
+        except Exception as e:
+            nonlocal ocounter
+            with io.StringIO() as bfr:
+                traceback.print_exc(file=bfr)
+                ologger.debug("%d: %s", ocounter, bfr.getvalue())
+                logger.debug("Response error %d, %s", ocounter, str(type(e)))
+                ocounter += 1
             action_text: str = "NOTHING"
 
         logger.debug("Action: %s", action_text)
