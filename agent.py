@@ -24,6 +24,8 @@ logger = logging.getLogger("agent")
 ocounter = 0
 ologger = logging.getLogger("openaiE")
 
+Action = Tuple[str, str]
+
 class Agent(abc.ABC):
     #  class Agent {{{ # 
     def __init__( self
@@ -39,7 +41,7 @@ class Agent(abc.ABC):
 
         self._action_pattern: Pattern[str] =\
                 re.compile(r"^(?P<atype>\w+)\((?P<arg1>\w+)(?:,\s*(?P<arg2>.+))?\)$")
-        self._action_history: List[str] = []
+        self._action_history: List[Action] = []
         #  }}} method __init__ # 
 
     def reset(self):
@@ -94,14 +96,20 @@ class Agent(abc.ABC):
                                         )
         screen_representation: str = "".join(screen_representation)
 
-        action_str: str = self._get_action( task
+        action_tuple: Action = self._get_action( task
                                           , screen_representation.strip()
                                           , instruction
                                           , reward
                                           , total_reward
                                           )
+        action_str: str = action_tuple[0]
 
-        self._action_history.append(action_str)
+        if action_str=="NOTHINGG":
+            return { "action_type": np.array(VhIoWrapper.ActionType.NOTHING)
+                   , "records": False
+                   }
+
+        self._action_history.append(action_tuple)
 
         action_match: Match[str] = self._action_pattern.match(action_str)
         if action_match is not None:
@@ -148,7 +156,7 @@ class Agent(abc.ABC):
                    , task: str
                    , screen: str
                    , instruction: str
-                   ) -> str:
+                   ) -> Action:
         raise NotImplementedError()
     #  }}} class Agent # 
 
@@ -246,15 +254,19 @@ class AutoAgent(Agent):
         super(AutoAgent, self).reset()
         self._history_replay.new_trajectory()
 
-    def _random_action( self, screen: str) -> str:
+    def _random_action( self, screen: str) -> Action:
         #  method _random_action {{{ # 
-        nb_elements: int = len(screen.splitlines())
-        action: np.int64 = self._rng.integers(nb_elements+4)
+        elements: List[str] = screen.splitlines()
+        action: np.int64 = self._rng.integers(len(elements)+4)
 
         directions = ["LEFT", "UP", "RIGHT", "DOWN"]
         if action<4:
-            return "SCROLL({:})".format(directions[action])
-        return "CLICK({:d})".format(action-4)
+            return ( "SCROLL({:})".format(directions[action])
+                   , ""
+                   )
+        return ( "CLICK({:d})".format(action-4)
+               , elements[action-4].strip()
+               )
         #  }}} method _random_action # 
 
     def _get_action( self
@@ -267,7 +279,7 @@ class AutoAgent(Agent):
         #  method _get_action {{{ # 
         #  Replay Updating {{{ # 
         if self._train:
-            last_action: Optional[str] = self._action_history[-1]\
+            last_action: Optional[Action] = self._action_history[-1]\
                                             if len(self._action_history)>0\
                                           else None
             self._history_replay.update( (screen, task, instruction)
@@ -292,7 +304,7 @@ class AutoAgent(Agent):
             info_dict: history.HistoryReplay.InfoDict = record["other_info"]
 
             action_dict: history.HistoryReplay.ActionDict = record["action_dict"]
-            actions: List[Tuple[str, float]] = sorted( map( lambda itm: (itm[0], itm[1]["qvalue"])
+            actions: List[Tuple[Action, float]] = sorted( map( lambda itm: (itm[0], itm[1]["qvalue"])
                                                           , action_dict.items()
                                                           )
                                                      , key=(lambda itm: itm[1])
@@ -306,7 +318,7 @@ class AutoAgent(Agent):
                                                       ]
             else:
                 encouraged: List[Tuple[str, float]] = actions[:1]
-            encouraged: str = "\n".join( map( lambda act: "{:} -> {:.1f}".format(act[0], act[1])
+            encouraged: str = "\n".join( map( lambda act: "{:} -> {:.1f} {:}".format(act[0][0], act[1], act[0][1])
                                             , encouraged
                                             )
                                        )
@@ -321,7 +333,7 @@ class AutoAgent(Agent):
                                                                                 , reversed(actions)
                                                                                 )
                                                            )
-            discouraged: str = "\n".join( map( lambda act: "{:} -> {:.1f}".format(act[0], act[1])
+            discouraged: str = "\n".join( map( lambda act: "{:} -> {:.1f} {:}".format(act[0][0], act[1], act[0][1])
                                              , discouraged
                                              )
                                         )
@@ -331,7 +343,10 @@ class AutoAgent(Agent):
                                                                      command=key[1]
                                                                    , html=key[0]
                                                                    , instruction=key[2]
-                                                                   , actions="\n".join(info_dict["action_history"])
+                                                                   , actions="\n".join( map( " ".join
+                                                                                           , info_dict["action_history"]
+                                                                                           )
+                                                                                      )
                                                                    , reward="{:.1f}".format(info_dict["last_reward"])
                                                                    , total_reward="{:.1f}".format(info_dict["total_reward"])
                                                                    )\
@@ -350,7 +365,10 @@ class AutoAgent(Agent):
                                                                 command=task
                                                               , html=screen
                                                               , instruction=instruction
-                                                              , actions="\n".join(self._action_history)
+                                                              , actions="\n".join( map( " ".join
+                                                                                      , self._action_history
+                                                                                      )
+                                                                                 )
                                                               , reward="{:.1f}".format(reward)
                                                               , total_reward="{:.1f}".format(total_reward)
                                                               )
@@ -397,11 +415,10 @@ class AutoAgent(Agent):
             #  Parse Action Text {{{ # 
             encouraged_result: str = response.split("Disc", maxsplit=1)[0]
             encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
-            encouraged_results: List[str] = list( map( lambda rsl: rsl.split("->", maxsplit=1)[0].strip()
-                                                     , encouraged_result.strip().splitlines()
-                                                     )
-                                                )
-            action_text: str = encouraged_results[0]
+            encouraged_result = encouraged_result.strip().splitlines()[0]
+            encouraging_texts: List[str] = encouraged_result.split("->", maxsplit=1)
+            action_text: str = encouraging_texts[0].strip()
+            element_html: str = encouraging_texts[1].strip().split(maxsplit=1)[1].strip()
             #  }}} Parse Action Text # 
         except Exception as e:
             #nonlocal ocounter
@@ -411,11 +428,12 @@ class AutoAgent(Agent):
                 ologger.debug("%d: %s", ocounter, bfr.getvalue())
                 logger.debug("Response error %d, %s", ocounter, str(type(e)))
                 globals["ocounter"] += 1
-            action_text: str = "NOTHING"
+            action_text: str = "NOTHINGG"
+            element_html: str = ""
 
-        logger.debug("Action: %s", action_text)
+        logger.debug("Action: %s %s", action_text, element_html)
 
-        return action_text
+        return (action_text, element_html)
         #  }}} method _get_action # 
     #  }}} class AutoAgent # 
 

@@ -9,7 +9,7 @@ Usually I will click the correct link to access the willing contents or search o
 Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the operated element if the action is an INPUT or a CLICK, in this format:
 
 Encouraged:
-CLICK(3) -> 2.0
+CLICK(3) -> 2.0 <div id="3" clickable="true">How to Do Ruby Rose Hair</div>
 Discouraged:
 SCROLL(DOWN) -> 0.0
 
