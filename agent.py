@@ -427,7 +427,7 @@ class AutoAgent(Agent):
                 traceback.print_exc(file=bfr)
                 ologger.debug("%d: %s", ocounter, bfr.getvalue())
                 logger.debug("Response error %d, %s", ocounter, str(type(e)))
-                globals["ocounter"] += 1
+                globals()["ocounter"] += 1
             action_text: str = "NOTHINGG"
             element_html: str = ""
 

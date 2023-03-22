@@ -138,6 +138,7 @@ def main():
     logger.addHandler(debug_handler)
     logger.addHandler(stdout_handler)
     logger.addHandler(sdebug_handler)
+    logger.addHandler(openai_error_handler)
 
     logger = logging.getLogger("agent")
     #  }}} Config Logger # 
