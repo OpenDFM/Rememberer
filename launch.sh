@@ -11,5 +11,6 @@ python main.py --log-dir logs-historyless/\
 			   --action-capacity 10\
 			   --matcher lcs\
 			   --prompt-template prompts/\
-			   --max-tokens 100\
+			   --max-tokens 50\
+			   --stop "Discouraged"\
 			   --request-timeout 5.

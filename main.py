@@ -83,6 +83,7 @@ def main():
     parser.add_argument("--prompt-template", type=str)
     parser.add_argument("--max-tokens", default=20, type=int)
     parser.add_argument("--temperature", default=0.1, type=float)
+    parser.add_argument("--stop", type=str)
     parser.add_argument("--request-timeout", default=3., type=float)
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
@@ -173,6 +174,7 @@ def main():
                            , api_key=openaiconfig["api_key"]
                            , max_tokens=args.max_tokens
                            , temperature=args.temperature
+                           , stop=args.stop
                            , request_timeout=args.request_timeout
                            , manual=args.manual
                            , train=args.train

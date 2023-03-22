@@ -3,6 +3,7 @@ import re
 import openai
 #import json
 import itertools
+#import tiktoken
 
 import lxml.etree
 import lxml.html
@@ -208,6 +209,7 @@ class AutoAgent(Agent):
                 , model: str = "text-davinci-003"
                 , max_tokens: int = 20
                 , temperature: float = 0.1
+                , stop: Optional[str] = None
                 , request_timeout: float = 3.
                 , manual: bool = False
                 , train: bool = True
@@ -222,6 +224,7 @@ class AutoAgent(Agent):
             model (str): the model to use
             max_tokens (int): max number of tokens to generate
             temperature (float): generating temperature
+            stop (Optional[str]): stop sequence for the model
             request_timeout (float): waiting time for the client to timeout
 
             manual (bool): if a human is waiting the prompt to decide instead
@@ -237,6 +240,7 @@ class AutoAgent(Agent):
         self._model: str = model
         self._max_tokens: int = max_tokens
         self._temperature: float = temperature
+        self._stop: Optional[str] = stop
         self._request_timeout: float = request_timeout
 
         self._manual: bool = manual
@@ -248,6 +252,7 @@ class AutoAgent(Agent):
 
         openai.api_key = api_key
         self._rng: np.random.Generator = np.random.default_rng()
+        #self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
         #  }}} method __init__ # 
 
     def reset(self):
@@ -269,7 +274,8 @@ class AutoAgent(Agent):
                )
         #  }}} method _random_action # 
 
-    def _instantiate_input_template( command: str
+    def _instantiate_input_template( self
+                                   , command: str
                                    , html: str
                                    , instruction: str
                                    , action_history: List[Action]
