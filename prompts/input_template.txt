@@ -5,7 +5,7 @@ Screen:
 ${html}
 Instruction:
 ${instruction}
-Action History:
+Last 5 Actions:
 ${actions}
 Last Reward:
 ${reward}

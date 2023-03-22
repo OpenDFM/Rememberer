@@ -1,0 +1,261 @@
+/* 只提供最后5条动作历史 */
+
+Given a task description, a screen representation, an instruction sentence, and several other information at the current step, I need to take an appropriate action according to the given information to finish the underlying task. Available actions are:
+
+INPUT(element_id, text)
+CLICK(element_id)
+SCROLL(direction)
+
+Usually I will click the correct link to access the willing contents or search or scroll down if it is not present on the current screen. I may explore several different actions if I don't know what to do temporarily. I will avoid repeating a wrong action too many times.
+
+Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the operated element if the action is an INPUT or a CLICK, in this format:
+
+Encouraged:
+CLICK(3) -> 2.0 <div id="3" clickable="true">How to Do Ruby Rose Hair</div>
+Discouraged:
+SCROLL(DOWN) -> 0.0
+
+Commonly, actions with high value estimations should be encouraged.
+
+Here are some examples:
+
+Example 1:
+
+```
+Task:
+Search an article to learn how to do ruby rose hair.
+Then, access the article "How to Do Ruby Rose Hair"
+Then, access the about page to learn why people trust wikihow.
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<input class="search src text" value="Do ruby rose hair " type="text" id="1" clickable="true">
+<img class="search close btn" alt="Clear query" id="2" clickable="true">
+<div id="3" clickable="true">How to Do Ruby Rose Hair</div>
+<div id="4" clickable="true">• </div>
+<p id="5" clickable="true">41,446 views</p>
+<div id="6" clickable="true">• </div>
+<p id="7" clickable="true">Updated</p>
+<p id="8" clickable="true">2 years ago</p>
+<div id="9" clickable="true">• </div>
+<p id="10" clickable="true">Expert Co-Authored</p>
+<div id="11" clickable="true">How to Dye Your Hair Rose Gold</div>
+<div id="12" clickable="true">• </div>
+<p id="13" clickable="true">48,548 views</p>
+<div id="14" clickable="true">• </div>
+<p id="15" clickable="true">Updated</p>
+<p id="16" clickable="true">3 years ago</p>
+<div id="17" clickable="true">• </div>
+<p id="18" clickable="true">Expert Co-Authored</p>
+<div id="19" clickable="true">How to Do a Hair Mask for Frizzy Hair</div>
+<div id="20" clickable="true">• </div>
+<p id="21" clickable="true">29,415 views</p>
+<div id="22" clickable="true">• </div>
+<p id="23" clickable="true">Updated</p>
+<p id="24" clickable="true">2 years ago</p>
+<div id="25" clickable="true">• </div>
+<p id="26" clickable="true">Expert Co-Authored</p>
+<div id="27" clickable="true">How to Do 1920s Hair</div>
+<div id="28" clickable="true">• </div>
+<p id="29" clickable="true">194,834 views</p>
+<div id="30" clickable="true">• </div>
+<p id="31" clickable="true">Updated</p>
+<p id="32" clickable="true">1 year ago</p>
+<div id="33" clickable="true">• </div>
+<p id="34" clickable="true">Expert Co-Authored</p>
+<div id="35" clickable="true">How to Do 50s Hair</div>
+<div id="36" clickable="true">• </div>
+<p id="37" clickable="true">39,890 views</p>
+<div id="38" clickable="true">• </div>
+<p id="39" clickable="true">Updated</p>
+<p id="40" clickable="true">1 year ago</p>
+<div id="41" clickable="true">• </div>
+<p id="42" clickable="true">Expert Co-Authored</p>
+<div id="43" clickable="true">How to Do 70s Hair</div>
+<div id="44" clickable="true">• </div>
+<p id="45" clickable="true">69,458 views</p>
+<div id="46" clickable="true">• </div>
+<p id="47" clickable="true">Updated</p>
+<p id="48" clickable="true">1 year ago</p>
+<div id="49" clickable="true">• </div>
+<p id="50" clickable="true">Expert Co-Authored</p>
+<div id="51" clickable="true">How to Do Goku Hair</div>
+<div id="52" clickable="true">• </div>
+<p id="53" clickable="true">44,049 views</p>
+<div class="statusBarBackground" id="54" clickable="false"></div>
+Instruction:
+Access the article "How to Do Ruby Rose Hair"
+Action History:
+INPUT(2, do ruby rose hair) <img class="search button" alt="Search" id="2" clickable="true">
+Last Reward:
+1.0
+Total Reward:
+1.0
+---
+
+Encouraged:
+CLICK(3) -> 2.0 <div id="3" clickable="true">How to Do Ruby Rose Hair</div>
+Discouraged:
+CLICK(39) -> 0.0 <p id="39" clickable="true">Updated</p>
+
+Example 2:
+
+```
+Task:
+Search an article to learn how to apply cc cream.
+Then, access the article "How to Apply CC Cream"
+Then, access the about page to learn why people trust wikihow.
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<input class="search src text" value="apply cc cream " type="text" id="1" clickable="true">
+<img class="search close btn" alt="Clear query" id="2" clickable="true">
+<div id="3" clickable="true">How to Apply CC Cream</div>
+<div id="4" clickable="true">• </div>
+<p id="5" clickable="true">172,915 views</p>
+<div id="6" clickable="true">• </div>
+<p id="7" clickable="true">Updated</p>
+<p id="8" clickable="true">2 years ago</p>
+<div id="9" clickable="true">• </div>
+<p id="10" clickable="true">Expert Co-Authored</p>
+<div id="11" clickable="true">How to Apply BB Cream</div>
+<div id="12" clickable="true">• </div>
+<p id="13" clickable="true">1,105,975 views</p>
+<div id="14" clickable="true">• </div>
+<p id="15" clickable="true">Updated</p>
+<p id="16" clickable="true">2 years ago</p>
+<div id="17" clickable="true">• </div>
+<p id="18" clickable="true">Expert Co-Authored</p>
+<div id="19" clickable="true">How to Apply Cream Blush</div>
+<div id="20" clickable="true">• </div>
+<p id="21" clickable="true">139,726 views</p>
+<div id="22" clickable="true">• </div>
+<p id="23" clickable="true">Updated</p>
+<p id="24" clickable="true">1 year ago</p>
+<div id="25" clickable="true">• </div>
+<p id="26" clickable="true">Expert Co-Authored</p>
+<div id="27" clickable="true">How to Apply Cream Contour</div>
+<div id="28" clickable="true">• </div>
+<p id="29" clickable="true">21,819 views</p>
+<div id="30" clickable="true">• </div>
+<p id="31" clickable="true">Updated</p>
+<p id="32" clickable="true">2 years ago</p>
+<div id="33" clickable="true">• </div>
+<p id="34" clickable="true">Expert Co-Authored</p>
+<div id="35" clickable="true">How to Apply Cream Foundation</div>
+<div id="36" clickable="true">• </div>
+<p id="37" clickable="true">15,308 views</p>
+<div id="38" clickable="true">• </div>
+<p id="39" clickable="true">Updated</p>
+<p id="40" clickable="true">1 year ago</p>
+<div id="41" clickable="true">• </div>
+<p id="42" clickable="true">Expert Co-Authored</p>
+<div id="43" clickable="true">How to Apply Cream Highlighter</div>
+<div id="44" clickable="true">• </div>
+<p id="45" clickable="true">10,463 views</p>
+<div id="46" clickable="true">• </div>
+<p id="47" clickable="true">Updated</p>
+<p id="48" clickable="true">1 year ago</p>
+<div id="49" clickable="true">• </div>
+<p id="50" clickable="true">Expert Co-Authored</p>
+<div id="51" clickable="true">How to Apply Eye Cream</div>
+<div id="52" clickable="true">• </div>
+<p id="53" clickable="true">192,306 views</p>
+<div class="statusBarBackground" id="54" clickable="false"></div>
+Instruction:
+Access the article "How to Apply CC Cream"
+Action History:
+INPUT(2, apply cc cream) <img class="search button" alt="Search" id="2" clickable="true">
+Last Reward:
+1.0
+Total Reward:
+1.0
+---
+
+Encouraged:
+CLICK(3) -> 2.0 <div id="3" clickable="true">How to Apply CC Cream</div>
+Discouraged:
+CLICK(33) -> 0.0 <div id="33" clickable="true">• </div>
+
+Now the new input:
+
+```
+Task:
+Search an article to learn how to buy stocks (for beginners).
+Then, access the article "How to Buy Stocks (for Beginners)"
+Then, access the page of category Financial Stocks
+Then, access the article "How to Research a Stock"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<input class="search src text" value="how to research a stock" type="text" id="1" clickable="true">
+<img class="search close btn" alt="Clear query" id="2" clickable="true">
+<div id="3" clickable="true">How to Research a Stock</div>
+<div id="4" clickable="true">• </div>
+<p id="5" clickable="true">104,842 views</p>
+<div id="6" clickable="true">• </div>
+<p id="7" clickable="true">Updated</p>
+<p id="8" clickable="true">1 year ago</p>
+<div id="9" clickable="true">• </div>
+<p id="10" clickable="true">Expert Co-Authored</p>
+<div id="11" clickable="true">How to Research</div>
+<div id="12" clickable="true">• </div>
+<p id="13" clickable="true">18,392 views</p>
+<div id="14" clickable="true">• </div>
+<p id="15" clickable="true">Updated</p>
+<p id="16" clickable="true">1 year ago</p>
+<div id="17" clickable="true">• </div>
+<p id="18" clickable="true">Expert Co-Authored</p>
+<div id="19" clickable="true">How to Conduct Research</div>
+<div id="20" clickable="true">• </div>
+<p id="21" clickable="true">31,850 views</p>
+<div id="22" clickable="true">• </div>
+<p id="23" clickable="true">Updated</p>
+<p id="24" clickable="true">12 months ago</p>
+<div id="25" clickable="true">• </div>
+<p id="26" clickable="true">Expert Co-Authored</p>
+<div id="27" clickable="true">How to Do Research</div>
+<div id="28" clickable="true">• </div>
+<p id="29" clickable="true">202,549 views</p>
+<div id="30" clickable="true">• </div>
+<p id="31" clickable="true">Updated</p>
+<p id="32" clickable="true">1 year ago</p>
+<div id="33" clickable="true">• </div>
+<p id="34" clickable="true">Expert Co-Authored</p>
+<div id="35" clickable="true">How to Research Effectively</div>
+<div id="36" clickable="true">• </div>
+<p id="37" clickable="true">64,788 views</p>
+<div id="38" clickable="true">• </div>
+<p id="39" clickable="true">Updated</p>
+<p id="40" clickable="true">2 years ago</p>
+<div id="41" clickable="true">• </div>
+<p id="42" clickable="true">Expert Co-Authored</p>
+<div id="43" clickable="true">How to Research a Topic</div>
+<div id="44" clickable="true">• </div>
+<p id="45" clickable="true">250,767 views</p>
+<div id="46" clickable="true">• </div>
+<p id="47" clickable="true">Updated</p>
+<p id="48" clickable="true">1 year ago</p>
+<div id="49" clickable="true">• </div>
+<p id="50" clickable="true">Expert Co-Authored</p>
+<div id="51" clickable="true">How to Be a Stock Broker</div>
+<div id="52" clickable="true">• </div>
+<p id="53" clickable="true">622,688 views</p>
+<div class="statusBarBackground" id="54" clickable="false"></div>
+Instruction:
+Access the article "How to Research a Stock"
+Action History:
+CLICK(10) <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(13) <div class="statusBarBackground" id="13" clickable="false"></div>
+INPUT(1, how to research a stock) <img class="search button" alt="Search" id="1" clickable="true">
+Last Reward:
+0.0
+Total Reward:
+3.0
+---
+
+My action advice will be:
+
+[32mEncouraged:[0m
+[32mCLICK(3) -> 2.0 <div id="3" clickable="true">How to Research a Stock</div>[0m
+[32mDiscouraged:[0m
+[32mCLICK(13) -> 0.0 <div class="statusBarBackground" id="13" clickable="false"></div>[0m

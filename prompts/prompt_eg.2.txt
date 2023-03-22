@@ -147,7 +147,7 @@ Total Reward:
 
 My action advice will be:
 
-Encouraged:
-SCROLL(DOWN) -> 1.0
-Discouraged:
-CLICK(12) -> 0.0 <div class="statusBarBackground" id="12" clickable="false"></div>
+[32mEncouraged:[0m
+[32mSCROLL(DOWN) -> 1.0[0m
+[32mDiscouraged:[0m
+[32mCLICK(12) -> 0.0 <div class="statusBarBackground" id="12" clickable="false"></div>[0m

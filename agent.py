@@ -269,6 +269,29 @@ class AutoAgent(Agent):
                )
         #  }}} method _random_action # 
 
+    def _instantiate_input_template( command: str
+                                   , html: str
+                                   , instruction: str
+                                   , action_history: List[Action]
+                                   , reward: float
+                                   , total_reward: float
+                                   ) -> str:
+        #  method _instantiate_input_template {{{ # 
+        return self._prompt_templates.input_template.safe_substitute(
+                                                        command=command
+                                                      , html=html
+                                                      , instruction=instruction
+                                                      , actions=\
+                                                            "\n".join(
+                                                                map( " ".join
+                                                                   , action_history[-min(5, len(action_history)):]
+                                                                   )
+                                                              )
+                                                      , reward="{:.1f}".format(reward)
+                                                      , total_reward="{:.1f}".format(total_reward)
+                                                      )
+        #  }}} method _instantiate_input_template # 
+
     def _get_action( self
                    , task: str
                    , screen: str
@@ -339,17 +362,13 @@ class AutoAgent(Agent):
                                         )
 
             examplar: str = "Example {:d}:\n\n".format(i+1)\
-                          + self._prompt_templates.input_template.safe_substitute(
-                                                                     command=key[1]
-                                                                   , html=key[0]
-                                                                   , instruction=key[2]
-                                                                   , actions="\n".join( map( " ".join
-                                                                                           , info_dict["action_history"]
-                                                                                           )
-                                                                                      )
-                                                                   , reward="{:.1f}".format(info_dict["last_reward"])
-                                                                   , total_reward="{:.1f}".format(info_dict["total_reward"])
-                                                                   )\
+                          + self._instantiate_input_template( command=key[1]
+                                                            , html=key[0]
+                                                            , instruction=key[2]
+                                                            , action_history=info_dict["action_history"]
+                                                            , reward=info_dict["last_reward"]
+                                                            , total_reward=info_dict["total_reward"]
+                                                            )\
                           + "\n"\
                           + self._prompt_templates.advice_template.safe_substitute(
                                                                      encouraged=encouraged
@@ -361,17 +380,13 @@ class AutoAgent(Agent):
         #  }}} Construct Examplars # 
 
         #  Construct New Input {{{ # 
-        new_input: str = self._prompt_templates.input_template.safe_substitute(
-                                                                command=task
-                                                              , html=screen
-                                                              , instruction=instruction
-                                                              , actions="\n".join( map( " ".join
-                                                                                      , self._action_history
-                                                                                      )
-                                                                                 )
-                                                              , reward="{:.1f}".format(reward)
-                                                              , total_reward="{:.1f}".format(total_reward)
-                                                              )
+        new_input: str = self._instantiate_input_template( command=task
+                                                         , html=screen
+                                                         , instruction=instruction
+                                                         , action_history=self._action_history
+                                                         , reward=reward
+                                                         , total_reward=total_reward
+                                                         )
         #  }}} Construct New Input # 
 
         prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str.strip()
