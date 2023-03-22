@@ -438,8 +438,11 @@ class AutoAgent(Agent):
             encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
             encouraged_result = encouraged_result.strip().splitlines()[0]
             encouraging_texts: List[str] = encouraged_result.split("->", maxsplit=1)
+
             action_text: str = encouraging_texts[0].strip()
-            element_html: str = encouraging_texts[1].strip().split(maxsplit=1)[1].strip()
+
+            action_tail: List[str] = encouraging_texts[1].strip().split(maxsplit=1)
+            element_html: str = action_tail[1].strip() if len(action_tail)>1 else ""
             #  }}} Parse Action Text # 
         except Exception as e:
             #nonlocal ocounter

@@ -673,6 +673,7 @@ format A 67 2 0
 format D 11 2 0
 format H 11 2 0
 format L 11 2 0
+format P 11 2 0
 hidecol B:E
 label A0 = "Env Name (with low rate)"
 label B0 = "#Steps"
@@ -687,6 +688,10 @@ label J0 = "#Steps"
 label K0 = "Reward"
 label L0 = "Reward Rate"
 label M0 = "Succeeds"
+label N0 = "#Steps"
+label O0 = "Reward"
+label P0 = "Reward Rate"
+label Q0 = "Succeeds"
 label A1 = "apply_neosporin-0.textproto"
 let B1 = 7
 let C1 = 3
@@ -765,6 +770,9 @@ let J6 = 15
 let K6 = 3
 let L6 = K6/J6
 let M6 = 0
+let N6 = 15
+let O6 = 4
+let Q6 = 0
 label A7 = "bypass_youtubeP27s_regional_filter-6.textproto"
 let B7 = 10
 let C7 = 3
@@ -817,6 +825,9 @@ let J10 = 5
 let K10 = 3
 let L10 = K10/J10
 let M10 = 1
+let N10 = 3
+let O10 = 3
+let Q10 = 1
 label A11 = "get_a_loan_without_private_mortgage_insurance_P28pmiP29-8.textproto"
 let B11 = 15
 let C11 = 1
@@ -869,6 +880,9 @@ let J14 = 15
 let K14 = 3
 let L14 = K14/J14
 let M14 = 0
+let N14 = 12
+let O14 = 4
+let Q14 = 1
 label A15 = "make_kakashi_hair-8.textproto"
 let B15 = 9
 let C15 = 2
@@ -1047,8 +1061,8 @@ let J29 = @avg(J25:J28)
 let K29 = @avg(K25:K28)
 let L29 = @avg(L25:L28)
 let M29 = @avg(M25:M28)
-leftstring A33 = "备注：原版；加回报；W2（标注池）"
-goto A33
+leftstring A33 = "备注：原版；加回报；W2（标注池）；W4（扩充的标注池）"
+goto Q14
 movetosheet "addreward"
 mark a "w/ history" A1
 mark b "w/ history" I70
