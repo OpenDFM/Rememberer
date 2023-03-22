@@ -75,13 +75,14 @@ class HistoryReplay:
                , str # task description
                , str # step instruction
                ]
+    Action = Tuple[str, str]
     InfoDict = Dict[ str
                    , Union[ float
                           , int
-                          , List[str]
+                          , List[Action]
                           ]
                    ]
-    ActionDict = Dict[ str
+    ActionDict = Dict[ Action
                      , Dict[ str
                            , Union[int, float]
                            ]
@@ -144,8 +145,8 @@ class HistoryReplay:
 
         self._action_history_update_mode: str = action_history_update_mode
 
-        self._action_buffer: Deque[Optional[str]] = collections.deque(maxlen=self._n_step_flatten)
-        self._action_history: List[str] = []
+        self._action_buffer: Deque[Optional[HistoryReplay.Action]] = collections.deque(maxlen=self._n_step_flatten)
+        self._action_history: List[HistoryReplay.Action] = []
         self._observation_buffer: Deque[HistoryReplay.Key]\
                 = collections.deque(maxlen=self._n_step_flatten+1)
         self._reward_buffer: Deque[float] = collections.deque(maxlen=self._n_step_flatten+1)
@@ -197,14 +198,14 @@ class HistoryReplay:
         #  }}} method __getitem__ # 
 
     def update( self
-              , step: Key, reward: float, action: Optional[str]=None
+              , step: Key, reward: float, action: Optional[Action]=None
               ):
         #  method update {{{ # 
         """
         Args:
             step (Key): the new state transitted to after `action` is performed
             reward (float): the reward corresponding to the new state
-            action (Optional[str]): the performed action, may be null if it is
+            action (Optional[Action]): the performed action, may be null if it is
               the initial state
         """
 
@@ -219,11 +220,11 @@ class HistoryReplay:
             return
 
         step = self._observation_buffer[0]
-        action: str = self._action_buffer[0]
+        action: HistoryReplay.Action = self._action_buffer[0]
         step_: HistoryReplay.Key = self._observation_buffer[-1]
         reward: float = self._reward_buffer[1]
 
-        action_history: List[str] = self._action_history[:-self._n_step_flatten]
+        action_history: List[HistoryReplay.Action] = self._action_history[:-self._n_step_flatten]
         last_reward: float = self._reward_buffer[0]
         total_reward: float = self._total_reward_buffer[0]
 
@@ -276,7 +277,7 @@ class HistoryReplay:
                                             , list(self._reward_buffer)[:-1]
                                             , list(self._total_reward_buffer)[:-1]
                                             ):
-            action_history: List[str] = self._action_history[:e_p]
+            action_history: List[HistoryReplay.Action] = self._action_history[:e_p]
             if not self._insert_key( k
                                    , action_history
                                    , l_rwd
@@ -296,7 +297,7 @@ class HistoryReplay:
         #  }}} method new_trajectory # 
 
     def _insert_key( self, key: Key
-                   , action_history: List[str]
+                   , action_history: List[Action]
                    , last_reward: float
                    , total_reward: float
                    ) -> bool:
@@ -386,7 +387,7 @@ class HistoryReplay:
 
     def _update_action_record( self
                              , action_dict: ActionDict
-                             , action: str
+                             , action: Action
                              , reward: float
                              , new_estimation: float
                              , end_step: Optional[Key]

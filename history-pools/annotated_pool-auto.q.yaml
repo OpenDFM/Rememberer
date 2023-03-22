@@ -57,18 +57,356 @@
   Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
 - Access the article "How to Install the Google Play Store on an Amazon Fire"
 : action_dict:
-    SCROLL(DOWN):
-      number: 1
+    ? !!python/tuple
+    - SCROLL(DOWN)
+    - ''
+    : number: 1
       qvalue: 1.0
       reward: 0.0
   other_info:
     action_history:
-    - INPUT(2, bypass youtube's regional filter)
-    - CLICK(3)
-    - CLICK(5)
-    - CLICK(5)
-    - CLICK(5)
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
     last_reward: 1.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <img class="search button" alt="Search" id="1" clickable="true">
+  <div class="header container" id="2" clickable="true"></div>
+  <div class="header top watch" id="3" clickable="true"></div>
+  <div class="siteNotice" id="4" clickable="true"></div>
+  <p id="5" clickable="true">&lt;</p>
+  <div id="6" clickable="true"></div>
+  <div id="7" clickable="true">Video Hosting and Sharing Websites</div>
+  <p id="8" clickable="true">Learn everything you want about Video Hosting and Sharing Websites with the wikiHow Video Hosting and Sharing Websites Category. Learn about topics such as </p>
+  <p id="9" clickable="true">How to Download Videos from Dailymotion</p>
+  <p id="10" clickable="true">, </p>
+  <p id="11" clickable="true">How to Download from Microsoft Stream</p>
+  <p id="12" clickable="true">, </p>
+  <p id="13" clickable="true">How to Create a Virtual World</p>
+  <p id="14" clickable="true">, and more with our helpful step-by-step instructions with photos and videos.</p>
+  <div id="15" clickable="true">Articles about Video Hosting and Sharing Websites</div>
+  <img class="62e53919900cb" alt="-crop-375-300-375px-nowatermark-Download-Videos-from-Dailymotion-Step-15-Version-4.jpg" id="16" clickable="true">
+  <p id="17" clickable="true">How to</p>
+  <div id="18" clickable="true">Download Videos from Dailymotion</div>
+  <div id="19" clickable="true">Expert</div>
+  <img class="62e5391994ec2" alt="-crop-375-300-375px-nowatermark-Download-from-Microsoft-Stream-Step-3.jpg" id="20" clickable="true">
+  <div id="21" clickable="true">How to Download from Microsoft Stream (2020)</div>
+  <div id="22" clickable="true">Expert</div>
+  <img class="62e539199915d" alt="-crop-375-300-375px-nowatermark-Create-a-Virtual-World-Step-9.jpg" id="23" clickable="true">
+  <img class="62e539199d216" alt="-crop-375-300-375px-nowatermark-Improve-Video-Streaming-Step-10-Version-2.jpg" id="24" clickable="true">
+  <div id="25" clickable="true">Expert</div>
+  <div class="statusBarBackground" id="26" clickable="false"></div>
+- |
+  Search an article to learn how to bypass youtube''s regional filter.
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+  Then, access the page of category Computers and Electronics
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"
+- Access the page of category Computers and Electronics
+: action_dict:
+    ? !!python/tuple
+    - CLICK(5)
+    - <p id="5" clickable="true">&lt;</p>
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+    last_reward: 0.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <img class="search button" alt="Search" id="1" clickable="true">
+  <div class="header container" id="2" clickable="true"></div>
+  <div class="header top watch" id="3" clickable="true"></div>
+  <div class="siteNotice" id="4" clickable="true"></div>
+  <p id="5" clickable="true">&lt;</p>
+  <div id="6" clickable="true"></div>
+  <div id="7" clickable="true">Video</div>
+  <p id="8" clickable="true">Learn everything you want about Video with the wikiHow Video Category. Learn about topics such as </p>
+  <p id="9" clickable="true">How to Make a Sexy Video</p>
+  <p id="10" clickable="true">, </p>
+  <p id="11" clickable="true">How to Update Nvidia Drivers</p>
+  <p id="12" clickable="true">, </p>
+  <p id="13" clickable="true">How to Embed Subtitles in Videos</p>
+  <p id="14" clickable="true">, and more with our helpful step-by-step instructions with photos and videos.</p>
+  <div id="15" clickable="true">Featured Articles</div>
+  <img class="62e52fd3161b9" alt="-crop-375-300-375px-nowatermark-Install-a-Video-Card-Step-20-Version-2.jpg" id="16" clickable="true">
+  <p id="17" clickable="true">How to</p>
+  <div id="18" clickable="true">Install a Graphics Card</div>
+  <div id="19" clickable="true">Expert</div>
+  <img class="62e52fd31a96c" alt="-crop-375-300-375px-nowatermark-Set-a-Tiktok-Video-As-Your-Wallpaper-Step-17.jpg" id="20" clickable="true">
+  <p id="21" clickable="true">How to</p>
+  <div id="22" clickable="true">Set a Tiktok Video As Your Wallpaper</div>
+  <div id="23" clickable="true">Expert</div>
+  <img class="62e52fd31fd00" alt="-crop-375-300-375px-nowatermark-Be-a-Vlogger-Step-13.jpg" id="24" clickable="true">
+  <div id="25" clickable="true">Expert</div>
+  <img class="62e52fd324422" alt="-crop-375-300-375px-nowatermark-Screenshare-%28Screencast%29-on-Google%2B-Hangouts-Step-8.jpg" id="26" clickable="true">
+  <div class="statusBarBackground" id="27" clickable="false"></div>
+- |
+  Search an article to learn how to bypass youtube''s regional filter.
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+  Then, access the page of category Computers and Electronics
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"
+- Access the page of category Computers and Electronics
+: action_dict:
+    ? !!python/tuple
+    - CLICK(5)
+    - <p id="5" clickable="true">&lt;</p>
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    last_reward: 0.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <img class="search button" alt="Search" id="1" clickable="true">
+  <div class="header container" id="2" clickable="true"></div>
+  <p id="3" clickable="true">connecting a PC to TV using an HDMI cable</p>
+  <p id="4" clickable="true">. Learn to </p>
+  <p id="5" clickable="true">check your computer's system information</p>
+  <p id="6" clickable="true">, </p>
+  <p id="7" clickable="true">wipe a computer clean to start over</p>
+  <p id="8" clickable="true">, and much more.</p>
+  <div id="9" clickable="true">Featured Topics</div>
+  <img alt="-crop-250-100-150px-Computers-audio" id="10" clickable="true">
+  <div id="11" clickable="true">Audio</div>
+  <img alt="-crop-250-100-150px-Computers-computers" id="12" clickable="true">
+  <div id="13" clickable="true">Computers</div>
+  <img alt="-crop-250-100-133px-Computers-internet" id="14" clickable="true">
+  <div id="15" clickable="true">Internet</div>
+  <img alt="-crop-250-100-150px-Computers-telephones" id="16" clickable="true">
+  <div id="17" clickable="true">Telephones</div>
+  <div id="18" clickable="true">Featured Articles</div>
+  <img class="62e0c6a2cbbfb" alt="-crop-375-300-375px-nowatermark-Remotely-Control-Your-iPhone-from-Your-Computer-Step-8.jpg" id="19" clickable="true">
+  <div id="20" clickable="true">Expert</div>
+  <img class="62e0c6a2cfef4" alt="-crop-375-300-375px-nowatermark-Use-a-Digital-Multimeter-Step-15-Version-2.jpg" id="21" clickable="true">
+  <div id="22" clickable="true">Expert</div>
+  <div class="statusBarBackground" id="23" clickable="false"></div>
+- |
+  Search an article to learn how to bypass youtube''s regional filter.
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+  Then, access the page of category Computers and Electronics
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"
+- Access the article "How to Install the Google Play Store on an Amazon Fire"
+: action_dict:
+    ? !!python/tuple
+    - SCROLL(DOWN)
+    - ''
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    last_reward: 0.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <img class="search button" alt="Search" id="1" clickable="true">
+  <div class="header container" id="2" clickable="true"></div>
+  <img class="62e0c6a2de830" alt="-crop-375-300-375px-nowatermark-Mount-an-ISO-Image-Step-12-Version-2.jpg" id="3" clickable="true">
+  <p id="4" clickable="true">How to</p>
+  <div id="5" clickable="true">Mount an ISO Image</div>
+  <div id="6" clickable="true">Expert</div>
+  <img class="62e0c6a2e2a57" alt="-crop-375-300-375px-nowatermark-Buy-Bitcoins-Step-20-Version-2.jpg" id="7" clickable="true">
+  <p id="8" clickable="true">How to</p>
+  <div id="9" clickable="true">Buy Bitcoins</div>
+  <div id="10" clickable="true">Expert</div>
+  <img class="62e0c6a2e6acd" alt="-crop-375-300-375px-nowatermark-Play-a-Video-in-a-Zoom-Meeting-Step-5.jpg" id="11" clickable="true">
+  <p id="12" clickable="true">How to</p>
+  <div id="13" clickable="true">Play a Video in a Zoom Meeting</div>
+  <div id="14" clickable="true">Expert</div>
+  <img class="62e0c6a2ebcb3" alt="-crop-375-300-375px-nowatermark-Uninstall-Adobe-Creative-Suite-Step-10.jpg" id="15" clickable="true">
+  <p id="16" clickable="true">How to</p>
+  <div id="17" clickable="true">Uninstall Adobe Creative Suite</div>
+  <div id="18" clickable="true">Expert</div>
+  <img class="62e0c6a2f195b" alt="-crop-375-300-375px-Default_mag_green.jpg" id="19" clickable="true">
+  <p id="20" clickable="true">How to</p>
+  <div id="21" clickable="true">Keep Your Digital Memories Safe</div>
+  <img class="62e0c6a302023" alt="-crop-375-300-375px-nowatermark-Play-Jeopardy-with-Alexa-Step-5-Version-2.jpg" id="22" clickable="true">
+  <p id="23" clickable="true">How to</p>
+  <div id="24" clickable="true">Play Jeopardy with Alexa</div>
+  <img class="62e0c6a305c01" alt="-crop-375-300-375px-nowatermark-Build-an-LED-Camcorder-Light-Step-20.jpg" id="25" clickable="true">
+  <img class="62e0c6a3095f4" alt="-crop-375-300-375px-nowatermark-Disconnect-Yourself-from-Electronics-Step-18.jpg" id="26" clickable="true">
+  <div class="statusBarBackground" id="27" clickable="false"></div>
+- |
+  Search an article to learn how to bypass youtube''s regional filter.
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+  Then, access the page of category Computers and Electronics
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"
+- Access the article "How to Install the Google Play Store on an Amazon Fire"
+: action_dict:
+    ? !!python/tuple
+    - SCROLL(DOWN)
+    - ''
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    last_reward: 0.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <img class="search button" alt="Search" id="1" clickable="true">
+  <img class="62e0c6a30d707" alt="-crop-375-300-375px-nowatermark-Disinfect-Your-Devices-Step-11.jpg" id="2" clickable="true">
+  <p id="3" clickable="true">How to</p>
+  <div id="4" clickable="true">Disinfect Your Devices</div>
+  <div id="5" clickable="true"></div>
+  <div id="6" clickable="true">Articles about Computers and Electronics</div>
+  <img class="62e0c6a32c9ee" alt="-crop-375-300-375px-nowatermark-Install-the-Google-Play-Store-on-an-Amazon-Fire-Step-22.jpg" id="7" clickable="true">
+  <p id="8" clickable="true">How to</p>
+  <div id="9" clickable="true">Install the Google Play Store on an Amazon Fire</div>
+  <img class="62e0c6a33079e" alt="-crop-375-300-375px-nowatermark-Check-Browsing-History-on-a-WiFi-Router-Step-5.jpg" id="10" clickable="true">
+  <p id="11" clickable="true">How to</p>
+  <div id="12" clickable="true">Check Browsing History on a WiFi Router</div>
+  <div id="13" clickable="true">Expert</div>
+  <img class="62e0c6a334228" alt="-crop-375-300-375px-nowatermark-Open-a-Digital-Safe-Without-a-Key-Step-14-Version-2.jpg" id="14" clickable="true">
+  <p id="15" clickable="true">How to</p>
+  <div id="16" clickable="true">Open a Digital Safe Without a Key</div>
+  <img class="62e0c6a337b37" alt="-crop-375-300-375px-nowatermark-Convert-iPhone-Photos-to-JPG-Step-16.jpg" id="17" clickable="true">
+  <p id="18" clickable="true">How to</p>
+  <div id="19" clickable="true">Convert iPhone Photos to JPG</div>
+  <div id="20" clickable="true">Expert</div>
+  <img class="62e0c6a33b563" alt="-crop-375-300-375px-nowatermark-Save-a-Dying-Conversation-over-Text-Step-13.jpg" id="21" clickable="true">
+  <div id="22" clickable="true">Expert</div>
+  <img class="62e0c6a33ef63" alt="-crop-375-300-375px-nowatermark-Find-the-Publication-Date-of-a-Website-Step-15.jpg" id="23" clickable="true">
+  <div id="24" clickable="true">Expert</div>
+  <div class="statusBarBackground" id="25" clickable="false"></div>
+- |
+  Search an article to learn how to bypass youtube''s regional filter.
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+  Then, access the page of category Computers and Electronics
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"
+- Access the article "How to Install the Google Play Store on an Amazon Fire"
+: action_dict:
+    ? !!python/tuple
+    - CLICK(9)
+    - <div id="9" clickable="true">Install the Google Play Store on an Amazon Fire</div>
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    last_reward: 0.0
     number: 1
     total_reward: 3.0
 ? !!python/tuple
@@ -102,14 +440,20 @@
   Then, access the about page to learn why people trust wikihow.'
 - Access the about page to learn why people trust wikihow.
 : action_dict:
-    CLICK(4):
-      number: 1
+    ? !!python/tuple
+    - CLICK(4)
+    - <p id="4" clickable="true">trust wikiHow</p>
+    : number: 1
       qvalue: 1.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, do ruby rose hair)
-    - CLICK(3)
+    - !!python/tuple
+      - INPUT(2, do ruby rose hair)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Do Ruby Rose Hair</div>
     last_reward: 1.0
     number: 1
     total_reward: 2.0
@@ -139,14 +483,20 @@
   Then, check the reference list'
 - Check the reference list
 : action_dict:
-    CLICK(13):
-      number: 1
+    ? !!python/tuple
+    - CLICK(13)
+    - <p id="13" clickable="true">References</p>
+    : number: 1
       qvalue: 1.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, clean utensils)
-    - CLICK(3)
+    - !!python/tuple
+      - INPUT(2, clean utensils)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Clean Utensils</div>
     last_reward: 1.0
     number: 1
     total_reward: 2.0
@@ -181,14 +531,20 @@
   Then, access the article "How to Overcome Fear"'
 - Check the author page of Trudi Griffin, LPC, MS.
 : action_dict:
-    CLICK(11):
-      number: 1
+    ? !!python/tuple
+    - CLICK(11)
+    - <p id="11" clickable="true">Trudi Griffin, LPC, MS</p>
+    : number: 1
       qvalue: 2.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, be a good friend to a guy)
-    - CLICK(3)
+    - !!python/tuple
+      - INPUT(2, be a good friend to a guy)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Be a Good Friend to a Guy</div>
     last_reward: 1.0
     number: 1
     total_reward: 2.0
@@ -222,14 +578,20 @@
   Then, access the article "How to Research a Stock"'
 - Access the page of category Financial Stocks
 : action_dict:
-    CLICK(7):
-      number: 1
+    ? !!python/tuple
+    - CLICK(7)
+    - <p id="7" clickable="true">FINANCIAL STOCKS</p>
+    : number: 1
       qvalue: 2.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, buy stocks (for beginners))
-    - CLICK(3)
+    - !!python/tuple
+      - INPUT(2, buy stocks (for beginners))
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Buy Stocks (for Beginners)</div>
     last_reward: 1.0
     number: 1
     total_reward: 2.0
@@ -260,14 +622,20 @@
   Then, access the about page to learn why people trust wikihow.'
 - Access the about page to learn why people trust wikihow.
 : action_dict:
-    CLICK(4):
-      number: 1
+    ? !!python/tuple
+    - CLICK(4)
+    - <p id=\"4\" clickable=\"true\">trust wikiHow</p>
+    : number: 1
       qvalue: 1.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, apply cc cream)
-    - CLICK(3)
+    - !!python/tuple
+      - INPUT(2, apply cc cream)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Apply CC Cream</div>
     last_reward: 1.0
     number: 1
     total_reward: 2.0
@@ -299,14 +667,20 @@
   Then, check the reference list'
 - Check the reference list
 : action_dict:
-    CLICK(13):
-      number: 1
+    ? !!python/tuple
+    - CLICK(13)
+    - <p id="13" clickable="true">References</p>
+    : number: 1
       qvalue: 1.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, address a letter to england)
-    - CLICK(3)
+    - !!python/tuple
+      - INPUT(2, address a letter to england)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Address a Letter to England</div>
     last_reward: 1.0
     number: 1
     total_reward: 2.0
@@ -339,14 +713,20 @@
   Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
 - Access the page of category Computers and Electronics
 : action_dict:
-    CLICK(5):
-      number: 1
+    ? !!python/tuple
+    - CLICK(5)
+    - <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+    : number: 1
       qvalue: 2.0
       reward: 0.0
   other_info:
     action_history:
-    - INPUT(2, bypass youtube's regional filter)
-    - CLICK(3)
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
     last_reward: 1.0
     number: 1
     total_reward: 2.0
@@ -391,16 +771,203 @@
   Then, access the article "How to Overcome Fear"'
 - Access the article "How to Overcome Fear"
 : action_dict:
-    SCROLL(DOWN):
-      number: 1
+    ? !!python/tuple
+    - SCROLL(DOWN)
+    - ''
+    : number: 1
       qvalue: 1.0
       reward: 0.0
   other_info:
     action_history:
-    - INPUT(2, be a good friend to a guy)
-    - CLICK(3)
-    - CLICK(11)
+    - !!python/tuple
+      - INPUT(2, be a good friend to a guy)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Be a Good Friend to a Guy</div>
+    - !!python/tuple
+      - CLICK(11)
+      - <p id="11" clickable="true">Trudi Griffin, LPC, MS</p>
     last_reward: 1.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <img class="search button" alt="Search" id="1" clickable="true">
+  <div class="header container" id="2" clickable="false"></div>
+  <div id="3" clickable="false">Trudi Griffin is a Licensed Professional Counselor in Wisconsin specializing in Addictions and Mental Health. She provides therapy to people who struggle with addictions, mental health, and trauma in community health settings and private practice. She received her MS in Clinical Mental Health Counseling from Marquette University in 2011.</div>
+  <div id="4" clickable="false"></div>
+  <p id="5" clickable="false">wikiHow's Editorial Process</p>
+  <p id="6" clickable="false">wikiHow partners with over 1000+ experts from a wide range of fields to ensure our content is accurate and based on well-established research and testimony. Content Managers conduct interviews and work closely with each expert to review information, answer reader questions, and add credible advice. </p>
+  <p id="7" clickable="true">Learn more about our editorial process and why millions of readers trust wikiHow.</p>
+  <div id="8" clickable="false"></div>
+  <div id="9" clickable="false">Co-authored Articles (853)</div>
+  <div id="10" clickable="true">How to</div>
+  <div id="11" clickable="true">Make Sex Better</div>
+  <div id="12" clickable="true">Is sex not as fun as you want it to be? Is it even kind of painful? Having sex is great for your health and your relationship, and there are all kinds of things you can do to make it better. To help you out, we've pulled...</div>
+  <div id="13" clickable="true">How to</div>
+  <div id="14" clickable="true">Make Friends</div>
+  <div class="statusBarBackground" id="15" clickable="false"></div>
+- 'Search an article to learn how to be a good friend to a guy.
+
+  Then, access the article "How to Be a Good Friend to a Guy"
+
+  Then, check the author page of Trudi Griffin, LPC, MS.
+
+  Then, access the article "How to Overcome Fear"'
+- Access the article "How to Overcome Fear"
+: action_dict:
+    ? !!python/tuple
+    - SCROLL(DOWN)
+    - ''
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, be a good friend to a guy)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Be a Good Friend to a Guy</div>
+    - !!python/tuple
+      - CLICK(11)
+      - <p id="11" clickable="true">Trudi Griffin, LPC, MS</p>
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    last_reward: 0.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <img class="search button" alt="Search" id="1" clickable="true">
+  <div id="2" clickable="true">Although laughing at inappropriate times can be embarrassing, it’s actually a natural reaction for some people when they’re facing a highly stressful situation. This could be because laughter makes you feel better ab...</div>
+  <div id="3" clickable="true">How to</div>
+  <div id="4" clickable="true">Deal With a Boyfriend Who Is Mean when Angry</div>
+  <div id="5" clickable="true">It’s not fun to deal with an angry person. It’s even worse when that person is your boyfriend and his anger causes him to say or do things that are mean and hurtful. Whether it’s name calling, insults, or yelling, ...</div>
+  <div id="6" clickable="true">How to</div>
+  <div id="7" clickable="true">Stop Loving Someone Who Doesn't Love You</div>
+  <div id="8" clickable="true">When you love someone and they don't love you back, it can feel like your world is ending. The pain you’re experiencing is very real. Science has even shown that rejection activates the same pain-sensing neurons in you...</div>
+  <div id="9" clickable="true">How to</div>
+  <div id="10" clickable="true">Build Self Confidence</div>
+  <div id="11" clickable="true">Self-confidence is an essential part of humanity. A person with self-confidence generally likes themselves, is willing to take risks to achieve their personal and professional goals, and thinks positively about the futur...</div>
+  <div class="statusBarBackground" id="12" clickable="false"></div>
+- |
+  Search an article to learn how to bypass youtube''s regional filter.
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+  Then, access the page of category Computers and Electronics
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"
+- Access the article "How to Install the Google Play Store on an Amazon Fire"
+: action_dict:
+    ? !!python/tuple
+    - SCROLL(DOWN)
+    - ''
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    last_reward: 0.0
+    number: 1
+    total_reward: 3.0
+? !!python/tuple
+- |
+  <button alt="Open navigation drawer" id="0" clickable="true"></button>
+  <img class="search button" alt="Search" id="1" clickable="true">
+  <div id="2" clickable="true">It can be painful to have been used by a friend; when those close to us take advantage we can feel lost, vulnerable, and confused. We may begin to lose trust of others around us, given that we feel blindsided.https://www...</div>
+  <div id="3" clickable="true">How to</div>
+  <div id="4" clickable="true">Stop a Verbally Abusive Husband</div>
+  <div id="5" clickable="true">When your husband is verbally abusive, the situation is complicated because of your affection for him, yet incredibly damaging to you and your mental and emotional health. Keep in mind that you can't change his behavior ...</div>
+  <div id="6" clickable="true">How to</div>
+  <div id="7" clickable="true">Overcome a Fear of Sex</div>
+  <div id="8" clickable="true">A sexual encounter is loaded with potential for positive and negative results. Inexperience, lack of knowledge, or a history of sexually related difficulties may be escalating your fear of engaging in sexual activity. Wo...</div>
+  <div id="9" clickable="true">How to</div>
+  <div id="10" clickable="true">Overcome Fear</div>
+  <div id="11" clickable="true">Everyone experiences fear sometimes. Fear can actually help keep you safe by alerting you to potentially dangerous situations. However, there are times when fear runs amok and disrupts your daily life. Fortunately, there...</div>
+  <div class="statusBarBackground" id="12" clickable="false"></div>
+- |
+  Search an article to learn how to bypass youtube''s regional filter.
+  Then, access the article "How to Bypass YouTube''s Regional Filter"
+  Then, access the page of category Computers and Electronics
+  Then, access the article "How to Install the Google Play Store on an Amazon Fire"
+- Access the article "How to Install the Google Play Store on an Amazon Fire"
+: action_dict:
+    ? !!python/tuple
+    - CLICK(10)
+    - <div id="10" clickable="true">Overcome Fear</div>
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - CLICK(5)
+      - <p id="5" clickable="true">&lt;</p>
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    - !!python/tuple
+      - SCROLL(DOWN)
+      - ''
+    last_reward: 0.0
     number: 1
     total_reward: 3.0
 ? !!python/tuple
@@ -470,15 +1037,23 @@
   Then, access the article "How to Research a Stock"'
 - Access the article "How to Research a Stock"
 : action_dict:
-    SCROLL(DOWN):
-      number: 1
+    ? !!python/tuple
+    - SCROLL(DOWN)
+    - ''
+    : number: 1
       qvalue: 1.0
       reward: 0.0
   other_info:
     action_history:
-    - INPUT(2, buy stocks (for beginners))
-    - CLICK(3)
-    - CLICK(7)
+    - !!python/tuple
+      - INPUT(2, buy stocks (for beginners))
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    - !!python/tuple
+      - CLICK(3)
+      - <div id="3" clickable="true">How to Buy Stocks (for Beginners)</div>
+    - !!python/tuple
+      - CLICK(7)
+      - <p id="7" clickable="true">FINANCIAL STOCKS</p>
     last_reward: 1.0
     number: 1
     total_reward: 3.0
@@ -499,8 +1074,10 @@
   Then, check the reference list'
 - ''
 : action_dict:
-    INPUT(2, address a letter to england):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, address a letter to england)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 3.0
       reward: 1.0
   other_info:
@@ -525,8 +1102,10 @@
   Then, access the about page to learn why people trust wikihow.'
 - ''
 : action_dict:
-    INPUT(2, apply cc cream):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, apply cc cream)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 3.0
       reward: 1.0
   other_info:
@@ -553,8 +1132,10 @@
   Then, access the article "How to Overcome Fear"'
 - ''
 : action_dict:
-    INPUT(2, be a good friend to a guy):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, be a good friend to a guy)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 4.0
       reward: 1.0
   other_info:
@@ -581,8 +1162,10 @@
   Then, access the article "How to Research a Stock"'
 - ''
 : action_dict:
-    INPUT(2, buy stocks (for beginners)):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, buy stocks (for beginners))
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 4.0
       reward: 1.0
   other_info:
@@ -609,8 +1192,10 @@
   Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
 - ''
 : action_dict:
-    INPUT(2, bypass youtube's regional filter):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, bypass youtube's regional filter)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 4.0
       reward: 1.0
   other_info:
@@ -633,8 +1218,10 @@
   Then, access the article "How to Call the Czech Republic From the United States"'
 - ''
 : action_dict:
-    INPUT(2, call the czech republic from the united states):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, call the czech republic from the united states)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 2.0
       reward: 1.0
   other_info:
@@ -657,8 +1244,10 @@
   Then, access the article "How to Change a Lightbulb in a Recessed Light"'
 - ''
 : action_dict:
-    INPUT(2, change a lightbulb in a recessed light):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, change a lightbulb in a recessed light)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 2.0
       reward: 1.0
   other_info:
@@ -683,8 +1272,10 @@
   Then, check the reference list'
 - ''
 : action_dict:
-    INPUT(2, clean utensils):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, clean utensils)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 3.0
       reward: 1.0
   other_info:
@@ -709,8 +1300,10 @@
   Then, access the about page to learn why people trust wikihow.'
 - ''
 : action_dict:
-    INPUT(2, do ruby rose hair):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, do ruby rose hair)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 3.0
       reward: 1.0
   other_info:
@@ -733,8 +1326,10 @@
   Then, access the article "How to Hide Gauges"'
 - ''
 : action_dict:
-    INPUT(2, hide gauges):
-      number: 1
+    ? !!python/tuple
+    - INPUT(2, hide gauges)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
       qvalue: 2.0
       reward: 1.0
   other_info:
@@ -790,13 +1385,17 @@
   Then, access the article "How to Overcome Fear"'
 - Access the article "How to Be a Good Friend to a Guy"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Be a Good Friend to a Guy</div>
+    : number: 1
       qvalue: 3.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, be a good friend to a guy)
+    - !!python/tuple
+      - INPUT(2, be a good friend to a guy)
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
@@ -844,13 +1443,17 @@
   Then, access the about page to learn why people trust wikihow.'
 - Access the article "How to Do Ruby Rose Hair"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Do Ruby Rose Hair</div>
+    : number: 1
       qvalue: 2.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, do ruby rose hair)
+    - !!python/tuple
+      - INPUT(2, do ruby rose hair)
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
@@ -900,13 +1503,17 @@
   Then, check the reference list'
 - Access the article "How to Address a Letter to England"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Address a Letter to England</div>
+    : number: 1
       qvalue: 2.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, address a letter to england)
+    - !!python/tuple
+      - INPUT(2, address a letter to england)
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
@@ -954,13 +1561,17 @@
   Then, access the about page to learn why people trust wikihow.'
 - Access the article "How to Apply CC Cream"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Apply CC Cream</div>
+    : number: 1
       qvalue: 2.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, apply cc cream)
+    - !!python/tuple
+      - INPUT(2, apply cc cream)
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
@@ -1011,13 +1622,17 @@
   Then, access the article "How to Research a Stock"'
 - Access the article "How to Buy Stocks (for Beginners)"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Buy Stocks (for Beginners)</div> 
+    : number: 1
       qvalue: 3.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, buy stocks (for beginners))
+    - !!python/tuple
+      - INPUT(2, buy stocks (for beginners))
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
@@ -1067,13 +1682,17 @@
   Then, access the article "How to Install the Google Play Store on an Amazon Fire"'
 - Access the article "How to Bypass YouTube's Regional Filter"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+    : number: 1
       qvalue: 3.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, bypass youtube's regional filter)
+    - !!python/tuple
+      - INPUT(2, bypass youtube's regional filter)
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
@@ -1123,13 +1742,17 @@
   Then, access the article "How to Call the Czech Republic From the United States"'
 - Access the article "How to Call the Czech Republic From the United States"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Call the Czech Republic From the United States</div>
+    : number: 1
       qvalue: 1.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, call the czech republic from the united states)
+    - !!python/tuple
+      - INPUT(2, call the czech republic from the united states)
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
@@ -1176,13 +1799,17 @@
   Then, access the article "How to Change a Lightbulb in a Recessed Light"'
 - Access the article "How to Change a Lightbulb in a Recessed Light"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Change a Lightbulb in a Recessed Light</div>
+    : number: 1
       qvalue: 1.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, change a lightbulb in a recessed light)
+    - !!python/tuple
+      - INPUT(2, change a lightbulb in a recessed light)
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
@@ -1232,13 +1859,17 @@
   Then, check the reference list'
 - Access the article "How to Clean Utensils"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Clean Utensils</div>
+    : number: 1
       qvalue: 2.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, clean utensils)
+    - !!python/tuple
+      - INPUT(2, clean utensils)
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
@@ -1285,13 +1916,17 @@
   Then, access the article "How to Hide Gauges"'
 - Access the article "How to Hide Gauges"
 : action_dict:
-    CLICK(3):
-      number: 1
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Hide Gauges</div>
+    : number: 1
       qvalue: 1.0
       reward: 1.0
   other_info:
     action_history:
-    - INPUT(2, hide gauges)
+    - !!python/tuple
+      - INPUT(2, hide gauges)
+      - <img class="search button" alt="Search" id="2" clickable="true">
     last_reward: 1.0
     number: 1
     total_reward: 1.0
