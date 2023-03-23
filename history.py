@@ -97,7 +97,7 @@ class HistoryReplay:
                 , step_penalty: float = 0.
                 , update_mode: str = "mean"
                 , learning_rate: float = 0.1
-                , n_step_flatten: int = 1
+                , n_step_flatten: Optional[int] = 1
                 , action_history_update_mode: str = "shortest"
                 ):
         #  method __init__ {{{ # 
@@ -114,7 +114,7 @@ class HistoryReplay:
 
             update_mode (str): "mean" or "const"
             learning_rate (float): learning rate
-            n_step_flatten (int): flatten the calculation of the estimated q
+            n_step_flatten (Optional[int]): flatten the calculation of the estimated q
               value up to `n_step_flatten` steps
 
             action_history_update_mode (str): "longest", "shortest", "newest",
@@ -130,28 +130,30 @@ class HistoryReplay:
         self._matcher: type(Matcher) = matcher
 
         self._gamma: float = gamma
-        self._multi_gamma: float = gamma ** n_step_flatten
-        self._filter: np.ndarray = np.logspace( 0, n_step_flatten
-                                              , num=n_step_flatten
-                                              , endpoint=False
-                                              , base=self._gamma
-                                              )[::-1] # (n,)
+        if n_step_flatten is not None:
+            self._multi_gamma: float = gamma ** n_step_flatten
+            self._filter: np.ndarray = np.logspace( 0, n_step_flatten
+                                                  , num=n_step_flatten
+                                                  , endpoint=False
+                                                  , base=self._gamma
+                                                  )[::-1] # (n,)
 
         self._step_penalty: float = step_penalty
 
         self._update_mode: str = update_mode
         self._learning_rate: float = learning_rate
-        self._n_step_flatten: int = n_step_flatten
+        self._n_step_flatten: Optional[int] = n_step_flatten
 
         self._action_history_update_mode: str = action_history_update_mode
 
+        maxlenp1: Optional[int] = self._n_step_flatten+1 if self._n_step_flatten is not None else None
         self._action_buffer: Deque[Optional[HistoryReplay.Action]] = collections.deque(maxlen=self._n_step_flatten)
         self._action_history: List[HistoryReplay.Action] = []
         self._observation_buffer: Deque[HistoryReplay.Key]\
-                = collections.deque(maxlen=self._n_step_flatten+1)
-        self._reward_buffer: Deque[float] = collections.deque(maxlen=self._n_step_flatten+1)
+                = collections.deque(maxlen=maxlenp1)
+        self._reward_buffer: Deque[float] = collections.deque(maxlen=maxlenp1)
         self._total_reward: float = 0.
-        self._total_reward_buffer: Deque[float] = collections.deque(maxlen=self._n_step_flatten+1)
+        self._total_reward_buffer: Deque[float] = collections.deque(maxlen=maxlenp1)
 
         self._similarity_matrix: np.ndarray = np.zeros( (self._item_capacity, self._item_capacity)
                                                       , dtype=np.float32
@@ -216,7 +218,8 @@ class HistoryReplay:
         self._reward_buffer.append(reward)
         self._total_reward += reward
         self._total_reward_buffer.append(self._total_reward)
-        if len(self._observation_buffer)<self._observation_buffer.maxlen:
+        if self._observation_buffer.maxlen is None\
+                or len(self._observation_buffer)<self._observation_buffer.maxlen:
             return
 
         step = self._observation_buffer[0]
@@ -262,9 +265,19 @@ class HistoryReplay:
             #self._reward_buffer.popleft()
 
         rewards = np.asarray(self._reward_buffer, dtype=np.float32)[1:]
-        convolved_rewards = np.convolve( rewards, self._filter
-                                       , mode="full"
-                                       )[self._n_step_flatten-1:]
+        if self._n_step_flatten is not None:
+            convolved_rewards = np.convolve( rewards, self._filter
+                                           , mode="full"
+                                           )[self._n_step_flatten-1:]
+        else:
+            convolved_rewards = np.convolve( rewards
+                                           , np.logspace( 0, len(rewards)
+                                                        , num=len(rewards)
+                                                        , endpoint=False
+                                                        , base=self._gamma
+                                                        )[::-1]
+                                           , mode="full"
+                                           )[len(rewards)-1:]
 
         end_point: Optional[int] = -len(self._action_buffer)
 
