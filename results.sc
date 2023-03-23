@@ -661,7 +661,7 @@ let F71 = @avg(F1:F70)
 let G71 = @avg(G1:G70)
 let H71 = @avg(H1:H70)
 let I71 = @avg(I1:I70)
-goto A69
+goto E32
 movetosheet "addreward"
 offscr_sc_cols 0
 offscr_sc_rows 0
@@ -1162,7 +1162,7 @@ let O29 = @avg(O25:O28)
 let P29 = @avg(P25:P28)
 let Q29 = @avg(Q25:Q28)
 leftstring A33 = "备注：原版；加回报；W2（标注池）；W4（扩充的标注池）"
-goto P29
+goto Q21
 movetosheet "addreward"
 mark a "w/ history" A1
 mark b "w/ history" I70

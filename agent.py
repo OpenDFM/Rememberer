@@ -469,14 +469,17 @@ class ReplayAgent(Agent):
         #  method __init__ {{{ # 
         super(ReplayAgent, self).__init__()
 
-        self._replay: List[List[str]] = []
+        self._replay: List[List[Action]] = []
         for rpl_f in replay_files:
             self._replay.append([])
             with open(rpl_f) as f:
                 for l in f:
                     #log_item: Dict[str, str] = json.loads(l)
                     #self._replay[-1].append(log_item["text"].strip())
-                    self._replay[-1].append(l.strip())
+                    items: List[str] = l.strip().split(" <-> ", maxsplit=1)
+                    action: str = items[0]
+                    element: str = "" if len(items)==1 else items[1]
+                    self._replay[-1].append((action, element))
 
         self._replay_index: int = -1
         self._index: int = -1
@@ -490,7 +493,7 @@ class ReplayAgent(Agent):
         self._replay_index %= len(self._replay)
         self._index = -1
 
-    def _get_action(self, *args) -> str:
+    def _get_action(self, *args) -> Action:
         #  method _get_action {{{ # 
         request_time = datetime.datetime.now()
         timedelta: datetime.timedelta = request_time - self._last_request_time
