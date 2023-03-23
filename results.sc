@@ -705,6 +705,9 @@ let J1 = 8
 let K1 = 3
 let L1 = K1/J1
 let M1 = 1
+let N1 = 3
+let O1 = 3
+let Q1 = 1
 label A2 = "avoid_losing_a_friend_to_someone_you_hate-0.textproto"
 let B2 = 15
 let C2 = 1
@@ -718,6 +721,9 @@ let J2 = 15
 let K2 = 1
 let L2 = K2/J2
 let M2 = 0
+let N2 = 4
+let O2 = 2
+let Q2 = 1
 label A3 = "bake_lobster_tails-7.textproto"
 let B3 = 15
 let C3 = 2
@@ -1062,7 +1068,7 @@ let K29 = @avg(K25:K28)
 let L29 = @avg(L25:L28)
 let M29 = @avg(M25:M28)
 leftstring A33 = "备注：原版；加回报；W2（标注池）；W4（扩充的标注池）"
-goto Q14
+goto O2
 movetosheet "addreward"
 mark a "w/ history" A1
 mark b "w/ history" I70

@@ -93,9 +93,11 @@ class Agent(abc.ABC):
             screen_representation.append( lxml.html.tostring( html
                                                             , pretty_print=True
                                                             , encoding="unicode"
-                                                            )
+                                                            ).strip()\
+                                                             .replace("\n", "&#10;")\
+                                                             .replace("\r", "&#13;")
                                         )
-        screen_representation: str = "".join(screen_representation)
+        screen_representation: str = "\n".join(screen_representation)
 
         action_tuple: Action = self._get_action( task
                                           , screen_representation.strip()
