@@ -1,0 +1,9 @@
+INPUT(2, bypass youtube's regional filter) <-> <img class="search button" alt="Search" id="2" clickable="true">
+CLICK(3) <-> <div id="3" clickable="true">How to Bypass YouTube's Regional Filter</div>
+CLICK(5) <-> <p id="5" clickable="true">VIDEO HOSTING AND SHARING WEBSITES</p>
+CLICK(4) <-> <div id="4" clickable="true">Video Hosting and Sharing Websites</div>
+CLICK(2) <-> <p id="2" clickable="true">&lt;</p>
+CLICK(4) <-> <div id="4" clickable="true">Video</div>
+CLICK(2) <-> <p id="2" clickable="true">&lt;</p>
+INPUT(3, how to install the google play store on an amazon fire) <-> <input class="category banner search input" type="text" id="3" clickable="true">
+CLICK(3) <-> <div id="3" clickable="true">How to Install the Google Play Store on an Amazon Fire</div>

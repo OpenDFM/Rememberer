@@ -1,0 +1,15 @@
+INPUT(2, buy stocks for beginners) <-> <img class="search button" alt="Search" id="2" clickable="true>
+CLICK(3) <-> <div id="3" clickable="true">How to Buy Stocks (for Beginners)</div>
+CLICK(7) <-> <p id="7" clickable="true">FINANCIAL STOCKS</p>
+CLICK(10) <-> <p id="10" clickable="true">How to Buy Stocks</p>
+INPUT(2, how to research a stock) <-> <img class="search button" alt="Search" id="2" clickable="true">
+CLICK(10) <-> <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <-> <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <-> <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <-> <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <-> <p id="10" clickable="true">How to Research a Stock</p>
+INPUT(1, how to buy stocks (for beginners)) <-> <img class="search button" alt="Search" id="1" clickable="true">
+CLICK(3) <-> <div id="3" clickable="true">How to Buy Stocks (for Beginners)</div>
+CLICK(8) <-> <p id="8" clickable="true">How to Buy Stocks (for Beginners)</p>
+CLICK(8) <-> <p id="8" clickable="true">How to Buy Stocks (for Beginners)</p>
+CLICK(8) <-> <p id="8" clickable="true">How to Buy Stocks (for Beginners)</p>

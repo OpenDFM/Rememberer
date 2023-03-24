@@ -1,0 +1,16 @@
+INPUT(2, make a lei) <-> <img class="search button" alt="Search" id="2" clickable="true">
+NOTHINGG <-> 
+CLICK(3) <-> <div id="3" clickable="true">How to Make a Lei</div>
+CLICK(11) <-> <p id="11" clickable="true">Claire Donovan-Blackwood</p>
+NOTHINGG <-> 
+SCROLL(DOWN) <-> 
+SCROLL(DOWN) <-> 
+CLICK(9) <-> <div id="9" clickable="true">How to Make Skeleton Leaves</div>
+INPUT(2, decoupage flower pots) <-> <img class="search button" alt="Search" id="2" clickable="true">
+CLICK(10) <-> <div class="statusBarBackground" id="10" clickable="false"></div>
+CLICK(10) <-> <div class="statusBarBackground" id="10" clickable="false"></div>
+NOTHINGG <-> 
+CLICK(7) <-> <button class=" ref-7" id="7" clickable="true">Link to Reference 7</button>
+INPUT(1, how to decoupage flower pots) <-> <img class="search button" alt="Search" id="1" clickable="true">
+NOTHINGG <-> 
+CLICK(3) <-> <div id="3" clickable="true">How to Decoupage Flower Pots</div>
