@@ -1,0 +1,145 @@
+Given a task description, a screen representation, an instruction sentence, and several other information at the current step, I need to take an appropriate action according to the given information to finish the underlying task. Available actions are:
+
+INPUT(element_id, text)
+CLICK(element_id)
+SCROLL(direction)
+
+Usually I will click the correct link to access the willing contents or search or scroll down if it is not present on the current screen. I may explore several different actions if I don't know what to do temporarily. I will avoid repeating a wrong action too many times.
+
+Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the operated element if the action is an INPUT or a CLICK, in this format:
+
+Encouraged:
+CLICK(3) -> 2.0 <div id="3" clickable="true">How to Do Ruby Rose Hair</div>
+Discouraged:
+SCROLL(DOWN) -> 0.0
+
+Commonly, actions with high value estimations should be encouraged.
+
+Here are some examples:
+
+Example 1:
+
+```
+Task:
+Search an article to learn how to be a good friend to a guy.
+Then, access the article "How to Be a Good Friend to a Guy"
+Then, check the author page of Trudi Griffin, LPC, MS.
+Then, access the article "How to Overcome Fear"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="search button" alt="Search" id="1" clickable="true">
+<img alt="Trudi Griffin, LPC, MS" id="2" clickable="false">
+<p id="3" clickable="true">Website</p>
+<p id="4" clickable="true">+ Follow</p>
+<div id="5" clickable="false">Trudi Griffin, LPC, MS</div>
+<div id="6" clickable="false">Professional Counselor</div>
+<div id="7" clickable="false">Trudi Griffin is a Licensed Professional Counselor in Wisconsin specializing in Addictions and Mental Health. She provides therapy to people who struggle with addictions, mental health, and trauma in community health settings and private practice. She received her MS in Clinical Mental Health Counseling from Marquette University in 2011.</div>
+<div id="8" clickable="false"></div>
+<p id="9" clickable="false">wikiHow's Editorial Process</p>
+<p id="10" clickable="false">wikiHow partners with over 1000+ experts from a wide range of fields to ensure our content is accurate and based on well-established research and testimony. Content Managers conduct interviews and work closely with each expert to review information, answer reader questions, and add credible advice. </p>
+<div class="statusBarBackground" id="11" clickable="false"></div>
+Instruction:
+Access the article "How to Overcome Fear"
+Action History:
+INPUT(2, be a good friend to a guy) <img class="search button" alt="Search" id="2" clickable="true">
+CLICK(3) <div id="3" clickable="true">How to Be a Good Friend to a Guy</div>
+CLICK(11) <p id="11" clickable="true">Trudi Griffin, LPC, MS</p>
+Last Reward:
+1.0
+Total Reward:
+3.0
+---
+
+Encouraged:
+SCROLL(DOWN) -> 1.0 
+Discouraged:
+SCROLL(DOWN) -> 0.0 
+
+Example 2:
+
+```
+Task:
+Search an article to learn how to do ruby rose hair.
+Then, access the article "How to Do Ruby Rose Hair"
+Then, access the about page to learn why people trust wikihow.
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="search button" alt="Search" id="1" clickable="true">
+<img alt="More options" id="2" clickable="true">
+<p id="3" clickable="true">Learn why people </p>
+<p id="4" clickable="true">trust wikiHow</p>
+<p id="5" clickable="true">CELEBRITY STYLE</p>
+<p id="6" clickable="false"> »</p>
+<p id="7" clickable="true">CELEBRITY INSPIRED HAIRSTYLES</p>
+<p id="8" clickable="true">How to Do Ruby Rose Hair</p>
+<p id="9" clickable="false">Co-authored by</p>
+<p id="10" clickable="false"> </p>
+<p id="11" clickable="true">Ashley Adams</p>
+<button id="12" clickable="true">Last Updated: March 11, 2020</button>
+<div id="13" clickable="false">Ruby Rose has rocked a lot of chic, trendy styles throughout her career, but perhaps her most popular look was the style she wore in the hit show Orange is the New Black. Similar to an undercut, she left her hair long on the top, and shaved along the sides. Getting the perfect fade can be tricky, however, but with a pair of clippers and different guards, you can get the right look. If you really want to go all the way, use scissors and clippers to sculpt lines into the fade at the end.</div>
+<div id="14" clickable="false">Part 1 Part 1 of 3: Cutting the Base</div>
+<div id="15" clickable="false">1</div>
+<div id="16" clickable="false">Begin with clean hair. Wash your hair before cutting it to get the best results. Allow your hair to air dry fully or use a blow dryer to speed up the process. Though many haircuts are done on wet hair, your hair should be dry when using clippers.</div>
+<img alt="v4-460px-Do-Ruby-Rose-Hair-Step-1.jpg" id="17" clickable="false">
+<div class="statusBarBackground" id="18" clickable="false"></div>
+Instruction:
+Access the about page to learn why people trust wikihow.
+Action History:
+INPUT(2, do ruby rose hair) <img class="search button" alt="Search" id="2" clickable="true">
+CLICK(3) <div id="3" clickable="true">How to Do Ruby Rose Hair</div>
+Last Reward:
+1.0
+Total Reward:
+2.0
+---
+
+Encouraged:
+CLICK(4) -> 1.0 <p id="4" clickable="true">trust wikiHow</p>
+Discouraged:
+CLICK(6) -> 0.0 <p id="6" clickable="false"> »</p>
+
+Now the new input:
+
+```
+Task:
+Search an article to learn how to buy stocks (for beginners).
+Then, access the article "How to Buy Stocks (for Beginners)"
+Then, access the page of category Financial Stocks
+Then, access the article "How to Research a Stock"
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="search button" alt="Search" id="1" clickable="true">
+<img alt="More options" id="2" clickable="true">
+<p id="3" clickable="false"> These terms help you decide exactly what type of buy or sell order you want to place with your broker. The terms allow you place certain conditions on your order to buy or sell stock.</p>
+<button class=" ref-2" id="4" clickable="true">Link to Reference 2</button>
+<div id="5" clickable="false">• </div>
+<p id="6" clickable="false">The ask price, also known as the offer, is the lowest available price when trying to buy shares of a stock. Assume you want to buy IBM common stock. If the current ask price is $50 per share, you would pay the $50 price for the stock.</p>
+<div id="7" clickable="false">• </div>
+<p id="8" clickable="false">The bid price (or simply bid) is the highest available price you can find when trying to sell shares of a stock. If you own IBM common stock and want to sell it now, you would receive the bid price per share. If the bid price is $49.75, you would receive that price per share.</p>
+<div id="9" clickable="false">• </div>
+<p id="10" clickable="false">A market order is a request to buy or sell a security immediately at the best price available. If you place a market order, you will pay the ask price as a buyer. If you are selling, the market price you receive will be the current bid price. Keep in mind that your order could be executed at a price higher or lower than what you're hoping for. The immediate execution of a market order is guaranteed but the price is not.</p>
+<div id="11" clickable="false">• </div>
+<p id="12" clickable="false">In addition to a market order, you can place orders that put conditions on your buy or sell price. A limit order, for example, is a request to buy or sell a security at a specific price or better. On the other hand, a stop order is an order that becomes a market order once a certain price is reached. Consult with a broker who is licensed to trade securities. Ask the broker if these other types of orders are right for you.</p>
+<div class="statusBarBackground" id="13" clickable="false"></div>
+Instruction:
+Access the article "How to Research a Stock"
+Action History:
+CLICK(10) <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <p id="10" clickable="true">How to Research a Stock</p>
+CLICK(10) <p id="10" clickable="true">How to Research a Stock</p>
+Last Reward:
+0.0
+Total Reward:
+3.0
+---
+
+My action advice will be:
+
+[32mEncouraged:[0m
+[32mINPUT(1, how to buy stocks (for beginners)) -> 2.0 <img class="search button" alt="Search" id="1" clickable="true">[0m
+[32mDiscouraged:[0m
+[32mCLICK(10) -> 0.0 <p id="10" clickable="true">How to Research a Stock</p>[0m
+
+The instruction is to access the article "How to Research a Stock", however, I search "how to buy stocks (for beginners)" instead of "How to Research a Stock" because[32m the instruction is not clear.[0m
