@@ -1,12 +1,12 @@
 ```
 Task:
 ${command}
+Last 5 Actions:
+${actions}
 Screen:
 ${html}
 Instruction:
 ${instruction}
-Last 5 Actions:
-${actions}
 Last Reward:
 ${reward}
 Total Reward:

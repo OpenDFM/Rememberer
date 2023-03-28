@@ -1,19 +1,19 @@
-Given a task description, a screen representation, an instruction sentence, and several other information at the current step, I need to take an appropriate action according to the given information to finish the underlying task. Available actions are:
+Given a several information about the task and the screen at the current step, I need to take an appropriate action according to the given information to finish the task. Available actions are:
 
 INPUT(element_id, text)
 CLICK(element_id)
 SCROLL(direction)
+GOBACK
 
-Usually I will click the correct link to access the willing contents or search or scroll down if it is not present on the current screen. I may explore several different actions if I don't know what to do temporarily. I will avoid repeating a wrong action too many times.
+Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the operated element if the action is an INPUT or a CLICK.
 
-Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the operated element if the action is an INPUT or a CLICK, in this format:
+Here are several common principles to make a decision:
 
-Encouraged:
-CLICK(3) -> 2.0 <div id="3" clickable="true">How to Do Ruby Rose Hair</div>
-Discouraged:
-SCROLL(DOWN) -> 0.0
-
-Commonly, actions with high value estimations should be encouraged.
+1. If a link to the desired contents is on the screen, I will click it directly. Otherwise, I may search for the contents or scroll down the page to find it.
+2. I will explore several different keywords if I find that a group of keyword cannot lead me to the target.
+3. I will avoid always repeating a wrong action.
+4. I should encourage the actions with higher value estimations and discouraged the actions with low value estimations.
+5. If there appears a title in the instruction, it is usually not the title of the current page.
 
 Here are some examples:
 
@@ -23,4 +23,3 @@ Now the new input:
 
 ${new_input}
 
-My action advice will be:
