@@ -8,7 +8,7 @@ import itertools
 import lxml.etree
 import lxml.html
 from android_env.wrappers import VhIoWrapper
-from typing import Dict, Pattern, Match, List, NamedTuple, Tuple
+from typing import Dict, Pattern, Match, List, NamedTuple, Tuple, Set
 from typing import Optional
 import numpy as np
 import string
@@ -113,6 +113,9 @@ class Agent(abc.ABC):
                    }
 
         self._action_history.append(action_tuple)
+
+        if action_str=="GOBACK":
+            return {"action_type": np.array(VhIoWrapper.ActionType.GOBACK)}
 
         action_match: Match[str] = self._action_pattern.match(action_str)
         if action_match is not None:
@@ -349,13 +352,17 @@ class AutoAgent(Agent):
                                                       ]
             else:
                 encouraged: List[Tuple[str, float]] = actions[:1]
+            encouraged_actions: Set[str] = set(map(lambda itm: itm[0], encouraged))
             encouraged: str = "\n".join( map( lambda act: "{:} -> {:.1f} {:}".format(act[0][0], act[1], act[0][1])
                                             , encouraged
                                             )
                                        )
 
             if actions[-1][1]>0.:
-                discouraged: List[Tuple[str, float]] = [ ( self._random_action(key[0])
+                discouraged_action: str = self._random_action(key[0])
+                while discouraged_action in encouraged_actions:
+                    discouraged_action = self._random_action(key[0])
+                discouraged: List[Tuple[str, float]] = [ ( discouraged_action
                                                          , 0.
                                                          )
                                                        ]
@@ -384,7 +391,7 @@ class AutoAgent(Agent):
                                                                    )
             examplars.append(examplar)
         #  }}} Contruct one Examplar # 
-        example_str: str = "\n".join(examplars)
+        example_str: str = "\n".join(reversed(examplars))
         #  }}} Construct Examplars # 
 
         #  Construct New Input {{{ # 
