@@ -116,12 +116,17 @@ def main():
                                                             , "openai-{:}.log".format(datetime_str)
                                                             )
                                               )
+    hdebug_handler = logging.FileHandler( os.path.join( args.log_dir
+                                                      , "hdebug-{:}.log".format(datetime_str)
+                                                      )
+                                        )
 
     file_handler.setLevel(logging.INFO)
     debug_handler.setLevel(logging.DEBUG)
     stdout_handler.setLevel(logging.INFO)
     sdebug_handler.setLevel(logging.DEBUG)
     openai_error_handler.setLevel(logging.DEBUG)
+    hdebug_handler.setLevel(logging.DEBUG)
 
     formatter = logging.Formatter(fmt="\x1b[1;33m[%(asctime)s \x1b[31m%(levelname)s \x1b[32m%(module)s/%(lineno)d-%(processName)s\x1b[1;33m] \x1b[0m%(message)s")
     file_handler.setFormatter(formatter)
@@ -129,58 +134,61 @@ def main():
     stdout_handler.setFormatter(formatter)
     sdebug_handler.setFormatter(formatter)
     openai_error_handler.setFormatter(formatter)
+    hdebug_handler.setFormatter(formatter)
 
     #stdout_handler.addFilter(logging.Filter("main"))
     stdout_handler.addFilter(logging.Filter("agent"))
     sdebug_handler.addFilter(logging.Filter("agent"))
     openai_error_handler.addFilter(logging.Filter("openaiE"))
+    hdebug_handler.addFilter(logging.Filter("history"))
 
     logger.addHandler(file_handler)
     logger.addHandler(debug_handler)
     logger.addHandler(stdout_handler)
     logger.addHandler(sdebug_handler)
     logger.addHandler(openai_error_handler)
+    logger.addHandler(hdebug_handler)
 
     logger = logging.getLogger("agent")
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
-    #matcher_functions: Dict[str, type(history.Matcher)] = { "lcs": history.LCSNodeMatcher }
-    #history_replay = history.HistoryReplay( args.item_capacity
-                                          #, args.action_capacity
-                                          #, matcher=matcher_functions[args.matcher]
-                                          #, gamma=args.gamma
-                                          #, step_penalty=args.step_penalty
-                                          #, update_mode=args.update_mode
-                                          #, learning_rate=args.learning_rate
-                                          #, n_step_flatten=args.n_step_flatten
-                                          #)
-    #history_replay.load_yaml(args.load_replay)
-#
-    #with open(os.path.join(args.prompt_template, "prompt_pth.txt")) as f:
-        #prompt_template = string.Template(f.read())
-    #with open(os.path.join(args.prompt_template, "input_template.txt")) as f:
-        #input_template = string.Template(f.read())
-    #with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
-        #advice_template = string.Template(f.read())
-    #template_group = agent.AutoAgent.TemplateGroup( whole_template=prompt_template
-                                                  #, input_template=input_template
-                                                  #, advice_template=advice_template
-                                                  #)
-    #with open(args.config) as f:
-        #openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
-    #model = agent.AutoAgent( history_replay=history_replay
-                           #, prompt_templates=template_group
-                           #, api_key=openaiconfig["api_key"]
-                           #, max_tokens=args.max_tokens
-                           #, temperature=args.temperature
-                           #, stop=args.stop
-                           #, request_timeout=args.request_timeout
-                           #, manual=args.manual
-                           #, train=args.train
-                           #)
+    matcher_functions: Dict[str, type(history.Matcher)] = { "lcs": history.LCSNodeMatcher }
+    history_replay = history.HistoryReplay( args.item_capacity
+                                          , args.action_capacity
+                                          , matcher=matcher_functions[args.matcher]
+                                          , gamma=args.gamma
+                                          , step_penalty=args.step_penalty
+                                          , update_mode=args.update_mode
+                                          , learning_rate=args.learning_rate
+                                          , n_step_flatten=args.n_step_flatten
+                                          )
+    history_replay.load_yaml(args.load_replay)
+
+    with open(os.path.join(args.prompt_template, "prompt_pth.txt")) as f:
+        prompt_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "input_template.txt")) as f:
+        input_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
+        advice_template = string.Template(f.read())
+    template_group = agent.AutoAgent.TemplateGroup( whole_template=prompt_template
+                                                  , input_template=input_template
+                                                  , advice_template=advice_template
+                                                  )
+    with open(args.config) as f:
+        openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
+    model = agent.AutoAgent( history_replay=history_replay
+                           , prompt_templates=template_group
+                           , api_key=openaiconfig["api_key"]
+                           , max_tokens=args.max_tokens
+                           , temperature=args.temperature
+                           , stop=args.stop
+                           , request_timeout=args.request_timeout
+                           , manual=args.manual
+                           , train=args.train
+                           )
     #model = agent.ManualAgent()
-    model = agent.ReplayAgent(args.replay_file)
+    #model = agent.ReplayAgent(args.replay_file)
 
     env = android_env.load( args.task_path
                           , args.avd_name
@@ -208,7 +216,7 @@ def main():
     max_nb_steps = 15
     #for i in range(env.nb_tasks):
     for _i, i in enumerate([5, 6, 7, 8, 11, 13]):
-        os.makedirs(args.dump_path[_i], exist_ok=True)
+        #os.makedirs(args.dump_path[_i], exist_ok=True)
 
         model.reset()
         step: dm_env.TimeStep = env.switch_task(i)
@@ -217,11 +225,11 @@ def main():
 
         nb_steps = 0
         nb_nothing_steps = 0
-        dump( args.dump_path[_i], nb_steps, command
-            , step.observation["pixels"]
-            , step.observation["view_hierarchy"]
-            , instruction
-            )
+        #dump( args.dump_path[_i], nb_steps, command
+            #, step.observation["pixels"]
+            #, step.observation["view_hierarchy"]
+            #, instruction
+            #)
 
         reward: float = step.reward
         succeeds: bool = True
@@ -244,11 +252,11 @@ def main():
                 nb_nothing_steps += 1
             else:
                 nb_steps += 1
-                dump( args.dump_path[_i], nb_steps, command
-                    , step.observation["pixels"]
-                    , step.observation["view_hierarchy"]
-                    , instruction
-                    )
+                #dump( args.dump_path[_i], nb_steps, command
+                    #, step.observation["pixels"]
+                    #, step.observation["view_hierarchy"]
+                    #, instruction
+                    #)
 
             if nb_steps>=max_nb_steps:
                 succeeds = False

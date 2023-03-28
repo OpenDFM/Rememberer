@@ -1,5 +1,5 @@
 from typing import Dict, Tuple, Deque, List
-from typing import Union, Optional
+from typing import Union, Optional, Callable, Sequence
 import abc
 #import dm_env
 
@@ -11,6 +11,7 @@ import yaml
 import logging
 
 logger = logging.getLogger("agent.history")
+hlogger = logging.getLogger("history")
 
 class Matcher(abc.ABC):
     #  class Matcher {{{ # 
@@ -22,6 +23,8 @@ class Matcher(abc.ABC):
     def __call__(self, key: "HistoryReplay.Key") -> float:
         raise NotImplementedError
     #  }}} class Matcher # 
+
+MatcherConstructor = Callable[["HistoryReplay.Key"], Matcher]
 
 class LCSNodeMatcher(Matcher):
     #  class LCSNodeMatcher {{{ # 
@@ -59,15 +62,126 @@ class LCSNodeMatcher(Matcher):
         length: int = max(n, m)
         similarity: float = float(lcs)/length
 
-        logger.debug("Req: %s", " ".join(self._node_sequence))
-        logger.debug("Key: %s", " ".join(key_node_sequence))
-        logger.debug( "LCS: %d, L1: %d, L2: %d, Sim: %.2f"
+        hlogger.debug("Req: %s", " ".join(self._node_sequence))
+        hlogger.debug("Key: %s", " ".join(key_node_sequence))
+        hlogger.debug( "LCS: %d, L1: %d, L2: %d, Sim: %.2f"
                     , lcs, n, m, similarity
                     )
 
         return similarity
         #  }}} method __call__ # 
     #  }}} class LCSNodeMatcher # 
+
+class InsPatMatcher(Matcher):
+    #  class InsPatMatcher {{{ # 
+    _score_matrix: np.ndarray\
+            = np.array( [ [1., .1, 0., 0., 0., 0.]
+                        , [.1, 1., .3, .3, 0., 0.]
+                        , [0., .3, 1., .8, .3, .3]
+                        , [0., .3, .8, 1., .3, .3]
+                        , [0., 0., .3, .3, 1., .8]
+                        , [0., 0., .3, .3, .8, 1.]
+                        ]
+                      , dtype=np.float32
+                      )
+
+    def __init__(self, query: "HistoryReplay.Key"):
+        #  method __init__ {{{ # 
+        super(InsPatMatcher, self).__init__(query)
+
+        instruction: str
+        _, _, instruction = self._query
+
+        self._pattern_id: int
+        self._pattern_name: str
+        self._pattern_id, self._pattern_name = InsPatMatcher._get_pattern(instruction)
+
+        hlogger.debug( "Ins: %s, Pat: %d.%s"
+                     , instruction
+                     , self._pattern_id
+                     , self._pattern_name
+                     )
+        #  }}} method __init__ # 
+
+    def __call__(self, key: "HistoryReplay.Key") -> float:
+        #  method __call__ {{{ # 
+        if self._pattern_id==-1:
+            return 0
+
+        key_instruction: str = key[2]
+        key_pattern_id: int
+        key_pattern_name: str
+        key_pattern_id, key_pattern_name = InsPatMatcher._get_pattern(key_instruction)
+
+        hlogger.debug( "Key: %s, Pat: %d.%s"
+                     , key_instruction
+                     , key_pattern_id
+                     , key_pattern_name
+                     )
+
+        if key_pattern_id==-1:
+            return 0
+        similarity: np.float32 = InsPatMatcher._score_matrix[ self._pattern_id
+                                                            , key_pattern_id
+                                                            ]
+
+        hlogger.debug("Sim: %.2f", similarity)
+        return float(similarity)
+        #  }}} method __call__ # 
+
+    @staticmethod
+    def _get_pattern(instruction: str) -> Tuple[int, str]:
+        #  method _get_pattern {{{ # 
+        if instruction=="":
+            return 0, "search"
+        if instruction.startswith("Access the "):
+            if instruction[11:].startswith("article"):
+                return 1, "article"
+            if instruction[11:].startswith("page of category"):
+                return 3, "categ"
+            if instruction[11:].startswith("about page"):
+                return 5, "about"
+        elif instruction.startswith("Check the "):
+            if instruction[10:].startswith("author page"):
+                return 2, "author"
+            if instruction.startswith("reference list"):
+                return 4, "reference"
+        return -1, "unknown"
+        #  }}} method _get_pattern # 
+    #  }}} class InsPatMatcher # 
+
+class LambdaMatcher(Matcher):
+    #  class LambdaMatcher {{{ # 
+    def __init__(self, matchers: List[Matcher], weights: Sequence[float]):
+        self._matchers: List[Matcher] = matchers
+        self._lambdas: np.ndarray = np.array(list(weights), dtype=np.float32)
+
+    def __call__(self, key: "HistoryReplay.Key") -> float:
+        scores: np.ndarray = np.asarray( list( map( lambda mch: mch(key)
+                                                  , self._matchers
+                                                  )
+                                             )
+                                       , dtype=np.float32
+                                       )
+        return float(np.sum(self._lambdas*scores))
+    #  }}} class LambdaMatcher # 
+
+class LambdaMatcherConstructor:
+    #  class LambdaMatcherConstructor {{{ # 
+    def __init__( self
+                , matchers: List[MatcherConstructor]
+                , weights: Sequence[float]
+                ):
+        self._matchers: List[MatcherConstructor] = matchers
+        self._weights: Sequence[float] = weights
+
+    def get_lambda_matcher(self, query):
+        matchers: List[Matcher] = list( map( lambda mch: mch(query)
+                                           , self._matchers
+                                           )
+                                      )
+        return LambdaMatcher(matchers, self._weights)
+    #  }}} class LambdaMatcherConstructor # 
 
 class HistoryReplay:
     #  class HistoryReplay {{{ # 
@@ -92,7 +206,7 @@ class HistoryReplay:
     def __init__( self
                 , item_capacity: Optional[int]
                 , action_capacity: Optional[int]
-                , matcher: type(Matcher)
+                , matcher: MatcherConstructor
                 , gamma: float = 1.
                 , step_penalty: float = 0.
                 , update_mode: str = "mean"
@@ -107,7 +221,7 @@ class HistoryReplay:
               the history pool
             action_capacity (Optional[int]): the optional action capacity of
               each item in the history pool
-            matcher (type(Matcher)): matcher constructor
+            matcher (MatcherConstructor): matcher constructor
 
             gamma (float): the discount in calculation of the value function
             step_penalty (float): an optional penalty for the step counts
@@ -127,7 +241,7 @@ class HistoryReplay:
 
         self._item_capacity: Optional[int] = item_capacity
         self._action_capacity: Optional[int] = action_capacity
-        self._matcher: type(Matcher) = matcher
+        self._matcher: MatcherConstructor = matcher
 
         self._gamma: float = gamma
         if n_step_flatten is not None:
