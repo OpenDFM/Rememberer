@@ -419,6 +419,7 @@ class AutoAgent(Agent):
                                                      , prompt=prompt
                                                      , max_tokens=self._max_tokens
                                                      , temperature=self._temperature
+                                                     , stop=self._stop
                                                      , request_timeout=self._request_timeout
                                                      )
                 self._last_request_time = datetime.datetime.now()
