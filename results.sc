@@ -677,6 +677,7 @@ format D 11 2 0
 format H 11 2 0
 format L 11 2 0
 format P 11 2 0
+hidecol B:E
 hidecol J:M
 label A0 = "Env Name (with low rate)"
 label B0 = "#Steps"
@@ -1164,10 +1165,10 @@ let O29 = @avg(O25:O28)
 let P29 = @avg(P25:P28)
 let Q29 = @avg(Q25:Q28)
 leftstring A33 = "备注：原版；加回报；W2（标注池）；W4（扩充的标注池）"
-goto A33
+goto A22
 movetosheet "complementary w/history"
 offscr_sc_cols 0
-offscr_sc_rows 0
+offscr_sc_rows 34
 nb_frozen_rows 0
 nb_frozen_cols 0
 nb_frozen_screenrows 0
@@ -1720,11 +1721,11 @@ let C108 = 3
 let D108 = C108/B108
 let E108 = 1
 label A109 = "Average"
-let B109 = @avg(B1:B86)
-let C109 = @avg(C1:C86)
-let D109 = @avg(D1:D86)
-let E109 = @avg(E1:E86)
-goto E1
+let B109 = @avg(B1:B108)
+let C109 = @avg(C1:C108)
+let D109 = @avg(D1:D108)
+let E109 = @avg(E1:E108)
+goto E109
 movetosheet "comp moreexpe"
 offscr_sc_cols 0
 offscr_sc_rows 0
@@ -1735,6 +1736,8 @@ nb_frozen_screencols 0
 format A 77 2 0
 format D 11 2 0
 format H 11 2 0
+format L 11 2 0
+hidecol B:E
 label A0 = "Env Name"
 label B0 = "#Steps"
 label C0 = "Reward"
@@ -1744,6 +1747,10 @@ label F0 = "#Steps"
 label G0 = "Reward"
 label H0 = "Reward Rate"
 label I0 = "Succeeds"
+label J0 = "#Steps"
+label K0 = "Reward"
+label L0 = "Reward Rate"
+label M0 = "Succeeds"
 label A1 = "add_a_contact_on_whatsapp-8.textproto"
 let B1 = 4
 let C1 = 2
@@ -1753,6 +1760,10 @@ let F1 = 2
 let G1 = 2
 let H1 = G1/F1
 let I1 = 1
+let J1 = 2
+let K1 = 2
+let L1 = K1/J1
+let M1 = 1
 label A2 = "become_a_specialist_physician-4.textproto"
 let B2 = 15
 let C2 = 1
@@ -1762,6 +1773,10 @@ let F2 = 15
 let G2 = 1
 let H2 = G2/F2
 let I2 = 0
+let J2 = 15
+let K2 = 1
+let L2 = K2/J2
+let M2 = 0
 label A3 = "craft_blu_tack_jewelry_and_accessories-8.textproto"
 let B3 = 15
 let C3 = 1
@@ -1771,6 +1786,10 @@ let F3 = 15
 let G3 = 1
 let H3 = G3/F3
 let I3 = 0
+let J3 = 11
+let K3 = 3
+let L3 = K3/J3
+let M3 = 1
 label A4 = "fix_a_front_load_washer_so_that_it_does_not_smell_with_washer_fan-4.textproto"
 let B4 = 15
 let C4 = 0
@@ -1780,6 +1799,10 @@ let F4 = 15
 let G4 = 0
 let H4 = G4/F4
 let I4 = 0
+let J4 = 2
+let K4 = 2
+let L4 = K4/J4
+let M4 = 1
 label A5 = "fix_wet_suede_shoes-6.textproto"
 let B5 = 15
 let C5 = 2
@@ -1789,6 +1812,10 @@ let F5 = 15
 let G5 = 2
 let H5 = G5/F5
 let I5 = 0
+let J5 = 7
+let K5 = 3
+let L5 = K5/J5
+let M5 = 1
 label A6 = "freeze_buttermilk-7.textproto"
 let B6 = 15
 let C6 = 1
@@ -1798,6 +1825,10 @@ let F6 = 15
 let G6 = 1
 let H6 = G6/F6
 let I6 = 0
+let J6 = 15
+let K6 = 2
+let L6 = K6/J6
+let M6 = 0
 label A7 = "get_zorua_in_pokPC3PA9mon_white-6.textproto"
 let B7 = 15
 let C7 = 2
@@ -1807,6 +1838,10 @@ let F7 = 4
 let G7 = 4
 let H7 = G7/F7
 let I7 = 1
+let J7 = 4
+let K7 = 4
+let L7 = K7/J7
+let M7 = 1
 label A8 = "identify_hickory_nuts-6.textproto"
 let B8 = 15
 let C8 = 3
@@ -1816,6 +1851,10 @@ let F8 = 15
 let G8 = 3
 let H8 = G8/F8
 let I8 = 0
+let J8 = 8
+let K8 = 4
+let L8 = K8/J8
+let M8 = 1
 label A9 = "meet_christian_girls-4.textproto"
 let B9 = 15
 let C9 = 3
@@ -1825,6 +1864,10 @@ let F9 = 5
 let G9 = 5
 let H9 = G9/F9
 let I9 = 1
+let J9 = 5
+let K9 = 4
+let L9 = K9/J9
+let M9 = 1
 label A10 = "record_electric_guitar-7.textproto"
 let B10 = 15
 let C10 = 1
@@ -1834,6 +1877,10 @@ let F10 = 15
 let G10 = 1
 let H10 = G10/F10
 let I10 = 0
+let J10 = 15
+let K10 = 1
+let L10 = K10/J10
+let M10 = 0
 label A11 = "remove_hair_removal_wax_from_the_carpet-4.textproto"
 let B11 = 15
 let C11 = 3
@@ -1843,6 +1890,10 @@ let F11 = 5
 let G11 = 5
 let H11 = G11/F11
 let I11 = 1
+let J11 = 10
+let K11 = 5
+let L11 = K11/J11
+let M11 = 1
 label A12 = "straighten_your_hair_without_chemicals-0.textproto"
 let B12 = 15
 let C12 = 2
@@ -1852,6 +1903,10 @@ let F12 = 3
 let G12 = 3
 let H12 = G12/F12
 let I12 = 1
+let J12 = 3
+let K12 = 3
+let L12 = K12/J12
+let M12 = 1
 label A13 = "wear_a_dress_to_school-6.textproto"
 let B13 = 15
 let C13 = 2
@@ -1861,6 +1916,10 @@ let F13 = 15
 let G13 = 2
 let H13 = G13/F13
 let I13 = 0
+let J13 = 15
+let K13 = 3
+let L13 = K13/J13
+let M13 = 0
 label A14 = "write_bold_text_on_skype-4.textproto"
 let B14 = 11
 let C14 = 4
@@ -1870,6 +1929,10 @@ let F14 = 5
 let G14 = 4
 let H14 = G14/F14
 let I14 = 1
+let J14 = 15
+let K14 = 3
+let L14 = K14/J14
+let M14 = 0
 label A15 = "Average"
 let B15 = @avg(B1:B14)
 let C15 = @avg(C1:C14)
@@ -1879,8 +1942,12 @@ let F15 = @avg(F1:F14)
 let G15 = @avg(G1:G14)
 let H15 = @avg(H1:H14)
 let I15 = @avg(I1:I14)
-leftstring A17 = "备注：原版；加回报"
-goto A17
+let J15 = @avg(J1:J14)
+let K15 = @avg(K1:K14)
+let L15 = @avg(L1:L14)
+let M15 = @avg(M1:M14)
+leftstring A17 = "备注：原版；加回报；W5（更正的扩充标注池）"
+goto I12
 movetosheet "comp moreexpe"
 mark a "w/ history" A1
 mark b "w/ history" I70
