@@ -73,7 +73,7 @@ def main():
     parser.add_argument("--save-replay", type=str)
     parser.add_argument("--item-capacity", type=int)
     parser.add_argument("--action-capacity", type=int)
-    parser.add_argument("--matcher", default="lcs", type=str, choices=["lcs"])
+    parser.add_argument("--matcher", default="lcs", type=str, choices=["lcs", "lcs+inspat"])
     parser.add_argument("--gamma", default=1., type=float)
     parser.add_argument("--step-penalty", default=0., type=float)
     parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
@@ -153,7 +153,14 @@ def main():
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
-    matcher_functions: Dict[str, type(history.Matcher)] = { "lcs": history.LCSNodeMatcher }
+    matcher_functions: Dict[str, history.MatcherConstructor]\
+            = { "lcs": history.LCSNodeMatcher
+              , "lcs+inspat": history.LambdaMatcherConstructor( [ history.LCSNodeMatcher
+                                                                , history.InsPatMatcher
+                                                                ]
+                                                              , [0.5, 0.5]
+                                                              ).get_lambda_matcher
+              }
     history_replay = history.HistoryReplay( args.item_capacity
                                           , args.action_capacity
                                           , matcher=matcher_functions[args.matcher]
@@ -214,8 +221,8 @@ def main():
 
     #  Work Flow {{{ # 
     max_nb_steps = 15
-    #for i in range(env.nb_tasks):
-    for _i, i in enumerate([5, 6, 7, 8, 11, 13]):
+    for i in range(10, env.nb_tasks):
+        #for _i, i in enumerate([5, 6, 7, 8, 11, 13]):
         #os.makedirs(args.dump_path[_i], exist_ok=True)
 
         model.reset()
