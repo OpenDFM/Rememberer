@@ -221,7 +221,7 @@ def main():
 
     #  Work Flow {{{ # 
     max_nb_steps = 15
-    for i in range(10, env.nb_tasks):
+    for i in range(env.nb_tasks):
         #for _i, i in enumerate([5, 6, 7, 8, 11, 13]):
         #os.makedirs(args.dump_path[_i], exist_ok=True)
 
