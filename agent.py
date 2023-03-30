@@ -3,7 +3,7 @@ import re
 import openai
 #import json
 import itertools
-#import tiktoken
+import tiktoken
 
 import lxml.etree
 import lxml.html
@@ -248,6 +248,8 @@ class AutoAgent(Agent):
         self._stop: Optional[str] = stop
         self._request_timeout: float = request_timeout
 
+        self._input_length_limit: int = 3700
+
         self._manual: bool = manual
         self._train: bool = train
 
@@ -257,7 +259,7 @@ class AutoAgent(Agent):
 
         openai.api_key = api_key
         self._rng: np.random.Generator = np.random.default_rng()
-        #self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
+        self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
         #  }}} method __init__ # 
 
     def reset(self):
@@ -328,10 +330,24 @@ class AutoAgent(Agent):
                                ]
                         ] = self._history_replay[(screen, task, instruction)]
 
+        #  Construct New Input {{{ # 
+        new_input: str = self._instantiate_input_template( command=task
+                                                         , html=screen
+                                                         , instruction=instruction
+                                                         , action_history=self._action_history
+                                                         , reward=reward
+                                                         , total_reward=total_reward
+                                                         ).strip()
+        nb_new_input_tokens: int = len(self._tokenizer.encode(new_input))
+        example_tokens_limit: int = self._input_length_limit - nb_new_input_tokens
+        #  }}} Construct New Input # 
+
         #  Construct Examplars {{{ # 
         examplars: List[str] = []
-        #  Contruct one Examplar {{{ # 
-        for i, cdd in enumerate(candidates[:min(len(candidates), 2)]):
+        nb_examplars = 2
+        i = 0
+        for cdd in candidates:
+            #  Contruct one Examplar {{{ # 
             key: history.HistoryReplay.Key
             record: history.HistoryReplay.Record
             key, record, _ = cdd
@@ -389,23 +405,21 @@ class AutoAgent(Agent):
                                                                      encouraged=encouraged
                                                                    , discouraged=discouraged
                                                                    )
-            examplars.append(examplar)
-        #  }}} Contruct one Examplar # 
-        example_str: str = "\n".join(reversed(examplars))
+            #  }}} Contruct one Examplar # 
+
+            examplar_length: int = len(self._tokenizer.encode(examplar))
+            if examplar_length<=example_tokens_limit:
+                examplars.append(examplar)
+                example_tokens_limit -= examplar_length
+                i += 1
+                if i>=nb_examplars:
+                    break
+
+        example_str: str = "\n".join(reversed(examplars)).strip()
         #  }}} Construct Examplars # 
 
-        #  Construct New Input {{{ # 
-        new_input: str = self._instantiate_input_template( command=task
-                                                         , html=screen
-                                                         , instruction=instruction
-                                                         , action_history=self._action_history
-                                                         , reward=reward
-                                                         , total_reward=total_reward
-                                                         )
-        #  }}} Construct New Input # 
-
-        prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str.strip()
-                                                                           , new_input=new_input.strip()
+        prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str
+                                                                           , new_input=new_input
                                                                            )
         try:
             #  Fetch Response {{{ # 
