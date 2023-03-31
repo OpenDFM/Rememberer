@@ -1,6 +1,7 @@
 import vh_to_html
 import re
 import openai
+import speechopenai
 #import json
 import itertools
 import tiktoken
@@ -9,7 +10,7 @@ import lxml.etree
 import lxml.html
 from android_env.wrappers import VhIoWrapper
 from typing import Dict, Pattern, Match, List, NamedTuple, Tuple, Set
-from typing import Optional
+from typing import Optional, Callable, TypeVar
 import numpy as np
 import string
 import history
@@ -197,6 +198,8 @@ class ManualAgent(Agent):
         #  }}} method _get_action # 
     #  }}} class ManualAgent # 
 
+R = TypeVar("R")
+
 class AutoAgent(Agent):
     #  class AutoAgent {{{ # 
 
@@ -218,6 +221,7 @@ class AutoAgent(Agent):
                 , request_timeout: float = 3.
                 , manual: bool = False
                 , train: bool = True
+                , with_speech: bool = False
                 ):
         #  method __init__ {{{ # 
         """
@@ -236,6 +240,9 @@ class AutoAgent(Agent):
               of sending it to the model
             train (bool): indicats whether the history replay should be updated
               or not
+
+            with_speech (bool): whether the speech wrapper should be used
+              instead or not
         """
 
         super(AutoAgent, self).__init__()
@@ -257,7 +264,14 @@ class AutoAgent(Agent):
 
         self._history_replay: history_replay.HistoryReplay = history_replay
 
-        openai.api_key = api_key
+        if with_speech:
+            self._completor: Callable[..., R] = speechopenai.OpenAI(api_key)
+            self._extractor: Callable[..., R] = lambda x: x
+        else:
+            openai.api_key = api_key
+            self._completor: Callable[..., R] = openai.Completion.create
+            self._extractor: Callable[R, speechopenai.Result] = lambda cplt: cplt.choices[0]
+
         self._rng: np.random.Generator = np.random.default_rng()
         self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
         #  }}} method __init__ # 
@@ -429,21 +443,24 @@ class AutoAgent(Agent):
                 timedelta: float = timedelta.total_seconds()
                 if 3.1 - timedelta > 0.:
                     time.sleep(3.1-timedelta)
-                completion = openai.Completion.create( model=self._model
-                                                     , prompt=prompt
-                                                     , max_tokens=self._max_tokens
-                                                     , temperature=self._temperature
-                                                     , stop=self._stop
-                                                     , request_timeout=self._request_timeout
-                                                     )
+
+                completion: R = self._completor( model=self._model
+                                               , prompt=prompt
+                                               , max_tokens=self._max_tokens
+                                               , temperature=self._temperature
+                                               , stop=self._stop
+                                               , request_timeout=self._request_timeout
+                                               )
+                completion: speechopenai.Result = self._extractor(completion)
+
                 self._last_request_time = datetime.datetime.now()
 
                 logger.debug( "Return: {text: %s, reason: %s}"
-                            , repr(completion.choices[0].text)
-                            , repr(completion.choices[0].finish_reason)
+                            , repr(completion.text)
+                            , repr(completion.finish_reason)
                             )
 
-                response: str = completion.choices[0].text.strip()
+                response: str = completion.text.strip()
             else:
                 single_line_response: str = input(prompt)
                 response: List[str] = []
