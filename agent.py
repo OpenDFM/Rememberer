@@ -198,7 +198,7 @@ class ManualAgent(Agent):
         #  }}} method _get_action # 
     #  }}} class ManualAgent # 
 
-R = TypeVar("R")
+R = TypeVar("Result")
 
 class AutoAgent(Agent):
     #  class AutoAgent {{{ # 
