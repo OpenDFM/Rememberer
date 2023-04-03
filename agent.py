@@ -265,7 +265,7 @@ class AutoAgent(Agent):
         self._history_replay: history_replay.HistoryReplay = history_replay
 
         if with_speech:
-            self._completor: Callable[..., R] = speechopenai.OpenAI(api_key)
+            self._completor: Callable[..., R] = speechopenai.OpenAI(api_key).Completion
             self._extractor: Callable[..., R] = lambda x: x
         else:
             openai.api_key = api_key
