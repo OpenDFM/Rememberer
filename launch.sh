@@ -14,3 +14,4 @@ python main.py --log-dir logs-historyless/\
 			   --max-tokens 50\
 			   --stop "Discouraged"\
 			   --request-timeout 5.
+			   --speech
