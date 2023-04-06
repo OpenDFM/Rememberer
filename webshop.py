@@ -13,6 +13,8 @@ import argparse
 import datetime
 import os
 
+import numpy as np
+
 #  Interfaces of WebAgentTextEnv {{{ # 
 # def init( observation_mode: str = "html" # "html": raw html
 #                                          # "text": " [SEP] " joined element text contents
@@ -63,9 +65,10 @@ import os
 # text_to_clickable: Dict[str, Any] # {element_text: bs4 element}
 # instruction_text: str
 # 
-# def reset() -> Tuple[ str # observation
-#                     , None
-#                     ]
+# def reset( session: Optional[Union[int, str]] # int for the goal index
+#          ) -> Tuple[ str # observation
+#                    , None
+#                    ]
 #  }}} Interfaces of WebAgentTextEnv # 
 
 def main():
@@ -140,16 +143,19 @@ def main():
                                             else DEFAULT_FILE_PATH)
                   , num_products=None
                   , num_prev_actions=args.prev_actions
-                  , num_prev_obs=args.prev_obs
+                  , num_prev_obs=args.prev_observations
                   )
     #  }}} Build Agent and Environment # 
 
     #  Workflow {{{ # 
     max_nb_tasks = 10
     max_nb_steps = 15
+    max_task_id = 1000
+    rng = np.random.default_rng()
     for i in range(max_nb_tasks):
+        j: np.int64 = rng.integers(max_task_id)
         model.reset()
-        observation: str = env.reset()[0]
+        observation: str = env.reset(session=j)[0]
         task: str = env.get_instruction_text()
 
         nb_steps = 0
@@ -175,10 +181,10 @@ def main():
                 nb_nothing_steps += 1
 
         logger.info("\x1b[43mEND!\x1b[0m %s", task)
-        logger.info( "\x1b[42mEND!\x1b[0m TaskIdx: %d, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
-                   , i, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
+        logger.info( "\x1b[42mEND!\x1b[0m TaskIdx: %d, TaskId: %d, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
+                   , i, j, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
                    )
     #  }}} Workflow # 
 
-#if __name__ == "__main__":
-    #main()
+if __name__ == "__main__":
+    main()

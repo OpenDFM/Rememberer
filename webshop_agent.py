@@ -58,7 +58,7 @@ class Agent(abc.ABC):
 class ManualAgent(Agent):
     #  class ManualAgent {{{ # 
     def __init__(self, env_mode: str):
-        super(ManualAgent, self).__init__()
+        super(ManualAgent, self).__init__(env_mode)
 
     def _get_action( self
                    , task: str

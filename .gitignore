@@ -7,6 +7,7 @@ bandits.yaml
 logs
 logs-historyless/
 bandits.logs/
+logs-webshop/
 
 __pycache__
 tags
