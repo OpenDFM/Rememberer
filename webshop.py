@@ -4,9 +4,12 @@ import sys
 sys.path.append("../WebShop")
 
 import gym
-import web_agent_site.envs
+import importlib
+importlib.import_module("web_agent_site.envs")
+#import web_agent_site.envs
 from web_agent_site.utils import DEFAULT_FILE_PATH
 import webshop_agent
+from typing import List
 
 import logging
 import argparse
@@ -155,8 +158,9 @@ def main():
     for i in range(max_nb_tasks):
         j: np.int64 = rng.integers(max_task_id)
         model.reset()
-        observation: str = env.reset(session=int(j))[0]
         task: str = env.get_instruction_text()
+        observation: str = env.reset(session=int(j))[0]
+        available_actions: List[str] = env.get_available_actions()["clickables"]
 
         nb_steps = 0
         nb_nothing_steps = 0
@@ -169,6 +173,7 @@ def main():
                                                 , observation
                                                 , reward
                                                 , total_reward
+                                                , available_actions
                                                 )
             if action!="NOTHINGG":
                 observation, reward, done, _ = env.step(action)
