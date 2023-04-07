@@ -1,7 +1,5 @@
 import vh_to_html
 import re
-import openai
-import speechopenai
 #import json
 import itertools
 import tiktoken
@@ -9,22 +7,21 @@ import tiktoken
 import lxml.etree
 import lxml.html
 from android_env.wrappers import VhIoWrapper
-from typing import Dict, Pattern, Match, List, NamedTuple, Tuple, Set
-from typing import Optional, Callable, TypeVar
+from typing import Dict, Pattern, Match, List, Tuple, Set
+from typing import Optional
 import numpy as np
-import string
+#import string
 import history
+import agent_protos
 
 import abc
 import logging
 import datetime
 import time
-import traceback
-import io
+#import traceback
+#import io
 
-logger = logging.getLogger("agent")
-ocounter = 0
-ologger = logging.getLogger("openaiE")
+logger = logging.getLogger("wikihow")
 
 Key = Tuple[str, str, str]
 Action = Tuple[str, str]
@@ -199,21 +196,11 @@ class ManualAgent(Agent):
         #  }}} method _get_action # 
     #  }}} class ManualAgent # 
 
-R = TypeVar("Result")
-
-class AutoAgent(Agent):
+class AutoAgent(Agent, agent_protos.OpenAIClient[Action]):
     #  class AutoAgent {{{ # 
-
-    class TemplateGroup(NamedTuple):
-        #  class TemplateGroup {{{ # 
-        whole_template: string.Template
-        input_template: string.Template
-        advice_template: string.Template
-        #  }}} class TemplateGroup # 
-
     def __init__( self
                 , history_replay: history.HistoryReplay[Key, Action]
-                , prompt_templates: TemplateGroup
+                , prompt_templates: agent_protos.TemplateGroup
                 , api_key: str
                 , model: str = "text-davinci-003"
                 , max_tokens: int = 20
@@ -228,7 +215,7 @@ class AutoAgent(Agent):
         """
         Args:
             history_replay (history.HistoryReplay[Key, Action]): history replay
-            prompt_templates (TemplateGroup): templates for the prompt
+            prompt_templates (agent_protos.TemplateGroup): templates for the prompt
 
             api_key (str): openai api key
             model (str): the model to use
@@ -247,31 +234,22 @@ class AutoAgent(Agent):
         """
 
         super(AutoAgent, self).__init__()
-
-        self._prompt_templates: AutoAgent.TemplateGroup = prompt_templates
-        self._api_key: str = api_key
-        self._model: str = model
-        self._max_tokens: int = max_tokens
-        self._temperature: float = temperature
-        self._stop: Optional[str] = stop
-        self._request_timeout: float = request_timeout
+        super(Agent, self).__init__( prompt_templates
+                                   , api_key
+                                   , model
+                                   , max_tokens
+                                   , temperature
+                                   , stop
+                                   , request_timeout
+                                   , 3.1
+                                   , with_speech
+                                   , manual
+                                   )
 
         self._input_length_limit: int = 3700
 
-        self._manual: bool = manual
         self._train: bool = train
-
-        self._last_request_time: datetime.datetime = datetime.datetime.now()
-
-        self._history_replay: history_replay.HistoryReplay = history_replay
-
-        if with_speech:
-            self._completor: Callable[..., R] = speechopenai.OpenAI(api_key).Completion
-            self._extractor: Callable[..., R] = lambda x: x
-        else:
-            openai.api_key = api_key
-            self._completor: Callable[..., R] = openai.Completion.create
-            self._extractor: Callable[R, speechopenai.Result] = lambda cplt: cplt.choices[0]
+        self._history_replay: history_replay.HistoryReplay[Key, Action] = history_replay
 
         self._rng: np.random.Generator = np.random.default_rng()
         self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
@@ -320,13 +298,28 @@ class AutoAgent(Agent):
                                                       )
         #  }}} method _instantiate_input_template # 
 
+    def _parse_action(self, response: str) -> Action:
+        #  Parse Action Text {{{ # 
+        encouraged_result: str = response.split("Disc", maxsplit=1)[0]
+        encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
+        encouraged_result = encouraged_result.strip().splitlines()[0]
+        encouraging_texts: List[str] = encouraged_result.split("->", maxsplit=1)
+
+        action_text: str = encouraging_texts[0].strip()
+
+        action_tail: List[str] = encouraging_texts[1].strip().split(maxsplit=1)
+        element_html: str = action_tail[1].strip() if len(action_tail)>1 else ""
+
+        return action_text, element_html
+        #  }}} Parse Action Text # 
+
     def _get_action( self
                    , task: str
                    , screen: str
                    , instruction: str
                    , reward: float
                    , total_reward: float
-                   ) -> str:
+                   ) -> Action:
         #  method _get_action {{{ # 
         #  Replay Updating {{{ # 
         if self._train:
@@ -436,66 +429,14 @@ class AutoAgent(Agent):
         prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str
                                                                            , new_input=new_input
                                                                            )
-        try:
-            #  Fetch Response {{{ # 
-            if not self._manual:
-                request_time = datetime.datetime.now()
-                timedelta: datetime.timedelta = request_time - self._last_request_time
-                timedelta: float = timedelta.total_seconds()
-                if 3.1 - timedelta > 0.:
-                    time.sleep(3.1-timedelta)
-
-                completion: R = self._completor( model=self._model
-                                               , prompt=prompt
-                                               , max_tokens=self._max_tokens
-                                               , temperature=self._temperature
-                                               , stop=self._stop
-                                               , request_timeout=self._request_timeout
-                                               )
-                completion: speechopenai.Result = self._extractor(completion)
-
-                self._last_request_time = datetime.datetime.now()
-
-                logger.debug( "Return: {text: %s, reason: %s}"
-                            , repr(completion.text)
-                            , repr(completion.finish_reason)
-                            )
-
-                response: str = completion.text.strip()
-            else:
-                single_line_response: str = input(prompt)
-                response: List[str] = []
-                while single_line_response!="":
-                    response.append(single_line_response)
-                    single_line_response = input()
-                response: str = "\n".join(response)
-
-                logger.debug( "Response: %s"
-                            , response
-                            )
-            #  }}} Fetch Response # 
-
-            #  Parse Action Text {{{ # 
-            encouraged_result: str = response.split("Disc", maxsplit=1)[0]
-            encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
-            encouraged_result = encouraged_result.strip().splitlines()[0]
-            encouraging_texts: List[str] = encouraged_result.split("->", maxsplit=1)
-
-            action_text: str = encouraging_texts[0].strip()
-
-            action_tail: List[str] = encouraging_texts[1].strip().split(maxsplit=1)
-            element_html: str = action_tail[1].strip() if len(action_tail)>1 else ""
-            #  }}} Parse Action Text # 
-        except Exception as e:
-            #nonlocal ocounter
-            with io.StringIO() as bfr:
-                ocounter = globals()["ocounter"]
-                traceback.print_exc(file=bfr)
-                ologger.debug("%d: %s", ocounter, bfr.getvalue())
-                logger.debug("Response error %d, %s", ocounter, str(type(e)))
-                globals()["ocounter"] += 1
+        action: Optional[Action] = self._get_response(prompt)
+        if action is None:
             action_text: str = "NOTHINGG"
             element_html: str = ""
+        else:
+            action_text: str
+            element_html: str
+            action_text, element_html = action
 
         logger.debug("Action: %s %s", action_text, element_html)
 

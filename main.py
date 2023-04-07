@@ -10,6 +10,7 @@ import yaml
 import datetime
 import string
 
+import agent_protos
 import agent
 import android_env
 from android_env.wrappers import VhIoWrapper
@@ -138,8 +139,8 @@ def main():
     hdebug_handler.setFormatter(formatter)
 
     #stdout_handler.addFilter(logging.Filter("main"))
-    stdout_handler.addFilter(logging.Filter("agent"))
-    sdebug_handler.addFilter(logging.Filter("agent"))
+    stdout_handler.addFilter(logging.Filter("wikihow"))
+    sdebug_handler.addFilter(logging.Filter("wikihow"))
     openai_error_handler.addFilter(logging.Filter("openaiE"))
     hdebug_handler.addFilter(logging.Filter("history"))
 
@@ -150,7 +151,7 @@ def main():
     logger.addHandler(openai_error_handler)
     logger.addHandler(hdebug_handler)
 
-    logger = logging.getLogger("agent")
+    logger = logging.getLogger("wikihow")
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
@@ -180,7 +181,7 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
-    template_group = agent.AutoAgent.TemplateGroup( whole_template=prompt_template
+    template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                   , input_template=input_template
                                                   , advice_template=advice_template
                                                   )
