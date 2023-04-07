@@ -133,6 +133,63 @@ def convert_tree(node: lxml.etree.Element) ->\
     return result_list, bbox_list
     #  }}} function convert_tree # 
 
+def convert_simple_page(page: str) -> List[str]:
+    """
+    Args:
+        page (str): " [SEP] " concatenated page observation
+
+    Returns:
+        List[str]: page observation devided at " [SEP] "
+    """
+
+    return page.split(" [SEP] ")
+
+def simplify_html(page: str, with_eid: bool = False) -> List[lxml.html.Element]:
+    #  function simplify_html {{{ # 
+    """
+    Args:
+        page (str): full html page observation
+        with_eid (bool): if an auxiliary `eid` (element id) should be added to
+          the returned elements
+
+    Returns:
+        List[str]: only leaf nodes of the html
+    """
+
+    page = page.replace("<br>", "&#10;")\
+               .replace("<br/>", "&#10;")
+    html_root: lxml.html.Element = lxml.html.fromstring(page)
+    for n in list(html_root):
+        if n.tag=="body":
+            body_root: lxml.html.Element = n
+            break
+    result_list: List[str] = []
+
+    if with_eid:
+        id_counter = 0
+    for n in body_root.iter():
+        if isinstance(n, lxml.html.HtmlComment):
+            continue
+        if len(list(n))==0:
+            if with_eid:
+                n.set("eid", str(id_counter))
+                id_counter += 1
+            if "href" in n.attrib:
+                del n.attrib["href"]
+            if "data-url" in n.attrib:
+                del n.attrib["data-url"]
+            if "src" in n.attrib:
+                del n.attrib["src"]
+            result_list.append( lxml.html.tostring( n
+                                                  , pretty_print=True
+                                                  , encoding="unicode"
+                                                  ).strip()\
+                                                   .replace("\n", "&#10;")\
+                                                   .replace("\r", "&#13;")
+                              )
+    return result_list
+    #  }}} function simplify_html # 
+
 if __name__ == "__main__":
     import sys
 

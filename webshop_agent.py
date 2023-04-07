@@ -2,6 +2,7 @@ import abc
 import logging
 
 from typing import List
+import vh_to_html
 
 logger = logging.getLogger("webshop")
 ocounter = 0
@@ -15,6 +16,16 @@ class Agent(abc.ABC):
         #  method __init__ {{{ # 
         self._action_history: List[Action] = []
         self._env_mode: str = env_mode
+
+        self._preprocess_observation: Callable[[str], List[str]]
+        if env_mode=="html":
+            self._preprocess_observation = vh_to_html.simplify_html
+        elif env_mode=="text":
+            self._preprocess_observation = vh_to_html.convert_simple_page
+        elif env_mode=="text_rich":
+            self._preprocess_observation = lambda url: [url]
+        elif env_mode=="url":
+            self._preprocess_observation = lambda url: [url]
         #  }}} method __init__ # 
 
     def reset(self):
@@ -36,7 +47,7 @@ class Agent(abc.ABC):
         """
 
         action_str: Action = self._get_action( task
-                                             , observation
+                                             , self._preprocess_observation(observation)
                                              , reward
                                              , total_reward
                                              )
@@ -70,7 +81,7 @@ class ManualAgent(Agent):
         print("Task:")
         print(task)
         print("Observation:")
-        print(observation)
+        print("\n".join(observation))
         print("Action History:")
         print("\n".join(self._action_history))
         print("Last Reward:")

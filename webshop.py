@@ -138,7 +138,7 @@ def main():
     model = webshop_agent.ManualAgent(args.observation_mode)
 
     env = gym.make( "WebAgentTextEnv-v0"
-                  , observation_mode="text"
+                  , observation_mode=args.observation_mode
                   , file_path=(args.file_path if args.file_path is not None and args.file_path != ""
                                             else DEFAULT_FILE_PATH)
                   , num_products=None
@@ -155,7 +155,7 @@ def main():
     for i in range(max_nb_tasks):
         j: np.int64 = rng.integers(max_task_id)
         model.reset()
-        observation: str = env.reset(session=j)[0]
+        observation: str = env.reset(session=int(j))[0]
         task: str = env.get_instruction_text()
 
         nb_steps = 0
