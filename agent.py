@@ -26,6 +26,7 @@ logger = logging.getLogger("agent")
 ocounter = 0
 ologger = logging.getLogger("openaiE")
 
+Key = Tuple[str, str, str]
 Action = Tuple[str, str]
 
 class Agent(abc.ABC):
@@ -211,7 +212,7 @@ class AutoAgent(Agent):
         #  }}} class TemplateGroup # 
 
     def __init__( self
-                , history_replay: history.HistoryReplay
+                , history_replay: history.HistoryReplay[Key, Action]
                 , prompt_templates: TemplateGroup
                 , api_key: str
                 , model: str = "text-davinci-003"
@@ -226,7 +227,7 @@ class AutoAgent(Agent):
         #  method __init__ {{{ # 
         """
         Args:
-            history_replay (history.HistoryReplay): history replay
+            history_replay (history.HistoryReplay[Key, Action]): history replay
             prompt_templates (TemplateGroup): templates for the prompt
 
             api_key (str): openai api key
@@ -338,8 +339,8 @@ class AutoAgent(Agent):
                                        )
         #  }}} Replay Updating # 
 
-        candidates: List[ Tuple[ history.HistoryReplay.Key
-                               , history.HistoryReplay.Record
+        candidates: List[ Tuple[ Key
+                               , history.HistoryReplay.Record[Key, Action]
                                , float
                                ]
                         ] = self._history_replay[(screen, task, instruction)]
@@ -362,12 +363,12 @@ class AutoAgent(Agent):
         i = 0
         for cdd in candidates:
             #  Contruct one Examplar {{{ # 
-            key: history.HistoryReplay.Key
-            record: history.HistoryReplay.Record
+            key: Key
+            record: history.HistoryReplay.Record[Key, Action]
             key, record, _ = cdd
-            info_dict: history.HistoryReplay.InfoDict = record["other_info"]
+            info_dict: history.HistoryReplay.InfoDict[Key, Action] = record["other_info"]
 
-            action_dict: history.HistoryReplay.ActionDict = record["action_dict"]
+            action_dict: history.HistoryReplay.ActionDict[Key, Action] = record["action_dict"]
             actions: List[Tuple[Action, float]] = sorted( map( lambda itm: (itm[0], itm[1]["qvalue"])
                                                           , action_dict.items()
                                                           )

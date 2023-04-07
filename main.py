@@ -154,7 +154,7 @@ def main():
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
-    matcher_functions: Dict[str, history.MatcherConstructor]\
+    matcher_functions: Dict[str, history.MatcherConstructor[agent.Key]]\
             = { "lcs": history.LCSNodeMatcher
               , "lcs+inspat": history.LambdaMatcherConstructor( [ history.LCSNodeMatcher
                                                                 , history.InsPatMatcher
@@ -162,15 +162,16 @@ def main():
                                                               , [0.5, 0.5]
                                                               ).get_lambda_matcher
               }
-    history_replay = history.HistoryReplay( args.item_capacity
-                                          , args.action_capacity
-                                          , matcher=matcher_functions[args.matcher]
-                                          , gamma=args.gamma
-                                          , step_penalty=args.step_penalty
-                                          , update_mode=args.update_mode
-                                          , learning_rate=args.learning_rate
-                                          , n_step_flatten=args.n_step_flatten
-                                          )
+    history_replay: history.HistoryReplay[agent.Key, agent.Action]\
+            = history.HistoryReplay( args.item_capacity
+                                   , args.action_capacity
+                                   , matcher=matcher_functions[args.matcher]
+                                   , gamma=args.gamma
+                                   , step_penalty=args.step_penalty
+                                   , update_mode=args.update_mode
+                                   , learning_rate=args.learning_rate
+                                   , n_step_flatten=args.n_step_flatten
+                                   )
     history_replay.load_yaml(args.load_replay)
 
     with open(os.path.join(args.prompt_template, "prompt_pth.txt")) as f:

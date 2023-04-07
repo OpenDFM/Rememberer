@@ -1,5 +1,5 @@
 from typing import Dict, Tuple, Deque, List
-from typing import Union, Optional, Callable, Sequence
+from typing import Union, Optional, Callable, Sequence, TypeVar, Generic, Hashable
 import abc
 #import dm_env
 
@@ -10,37 +10,39 @@ import yaml
 
 import logging
 
-logger = logging.getLogger("agent.history")
+#logger = logging.getLogger("agent.history")
 hlogger = logging.getLogger("history")
 
-class Matcher(abc.ABC):
+Key = TypeVar("Key", bound=Hashable)
+Action = TypeVar("Action", bound=Hashable)
+
+class Matcher(abc.ABC, Generic[Key]):
     #  class Matcher {{{ # 
-    def __init__(self, query: "HistoryReplay.Key"):
+    def __init__(self, query: Key):
         #  method __init__ {{{ # 
         self._query: HistoryReplay.Key = query
         #  }}} method __init__ # 
 
-    def __call__(self, key: "HistoryReplay.Key") -> float:
+    def __call__(self, key: Key) -> float:
         raise NotImplementedError
     #  }}} class Matcher # 
 
-MatcherConstructor = Callable[["HistoryReplay.Key"], Matcher]
+MatcherConstructor = Callable[[Key], Matcher[Key]]
 
-class LCSNodeMatcher(Matcher):
+class LCSNodeMatcher(Matcher[Tuple[str, ...]]):
     #  class LCSNodeMatcher {{{ # 
-    def __init__(self, query: "HistoryReplay.Key"):
+    def __init__(self, query: Tuple[str, ...]):
         #  method __init__ {{{ # 
         super(LCSNodeMatcher, self).__init__(query)
 
-        screen: str
-        screen, _, _ = self._query
+        screen: str = self._query[0]
         self._node_sequence: List[str] = list( map( lambda n: n[1:n.index(" ")]
                                                   , screen.splitlines()
                                                   )
                                              )
         #  }}} method __init__ # 
 
-    def __call__(self, key: "HistoryReplay.Key") -> float:
+    def __call__(self, key: Tuple[str, ...]) -> float:
         #  method __call__ {{{ # 
         key_screen: str = key[0]
         key_node_sequence: List[str] = list( map( lambda n: n[1:n.index(" ")]
@@ -72,7 +74,7 @@ class LCSNodeMatcher(Matcher):
         #  }}} method __call__ # 
     #  }}} class LCSNodeMatcher # 
 
-class InsPatMatcher(Matcher):
+class InsPatMatcher(Matcher[Tuple[..., str]]):
     #  class InsPatMatcher {{{ # 
     _score_matrix: np.ndarray\
             = np.array( [ [1., .1, 0., 0., 0., 0.]
@@ -85,12 +87,11 @@ class InsPatMatcher(Matcher):
                       , dtype=np.float32
                       )
 
-    def __init__(self, query: "HistoryReplay.Key"):
+    def __init__(self, query: Tuple[..., str]):
         #  method __init__ {{{ # 
         super(InsPatMatcher, self).__init__(query)
 
-        instruction: str
-        _, _, instruction = self._query
+        instruction: str = self._query[-1]
 
         self._pattern_id: int
         self._pattern_name: str
@@ -103,12 +104,12 @@ class InsPatMatcher(Matcher):
                      )
         #  }}} method __init__ # 
 
-    def __call__(self, key: "HistoryReplay.Key") -> float:
+    def __call__(self, key: Tuple[..., str]) -> float:
         #  method __call__ {{{ # 
         if self._pattern_id==-1:
             return 0
 
-        key_instruction: str = key[2]
+        key_instruction: str = key[-1]
         key_pattern_id: int
         key_pattern_name: str
         key_pattern_id, key_pattern_name = InsPatMatcher._get_pattern(key_instruction)
@@ -150,13 +151,13 @@ class InsPatMatcher(Matcher):
         #  }}} method _get_pattern # 
     #  }}} class InsPatMatcher # 
 
-class LambdaMatcher(Matcher):
+class LambdaMatcher(Matcher[Key]):
     #  class LambdaMatcher {{{ # 
-    def __init__(self, matchers: List[Matcher], weights: Sequence[float]):
-        self._matchers: List[Matcher] = matchers
+    def __init__(self, matchers: List[Matcher[Key]], weights: Sequence[float]):
+        self._matchers: List[Matcher[Key]] = matchers
         self._lambdas: np.ndarray = np.array(list(weights), dtype=np.float32)
 
-    def __call__(self, key: "HistoryReplay.Key") -> float:
+    def __call__(self, key: Key) -> float:
         scores: np.ndarray = np.asarray( list( map( lambda mch: mch(key)
                                                   , self._matchers
                                                   )
@@ -166,30 +167,30 @@ class LambdaMatcher(Matcher):
         return float(np.sum(self._lambdas*scores))
     #  }}} class LambdaMatcher # 
 
-class LambdaMatcherConstructor:
+class LambdaMatcherConstructor(Generic[Key]):
     #  class LambdaMatcherConstructor {{{ # 
     def __init__( self
-                , matchers: List[MatcherConstructor]
+                , matchers: List[MatcherConstructor[Key]]
                 , weights: Sequence[float]
                 ):
-        self._matchers: List[MatcherConstructor] = matchers
+        self._matchers: List[MatcherConstructor[Key]] = matchers
         self._weights: Sequence[float] = weights
 
-    def get_lambda_matcher(self, query):
-        matchers: List[Matcher] = list( map( lambda mch: mch(query)
+    def get_lambda_matcher(self, query) -> LambdaMatcher[Key]:
+        matchers: List[Matcher[Key]] = list( map( lambda mch: mch(query)
                                            , self._matchers
                                            )
                                       )
         return LambdaMatcher(matchers, self._weights)
     #  }}} class LambdaMatcherConstructor # 
 
-class HistoryReplay:
+class HistoryReplay(Generic[Key, Action]):
     #  class HistoryReplay {{{ # 
-    Key = Tuple[ str # screen representation
-               , str # task description
-               , str # step instruction
-               ]
-    Action = Tuple[str, str]
+    #Key = Tuple[ str # screen representation
+               #, str # task description
+               #, str # step instruction
+               #]
+    #Action = Tuple[str, str]
     InfoDict = Dict[ str
                    , Union[ float
                           , int
@@ -235,7 +236,7 @@ class HistoryReplay:
               or "oldest"
         """
 
-        self._record: Dict[ HistoryReplay.Key
+        self._record: Dict[ Key
                           , HistoryReplay.Record
                           ] = {}
 
@@ -261,9 +262,9 @@ class HistoryReplay:
         self._action_history_update_mode: str = action_history_update_mode
 
         maxlenp1: Optional[int] = self._n_step_flatten+1 if self._n_step_flatten is not None else None
-        self._action_buffer: Deque[Optional[HistoryReplay.Action]] = collections.deque(maxlen=self._n_step_flatten)
-        self._action_history: List[HistoryReplay.Action] = []
-        self._observation_buffer: Deque[HistoryReplay.Key]\
+        self._action_buffer: Deque[Optional[Action]] = collections.deque(maxlen=self._n_step_flatten)
+        self._action_history: List[Action] = []
+        self._observation_buffer: Deque[Key]\
                 = collections.deque(maxlen=maxlenp1)
         self._reward_buffer: Deque[float] = collections.deque(maxlen=maxlenp1)
         self._total_reward: float = 0.
@@ -337,11 +338,11 @@ class HistoryReplay:
             return
 
         step = self._observation_buffer[0]
-        action: HistoryReplay.Action = self._action_buffer[0]
-        step_: HistoryReplay.Key = self._observation_buffer[-1]
+        action: Action = self._action_buffer[0]
+        step_: Key = self._observation_buffer[-1]
         reward: float = self._reward_buffer[1]
 
-        action_history: List[HistoryReplay.Action] = self._action_history[:-self._n_step_flatten]
+        action_history: List[Action] = self._action_history[:-self._n_step_flatten]
         last_reward: float = self._reward_buffer[0]
         total_reward: float = self._total_reward_buffer[0]
 
@@ -404,7 +405,7 @@ class HistoryReplay:
                                             , list(self._reward_buffer)[:-1]
                                             , list(self._total_reward_buffer)[:-1]
                                             ):
-            action_history: List[HistoryReplay.Action] = self._action_history[:e_p]
+            action_history: List[Action] = self._action_history[:e_p]
             if not self._insert_key( k
                                    , action_history
                                    , l_rwd
@@ -430,7 +431,7 @@ class HistoryReplay:
                    ) -> bool:
         #  method _insert_key {{{ # 
 
-        logger.debug("Record: %d, Keys: %d", len(self._record), len(self._keys))
+        hlogger.debug("Record: %d, Keys: %d", len(self._record), len(self._keys))
 
         if key not in self._record:
             #  Insertion Policy (Static Capacity Limie) {{{ # 
