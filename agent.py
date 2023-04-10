@@ -18,7 +18,7 @@ import time
 
 logger = logging.getLogger("wikihow")
 
-Key = Tuple[str, str, str]
+Key = Tuple[str, str, str] # (observation, task, instruction)
 Action = Tuple[str, str]
 
 class Agent(abc.ABC):

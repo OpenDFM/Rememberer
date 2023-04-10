@@ -1,7 +1,7 @@
 import abc
 import logging
 
-from typing import List
+from typing import List, Tuple
 from typing import Callable, Optional
 import agent_protos
 
@@ -11,10 +11,8 @@ import numpy as np
 import tiktoken
 
 logger = logging.getLogger("webshop")
-ocounter = 0
-ologger = logging.getLogger("openaiE")
 
-Key = str
+Key = Tuple[str, str, str] # (observation, task, available_actions)
 Action = str
 
 class Agent(abc.ABC):
@@ -145,7 +143,7 @@ class AutoAgent( Agent
                                    )
 
         # TODO: adjust the length limit according to the preamble
-        # self._input_length_limit: int = 3700
+        self._input_length_limit: int = 3700
 
         self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
         super(agent_protos.OpenAIClient, self).__init__( history_replay
@@ -158,6 +156,74 @@ class AutoAgent( Agent
         super(AutoAgent, self).reset()
         self._history_replay.new_trajectory()
 
+    def _instantiate_input_template( self
+                                   , task: str
+                                   , observation: str
+                                   , action_history: List[Action]
+                                   , reward: float
+                                   , total_reward: float
+                                   , available_actions: str
+                                   ):
+        #  method _instantiate_input_template {{{ # 
+        return self._prompt_templates.input_template.safe_substitute(
+                                                        task=task
+                                                      , observation=\
+                                                              "\n".join(
+                                                                  map( lambda l: "  " + l
+                                                                     , observation.splitlines()
+                                                                     )
+                                                                )
+                                                      , actions=\
+                                                              "\n".join(
+                                                                  map( lambda act: "- " + act
+                                                                     , action_history[-min(5, len(action_history)):]
+                                                                     )
+                                                                )
+                                                      , reward="{:.1f}".format(reward)
+                                                      , total_reward="{:.1f}".format(total_reward)
+                                                      , available_actions=\
+                                                              "\n".join(
+                                                                  map( lambda act: "- " + act
+                                                                     , available_actions.splitlines()
+                                                                     )
+                                                                )
+                                                      )
+        #  }}} method _instantiate_input_template # 
+
+    def _random_action(self, key: Key) -> Action:
+        #  method _random_action {{{ # 
+        available_actions: List[str] = key[-1].splitlines()
+        action: np.int64 = self._rng.integers(len(available_actions))
+        return "click[{:}]".format(available_actions[action])
+        #  }}} method _random_action # 
+
+    def _action_to_string(self, action: Action, value: float) -> str:
+        return "{:} -> {:.1f}".format(action, value)
+
+    def _examplar_to_string( self
+                           , index: int
+                           , key: Key
+                           , info_dict: history.HistoryReplay.InfoDict[Action]
+                           , encouraged: str
+                           , discouraged: str
+                           ) -> str:
+        #  method _examplar_to_string {{{ # 
+        examplar: str = "Example {:d}:\n\n".format(index+1)\
+                      + self._instantiate_input_template( task=key[1]
+                                                        , observation=key[0]
+                                                        , action_history=info_dict["action_history"]
+                                                        , reward=info_dict["last_reward"]
+                                                        , total_reward=info_dict["total_reward"]
+                                                        , available_actions=key[2].splitlines()
+                                                        )\
+                      + "\n"\
+                      + self._prompt_templates.advice_template.safe_substitute(
+                                                                encouraged=encouraged
+                                                              , discouraged=discouraged
+                                                              )
+        return examplar
+        #  }}} method _examplar_to_string # 
+
     def _parse_action(self, response: str) -> Action:
         return response
 
@@ -169,17 +235,50 @@ class AutoAgent( Agent
                    , available_actions: List[str]
                    ) -> Action:
         #  method _get_action {{{ # 
+        available_actions: str = "\n".join(available_actions)
+
         #  Replay Updating {{{ # 
         if self._train:
             last_action: Optional[Action] = self._action_history[-1]\
                                             if len(self._action_history)>0\
                                           else None
-            self._history_replay.update( observation
+            self._history_replay.update( (observation, available_actions)
                                        , reward
                                        , last_action
                                        )
         #  }}} Replay Updating # 
 
-        # TODO
+        #  Construct New Input {{{ # 
+        new_input: str = self._instantiate_input_template( task=task
+                                                         , observation=observation
+                                                         , action_history=self._action_history
+                                                         , reward=reward
+                                                         , total_reward=total_reward
+                                                         , available_actions=available_actions
+                                                         )
+        nb_new_input_tokens: int = len(self._tokenizer.encode(new_input))
+        example_tokens_limit: int = self._input_length_limit - nb_new_input_tokens
+        #  }}} Construct New Input # 
+
+        #  Construct Examplars {{{ # 
+        examplars: List[str] = self._get_examplars( (observation, task, available_actions)
+                                                  , example_tokens_limit
+                                                  , 2
+                                                  )
+
+        example_str: str = "\n".join(reversed(examplars)).strip()
+        #  }}} Construct Examplars # 
+
+        prompt: str = self._prompt_templates.whole_template.safe_substitute( example=example_str
+                                                                           , new_input=new_input
+                                                                           )
+        action: Optional[Action] = self._get_response(prompt)
+        if action is None:
+            action_text: str = "NOTHINGG"
+        else:
+            action_text: str = action
+
+        logger.debug("Action: %s", action_text)
+        return action_text
         #  }}} method _get_action # 
     #  }}} class AutoAgent # 
