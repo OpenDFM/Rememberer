@@ -1,0 +1,8 @@
+---
+Last 5 Actions:
+${actions}
+Observation: |
+${observation}
+Available Actions:
+${available_actions}
+...
