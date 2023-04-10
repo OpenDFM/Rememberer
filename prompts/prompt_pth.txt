@@ -1,4 +1,4 @@
-Given a several information about the task and the screen at the current step, I need to take an appropriate action according to the given information to finish the task. Available actions are:
+I'm browsing the WikiHow app containing articles about various topics. Now given several information about the task and the current screen, I need to take an appropriate action according to the given information to finish the task. Available actions are:
 
 INPUT(element_id, text)
 CLICK(element_id)
