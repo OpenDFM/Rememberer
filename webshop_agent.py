@@ -111,7 +111,10 @@ class ManualAgent(Agent):
         #  }}} method _get_action # 
     #  }}} class ManualAgent # 
 
-class AutoAgent(Agent, agent_protos.OpenAIClient[Action]):
+class AutoAgent( Agent
+               , agent_protos.OpenAIClient[Action]
+               , agent_protos.HistoryReplayClient[Key, Action]
+               ):
     #  class AutoAgent {{{ # 
     def __init__( self
                 , history_replay: history.HistoryReplay[Key, Action]
@@ -144,14 +147,39 @@ class AutoAgent(Agent, agent_protos.OpenAIClient[Action]):
         # TODO: adjust the length limit according to the preamble
         # self._input_length_limit: int = 3700
 
-        self._train: bool = train
-        self._history_replay: history.HistoryReplay[Key, Action] = history_replay
-
-        self._rng: np.random.Generator = np.random.default_rng()
         self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
+        super(agent_protos.OpenAIClient, self).__init__( history_replay
+                                                       , train
+                                                       , self._tokenizer
+                                                       )
         #  }}} method __init__ # 
 
     def reset(self):
         super(AutoAgent, self).reset()
         self._history_replay.new_trajectory()
+
+    def _parse_action(self, response: str) -> Action:
+        return response
+
+    def _get_action( self
+                   , task: str
+                   , observation: str
+                   , reward: float
+                   , total_reward: float
+                   , available_actions: List[str]
+                   ) -> Action:
+        #  method _get_action {{{ # 
+        #  Replay Updating {{{ # 
+        if self._train:
+            last_action: Optional[Action] = self._action_history[-1]\
+                                            if len(self._action_history)>0\
+                                          else None
+            self._history_replay.update( observation
+                                       , reward
+                                       , last_action
+                                       )
+        #  }}} Replay Updating # 
+
+        # TODO
+        #  }}} method _get_action # 
     #  }}} class AutoAgent # 

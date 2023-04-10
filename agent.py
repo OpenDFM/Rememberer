@@ -1,16 +1,13 @@
 import vh_to_html
 import re
-#import json
-import itertools
 import tiktoken
 
 import lxml.etree
 import lxml.html
 from android_env.wrappers import VhIoWrapper
-from typing import Dict, Pattern, Match, List, Tuple, Set
+from typing import Dict, Pattern, Match, List, Tuple
 from typing import Optional
 import numpy as np
-#import string
 import history
 import agent_protos
 
@@ -18,8 +15,6 @@ import abc
 import logging
 import datetime
 import time
-#import traceback
-#import io
 
 logger = logging.getLogger("wikihow")
 
@@ -196,7 +191,10 @@ class ManualAgent(Agent):
         #  }}} method _get_action # 
     #  }}} class ManualAgent # 
 
-class AutoAgent(Agent, agent_protos.OpenAIClient[Action]):
+class AutoAgent( Agent
+               , agent_protos.OpenAIClient[Action]
+               , agent_protos.HistoryReplayClient[Key, Action]
+               ):
     #  class AutoAgent {{{ # 
     def __init__( self
                 , history_replay: history.HistoryReplay[Key, Action]
@@ -248,31 +246,16 @@ class AutoAgent(Agent, agent_protos.OpenAIClient[Action]):
 
         self._input_length_limit: int = 3700
 
-        self._train: bool = train
-        self._history_replay: history_replay.HistoryReplay[Key, Action] = history_replay
-
-        self._rng: np.random.Generator = np.random.default_rng()
         self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
+        super(agent_protos.OpenAIClient, self).__init__( history_replay
+                                                       , train
+                                                       , self._tokenizer
+                                                       )
         #  }}} method __init__ # 
 
     def reset(self):
         super(AutoAgent, self).reset()
         self._history_replay.new_trajectory()
-
-    def _random_action( self, screen: str) -> Action:
-        #  method _random_action {{{ # 
-        elements: List[str] = screen.splitlines()
-        action: np.int64 = self._rng.integers(len(elements)+4)
-
-        directions = ["LEFT", "UP", "RIGHT", "DOWN"]
-        if action<4:
-            return ( "SCROLL({:})".format(directions[action])
-                   , ""
-                   )
-        return ( "CLICK({:d})".format(action-4)
-               , elements[action-4].strip()
-               )
-        #  }}} method _random_action # 
 
     def _instantiate_input_template( self
                                    , command: str
@@ -297,6 +280,50 @@ class AutoAgent(Agent, agent_protos.OpenAIClient[Action]):
                                                       , total_reward="{:.1f}".format(total_reward)
                                                       )
         #  }}} method _instantiate_input_template # 
+
+    def _random_action( self, key: Key) -> Action:
+        #  method _random_action {{{ # 
+        screen: str = key[0]
+        elements: List[str] = screen.splitlines()
+        action: np.int64 = self._rng.integers(len(elements)+4)
+
+        directions = ["LEFT", "UP", "RIGHT", "DOWN"]
+        if action<4:
+            return ( "SCROLL({:})".format(directions[action])
+                   , ""
+                   )
+        return ( "CLICK({:d})".format(action-4)
+               , elements[action-4].strip()
+               )
+        #  }}} method _random_action # 
+
+    def _action_to_string(self, action: Action, value: float) -> str:
+        return "{:} -> {:.1f} {:}".format(action[0], value, action[1])
+
+    def _examplar_to_string( self
+                           , index: int
+                           , key: Key
+                           , info_dict: history.HistoryReplay.InfoDict[Action]
+                           , encouraged: str
+                           , discouraged: str
+                           ) -> str:
+        #  method _examplar_to_string {{{ # 
+        examplar: str = "Example {:d}:\n\n".format(index+1)\
+                      + self._instantiate_input_template( command=key[1]
+                                                        , html=key[0]
+                                                        , instruction=key[2]
+                                                        , action_history=info_dict["action_history"]
+                                                        , reward=info_dict["last_reward"]
+                                                        , total_reward=info_dict["total_reward"]
+                                                        )\
+                      + "\n"\
+                      + self._prompt_templates.advice_template.safe_substitute(
+                                                                 encouraged=encouraged
+                                                               , discouraged=discouraged
+                                                               )
+
+        return examplar
+        #  }}} method _examplar_to_string # 
 
     def _parse_action(self, response: str) -> Action:
         #  Parse Action Text {{{ # 
@@ -332,12 +359,6 @@ class AutoAgent(Agent, agent_protos.OpenAIClient[Action]):
                                        )
         #  }}} Replay Updating # 
 
-        candidates: List[ Tuple[ Key
-                               , history.HistoryReplay.Record[Key, Action]
-                               , float
-                               ]
-                        ] = self._history_replay[(screen, task, instruction)]
-
         #  Construct New Input {{{ # 
         new_input: str = self._instantiate_input_template( command=task
                                                          , html=screen
@@ -351,78 +372,10 @@ class AutoAgent(Agent, agent_protos.OpenAIClient[Action]):
         #  }}} Construct New Input # 
 
         #  Construct Examplars {{{ # 
-        examplars: List[str] = []
-        nb_examplars = 2
-        i = 0
-        for cdd in candidates:
-            #  Contruct one Examplar {{{ # 
-            key: Key
-            record: history.HistoryReplay.Record[Key, Action]
-            key, record, _ = cdd
-            info_dict: history.HistoryReplay.InfoDict[Key, Action] = record["other_info"]
-
-            action_dict: history.HistoryReplay.ActionDict[Key, Action] = record["action_dict"]
-            actions: List[Tuple[Action, float]] = sorted( map( lambda itm: (itm[0], itm[1]["qvalue"])
-                                                          , action_dict.items()
-                                                          )
-                                                     , key=(lambda itm: itm[1])
-                                                     , reverse=True
-                                                     )
-
-            if actions[0][1]<=0.:
-                encouraged: List[Tuple[str, float]] = [ ( self._random_action(key[0])
-                                                        , self._rng.random()/0.5
-                                                        )
-                                                      ]
-            else:
-                encouraged: List[Tuple[str, float]] = actions[:1]
-            encouraged_actions: Set[str] = set(map(lambda itm: itm[0], encouraged))
-            encouraged: str = "\n".join( map( lambda act: "{:} -> {:.1f} {:}".format(act[0][0], act[1], act[0][1])
-                                            , encouraged
-                                            )
-                                       )
-
-            if actions[-1][1]>0.:
-                discouraged_action: str = self._random_action(key[0])
-                while discouraged_action in encouraged_actions:
-                    discouraged_action = self._random_action(key[0])
-                discouraged: List[Tuple[str, float]] = [ ( discouraged_action
-                                                         , 0.
-                                                         )
-                                                       ]
-            else:
-                discouraged: List[Tuple[str, float]] = list( itertools.takewhile( lambda itm: itm[1]==0.
-                                                                                , reversed(actions)
-                                                                                )
-                                                           )
-            discouraged: str = "\n".join( map( lambda act: "{:} -> {:.1f} {:}".format(act[0][0], act[1], act[0][1])
-                                             , discouraged
-                                             )
-                                        )
-
-            examplar: str = "Example {:d}:\n\n".format(i+1)\
-                          + self._instantiate_input_template( command=key[1]
-                                                            , html=key[0]
-                                                            , instruction=key[2]
-                                                            , action_history=info_dict["action_history"]
-                                                            , reward=info_dict["last_reward"]
-                                                            , total_reward=info_dict["total_reward"]
-                                                            )\
-                          + "\n"\
-                          + self._prompt_templates.advice_template.safe_substitute(
-                                                                     encouraged=encouraged
-                                                                   , discouraged=discouraged
-                                                                   )
-            #  }}} Contruct one Examplar # 
-
-            examplar_length: int = len(self._tokenizer.encode(examplar))
-            if examplar_length<=example_tokens_limit:
-                examplars.append(examplar)
-                example_tokens_limit -= examplar_length
-                i += 1
-                if i>=nb_examplars:
-                    break
-
+        examplars: List[str] = self._get_examplars( (screen, task, instruction)
+                                                  , example_tokens_limit
+                                                  , 2
+                                                  )
         example_str: str = "\n".join(reversed(examplars)).strip()
         #  }}} Construct Examplars # 
 

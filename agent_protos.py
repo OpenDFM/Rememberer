@@ -1,4 +1,4 @@
-from typing import NamedTuple, List
+from typing import NamedTuple, List, Tuple, Set
 from typing import TypeVar, Optional, Callable, Generic
 import abc
 
@@ -12,6 +12,11 @@ import speechopenai
 import logging
 import io
 import traceback
+
+import history
+import numpy as np
+import tiktoken
+import itertools
 
 logger = logging.getLogger("agent")
 ocounter = 0
@@ -145,3 +150,132 @@ class OpenAIClient(abc.ABC, Generic[A]):
     @abc.abstractmethod
     def _parse_action(self, response: str) -> A:
         raise NotImplementedError()
+
+class HistoryReplayClient(Generic[history.Key, history.Action]):
+    #  class HistoryReplayClient {{{ # 
+    def __init__( self
+                , history_replay: history.HistoryReplay[history.Key, history.Action]
+                , train: bool
+                , tokenizer: tiktoken.Encoding
+                ):
+        #  method __init__ {{{ # 
+        self._history_replay: history.HistoryReplay[history.Key, history.Action]\
+                = history_replay
+
+        self._rng: np.random.Generator = np.random.default_rng()
+        self._tokenizer: tiktoken.Encoding = tokenizer
+        #  }}} method __init__ # 
+
+    def _get_examplars( self
+                      , key: history.Key
+                      , example_tokens_limit: int
+                      , nb_examplars: int = 2
+                      ) -> List[str]:
+        #  method _get_examplars {{{ # 
+        """
+        Args:
+            key (history.Key): the key to retrieve
+            example_tokens_limit (int): length limit for the examplar strs
+            nb_examplars (int): the number of examplars to retrieve
+
+        Returns:
+            List[str]: examplar strs
+        """
+
+        candidates: List[ Tuple[ history.Key
+                               , history.HistoryReplay.Record[history.Action]
+                               , float
+                               ]
+                        ] = self._history_replay[key]
+
+        #  Construct Examplars {{{ # 
+        examplars: List[str] = []
+        #nb_examplars = 2
+        i = 0
+        for cdd in candidates:
+            #  Contruct one Examplar {{{ # 
+            key: history.Key
+            record: history.HistoryReplay.Record[history.Action]
+            key, record, _ = cdd
+            info_dict: history.HistoryReplay.InfoDict[history.Action] = record["other_info"]
+
+            action_dict: history.HistoryReplay.ActionDict[history.Action] = record["action_dict"]
+            actions: List[Tuple[history.Action, float]] =\
+                    sorted( map( lambda itm: (itm[0], itm[1]["qvalue"])
+                               , action_dict.items()
+                               )
+                          , key=(lambda itm: itm[1])
+                          , reverse=True
+                          )
+
+            if actions[0][1]<=0.:
+                encouraged: List[Tuple[history.Action, float]]\
+                        = [ ( self._random_action(key)
+                            , self._rng.random()/0.5
+                            )
+                          ]
+            else:
+                encouraged: List[Tuple[history.Action, float]] = actions[:1]
+            encouraged_actions: Set[history.Action] = set(map(lambda itm: itm[0], encouraged))
+            encouraged: str = "\n".join( map( lambda act: self._action_to_string(act[0], act[1])
+                                            , encouraged
+                                            )
+                                       )
+
+            if actions[-1][1]>0.:
+                discouraged_action: history.Action = self._random_action(key)
+                while discouraged_action in encouraged_actions:
+                    discouraged_action = self._random_action(key)
+                discouraged: List[Tuple[history.Action, float]]\
+                        = [ ( discouraged_action
+                            , 0.
+                            )
+                          ]
+            else:
+                discouraged: List[Tuple[history.Action, float]] = list( itertools.takewhile( lambda itm: itm[1]==0.
+                                                                      , reversed(actions)
+                                                                      )
+                                                           )
+            discouraged: str = "\n".join( map( lambda act: self._action_to_string(act[0], act[1])
+                                             , discouraged
+                                             )
+                                        )
+
+            examplar: str = self._examplar_to_string( i
+                                                    , key
+                                                    , info_dict
+                                                    , encouraged
+                                                    , discouraged
+                                                    )
+            #  }}} Contruct one Examplar # 
+
+            examplar_length: int = len(self._tokenizer.encode(examplar))+1
+            if examplar_length<=example_tokens_limit:
+                examplars.append(examplar)
+                example_tokens_limit -= examplar_length
+                i += 1
+                if i>=nb_examplars:
+                    break
+        #  }}} Construct Examplars # 
+
+        return examplars
+        #  }}} method _get_examplars # 
+
+    @abc.abstractmethod
+    def _random_action(self, key: history.Key) -> history.Action:
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def _action_to_string(self, action: history.Action, value: float) -> str:
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def _examplar_to_string( self
+                           , index: int
+                           , key: history.Key
+                           , info_dict: history.HistoryReplay.InfoDict[history.Action]
+                           , encouraged: str
+                           , discouraged: str
+                           ) -> str:
+        raise NotImplementedError()
+    #  }}} class HistoryReplayClient # 
