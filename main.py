@@ -14,11 +14,12 @@ import agent_protos
 import agent
 import android_env
 from android_env.wrappers import VhIoWrapper
+from android_env.environment import AndroidEnv
 from transformers import AutoTokenizer
 import dm_env
 import history
 
-from typing import Dict, List
+from typing import Dict, List, Set
 import numpy as np
 
 import lxml.etree
@@ -59,6 +60,88 @@ def dump( path: str
         f.write(instruction + "\n")
     #  }}} function dump # 
 
+def traverse_environment( env: AndroidEnv
+                        , model: agent.Agent
+                        , logger: logging.Logger
+                        , except_list: Set[int] = set()
+                        , max_nb_steps: int = 15
+                        ) -> Set[int]:
+    #  function traverse_environment {{{ # 
+    """
+    Args:
+        env (AndroidEnv): the traversed environment
+        model (agent.Agent): the agent
+        logger (logging.Logger): the logger
+        except_list (Set[int]): tasks in this set won't be tested
+
+        max_nb_steps (int): if the number of steps exceeds `max_nb_steps`, the
+          episode will be killed and considered as failed.
+
+    Returns:
+        Set[int]: set of the succeeded tasks
+    """
+
+    success_list: Set[int] = set()
+
+    for i in range(env.nb_tasks):
+        if i in except_list:
+            continue
+        #os.makedirs(args.dump_path[_i], exist_ok=True)
+
+        model.reset()
+        step: dm_env.TimeStep = env.switch_task(i)
+        command: str = "\n".join(env.command())
+        instruction: str = env.task_instructions(latest_only=True)
+
+        nb_steps = 0
+        nb_nothing_steps = 0
+        #dump( args.dump_path[_i], nb_steps, command
+            #, step.observation["pixels"]
+            #, step.observation["view_hierarchy"]
+            #, instruction
+            #)
+
+        reward: float = step.reward
+        succeeds: bool = True
+        while not step.last():
+            action: Dict[str, np.ndarray]\
+                    = model( command
+                           , step.observation["view_hierarchy"]
+                           , instruction
+                           , step.reward
+                           , reward
+                           )
+            step = env.step(action)
+            if len(env.task_instructions())>0:
+                instruction = env.task_instructions(latest_only=True)
+            reward += step.reward
+
+            if action["action_type"]==VhIoWrapper.ActionType.NOTHING\
+                    and "records" in action\
+                    and not action["records"]:
+                nb_nothing_steps += 1
+            else:
+                nb_steps += 1
+                #dump( args.dump_path[_i], nb_steps, command
+                    #, step.observation["pixels"]
+                    #, step.observation["view_hierarchy"]
+                    #, instruction
+                    #)
+
+            if nb_steps>=max_nb_steps:
+                succeeds = False
+                break
+
+        if succeeds:
+            success_list.add(i)
+
+        logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, TaskName: %s, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
+                   , i, env.task_id, nb_steps, nb_nothing_steps, reward, str(succeeds)
+                   )
+    logger.info("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    return success_list
+    #  }}} function traverse_environment # 
+
 def main():
     #  Command Line Options {{{ # 
     parser = argparse.ArgumentParser()
@@ -66,6 +149,7 @@ def main():
     parser.add_argument("--log-dir", default="logs", type=str)
     parser.add_argument("--config", default="openaiconfig.yaml", type=str)
 
+    parser.add_argument("--train-path", type=str)
     parser.add_argument("--task-path", type=str)
     parser.add_argument("--avd-name", type=str)
     parser.add_argument("--tokenizer-path", type=str)
@@ -79,7 +163,7 @@ def main():
     parser.add_argument("--step-penalty", default=0., type=float)
     parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
     parser.add_argument("--learning-rate", default=0.1, type=float)
-    parser.add_argument("--n-step-flatten", default=1, type=int)
+    parser.add_argument("--n-step-flatten", type=int)
 
     parser.add_argument("--prompt-template", type=str)
     parser.add_argument("--max-tokens", default=20, type=int)
@@ -89,6 +173,8 @@ def main():
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--speech", action="store_true")
+
+    parser.add_argument("--epochs", default=3, type=int)
 
     parser.add_argument("--replay-file", nargs="+", type=str)
     parser.add_argument("--dump-path", nargs="+", type=str)
@@ -223,67 +309,51 @@ def main():
                      , nb_click_frames=3
                      , nb_scroll_frmaes=10
                      )
+    if args.train:
+        train_env = android_env.load( args.train_path
+                                    , args.avd_name
+                                    , os.path.expanduser("~/.android/avd")
+                                    , os.path.expanduser("~/Android/Sdk")
+                                    , os.path.expanduser("~/Android/Sdk/emulator/emulator")
+                                    , os.path.expanduser("~/Android/Sdk/platform-tools/adb")
+                                    , run_headless=True
+                                    , mitm_config={"method": "syscert"}
+                                    , unify_vocabulary=os.path.join( args.tokenizer_path
+                                                                   , "vocab.txt"
+                                                                   )
+                                    , with_view_hierarchy=True
+                                    )
+        train_env = VhIoWrapper( train_env
+                               , AutoTokenizer.from_pretrained(args.tokenizer_path)
+                               , nb_click_frames=3
+                               , nb_scroll_frmaes=10
+                               )
 
     logger.info("The environment is ready.")
     #  }}} Build Agent and Environment # 
 
     #  Work Flow {{{ # 
+    nb_epochs = args.epochs if args.train else 1
     max_nb_steps = 15
-    for i in range(env.nb_tasks):
-        #for _i, i in enumerate([5, 6, 7, 8, 11, 13]):
-        #os.makedirs(args.dump_path[_i], exist_ok=True)
+    except_list: Set[int] = set()
+    for epch in range(nb_epochs):
+        if args.train:
+            model.train(True)
+            success_list: Set[int] = traverse_environment( train_env, model
+                                                         , logger, except_list
+                                                         , max_nb_steps=max_nb_steps
+                                                         )
+            if epch==0:
+                except_list |= success_list
+        model.train(False)
+        traverse_environment( env, model
+                            , logger
+                            , max_nb_steps=max_nb_steps
+                            )
 
-        model.reset()
-        step: dm_env.TimeStep = env.switch_task(i)
-        command: str = "\n".join(env.command())
-        instruction: str = env.task_instructions(latest_only=True)
-
-        nb_steps = 0
-        nb_nothing_steps = 0
-        #dump( args.dump_path[_i], nb_steps, command
-            #, step.observation["pixels"]
-            #, step.observation["view_hierarchy"]
-            #, instruction
-            #)
-
-        reward: float = step.reward
-        succeeds: bool = True
-        while not step.last():
-            action: Dict[str, np.ndarray]\
-                    = model( command
-                           , step.observation["view_hierarchy"]
-                           , instruction
-                           , step.reward
-                           , reward
-                           )
-            step = env.step(action)
-            if len(env.task_instructions())>0:
-                instruction = env.task_instructions(latest_only=True)
-            reward += step.reward
-
-            if action["action_type"]==VhIoWrapper.ActionType.NOTHING\
-                    and "records" in action\
-                    and not action["records"]:
-                nb_nothing_steps += 1
-            else:
-                nb_steps += 1
-                #dump( args.dump_path[_i], nb_steps, command
-                    #, step.observation["pixels"]
-                    #, step.observation["view_hierarchy"]
-                    #, instruction
-                    #)
-
-            if nb_steps>=max_nb_steps:
-                succeeds = False
-                break
-
-        logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, TaskName: %s, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
-                   , i, env.task_id, nb_steps, nb_nothing_steps, reward, str(succeeds)
-                   )
+        if args.train:
+            history_replay.save_yaml(args.save_replay % epch)
     #  }}} Work Flow # 
-
-    if args.train:
-        history_replay.save_yaml(args.save_replay)
 
 if __name__ == "__main__":
     main()

@@ -32,7 +32,7 @@ class Matcher(abc.ABC, Generic[Key]):
 
 MatcherConstructor = Callable[[Key], Matcher[Key]]
 
-class LCSNodeMatcher(Matcher[Tuple[str, ...]]):
+class LCSNodeMatcher(Matcher[Tuple[str, Any]]):
     #  class LCSNodeMatcher {{{ # 
     def __init__(self, query: Tuple[str, ...]):
         #  method __init__ {{{ # 
@@ -233,7 +233,7 @@ class PagePatMatcher(Matcher[Tuple[Any, str]]):
         #  }}} method _get_pattern # 
     #  }}} class PagePatMatcher # 
 
-class InsPageRelMatcher(Matcher[Tuple[str, str, ...]]):
+class InsPageRelMatcher(Matcher[Tuple[str, str, Any]]):
     #  class InsPageRelMatcher {{{ # 
     """
     Matcher for WebShop calculating the correlation between the task
@@ -241,7 +241,7 @@ class InsPageRelMatcher(Matcher[Tuple[str, str, ...]]):
     """
 
     def __init__( self
-                , query: Tuple[str, str, ...]
+                , query: Tuple[str, str, Any]
                 , transformer: SentenceTransformer = None
                 ):
         #  method __init__ {{{ # 
@@ -266,7 +266,7 @@ class InsPageRelMatcher(Matcher[Tuple[str, str, ...]]):
         self._relevancy: torch.Tensor = relevancies[1] # ()
         #  }}} method __init__ # 
 
-    def __call__(self, key: Tuple[str, str, ...]) -> float:
+    def __call__(self, key: Tuple[str, str, Any]) -> float:
         #  method __call__ {{{ # 
         page: str = self._query[0]
         instruction: str = self._query[1]

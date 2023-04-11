@@ -1,4 +1,4 @@
-I'm browsing the WikiHow app containing articles about various topics and need to follow the task description and the instruction to browse the desired pages. To browse the app, my available actions are:
+Given a several information about the task and the screen at the current step, I need to take an appropriate action according to the given information to finish the task. Available actions are:
 
 INPUT(element_id, text)
 CLICK(element_id)

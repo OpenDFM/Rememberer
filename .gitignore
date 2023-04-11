@@ -8,6 +8,7 @@ logs
 logs-historyless/
 bandits.logs/
 logs-webshop/
+history-pools/*.qu.*.yaml
 
 __pycache__
 tags

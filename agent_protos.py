@@ -161,6 +161,7 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
         #  method __init__ {{{ # 
         self._history_replay: history.HistoryReplay[history.Key, history.Action]\
                 = history_replay
+        self._train: bool = train
 
         self._rng: np.random.Generator = np.random.default_rng()
         self._tokenizer: tiktoken.Encoding = tokenizer
@@ -278,4 +279,7 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
                            , discouraged: str
                            ) -> str:
         raise NotImplementedError()
+
+    def train(self, train: bool):
+        self._train = train
     #  }}} class HistoryReplayClient # 
