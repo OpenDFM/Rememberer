@@ -1,5 +1,5 @@
 from typing import Dict, Tuple, Deque, List
-from typing import Union, Optional, Callable, Sequence, TypeVar, Generic, Hashable
+from typing import Union, Optional, Callable, Sequence, TypeVar, Generic, Hashable, Any
 import abc
 #import dm_env
 
@@ -7,6 +7,9 @@ import numpy as np
 import collections
 import itertools
 import yaml
+from sentence_transformers import SentenceTransformer
+from sentence_transformers.util import dot_score
+import torch
 
 import logging
 
@@ -20,7 +23,7 @@ class Matcher(abc.ABC, Generic[Key]):
     #  class Matcher {{{ # 
     def __init__(self, query: Key):
         #  method __init__ {{{ # 
-        self._query: HistoryReplay.Key = query
+        self._query: Key = query
         #  }}} method __init__ # 
 
     def __call__(self, key: Key) -> float:
@@ -74,7 +77,7 @@ class LCSNodeMatcher(Matcher[Tuple[str, ...]]):
         #  }}} method __call__ # 
     #  }}} class LCSNodeMatcher # 
 
-class InsPatMatcher(Matcher[Tuple[..., str]]):
+class InsPatMatcher(Matcher[Tuple[Any, str]]):
     #  class InsPatMatcher {{{ # 
     _score_matrix: np.ndarray\
             = np.array( [ [1., .1, 0., 0., 0., 0.]
@@ -87,7 +90,7 @@ class InsPatMatcher(Matcher[Tuple[..., str]]):
                       , dtype=np.float32
                       )
 
-    def __init__(self, query: Tuple[..., str]):
+    def __init__(self, query: Tuple[Any, str]):
         #  method __init__ {{{ # 
         super(InsPatMatcher, self).__init__(query)
 
@@ -104,10 +107,10 @@ class InsPatMatcher(Matcher[Tuple[..., str]]):
                      )
         #  }}} method __init__ # 
 
-    def __call__(self, key: Tuple[..., str]) -> float:
+    def __call__(self, key: Tuple[Any, str]) -> float:
         #  method __call__ {{{ # 
         if self._pattern_id==-1:
-            return 0
+            return 0.
 
         key_instruction: str = key[-1]
         key_pattern_id: int
@@ -121,7 +124,7 @@ class InsPatMatcher(Matcher[Tuple[..., str]]):
                      )
 
         if key_pattern_id==-1:
-            return 0
+            return 0.
         similarity: np.float32 = InsPatMatcher._score_matrix[ self._pattern_id
                                                             , key_pattern_id
                                                             ]
@@ -150,6 +153,138 @@ class InsPatMatcher(Matcher[Tuple[..., str]]):
         return -1, "unknown"
         #  }}} method _get_pattern # 
     #  }}} class InsPatMatcher # 
+
+class PagePatMatcher(Matcher[Tuple[Any, str]]):
+    #  class PagePatMatcher {{{ # 
+    """
+    Page Pattern Matcher (pgpat) for WebShop pages.
+    """
+
+    _score_matrix: np.ndarray\
+            = np.array( [ [1., 0., 0., 0.]
+                        , [0., 1., 0., 0.]
+                        , [0., 0., 1., .3]
+                        , [0., 0., .3, 1.]
+                        ]
+                      , dtype=np.float32
+                      )
+
+    def __init__(self, query: Tuple[Any, str]):
+        #  method __init__ {{{ # 
+        super(PagePatMatcher, self).__init__(query)
+
+        available_actions: List[str] = self._query[-1].splitlines()
+        self._pattern_id: int
+        self._pattern_name: str
+        self._pattern_id, self._pattern_name = PagePatMatcher._get_pattern(available_actions)
+
+        hlogger.debug( "AAN: %s, Pat: %d.%s"
+                     , self._query[-1]
+                     , self._pattern_id
+                     , self._pattern_name
+                     )
+        #  }}} method __init__ # 
+
+    def __call__(self, key: Tuple[Any, str]) -> float:
+        #  method __call__ {{{ # 
+        if self._pattern_id==-1:
+            return 0.
+
+        key_actions: List[str] = key[-1].splitlines()
+        key_pattern_id: int
+        key_pattern_name: str
+        key_pattern_id, key_pattern_name = PagePatMatcher._get_pattern(key_actions)
+
+        hlogger.debug( "Key: %s, Pat: %d.%s"
+                     , key[-1]
+                     , key_pattern_id
+                     , key_pattern_name
+                     )
+
+        if key_pattern_id==-1:
+            return 0.
+        similarity: np.float32 = PagePatMatcher._score_matrix[ self._pattern_id
+                                                             , key_pattern_id
+                                                             ]
+        hlogger.debug("Sim: %.2f", similarity)
+        return float(similarity)
+        #  }}} method __call__ # 
+
+    @staticmethod
+    def _get_pattern(available_actions: List[str]) -> Tuple[int, str]:
+        #  method _get_pattern {{{ # 
+        if len(available_actions)==1 and available_actions[0]=="search":
+            return 0, "search"
+        if len(available_actions)==2\
+                and available_actions[0]=="back to search"\
+                and available_actions[1]=="< prev":
+            return 3, "other"
+        if len(available_actions)>=3\
+                and all( act[:2]=="b0"\
+                     and act[2].isdecimal()\
+                     and act[2].isascii()\
+                     for act in available_actions[2:]
+                       ):
+            return 1, "results"
+        if len(available_actions)>=3\
+                and "buy now" in available_actions:
+            return 2, "goods"
+        return -1, "unknown"
+        #  }}} method _get_pattern # 
+    #  }}} class PagePatMatcher # 
+
+class InsPageRelMatcher(Matcher[Tuple[str, str, ...]]):
+    #  class InsPageRelMatcher {{{ # 
+    """
+    Matcher for WebShop calculating the correlation between the task
+    instruction and the page observation.
+    """
+
+    def __init__( self
+                , query: Tuple[str, str, ...]
+                , transformer: SentenceTransformer = None
+                ):
+        #  method __init__ {{{ # 
+        super(InsPageRelMatcher, self).__init__(query)
+
+        assert transformer is not None
+        self._transformer: SentenceTransformer = transformer
+
+        page: str = self._query[0]
+        instruction: str = self._query[1]
+        # (1+N, D); N is the lines of the page; D is the encoding dimension
+        query_encodings: torch.Tensor =\
+                self._transformer.encode( [instruction] + page.splitlines()
+                                        , convert_to_tensor=True
+                                        , normalize_embeddings=True
+                                        )
+        relevancies: torch.Tensor = dot_score( query_encodings[:1]
+                                             , query_encodings[1:]
+                                             ) # (1, N)
+        relevancies = relevancies.squeeze(0) # (N,)
+        relevancies = relevancies.sort(descending=True).values # (N,)
+        self._relevancy: torch.Tensor = relevancies[1] # ()
+        #  }}} method __init__ # 
+
+    def __call__(self, key: Tuple[str, str, ...]) -> float:
+        #  method __call__ {{{ # 
+        page: str = self._query[0]
+        instruction: str = self._query[1]
+        key_encodings: torch.Tensor =\
+                self._transformer.encode( [instruction] + page.splitlines()
+                                        , convert_to_tensor=True
+                                        , normalize_embeddings=True
+                                        ) # (1+N, D)
+        relevancies: torch.Tensor = dot_score( key_encodings[:1]
+                                             , key_encodings[1:]
+                                             ) # (1, N)
+        relevancies = relevancies.squeeze(0).sort(descending=True).values # (N,)
+        relevancy: torch.Tensor = relevancies[1] # ()
+
+        similarity: torch.Tensor = 1. - (self._relevancy-relevancy).abs() # ()
+        return similarity.item()
+        #  }}} method __call__ # 
+    #  }}} class InsPageRelMatcher # 
 
 class LambdaMatcher(Matcher[Key]):
     #  class LambdaMatcher {{{ # 

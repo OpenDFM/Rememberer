@@ -8,14 +8,22 @@ import importlib
 importlib.import_module("web_agent_site.envs")
 #import web_agent_site.envs
 from web_agent_site.utils import DEFAULT_FILE_PATH
+
+import functools
+from sentence_transformers import SentenceTransformer
+import history
+import yaml
+
+import string
 import webshop_agent
-from typing import List
+import agent_protos
 
 import logging
 import argparse
 import datetime
 import os
 
+from typing import List, Dict
 import numpy as np
 
 #  Interfaces of WebAgentTextEnv {{{ # 
@@ -93,8 +101,35 @@ def main():
     parser.add_argument("--prev-actions", default=0, type=int)
     parser.add_argument("--prev-observations", default=0, type=int)
 
+    # Matcher Options
+    parser.add_argument( "--sentence-transformer"
+                       , default="all-MiniLM-L12-v2", type=str
+                       , choices=[ "all-MiniLM-L12-v2"
+                                 , "all-mpnet-base-v2"
+                                 ]
+                       )
+
+    # Replay Options
+    parser.add_argument("--load-replay", type=str)
+    parser.add_argument("--save-replay", type=str)
+    parser.add_argument("--item-capacity", type=int)
+    parser.add_argument("--action-capacity", type=int)
+    parser.add_argument("--matcher", default="lcs", type=str, choices=["pgpat+iprel"])
+    parser.add_argument("--gamma", default=1., type=float)
+    parser.add_argument("--step-penalty", default=0., type=float)
+    parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
+    parser.add_argument("--learning-rate", default=0.1, type=float)
+    parser.add_argument("--n-step-flatten", default=1, type=int)
+
     # Agent Options
-    pass
+    parser.add_argument("--prompt-template", type=str)
+    parser.add_argument("--max-tokens", default=20, type=int)
+    parser.add_argument("--temperature", default=0.1, type=float)
+    parser.add_argument("--stop", type=str)
+    parser.add_argument("--request-timeout", default=3., type=float)
+    parser.add_argument("--manual", action="store_true")
+    parser.add_argument("--train", action="store_true")
+    parser.add_argument("--speech", action="store_true")
 
     args: argparse.Namespace = parser.parse_args()
     #  }}} Command Line Options # 
@@ -138,7 +173,58 @@ def main():
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
-    model = webshop_agent.ManualAgent(args.observation_mode)
+    sentence_transformer = SentenceTransformer(args.sentence_transformer)
+    matcher_functions: Dict[str, history.LambdaMatcherConstructor[webshop_agent.Key]]\
+            = { "pgpat+iprel": history.LambdaMatcherConstructor( [ history.PagePatMatcher
+                                                                 , functools.partial( history.InsPageRelMatcher
+                                                                                    , transformer=sentence_transformer
+                                                                                    )
+                                                                 ]
+                                                               , [0.5, 0.5]
+                                                               ).get_lambda_matcher
+              }
+    history_replay: history.HistoryReplay[webshop_agent.Key, webshop_agent.Action]\
+            = history.HistoryReplay( args.item_capacity
+                                   , args.action_capacity
+                                   , matcher=matcher_functions[args.matcher]
+                                   , gamma=args.gamma
+                                   , step_penalty=args.step_penalty
+                                   , update_mode=args.update_mode
+                                   , learning_rate=args.learning_rate
+                                   , n_step_flatten=args.n_step_flatten
+                                   )
+    history_replay.load_yaml(args.load_replay)
+
+    with open(os.path.join(args.prompt_template, "prompt_pthw.txt")) as f:
+        prompt_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "input_template_w.txt")) as f:
+        input_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
+        advice_template = string.Template(f.read())
+    template_group = agent_protos.TemplateGroup( whole_template=prompt_template
+                                               , input_template=input_template
+                                               , advice_template=advice_template
+                                               )
+
+    with open(args.config) as f:
+        openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
+    if args.speech:
+        api_key: str = openaiconfig["spc_token"]
+    else:
+        api_key: str = openaiconfig["api_key"]
+    model = webshop_agent.AutoAgent( history_replay=history_replay
+                                   , prompt_templates=template_group
+                                   , api_key=api_key
+                                   , max_tokens=args.max_tokens
+                                   , temperature=args.temperature
+                                   , stop=args.stop
+                                   , request_timeout=args.request_timeout
+                                   , manual=args.manual
+                                   , train=args.train
+                                   , with_speech=args.speech
+                                   , env_mode=args.observation_mode
+                                   )
+    #model = webshop_agent.ManualAgent(args.observation_mode)
 
     env = gym.make( "WebAgentTextEnv-v0"
                   , observation_mode=args.observation_mode
@@ -190,6 +276,9 @@ def main():
                    , i, j, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
                    )
     #  }}} Workflow # 
+
+    if args.train:
+        history_replay.save_yaml(args.save_replay)
 
 if __name__ == "__main__":
     main()

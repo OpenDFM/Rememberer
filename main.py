@@ -182,9 +182,9 @@ def main():
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
-                                                  , input_template=input_template
-                                                  , advice_template=advice_template
-                                                  )
+                                               , input_template=input_template
+                                               , advice_template=advice_template
+                                               )
     with open(args.config) as f:
         openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
     if args.speech:
