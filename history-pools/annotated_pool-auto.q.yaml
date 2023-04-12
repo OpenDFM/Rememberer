@@ -83,6 +83,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 3.0
+  id: 0
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -166,6 +167,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 3.0
+  id: 1
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -254,6 +256,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 3.0
+  id: 2
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -340,6 +343,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 3.0
+  id: 3
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -440,6 +444,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 3.0
+  id: 4
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -542,6 +547,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 3.0
+  id: 5
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
@@ -590,6 +596,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 2.0
+  id: 6
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
@@ -633,6 +640,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 2.0
+  id: 7
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
@@ -681,6 +689,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 2.0
+  id: 8
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
@@ -728,6 +737,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 2.0
+  id: 9
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
@@ -772,6 +782,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 2.0
+  id: 10
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
@@ -817,6 +828,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 2.0
+  id: 11
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <img class=\"search button\" alt=\"Search\" id=\"1\" clickable=\"true\">\n<img alt=\"\
@@ -863,6 +875,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 2.0
+  id: 12
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -924,6 +937,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 3.0
+  id: 13
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -988,6 +1002,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 3.0
+  id: 14
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1061,6 +1076,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 3.0
+  id: 15
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1143,6 +1159,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 3.0
+  id: 16
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1230,6 +1247,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 3.0
+  id: 17
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1258,6 +1276,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 18
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1286,6 +1305,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 19
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1316,6 +1336,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 20
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1346,6 +1367,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 21
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1376,6 +1398,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 22
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1402,6 +1425,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 23
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1428,6 +1452,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 24
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1456,6 +1481,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 25
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1484,6 +1510,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 26
 ? !!python/tuple
 - '<button alt="Open navigation drawer" id="0" clickable="true"></button>
 
@@ -1510,6 +1537,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 27
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"Be good friend to guy \" type=\"text\"\
@@ -1572,6 +1600,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 28
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"Do ruby rose hair \" type=\"text\" id=\"\
@@ -1630,6 +1659,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 29
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"address letter to england \" type=\"text\"\
@@ -1690,6 +1720,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 30
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"apply cc cream \" type=\"text\" id=\"1\"\
@@ -1748,6 +1779,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 31
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"buy stocks (for beginners) \" type=\"text\"\
@@ -1809,6 +1841,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 32
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"bypass youtube's regional filter \" type=\"\
@@ -1869,6 +1902,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 33
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"call czech from united states \" type=\"\
@@ -1929,6 +1963,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 34
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"change recessed lightbulb \" type=\"text\"\
@@ -1986,6 +2021,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 35
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"clean utensils \" type=\"text\" id=\"1\"\
@@ -2046,6 +2082,7 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 36
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"hide gauges \" type=\"text\" id=\"1\" clickable=\"\
@@ -2103,3 +2140,4 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 37

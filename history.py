@@ -337,7 +337,7 @@ class HistoryReplay(Generic[Key, Action]):
                            , Union[int, float]
                            ]
                      ]
-    Record = Dict[str, Union[InfoDict, ActionDict]]
+    Record = Dict[str, Union[InfoDict, ActionDict, int]]
 
     def __init__( self
                 , item_capacity: Optional[int]
@@ -411,6 +411,7 @@ class HistoryReplay(Generic[Key, Action]):
         #self._index_pool: Deque[int] = collections.deque(range(self._item_capacity))
         #self._index_dict: Dict[HistoryReplay.Key, int] = {}
         self._keys: List[HistoryReplay] = []
+        self._max_id: int = 0
         #  }}} method __init__ # 
 
     def __getitem__(self, request: Key) ->\
@@ -507,6 +508,7 @@ class HistoryReplay(Generic[Key, Action]):
             self._observation_buffer.clear()
             self._reward_buffer.clear()
             self._total_reward_buffer.clear()
+            self._total_reward = 0.
 
             return
 
@@ -557,6 +559,7 @@ class HistoryReplay(Generic[Key, Action]):
         self._observation_buffer.clear()
         self._reward_buffer.clear()
         self._total_reward_buffer.clear()
+        self._total_reward = 0.
         #  }}} method new_trajectory # 
 
     def _insert_key( self, key: Key
@@ -570,7 +573,7 @@ class HistoryReplay(Generic[Key, Action]):
 
         if key not in self._record:
             #  Insertion Policy (Static Capacity Limie) {{{ # 
-            matcher: Matcher = self._matcher(key)
+            matcher: Matcher[Key] = self._matcher(key)
             similarities: np.ndarray = np.asarray(list(map(matcher, self._keys)))
 
             if self._item_capacity is not None and self._item_capacity>0\
@@ -586,10 +589,10 @@ class HistoryReplay(Generic[Key, Action]):
                     # drop the new one
                     return False
                 # drop an old one according to the number of action samples
-                action_dict1: HistoryReplay.ActionDict = self._record[self._keys[max_old_similarity_index[0]]]
+                action_dict1: HistoryReplay.ActionDict = self._record[self._keys[max_old_similarity_index[0]]]["action_dict"]
                 nb_samples1: int = sum(map(lambda d: d["number"], action_dict1.values()))
 
-                action_dict2: HistoryReplay.ActionDict = self._record[self._keys[max_old_similarity_index[1]]]
+                action_dict2: HistoryReplay.ActionDict = self._record[self._keys[max_old_similarity_index[1]]]["action_dict"]
                 nb_samples2: int = sum(map(lambda d: d["number"], action_dict2.values()))
 
                 drop_index: np.int64 = max_old_similarity_index[0] if nb_samples1>=nb_samples2 else max_old_similarity_index[1]
@@ -605,7 +608,9 @@ class HistoryReplay(Generic[Key, Action]):
                                                     , "number": 1
                                                     }
                                     , "action_dict": {}
+                                    , "id": self._max_id
                                     }
+                self._max_id += 1
             else:
                 new_index: int = len(self._record)
                 self._keys.append(key)
@@ -617,7 +622,9 @@ class HistoryReplay(Generic[Key, Action]):
                                                     , "number": 1
                                                     }
                                     , "action_dict": {}
+                                    , "id": self._max_id
                                     }
+                self._max_id += 1
             #  }}} Insertion Policy (Static Capacity Limie) # 
         else:
             other_info: HistoryReplay.InfoDict = self._record[key]["other_info"]
@@ -709,7 +716,47 @@ class HistoryReplay(Generic[Key, Action]):
         #  method load_yaml {{{ # 
         with open(yaml_file) as f:
             self._record = yaml.load(f, Loader=yaml.Loader)
-            self._keys = list(self._record.keys())
+
+        keys = list(self._record.keys())
+        similarity_matrix = np.zeros( (len(keys), len(keys))
+                                    , dtype=np.float32
+                                    )
+        for i in range(len(keys)):
+            similarity_matrix[i, :i] = similarity_matrix[:i, i]
+
+            matcher: Matcher[Key] = self._matcher(keys[i])
+            similarity_matrix[i, i+1:] = np.asarray(
+                                            list( map( matcher
+                                                     , keys[i+1:]
+                                                     )
+                                                )
+                                          )
+
+        if self._item_capacity is not None\
+                and self._item_capacity>0\
+                and len(keys)>self._item_capacity:
+            hlogger.warning( "Boosting the item capacity from %d to %d"
+                           , self._item_capacity, len(keys)
+                           )
+            self._item_capacity = len(keys)
+        action_size: int = max( map( lambda rcd: len(rcd["action_dict"])
+                                   , self._record.values()
+                                   )
+                              )
+        if self._action_capacity is not None\
+                and self._action_capacity>0\
+                and action_size > self._action_capacity:
+            hlogger.warning( "Boosting the item capacity from %d to %d"
+                           , self._action_capacity, action_size
+                           )
+            self._action_capacity = action_size
+
+        self._keys = keys
+        self._similarity_matrix = similarity_matrix
+        self._max_id = max( map( lambda rcd: rcd["id"]
+                               , self._record.values()
+                               )
+                          ) + 1
         #  }}} method load_yaml # 
     def save_yaml(self, yaml_file: str):
         with open(yaml_file, "w") as f:

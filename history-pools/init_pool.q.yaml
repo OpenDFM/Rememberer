@@ -24,6 +24,7 @@
     last_reward: 0.0
     number: 1
     total_reward: 0.0
+  id: 0
 ? !!python/tuple
 - "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
   <input class=\"search src text\" value=\"Do ruby rose hair \" type=\"text\" id=\"\
@@ -82,3 +83,4 @@
     last_reward: 1.0
     number: 1
     total_reward: 1.0
+  id: 1

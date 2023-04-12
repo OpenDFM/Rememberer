@@ -191,13 +191,16 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
 
         #  Construct Examplars {{{ # 
         examplars: List[str] = []
+        examplar_ids: List[int] = []
+        examplar_scores: List[float] = []
         #nb_examplars = 2
         i = 0
         for cdd in candidates:
             #  Contruct one Examplar {{{ # 
             key: history.Key
             record: history.HistoryReplay.Record[history.Action]
-            key, record, _ = cdd
+            score: float
+            key, record, score = cdd
             info_dict: history.HistoryReplay.InfoDict[history.Action] = record["other_info"]
 
             action_dict: history.HistoryReplay.ActionDict[history.Action] = record["action_dict"]
@@ -253,11 +256,16 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
             examplar_length: int = len(self._tokenizer.encode(examplar))+1
             if examplar_length<=example_tokens_limit:
                 examplars.append(examplar)
+                examplar_ids.append(record["id"])
+                examplar_scores.append(score)
                 example_tokens_limit -= examplar_length
                 i += 1
                 if i>=nb_examplars:
                     break
         #  }}} Construct Examplars # 
+
+        logger.debug("Egs: %s", " ".join(map(str, examplar_ids)))
+        logger.debug("Sms: %s", " ".join(map("{:.2f}".format, examplar_scores)))
 
         return examplars
         #  }}} method _get_examplars # 
