@@ -5,6 +5,8 @@ import lxml.html
 
 from typing import Dict, List, Tuple, Pattern
 
+from android_env.wrappers.vh_io_wrapper import filter_elements
+
 import re
 
 def convert_node(node: lxml.etree.Element) -> lxml.html.Element:
@@ -101,35 +103,18 @@ def convert_tree(node: lxml.etree.Element) ->\
           bounding box of the leaf elements
     """
 
-    result_list: List[lxml.html.Element] = []
+    node_list: List[lxml.etree.Element]
     bbox_list: List[List[int]] = []
+    node_list, bbox_list = filter_elements(node)
 
-    id_counter = 0
-    for n in node.iter():
-        if n.getparent() is not None:
-            n.set( "clickable"
-                 , str(  n.get("clickable")=="true"\
-                      or n.getparent().get("clickable")=="true"
-                      ).lower()
-                 )
-        if n.get("bounds")=="[0,0][0,0]":
-            continue
-        if len(list(n))==0:
-            bounds_match = bounds_pattern.match(n.get("bounds"))
-            bbox: List[int] = list( map( int
-                                       , bounds_match.groups()
-                                       )
-                                  )
-            if bbox[0]==bbox[2] or bbox[1]==bbox[3]:
-                continue
+    result_list: List[lxml.html.Element] = []
 
-            html_element: lxml.html.Element = convert_node(n)
-            html_element.set("id", str(id_counter))
-            html_element.set("clickable", n.get("clickable"))
-            result_list.append(html_element)
-            id_counter += 1
+    for i, n in enumerate(node_list):
+        html_element: lxml.html.Element = convert_node(n)
+        html_element.set("id", str(i))
+        html_element.set("clickable", n.get("clickable"))
+        result_list.append(html_element)
 
-            bbox_list.append(bbox)
     return result_list, bbox_list
     #  }}} function convert_tree # 
 

@@ -158,6 +158,9 @@ class Agent(abc.ABC):
                    , instruction: str
                    ) -> Action:
         raise NotImplementedError()
+
+    def train(self, train: bool):
+        pass
     #  }}} class Agent # 
 
 class ManualAgent(Agent):
@@ -171,23 +174,23 @@ class ManualAgent(Agent):
                    , instruction: str
                    , reward: float
                    , total_reward: float
-                   ) -> str:
+                   ) -> Action:
         #  method _get_action {{{ # 
         print("Task:")
         print(task)
+        print("Action History:")
+        print("\n".join(map(lambda itm: itm[0], self._action_history)))
         print("Screen:")
         print(screen)
         print("Instruction:")
         print(instruction)
-        print("Action History:")
-        print("\n".join(self._action_history))
         print("Last Reward:")
         print("{:.1f}".format(reward))
         print("Total Reward:")
         print("{:.1f}".format(total_reward))
 
         action_str: str = input("Please input the next action:")
-        return action_str
+        return action_str, "something"
         #  }}} method _get_action # 
     #  }}} class ManualAgent # 
 
@@ -395,6 +398,9 @@ class AutoAgent( Agent
 
         return (action_text, element_html)
         #  }}} method _get_action # 
+
+    def train(self, train: bool):
+        super(agent_protos.OpenAIClient, self).train(train)
     #  }}} class AutoAgent # 
 
 class ReplayAgent(Agent):
