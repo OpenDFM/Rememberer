@@ -138,7 +138,7 @@ def traverse_environment( env: AndroidEnv
         logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, TaskName: %s, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
                    , i, env.task_id, nb_steps, nb_nothing_steps, reward, str(succeeds)
                    )
-    logger.info("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    logger.info("────────────────────────────────────────")
     return success_list
     #  }}} function traverse_environment # 
 
@@ -353,6 +353,19 @@ def main():
 
         if args.train:
             history_replay.save_yaml(args.save_replay % epch)
+
+
+        epoch_str = "Epoch {:}".format(epch)
+        logger.info("\x1b[31m━━━━━━━━━━━━━━━━━━━%s━━━━━━━━━━━━━━━━━━━━\x1b[0m", epoch_str)
+        logger.info( "Size: %d, Avg AD Size: %d"
+                   , len(history_replay)
+                   , sum( map( lambda rcd: len(rcd["action_dict"])
+                             , history_replay._record
+                             )
+                        )\
+                   / float(len(history_replay))
+                   )
+        logger.info("\x1b[31m━━━━━━━━━━━━━━━━━━━%s━━━━━━━━━━━━━━━━━━━━\x1b[0m", "━" * len(epoch_str))
     #  }}} Work Flow # 
 
 if __name__ == "__main__":

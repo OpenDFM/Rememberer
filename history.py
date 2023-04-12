@@ -714,4 +714,6 @@ class HistoryReplay(Generic[Key, Action]):
     def save_yaml(self, yaml_file: str):
         with open(yaml_file, "w") as f:
             yaml.dump(self._record, f, Dumper=yaml.Dumper)
+    def __len__(self) -> int:
+        return len(self._record)
     #  }}} class HistoryReplay # 

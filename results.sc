@@ -20,6 +20,7 @@ format L 11 2 0
 format P 11 2 0
 format T 11 2 0
 hidecol F:I
+hidecol N:Q
 label A0 = "Env Name"
 label B0 = "#Steps"
 label C0 = "Reward"
@@ -1534,7 +1535,7 @@ let T71 = @avg(T1:T70)
 let U71 = @avg(U1:U70)
 leftstring A72 = "备注：原始方案、去掉动作历史的方案"
 leftstring A73 = "回报基线、W4（扩充池）、W5（更扩池）"
-goto U71
+goto U12
 movetosheet "addreward"
 offscr_sc_cols 0
 offscr_sc_rows 0
@@ -1549,7 +1550,7 @@ format L 11 2 0
 format P 11 2 0
 format T 11 2 0
 hidecol B:E
-hidecol J:M
+hidecol J:Q
 label A0 = "Env Name (with low rate)"
 label B0 = "#Steps"
 label C0 = "Reward"
@@ -2149,7 +2150,7 @@ let T29 = @avg(T25:T28)
 let U29 = @avg(U25:U28)
 leftstring A33 = "备注：原版；加回报；W2（标注池）；W4（扩充的标注池）"
 leftstring A34 = "备注：W5（更正的扩充标注池）"
-goto T29
+goto R7
 movetosheet "complementary w/history"
 offscr_sc_cols 0
 offscr_sc_rows 34
@@ -3492,6 +3493,6 @@ let L36 = @avg(L1:L35)
 let M36 = @avg(M1:M35)
 leftstring A38 = "备注：加回报；W4（扩充的标注池）；W5（更正的扩充标注池）"
 goto A36
-movetosheet "w/ history"
+movetosheet "addreward"
 mark a "w/ history" A1
 mark b "w/ history" I70

@@ -4,8 +4,8 @@ date_str=$(date +%Y-%m-%dT%H:%M:%S)
 
 export TOKENIZERS_PARALLELISM=false
 python main.py --log-dir logs-historyless/\
-			   --train-path ../android_env/apps/wikihow/templates.miniout.microbuffer.annotated.subset\
-			   --task-path ../android_env/apps/wikihow/templates.miniout.microbuffer.valset.subset\
+			   --train-path ../android_env/apps/wikihow/templates.miniout.microbuffer.annotated\
+			   --task-path ../android_env/apps/wikihow/templates.miniout.microbuffer.valset\
 			   --avd-name Pixel_2_API_30_ga_x64_1\
 			   --tokenizer-path weights/vilt-b32-mlm-tiny-tkn\
 			   --load-replay history-pools/init_pool.q.yaml\
