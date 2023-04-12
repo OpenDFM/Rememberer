@@ -739,6 +739,10 @@ class HistoryReplay(Generic[Key, Action]):
                            , self._item_capacity, len(keys)
                            )
             self._item_capacity = len(keys)
+            self._similarity_matrix = similarity_matrix
+        else:
+            self._similarity_matrix[:len(keys), :len(keys)] = similarity_matrix
+
         action_size: int = max( map( lambda rcd: len(rcd["action_dict"])
                                    , self._record.values()
                                    )
@@ -750,9 +754,8 @@ class HistoryReplay(Generic[Key, Action]):
                            , self._action_capacity, action_size
                            )
             self._action_capacity = action_size
-
         self._keys = keys
-        self._similarity_matrix = similarity_matrix
+
         self._max_id = max( map( lambda rcd: rcd["id"]
                                , self._record.values()
                                )

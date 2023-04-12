@@ -174,7 +174,9 @@ def main():
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--speech", action="store_true")
 
+    parser.add_argument("--starts-from", default=0, type=int)
     parser.add_argument("--epochs", default=3, type=int)
+    parser.add_argument("--except", nargs="+", type=int)
 
     parser.add_argument("--replay-file", nargs="+", type=str)
     parser.add_argument("--dump-path", nargs="+", type=str)
@@ -335,8 +337,9 @@ def main():
     #  Work Flow {{{ # 
     nb_epochs = args.epochs if args.train else 1
     max_nb_steps = 15
-    except_list: Set[int] = set()
-    for epch in range(nb_epochs):
+    except_list: Set[int] = set() if getattr(args, "except") is None else set(getattr(args, "except"))
+    #except_list = {0, 1, 2, 3, 5, 6, 7, 8, 9}
+    for epch in range(args.starts_from, nb_epochs):
         if args.train:
             model.train(True)
             success_list: Set[int] = traverse_environment( train_env, model
@@ -360,7 +363,7 @@ def main():
         logger.info( "Size: %d, Avg AD Size: %d"
                    , len(history_replay)
                    , sum( map( lambda rcd: len(rcd["action_dict"])
-                             , history_replay._record
+                             , history_replay._record.values()
                              )
                         )\
                    / float(len(history_replay))
