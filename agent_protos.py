@@ -212,7 +212,7 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
             if actions[0][1]<=0.:
                 encouraged: List[Tuple[history.Action, float]]\
                         = [ ( self._random_action(key)
-                            , self._rng.random()/0.5
+                            , self._rng.random()/2.
                             )
                           ]
             else:
