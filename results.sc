@@ -6,6 +6,7 @@ newsheet "addreward"
 newsheet "complementary w/history"
 newsheet "comp moreexpe"
 newsheet "testset-hib"
+newsheet "W7(A,V)"
 movetosheet "w/ history"
 offscr_sc_cols 0
 offscr_sc_rows 0
@@ -1535,7 +1536,7 @@ let T71 = @avg(T1:T70)
 let U71 = @avg(U1:U70)
 leftstring A72 = "备注：原始方案、去掉动作历史的方案"
 leftstring A73 = "回报基线、W4（扩充池）、W5（更扩池）"
-goto U12
+goto A5
 movetosheet "addreward"
 offscr_sc_cols 0
 offscr_sc_rows 0
@@ -2150,10 +2151,10 @@ let T29 = @avg(T25:T28)
 let U29 = @avg(U25:U28)
 leftstring A33 = "备注：原版；加回报；W2（标注池）；W4（扩充的标注池）"
 leftstring A34 = "备注：W5（更正的扩充标注池）"
-goto R7
+goto H12
 movetosheet "complementary w/history"
 offscr_sc_cols 0
-offscr_sc_rows 34
+offscr_sc_rows 39
 nb_frozen_rows 0
 nb_frozen_cols 0
 nb_frozen_screenrows 0
@@ -2710,9 +2711,9 @@ let B109 = @avg(B1:B108)
 let C109 = @avg(C1:C108)
 let D109 = @avg(D1:D108)
 let E109 = @avg(E1:E108)
-goto E109
+goto A48
 movetosheet "comp moreexpe"
-offscr_sc_cols 5
+offscr_sc_cols 0
 offscr_sc_rows 0
 nb_frozen_rows 0
 nb_frozen_cols 0
@@ -2998,7 +2999,7 @@ let O15 = @avg(O1:O14)
 let P15 = @avg(P1:P14)
 let Q15 = @avg(Q1:Q14)
 leftstring A17 = "备注：原版；加回报；W4（扩充的标注池）；W5（更正的扩充标注池）"
-goto H15
+goto A14
 movetosheet "testset-hib"
 offscr_sc_cols 0
 offscr_sc_rows 0
@@ -3492,7 +3493,212 @@ let K36 = @avg(K1:K35)
 let L36 = @avg(L1:L35)
 let M36 = @avg(M1:M35)
 leftstring A38 = "备注：加回报；W4（扩充的标注池）；W5（更正的扩充标注池）"
-goto A36
-movetosheet "addreward"
+goto A35
+movetosheet "W7(A,V)"
+offscr_sc_cols 1
+offscr_sc_rows 0
+nb_frozen_rows 0
+nb_frozen_cols 0
+nb_frozen_screenrows 0
+nb_frozen_screencols 0
+format A 67 2 0
+format D 11 2 0
+format H 11 2 0
+format L 11 2 0
+label A0 = "Traning Set"
+label B0 = "#Steps"
+label C0 = "Rewards"
+label D0 = "Reward Rate"
+label E0 = "Succeeds"
+label F0 = "#Steps"
+label G0 = "Rewards"
+label H0 = "Reward Rate"
+label I0 = "Succeeds"
+label J0 = "#Steps"
+label K0 = "Rewards"
+label L0 = "Reward Rate"
+label M0 = "Succeeds"
+label A1 = "address_a_letter_to_england-7.textproto"
+let B1 = 3
+let C1 = 3
+let D1 = C1/B1
+let E1 = 1
+label A2 = "apply_cc_cream-0.textproto"
+let B2 = 3
+let C2 = 3
+let D2 = C2/B2
+let E2 = 1
+label A3 = "be_a_good_friend_to_a_guy-4.textproto"
+let B3 = 5
+let C3 = 4
+let D3 = C3/B3
+let E3 = 1
+label A4 = "buy_stocks_P28for_beginnersP29-6.textproto"
+let B4 = 5
+let C4 = 4
+let D4 = C4/B4
+let E4 = 1
+label A5 = "bypass_youtubeP27s_regional_filter-6.textproto"
+let B5 = 15
+let C5 = 3
+let D5 = C5/B5
+let E5 = 0
+let F5 = 15
+let G5 = 2
+let H5 = G5/F5
+let I5 = 0
+let J5 = 12
+let K5 = 4
+let L5 = K5/J5
+let M5 = 1
+label A6 = "call_the_czech_republic_from_the_united_states-4.textproto"
+let B6 = 2
+let C6 = 2
+let D6 = C6/B6
+let E6 = 1
+label A7 = "change_a_lightbulb_in_a_recessed_light-8.textproto"
+let B7 = 2
+let C7 = 2
+let D7 = C7/B7
+let E7 = 1
+label A8 = "clean_utensils-7.textproto"
+let B8 = 3
+let C8 = 3
+let D8 = C8/B8
+let E8 = 1
+label A9 = "do_ruby_rose_hair-0.textproto"
+let B9 = 3
+let C9 = 3
+let D9 = C9/B9
+let E9 = 1
+label A10 = "hide_gauges-8.textproto"
+let B10 = 2
+let C10 = 2
+let D10 = C10/B10
+let E10 = 1
+label A12 = "Test Set"
+label A13 = "avoid_losing_a_friend_to_someone_you_hate-0.textproto"
+let B13 = 3
+let C13 = 2
+let D13 = C13/B13
+let E13 = 1
+let F13 = 3
+let G13 = 2
+let H13 = G13/F13
+let I13 = 1
+let J13 = 15
+let K13 = 1
+let L13 = K13/J13
+let M13 = 0
+label A14 = "deal_with_little_sisters-6.textproto"
+let B14 = 15
+let C14 = 2
+let D14 = C14/B14
+let E14 = 0
+let F14 = 5
+let G14 = 3
+let H14 = G14/F14
+let I14 = 1
+let J14 = 12
+let K14 = 3
+let L14 = K14/J14
+let M14 = 1
+label A15 = "fish_for_alligator_gar-7.textproto"
+let B15 = 3
+let C15 = 3
+let D15 = C15/B15
+let E15 = 1
+let F15 = 3
+let G15 = 3
+let H15 = G15/F15
+let I15 = 1
+let J15 = 3
+let K15 = 3
+let L15 = K15/J15
+let M15 = 1
+label A16 = "get_a_loan_without_private_mortgage_insurance_P28pmiP29-8.textproto"
+let B16 = 15
+let C16 = 1
+let D16 = C16/B16
+let E16 = 0
+let F16 = 15
+let G16 = 1
+let H16 = G16/F16
+let I16 = 0
+let J16 = 15
+let K16 = 2
+let L16 = K16/J16
+let M16 = 0
+label A17 = "get_girls-6.textproto"
+let B17 = 15
+let C17 = 3
+let D17 = C17/B17
+let E17 = 0
+let F17 = 15
+let G17 = 3
+let H17 = G17/F17
+let I17 = 0
+let J17 = 9
+let K17 = 5
+let L17 = K17/J17
+let M17 = 1
+leftstring A19 = "备注：W7，第一、二、三轮"
+leftstring A23 = "备注，原始、基线、W5、W7"
+label A24 = "Test Set"
+label B24 = "Rate"
+label C24 = "Succeeds"
+label D24 = "Rate"
+label E24 = "Succeeds"
+label F24 = "Rate"
+label G24 = "Succeeds"
+label H24 = "Rate"
+label I24 = "Succeeds"
+label A25 = "avoid_losing_a_friend_to_someone_you_hate-0.textproto"
+let B25 = 0.07
+let C25 = 0
+let D25 = 0.07
+let E25 = 0
+let F25 = 0.67
+let G25 = 1
+let H25 = 0.0666666666666667
+let I25 = 0
+label A26 = "deal_with_little_sisters-6.textproto"
+let B26 = 0.13
+let C26 = 0
+let D26 = 0.13
+let E26 = 0
+let F26 = 0.13
+let G26 = 0
+let H26 = 0.25
+let I26 = 1
+label A27 = "fish_for_alligator_gar-7.textproto"
+let B27 = 0.43
+let C27 = 1
+let D27 = 0.13
+let E27 = 0
+let F27 = 1
+let G27 = 1
+let H27 = 1
+let I27 = 1
+label A28 = "get_a_loan_without_private_mortgage_insurance_P28pmiP29-8.textproto"
+let B28 = 0.07
+let C28 = 0
+let D28 = 0.13
+let E28 = 0
+let F28 = 1
+let G28 = 1
+let H28 = 0.133333333333333
+let I28 = 0
+label A29 = "get_girls-6.textproto"
+let B29 = 0.2
+let C29 = 0
+let D29 = 0.2
+let E29 = 0
+let F29 = 0.07
+let G29 = 0
+let H29 = 0.555555555555556
+let I29 = 1
+goto D26
+movetosheet "W7(A,V)"
 mark a "w/ history" A1
 mark b "w/ history" I70
