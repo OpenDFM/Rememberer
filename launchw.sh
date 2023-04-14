@@ -13,5 +13,4 @@ python webshop.py --log-dir logs-webshop\
 				  --max-tokens 50\
 				  --stop "Discouraged"\
 				  --request-timeout 5.\
-				  --manual\
 				  --epochs 3

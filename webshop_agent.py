@@ -63,7 +63,8 @@ class Agent(abc.ABC):
                                              , available_actions
                                              )
 
-        self._action_history.append(action_str)
+        if action_str!="NOTHINGG":
+            self._action_history.append(action_str)
         return action_str
         #  }}} method __call__ # 
 

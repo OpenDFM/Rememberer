@@ -9,6 +9,7 @@ Here are several common principles to make a decision:
 
 1. I will explore several different keywords if I find that a group of keyword cannot lead me to the target.
 2. I will avoid always repeating a wrong action.
+3. I can search only if search is listed as an available action. If search is not listed as an available action, I cannot search.
 
 Here are some examples:
 
