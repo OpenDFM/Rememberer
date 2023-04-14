@@ -76,6 +76,9 @@ class Agent(abc.ABC):
                    , available_actions: List[str]
                    ) -> Action:
         raise NotImplementedError()
+
+    def train(self, train: bool):
+        pass
     #  }}} class Agent # 
 
 class ManualAgent(Agent):
@@ -281,4 +284,7 @@ class AutoAgent( Agent
         logger.debug("Action: %s", action_text)
         return action_text
         #  }}} method _get_action # 
+
+    def train(self, train: bool):
+        super(agent_protos.OpenAIClient, self).train(train)
     #  }}} class AutoAgent # 

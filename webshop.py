@@ -23,8 +23,8 @@ import argparse
 import datetime
 import os
 
-from typing import List, Dict
-import numpy as np
+from typing import List, Dict, Set
+#import numpy as np
 
 #  Interfaces of WebAgentTextEnv {{{ # 
 # def init( observation_mode: str = "html" # "html": raw html
@@ -82,6 +82,74 @@ import numpy as np
 #                    ]
 #  }}} Interfaces of WebAgentTextEnv # 
 
+def traverse_environment( env: gym.Env
+                        , task_set: List[int]
+                        , model: webshop_agent.Agent
+                        , logger: logging.Logger
+                        , except_list: Set[int] = set()
+                        , max_nb_steps: int = 15
+                        ) -> Set[int]:
+    #  function traverse_environment {{{ # 
+    """
+    Args:
+        env (gym.Env): the environment
+        task_set (List[int]): the traversed task set
+        model (agent.Agent): the agent
+        logger (logging.Logger): the logger
+        except_list (Set[int]): tasks in this set won't be tested
+
+        max_nb_steps (int): if the number of steps exceeds `max_nb_steps`, the
+          episode will be killed and considered as failed.
+
+    Returns:
+        Set[int]: set of the succeeded tasks
+    """
+
+    success_list: Set[int] = set()
+
+    for i in task_set:
+        if i in except_list:
+            continue
+
+        model.reset()
+        observation: str = env.reset(session=i)[0]
+        task: str = env.get_instruction_text()
+        available_actions: List[str] = env.get_available_actions()["clickables"]
+
+        nb_steps = 0
+        nb_nothing_steps = 0
+
+        reward = 0.
+        total_reward = 0.
+        succeeds = False
+        while nb_steps<max_nb_steps:
+            action: webshop_agent.Action = model( task
+                                                , observation
+                                                , reward
+                                                , total_reward
+                                                , available_actions
+                                                )
+            if action!="NOTHINGG":
+                observation, reward, done, _ = env.step(action)
+                total_reward += reward
+                nb_steps += 1
+                if done:
+                    succeeds = reward==1.
+                    break
+            else:
+                nb_nothing_steps += 1
+
+        if succeeds:
+            success_list.add(i)
+
+        logger.info("\x1b[43mEND!\x1b[0m %s", task)
+        logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
+                   , i, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
+                   )
+    logger.info("────────────────────────────────────────")
+    return success_list
+    #  }}} function traverse_environment # 
+
 def main():
     #  Command Line Options {{{ # 
     parser = argparse.ArgumentParser()
@@ -119,7 +187,7 @@ def main():
     parser.add_argument("--step-penalty", default=0., type=float)
     parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
     parser.add_argument("--learning-rate", default=0.1, type=float)
-    parser.add_argument("--n-step-flatten", default=1, type=int)
+    parser.add_argument("--n-step-flatten", type=int)
 
     # Agent Options
     parser.add_argument("--prompt-template", type=str)
@@ -130,6 +198,10 @@ def main():
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--speech", action="store_true")
+
+    parser.add_argument("--starts-from", default=0, type=int)
+    parser.add_argument("--epochs", default=3, type=int)
+    parser.add_argument("--except", nargs="+", type=int)
 
     args: argparse.Namespace = parser.parse_args()
     #  }}} Command Line Options # 
@@ -234,51 +306,61 @@ def main():
                   , num_prev_actions=args.prev_actions
                   , num_prev_obs=args.prev_observations
                   )
+    #if args.train:
+        #train_env = gym.make( "WebAgentTextEnv-v0"
+                            #, observation_mode=args.observation_mode
+                            #, file_path=(args.file_path if args.file_path is not None and args.file_path != ""
+                                                      #else DEFAULT_FILE_PATH)
+                            #, num_products=None
+                            #, num_prev_actions=args.prev_actions
+                            #, num_prev_obs=args.prev_observations
+                            #)
+
+    logger.info("The environment is ready.")
     #  }}} Build Agent and Environment # 
 
     #  Workflow {{{ # 
-    max_nb_tasks = 10
+    #max_task_id = 1000
+    training_set = [ 51, 78, 137, 290, 355
+                   , 525, 598, 611, 660, 940
+                   ]
+    test_set = [175, 223, 308, 444, 887]
+    except_list: Set[int] = set() if getattr(args, "except") is None else set(getattr(args, "except"))
+
+    nb_epochs = args.epochs if args.train else 1
     max_nb_steps = 15
-    max_task_id = 1000
-    rng = np.random.default_rng()
-    for i in range(max_nb_tasks):
-        j: np.int64 = rng.integers(max_task_id)
-        model.reset()
-        task: str = env.get_instruction_text()
-        observation: str = env.reset(session=int(j))[0]
-        available_actions: List[str] = env.get_available_actions()["clickables"]
+    #rng = np.random.default_rng()
+    for epch in range(args.starts_from, nb_epochs):
+        if args.train:
+            model.train(True)
+            success_list: Set[int] = traverse_environment( env, training_set
+                                                         , model
+                                                         , logger, except_list
+                                                         , max_nb_steps=max_nb_steps
+                                                         )
+            if epch==0:
+                except_list |= success_list
+        model.train(False)
+        traverse_environment( env, test_set
+                            , model, logger
+                            , max_nb_steps=max_nb_steps
+                            )
 
-        nb_steps = 0
-        nb_nothing_steps = 0
+        if args.train:
+            history_replay.save_yaml(args.save_replay % epch)
 
-        reward = 0.
-        total_reward = 0.
-        succeeds = False
-        while nb_steps<max_nb_steps:
-            action: webshop_agent.Action = model( task
-                                                , observation
-                                                , reward
-                                                , total_reward
-                                                , available_actions
-                                                )
-            if action!="NOTHINGG":
-                observation, reward, done, _ = env.step(action)
-                total_reward += reward
-                nb_steps += 1
-                if done:
-                    succeeds = True
-                    break
-            else:
-                nb_nothing_steps += 1
-
-        logger.info("\x1b[43mEND!\x1b[0m %s", task)
-        logger.info( "\x1b[42mEND!\x1b[0m TaskIdx: %d, TaskId: %d, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
-                   , i, j, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
+        epoch_str = "Epoch {:}".format(epch)
+        logger.info("\x1b[31m━━━━━━━━━━━━━━━━━━━%s━━━━━━━━━━━━━━━━━━━━\x1b[0m", epoch_str)
+        logger.info( "Size: %d, Avg AD Size: %d"
+                   , len(history_replay)
+                   , sum( map( lambda rcd: len(rcd["action_dict"])
+                             , history_replay._record.values()
+                             )
+                        )\
+                   / float(len(history_replay))
                    )
+        logger.info("\x1b[31m━━━━━━━━━━━━━━━━━━━%s━━━━━━━━━━━━━━━━━━━━\x1b[0m", "━" * len(epoch_str))
     #  }}} Workflow # 
-
-    if args.train:
-        history_replay.save_yaml(args.save_replay)
 
 if __name__ == "__main__":
     main()
