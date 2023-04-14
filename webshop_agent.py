@@ -217,7 +217,7 @@ class AutoAgent( Agent
                                                         , action_history=info_dict["action_history"]
                                                         , reward=info_dict["last_reward"]
                                                         , total_reward=info_dict["total_reward"]
-                                                        , available_actions=key[2].splitlines()
+                                                        , available_actions=key[2]
                                                         )\
                       + "\n"\
                       + self._prompt_templates.advice_template.safe_substitute(
@@ -228,16 +228,25 @@ class AutoAgent( Agent
         #  }}} method _examplar_to_string # 
 
     def _parse_action(self, response: str) -> Action:
-        return response
+        #  method _parse_action {{{ # 
+        encouraged_result: str = response.split("Disc", maxsplit=1)[0]
+        encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
+        encouraged_result = encouraged_result.strip().splitlines()[0]
+        encouraging_texts: List[str] = encouraged_result.split("->", maxsplit=1)
+
+        action_text: str = encouraging_texts[0].strip()
+        return action_text
+        #  }}} method _parse_action # 
 
     def _get_action( self
                    , task: str
-                   , observation: str
+                   , observation: List[str]
                    , reward: float
                    , total_reward: float
                    , available_actions: List[str]
                    ) -> Action:
         #  method _get_action {{{ # 
+        observation: str = "\n".join(observation)
         available_actions: str = "\n".join(available_actions)
 
         #  Replay Updating {{{ # 
@@ -272,7 +281,7 @@ class AutoAgent( Agent
         example_str: str = "\n".join(reversed(examplars)).strip()
         #  }}} Construct Examplars # 
 
-        prompt: str = self._prompt_templates.whole_template.safe_substitute( example=example_str
+        prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str
                                                                            , new_input=new_input
                                                                            )
         action: Optional[Action] = self._get_response(prompt)

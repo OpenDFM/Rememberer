@@ -129,7 +129,7 @@ def convert_simple_page(page: str) -> List[str]:
 
     return page.split(" [SEP] ")
 
-def simplify_html(page: str, with_eid: bool = False) -> List[lxml.html.Element]:
+def simplify_html(page: str, with_eid: bool = False) -> List[str]:
     #  function simplify_html {{{ # 
     """
     Args:
