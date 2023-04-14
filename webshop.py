@@ -132,6 +132,8 @@ def traverse_environment( env: gym.Env
             if action!="NOTHINGG":
                 observation, reward, done, _ = env.step(action)
                 total_reward += reward
+                available_actions = env.get_available_actions()["clickables"]
+
                 nb_steps += 1
                 if done:
                     succeeds = reward==1.

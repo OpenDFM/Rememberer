@@ -1,0 +1,189 @@
+/* WebShop标准范例测试 */
+
+I'm visiting a shopping website and need to complete the shopping following an instruction about the desired commodity. On the shopping website, my available actions are:
+
+search[keywords]
+click[element]
+
+Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the operated element if the action is an INPUT or a CLICK.
+
+Here are several common principles to make a decision:
+
+1. I will explore several different keywords if I find that a group of keyword cannot lead me to the target.
+2. I will avoid always repeating a wrong action.
+
+Here are some examples:
+
+Example 2:
+
+---
+Last 5 Actions:
+
+Observation: |
+  WebShop
+  Instruction: 
+  Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: xx-large, and price lower than 40.00 dollars
+  [button] Search [button_]
+  
+Available Actions:
+- search
+...
+
+Encouraged:
+search[quick drying moisture wicking women activewear long sleeve] -> 1.0
+Discouraged:
+click[search] -> 0.0
+
+Example 1:
+
+---
+Last 5 Actions:
+- search[quick drying moisture wicking women activewear long sleeve]
+Observation: |
+  Instruction:
+  Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: xx-large, and price lower than 40.00 dollars
+  [button] Back to Search [button_]
+  Page 1 (Total results: 50)
+  [button] Next > [button_]
+  
+  [button] B09QCP4579 [button_]
+  LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants
+  $13.99
+  
+  [button] B07WMMYB6G [button_]
+  MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking
+  $17.98 to $17.99
+  
+  [button] B08JD14GJF [button_]
+  COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing
+  $9.98 to $16.98
+  
+  [button] B09QQJJ3KM [button_]
+  One Lucky Teacher St Patrick Day Shamrock Tee Teachers Custom Personalized Unisex T-Shirts Long Sleeve Hoodie Sweatshirt Gifts
+  $100.0
+  
+  [button] B09Q8RD8YN [button_]
+  Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt
+  $19.99
+  
+  [button] B09QGK5XHZ [button_]
+  WENKOMG1 Men's Long Sleeve Undershirt with Mask Turtleneck Hooded T-Shirt Solid Color Workout Tops Zipper Side Slit Shirts Slim Fit Sweatshirt Spring/Summer Tee Shirts(Gray,)
+  $8.39
+  
+  [button] B098824K9T [button_]
+  Spa Savvy Shower Cap and Twist Hair Turban Duo, Enhance Your Shower Experience with this Complete Set, Fully Lined Shower Cap, Microfiber Turban (Green)
+  $11.99
+  
+  [button] B09P5CRVQ6 [button_]
+  Womens Tops Casual, Sweatshirt for Women Graphic, Womens Sweatshirt Hoodie, Women Love Print Sweatshirt Long Sleeve Cute Heart Sweater Pullover Tops Blouse
+  $22.78
+  
+  [button] B09KRLGSC5 [button_]
+  SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops
+  $25.99
+  
+  [button] B09KP78G37 [button_]
+  Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush   Overcoat
+  $47.41 to $59.07
+  
+Available Actions:
+- back to search
+- next >
+- b09qcp4579
+- b07wmmyb6g
+- b08jd14gjf
+- b09qqjj3km
+- b09q8rd8yn
+- b09qgk5xhz
+- b098824k9t
+- b09p5crvq6
+- b09krlgsc5
+- b09kp78g37
+...
+
+Encouraged:
+click[b08jd14gjf] -> 1.0
+Discouraged:
+click[b09qgk5xhz] -> 0.0
+
+Now the new input:
+
+---
+Last 5 Actions:
+- search[quick drying moisture wicking women activewear long sleeve]
+- click[B08JD14GJF
+- click[B08JD14GJF]
+- click[c-black]
+Observation: |
+  You have clicked c-black.
+  Instruction:
+  Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: xx-large, and price lower than 50.00 dollars
+  [button] Back to Search [button_]
+  [button] < Prev [button_]
+  color
+    [button] b-orange-thumbhole [button_]
+    [button] b-sky blue-thumbhole [button_]
+    [clicked button] c-black [clicked button_]
+    [button] c-grey [button_]
+    [button] a-white-thumbhole [button_]
+    [button] b-green-thumbhole [button_]
+    [button] c-blue [button_]
+    [button] c-navy blue [button_]
+    [button] c-purple [button_]
+    [button] c-white [button_]
+    [button] b-black-thumbhole [button_]
+    [button] b-light grey-thumbhole [button_]
+    [button] b-peach-thumbhole [button_]
+    [button] c-green [button_]
+    [button] b-navy blue-thumbhole [button_]
+    [button] b-purple-thumbhole [button_]
+    [button] b-grey-thumbhole [button_]
+  size
+    [button] small [button_]
+    [button] medium [button_]
+    [button] large [button_]
+    [button] x-large [button_]
+    [button] xx-large [button_]
+  COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing
+  Price: $9.98 to $16.98
+  Rating: N.A.
+  [button] Description [button_]
+  [button] Features [button_]
+  [button] Reviews [button_]
+  [button] Buy Now [button_]
+  
+Available Actions:
+- back to search
+- < prev
+- description
+- features
+- reviews
+- buy now
+- b-orange-thumbhole
+- b-sky blue-thumbhole
+- c-black
+- c-grey
+- a-white-thumbhole
+- b-green-thumbhole
+- c-blue
+- c-navy blue
+- c-purple
+- c-white
+- b-black-thumbhole
+- b-light grey-thumbhole
+- b-peach-thumbhole
+- c-green
+- b-navy blue-thumbhole
+- b-purple-thumbhole
+- b-grey-thumbhole
+- small
+- medium
+- large
+- x-large
+- xx-large
+...
+
+[32mEncouraged:[0m
+[32mclick[xx-large] -> 1.0[0m
+[32mDiscouraged:[0m
+[32mclick[small] -> 0.0[0m
