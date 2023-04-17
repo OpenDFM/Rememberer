@@ -39,6 +39,7 @@ from typing import List, Dict, Set
 #                                          # "url": url
 #     , file_path: str = utils.DEFAULT_FILE_PATH # path to a json as the data file
 #     , num_products: Optional[int]
+#     , human_goals: Optional[bool] # if the human-annotated goals should be used
 #     , num_prev_actions: int = 0 # the number of history actions to append
 #                                 # after the observation; actions are appended
 #                                 # in a reverse order
@@ -107,7 +108,7 @@ def traverse_environment( env: gym.Env
 
     success_list: Set[int] = set()
 
-    for i in task_set:
+    for idx, i in enumerate(task_set):
         if i in except_list:
             continue
 
@@ -145,8 +146,8 @@ def traverse_environment( env: gym.Env
             success_list.add(i)
 
         logger.info("\x1b[43mEND!\x1b[0m %s", task)
-        logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
-                   , i, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
+        logger.info( "\x1b[42mEND!\x1b[0m TaskIdx: %d, TaskId: %d, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
+                   , idx, i, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
                    )
     logger.info("────────────────────────────────────────")
     return success_list
@@ -305,6 +306,7 @@ def main():
                   , file_path=(args.file_path if args.file_path is not None and args.file_path != ""
                                             else DEFAULT_FILE_PATH)
                   , num_products=None
+                  , human_goals=True
                   , num_prev_actions=args.prev_actions
                   , num_prev_obs=args.prev_observations
                   )
@@ -323,10 +325,14 @@ def main():
 
     #  Workflow {{{ # 
     #max_task_id = 1000
-    training_set = [ 51, 78, 137, 290, 355
-                   , 525, 598, 611, 660, 940
-                   ]
-    test_set = [175, 223, 308, 444, 887]
+    training_set = [ 5300, 3971, 1147, 8277, 1813
+                   , 6308, 9970, 9077, 6967, 11116
+                   , 311, 5105, 7245, 317, 8312
+                   , 2690, 7914, 4483, 9391, 1387
+                   ][:]
+    test_set = [ 2300, 982, 11797, 3465, 10869
+               , 8205, 2245, 2003, 2998, 4899
+               ][:]
     except_list: Set[int] = set() if getattr(args, "except") is None else set(getattr(args, "except"))
 
     nb_epochs = args.epochs if args.train else 1

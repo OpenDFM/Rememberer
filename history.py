@@ -255,6 +255,7 @@ class InsPageRelMatcher(Matcher[Tuple[str, str, Any]]):
         # (1+N, D); N is the lines of the page; D is the encoding dimension
         query_encodings: torch.Tensor =\
                 self._transformer.encode( [instruction] + page.splitlines()
+                                        , show_progress_bar=False
                                         , convert_to_tensor=True
                                         , normalize_embeddings=True
                                         )
@@ -272,6 +273,7 @@ class InsPageRelMatcher(Matcher[Tuple[str, str, Any]]):
         instruction: str = self._query[1]
         key_encodings: torch.Tensor =\
                 self._transformer.encode( [instruction] + page.splitlines()
+                                        , show_progress_bar=False
                                         , convert_to_tensor=True
                                         , normalize_embeddings=True
                                         ) # (1+N, D)

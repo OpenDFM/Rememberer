@@ -255,7 +255,7 @@ class AutoAgent( Agent
             last_action: Optional[Action] = self._action_history[-1]\
                                             if len(self._action_history)>0\
                                           else None
-            self._history_replay.update( (observation, available_actions)
+            self._history_replay.update( (observation, task, available_actions)
                                        , reward
                                        , last_action
                                        )
