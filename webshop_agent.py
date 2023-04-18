@@ -134,6 +134,9 @@ class AutoAgent( Agent
                 ):
         #  method __init__ {{{ # 
         super(AutoAgent, self).__init__(env_mode)
+
+        self._config_temperature: float = temperature
+        temperature = self._config_temperature if train else 0.
         super(Agent, self).__init__( prompt_templates
                                    , api_key
                                    , model
@@ -147,7 +150,7 @@ class AutoAgent( Agent
                                    )
 
         # TODO: adjust the length limit according to the preamble
-        self._input_length_limit: int = 3700
+        self._input_length_limit: int = 3870
 
         self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
         super(agent_protos.OpenAIClient, self).__init__( history_replay
@@ -297,4 +300,5 @@ class AutoAgent( Agent
 
     def train(self, train: bool):
         super(agent_protos.OpenAIClient, self).train(train)
+        self._temperature = self._config_temperature if self._train else 0.
     #  }}} class AutoAgent # 
