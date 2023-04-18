@@ -350,12 +350,13 @@ class AutoAgent( Agent
             encouraged_texts.append((action_text, score, element_html))
 
         highest_result: Tuple[str, float, str]\
-                = itertools.islice( sorted( encouraged_texts
-                                          , key=(lambda itm: itm[1])
-                                          , reverse=True
-                                          )
-                                  , 1
-                                  )
+                = list( itertools.islice( sorted( encouraged_texts
+                                                , key=(lambda itm: itm[1])
+                                                , reverse=True
+                                                )
+                                        , 1
+                                        )
+                      )[0]
         return highest_result[0], highest_result[2]
         #return action_text, element_html
         #  }}} Parse Action Text # 

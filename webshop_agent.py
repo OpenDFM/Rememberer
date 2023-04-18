@@ -244,12 +244,13 @@ class AutoAgent( Agent
                          )
                     )
 
-        action_text: str = itertools.islice( sorted( encouraging_texts
-                                                   , key=(lambda itm: itm[1])
-                                                   , reverse=True
-                                                   )
-                                           , 1
-                                           )[0]
+        action_text: str = list( itertools.islice( sorted( encouraging_texts
+                                                         , key=(lambda itm: itm[1])
+                                                         , reverse=True
+                                                         )
+                                                 , 1
+                                                 )
+                               )[0][0]
         return action_text
         #  }}} method _parse_action # 
 
