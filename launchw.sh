@@ -13,5 +13,7 @@ python webshop.py --log-dir logs-webshop\
 				  --max-tokens 50\
 				  --stop "Discouraged"\
 				  --request-timeout 5.\
+				  --pub-to-local-mapping pub-to-mine.list\
 				  --train\
-				  --epochs 3
+				  --starts-from 0\
+				  --epochs 6

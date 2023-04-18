@@ -208,6 +208,7 @@ def main():
     parser.add_argument("--starts-from", default=0, type=int)
     parser.add_argument("--epochs", default=3, type=int)
     parser.add_argument("--except", nargs="+", type=int)
+    parser.add_argument("--pub-to-local-mapping", type=str)
 
     args: argparse.Namespace = parser.parse_args()
     #  }}} Command Line Options # 
@@ -337,15 +338,22 @@ def main():
     #  }}} Build Agent and Environment # 
 
     #  Workflow {{{ # 
-    #max_task_id = 1000
-    training_set = [ 5300, 3971, 1147, 8277, 1813
-                   , 6308, 9970, 9077, 6967, 11116
-                   , 311, 5105, 7245, 317, 8312
-                   , 2690, 7914, 4483, 9391, 1387
-                   ][:]
-    test_set = [ 2300, 982, 11797, 3465, 10869
-               , 8205, 2245, 2003, 2998, 4899
-               ][:]
+    #training_set = [ 5300, 3971, 1147, 8277, 1813
+                   #, 6308, 9970, 9077, 6967, 11116
+                   #, 311, 5105, 7245, 317, 8312
+                   #, 2690, 7914, 4483, 9391, 1387
+                   #][:]
+    #test_set = [ 2300, 982, 11797, 3465, 10869
+               #, 8205, 2245, 2003, 2998, 4899
+               #][:]
+    with open(args.pub_to_local_mapping) as f:
+        local_mapping: List[int] = list( map( int
+                                            , f.read().splitlines()
+                                            )
+                                       )
+    training_set: List[int] = local_mapping[500:520]
+    test_set: List[int] = local_mapping[:10]
+
     except_list: Set[int] = set() if getattr(args, "except") is None else set(getattr(args, "except"))
 
     if not args.train:
