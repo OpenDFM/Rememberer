@@ -1,6 +1,7 @@
 import vh_to_html
 import re
 import tiktoken
+import itertools
 
 import lxml.etree
 import lxml.html
@@ -332,15 +333,31 @@ class AutoAgent( Agent
         #  Parse Action Text {{{ # 
         encouraged_result: str = response.split("Disc", maxsplit=1)[0]
         encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
-        encouraged_result = encouraged_result.strip().splitlines()[0]
-        encouraging_texts: List[str] = encouraged_result.split("->", maxsplit=1)
+        encouraged_result: List[str] = encouraged_result.strip().splitlines()
 
-        action_text: str = encouraging_texts[0].strip()
+        encouraged_texts: List[Tuple[str, float, str]] = []
+        for rst in encouraged_result:
+            action_text: str
+            action_tail: str
+            action_text, action_tail = rst.split("->", maxsplit=1)
 
-        action_tail: List[str] = encouraging_texts[1].strip().split(maxsplit=1)
-        element_html: str = action_tail[1].strip() if len(action_tail)>1 else ""
+            action_text = action_text.strip()
 
-        return action_text, element_html
+            action_tail: List[str] = action_tail.strip().split(maxsplit=1)
+            score: float = float(action_tail[0].strip())
+            element_html: str = action_tail[1].strip() if len(action_tail)>1 else ""
+
+            encouraged_texts.append((action_text, score, element_html))
+
+        highest_result: Tuple[str, float, str]\
+                = itertools.islice( sorted( encouraged_texts
+                                          , key=(lambda itm: itm[1])
+                                          , reverse=True
+                                          )
+                                  , 1
+                                  )
+        return highest_result[0], highest_result[2]
+        #return action_text, element_html
         #  }}} Parse Action Text # 
 
     def _get_action( self

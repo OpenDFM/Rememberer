@@ -288,6 +288,47 @@ class InsPageRelMatcher(Matcher[Tuple[str, str, Any]]):
         #  }}} method __call__ # 
     #  }}} class InsPageRelMatcher # 
 
+class DenseInsMatcher(Matcher[Tuple[Any, str, Any]]):
+    #  class DenseInsMatcher {{{ # 
+    def __init__( self
+                , query: Tuple[Any, str, Any]
+                , transformer: SentenceTransformer = None
+                ):
+        #  method __init__ {{{ # 
+        super(DenseInsMatcher, self).__init__(query)
+
+        assert transformer is not None
+        self._transformer: SentenceTransformer = transformer
+
+        instruction: str = self._query[1]
+        # (1, D)
+        self._query_encoding: torch.Tensor =\
+                self._transformer.encode( [instruction]
+                                        , show_progress_bar=False
+                                        , convert_to_tensor=True
+                                        , normalize_embeddings=True
+                                        )
+        #  }}} method __init__ # 
+
+    def __call__(self, key: Tuple[Any, str, Any]) -> float:
+        #  method __call__ {{{ # 
+        instruction: str = key[1]
+        # (1, D)
+        query_encoding: torch.Tensor =\
+                self._transformer.encode( [instruction]
+                                        , show_progress_bar=False
+                                        , convert_to_tensor=True
+                                        , normalize_embeddings=True
+                                        )
+
+        relevancy: torch.Tensor = dot_score( self._query_encoding
+                                           , query_encoding
+                                           ) # (1, 1)
+        similarity: float = relevancy.squeeze().cpu().item()
+        return similarity
+        #  }}} method __call__ # 
+    #  }}} class DenseInsMatcher # 
+
 class LambdaMatcher(Matcher[Key]):
     #  class LambdaMatcher {{{ # 
     def __init__(self, matchers: List[Matcher[Key]], weights: Sequence[float]):

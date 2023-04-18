@@ -9,6 +9,7 @@ import vh_to_html
 import history
 import numpy as np
 import tiktoken
+import itertools
 
 logger = logging.getLogger("webshop")
 
@@ -149,7 +150,6 @@ class AutoAgent( Agent
                                    , manual
                                    )
 
-        # TODO: adjust the length limit according to the preamble
         self._input_length_limit: int = 3870
 
         self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
@@ -235,10 +235,21 @@ class AutoAgent( Agent
         #  method _parse_action {{{ # 
         encouraged_result: str = response.split("Disc", maxsplit=1)[0]
         encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
-        encouraged_result = encouraged_result.strip().splitlines()[0]
-        encouraging_texts: List[str] = encouraged_result.split("->", maxsplit=1)
+        encouraged_result: List[str] = encouraged_result.strip().splitlines()
+        encouraging_texts: List[Tuple[str, float]] =\
+                list( map( lambda itms: (itms[0].strip(), float(itms[1].strip()))
+                         , map( lambda rst: rst.split("->", maxsplit=1)
+                              , encouraged_result
+                              )
+                         )
+                    )
 
-        action_text: str = encouraging_texts[0].strip()
+        action_text: str = itertools.islice( sorted( encouraging_texts
+                                                   , key=(lambda itm: itm[1])
+                                                   , reverse=True
+                                                   )
+                                           , 1
+                                           )[0]
         return action_text
         #  }}} method _parse_action # 
 

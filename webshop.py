@@ -185,7 +185,10 @@ def main():
     parser.add_argument("--save-replay", type=str)
     parser.add_argument("--item-capacity", type=int)
     parser.add_argument("--action-capacity", type=int)
-    parser.add_argument("--matcher", default="lcs", type=str, choices=["pgpat+iprel"])
+    parser.add_argument( "--matcher"
+                       , default="pgpat+iprel", type=str
+                       , choices=["pgpat+iprel", "pgpat+iprel+insrel"]
+                       )
     parser.add_argument("--gamma", default=1., type=float)
     parser.add_argument("--step-penalty", default=0., type=float)
     parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
@@ -257,6 +260,16 @@ def main():
                                                                  ]
                                                                , [0.5, 0.5]
                                                                ).get_lambda_matcher
+              , "pgpat+iprel+insrel": history.LambdaMatcherConstructor( [ history.PagePatMatcher
+                                                                        , functools.partial( history.InsPageRelMatcher
+                                                                                           , transformer=sentence_transformer
+                                                                                           )
+                                                                        , functools.partial( history.DenseInsMatcher
+                                                                                           , transformer=sentence_transformer
+                                                                                           )
+                                                                        ]
+                                                                      , [1/3., 1/3., 1/3.]
+                                                                      ).get_lambda_matcher
               }
     history_replay: history.HistoryReplay[webshop_agent.Key, webshop_agent.Action]\
             = history.HistoryReplay( args.item_capacity
