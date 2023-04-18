@@ -335,10 +335,15 @@ def main():
                ][:]
     except_list: Set[int] = set() if getattr(args, "except") is None else set(getattr(args, "except"))
 
-    nb_epochs = args.epochs if args.train else 1
+    if not args.train:
+        starts_from = 0
+        nb_epochs = 1
+    else:
+        starts_from: int = args.starts_from
+        nb_epochs: int = args.epochs
     max_nb_steps = 15
     #rng = np.random.default_rng()
-    for epch in range(args.starts_from, nb_epochs):
+    for epch in range(starts_from, nb_epochs):
         if args.train:
             model.train(True)
             success_list: Set[int] = traverse_environment( env, training_set
@@ -346,7 +351,7 @@ def main():
                                                          , logger, except_list
                                                          , max_nb_steps=max_nb_steps
                                                          )
-            if epch==0:
+            if epch%3==0:
                 except_list |= success_list
         model.train(False)
         traverse_environment( env, test_set

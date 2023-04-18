@@ -136,7 +136,7 @@ class AutoAgent( Agent
         super(AutoAgent, self).__init__(env_mode)
 
         self._config_temperature: float = temperature
-        temperature = self._config_temperature if train else 0.
+        #temperature = self._config_temperature if train else 0.
         super(Agent, self).__init__( prompt_templates
                                    , api_key
                                    , model
@@ -300,5 +300,5 @@ class AutoAgent( Agent
 
     def train(self, train: bool):
         super(agent_protos.OpenAIClient, self).train(train)
-        self._temperature = self._config_temperature if self._train else 0.
+        #self._temperature = self._config_temperature if self._train else 0.
     #  }}} class AutoAgent # 
