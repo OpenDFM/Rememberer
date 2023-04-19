@@ -136,6 +136,7 @@ class AutoAgent( Agent
                 , temperature: float = 0.1
                 , stop: Optional[str] = None
                 , request_timeout: float = 5.
+                , static: bool = False
                 , manual: bool = False
                 , train: bool = True
                 , with_speech: bool = False
@@ -165,6 +166,8 @@ class AutoAgent( Agent
                                                        , train
                                                        , self._tokenizer
                                                        )
+
+        self._static: bool = False
         #  }}} method __init__ # 
 
     def reset(self):
@@ -317,10 +320,15 @@ class AutoAgent( Agent
         #  }}} Construct New Input # 
 
         #  Construct Examplars {{{ # 
-        examplars: List[str] = self._get_examplars( (observation, task, available_actions)
-                                                  , example_tokens_limit
-                                                  , 2
-                                                  )
+        if self._static:
+            examplars: List[str] = [ "Example 2:\n\n" + self._prompt_templates.canonical2
+                                   , "Example 1:\n\n" + self._prompt_templates.canonical1
+                                   ]
+        else:
+            examplars: List[str] = self._get_examplars( (observation, task, available_actions)
+                                                      , example_tokens_limit
+                                                      , 2
+                                                      )
 
         example_str: str = "\n".join(reversed(examplars)).strip()
         #  }}} Construct Examplars # 

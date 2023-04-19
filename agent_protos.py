@@ -26,6 +26,8 @@ class TemplateGroup(NamedTuple):
     whole_template: string.Template
     input_template: string.Template
     advice_template: string.Template
+    canonical1: str
+    canonical2: str
 
 R = TypeVar("Result")
 A = TypeVar("Action")

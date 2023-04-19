@@ -14,7 +14,7 @@ python webshop.py --log-dir logs-webshop\
 				  --stop "Discouraged"\
 				  --request-timeout 5.\
 				  --pub-to-local-mapping pub-to-mine.list\
-				  --train\
+				  --static\
 				  --starts-from 0\
 				  --epochs 6\
 				  --trainset 20\

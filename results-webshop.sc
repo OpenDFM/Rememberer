@@ -584,5 +584,9 @@ let D4 = 0
 let E4 = 3.5
 let F4 = 0.57
 let G4 = 0.1
-goto G4
+label A5 = "WS3(Pub520, 6) 新提示语"
+let B5 = 3
+let C5 = 0.625
+let D5 = 0
+goto B5
 movetosheet "PubSet"

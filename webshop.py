@@ -219,6 +219,7 @@ def main():
     parser.add_argument("--temperature", default=0.1, type=float)
     parser.add_argument("--stop", type=str)
     parser.add_argument("--request-timeout", default=3., type=float)
+    parser.add_argument("--static", action="store_true")
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--speech", action="store_true")
@@ -312,9 +313,15 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "canonical_examplar1_w.txt")) as f:
+        canonical1: str = f.read()
+    with open(os.path.join(args.prompt_template, "canonical_examplar2_w.txt")) as f:
+        canonical2: str = f.read()
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                , input_template=input_template
                                                , advice_template=advice_template
+                                               , canonical1=canonical1
+                                               , canonical2=canonical2
                                                )
 
     with open(args.config) as f:
