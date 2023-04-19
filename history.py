@@ -265,6 +265,8 @@ class InsPageRelMatcher(Matcher[Tuple[str, str, Any]]):
         relevancies = relevancies.squeeze(0) # (N,)
         relevancies = relevancies.sort(descending=True).values # (N,)
         self._relevancy: torch.Tensor = relevancies[1] # ()
+
+        hlogger.debug("IPRel-Q: %.2f", self._relevancy.item())
         #  }}} method __init__ # 
 
     def __call__(self, key: Tuple[str, str, Any]) -> float:
@@ -284,6 +286,9 @@ class InsPageRelMatcher(Matcher[Tuple[str, str, Any]]):
         relevancy: torch.Tensor = relevancies[1] # ()
 
         similarity: torch.Tensor = 1. - (self._relevancy-relevancy).abs() # ()
+
+        hlogger.debug("IPRel-K: %.2f", relevancy.item())
+        hlogger.debug("Sim: %.2f", similarity.item())
         return similarity.item()
         #  }}} method __call__ # 
     #  }}} class InsPageRelMatcher # 
@@ -325,6 +330,7 @@ class DenseInsMatcher(Matcher[Tuple[Any, str, Any]]):
                                            , query_encoding
                                            ) # (1, 1)
         similarity: float = relevancy.squeeze().cpu().item()
+        hlogger.debug("Sim: %.2f", similarity)
         return similarity
         #  }}} method __call__ # 
     #  }}} class DenseInsMatcher # 

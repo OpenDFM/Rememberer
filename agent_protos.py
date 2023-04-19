@@ -228,8 +228,12 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
 
             if actions[-1][1]>0.:
                 discouraged_action: history.Action = self._random_action(key)
+                j = 0
                 while discouraged_action in encouraged_actions:
                     discouraged_action = self._random_action(key)
+                    j += 1
+                    if j>=10:
+                        break
                 discouraged: List[Tuple[history.Action, float]]\
                         = [ ( discouraged_action
                             , 0.

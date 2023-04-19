@@ -542,17 +542,20 @@ nb_frozen_rows 0
 nb_frozen_cols 0
 nb_frozen_screenrows 0
 nb_frozen_screencols 0
-format A 11 2 0
+format A 23 2 0
 label A0 = "Test Set"
-label B0 = "Pub10"
-label C0 = "Pub10"
-label D0 = "Pub10"
-label E0 = "Pub100"
-label F0 = "Pub100"
-label G0 = "Pub100"
-label H0 = "Pub500"
-label I0 = "Pub500"
-label J0 = "Pub500"
+label B0 = "Pub5"
+label C0 = "Pub5"
+label D0 = "Pub5"
+label E0 = "Pub10"
+label F0 = "Pub10"
+label G0 = "Pub10"
+label H0 = "Pub100"
+label I0 = "Pub100"
+label J0 = "Pub100"
+label K0 = "Pub500"
+label L0 = "Pub500"
+label M0 = "Pub500"
 label A1 = "Metrics"
 label B1 = "#Steps"
 label C1 = "Reward"
@@ -563,9 +566,23 @@ label G1 = "Succeeds"
 label H1 = "#Steps"
 label I1 = "Reward"
 label J1 = "Succeeds"
-label A2 = "WS2(Pub520)"
-let B2 = 6.3
-let C2 = 0.54
-let D2 = 0.2
-goto D25
+label K1 = "#Steps"
+label L1 = "Reward"
+label M1 = "Succeeds"
+label A2 = "WS2(Pub520, 6) w/ error"
+let E2 = 6.3
+let F2 = 0.54
+let G2 = 0.2
+label A3 = "WS2(Pub510, 3)"
+let B3 = 3.2
+let C3 = 0.625
+let D3 = 0
+label A4 = "WS3(Pub510, 3)"
+let B4 = 3.4
+let C4 = 0.625
+let D4 = 0
+let E4 = 3.5
+let F4 = 0.57
+let G4 = 0.1
+goto G4
 movetosheet "PubSet"

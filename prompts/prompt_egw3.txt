@@ -1,0 +1,213 @@
+I'm visiting a shopping website and need to complete the shopping following an instruction about the desired commodity. On the shopping website, my available actions are:
+
+search[keywords]
+click[element]
+
+Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the operated element if the action is an INPUT or a CLICK.
+
+Here are several common principles to make a decision:
+
+1. I need to follow the instruction to search and select the most relevant item.
+2. I will avoid always repeating a wrong action.
+3. I can search only if "search" is listed as an available action. If "search" is not listed as an available action, I need to click "back to search" before conducting a search.
+4. I need to click "buy now" to finish the shopping.
+5. I should encourage the actions with higher value estimations and discouraged the actions with low value estimations.
+
+Here are some examples:
+
+Example 2:
+
+---
+Last 5 Actions:
+- click[buy now]
+- click[buy now]
+- search[pink colored body brush long handle sensitive skin]
+- click[b07fk16nz2]
+Observation: |
+  Instruction:
+  i am looking for a pink colored body brush with long handle. it should suit my sensitive skin, and price lower than 80.00 dollars
+  [button] Back to Search [button_]
+  [button] < Prev [button_]
+  color
+    [button] pink [button_]
+    [button] pink +green [button_]
+  Bath Body Brush with Bath Loofahs - Shower Body Back Brushes with Soft Fur Long Handle Exfoliating Back Scrubber for Sensitive skin, Pregnant woman and Children by USAcases (Pink)
+  Price: $7.99
+  Rating: N.A.
+  [button] Description [button_]
+  [button] Features [button_]
+  [button] Reviews [button_]
+  [button] Buy Now [button_]
+Available Actions:
+- back to search
+- < prev
+- description
+- features
+- reviews
+- buy now
+- pink
+- pink +green
+...
+
+Encouraged:
+click[buy now] -> 0.8
+Discouraged:
+click[back to search] -> 0.0
+
+Example 1:
+
+---
+Last 5 Actions:
+- search[pink colored body brush long handle sensitive skin]
+Observation: |
+  Instruction:
+  i am looking for a pink colored body brush with long handle. it should suit my sensitive skin, and price lower than 80.00 dollars
+  [button] Back to Search [button_]
+  Page 1 (Total results: 50)
+  [button] Next > [button_]
+  
+  [button] B08372Z4ZZ [button_]
+  Maxmartt Electric Body Brush,Water-resistant Bath Brush Electric Long Handle Shower Body Massage Cleansing Scrubber(Pink)
+  $100.0
+  
+  [button] B08P5FDFCW [button_]
+  Shower Body Brush with Bristles and Loofah,Back Scrubber Bath Mesh Sponge with Curved Long Handle for Skin Exfoliating Bath, Massage Bristles Suitable for Wet or Dry, Men and Women(Green)
+  $100.0
+  
+  [button] B08NHGVVPP [button_]
+  Freewiz Automatic Shower Brush 4 in 1 Multifunctional Electric Bath Cleaning Massage Brush Waterproof Anti-Slip Shower Spa Tool with Long Handle for Women Men Elderly, Pink
+  $25.66
+  
+  [button] B07FK16NZ2 [button_]
+  Bath Body Brush with Bath Loofahs - Shower Body Back Brushes with Soft Fur Long Handle Exfoliating Back Scrubber for Sensitive skin, Pregnant woman and Children by USAcases (Pink)
+  $7.99
+  
+  [button] B08M993FSF [button_]
+  QiCheng&LYS Silicone loofah for Shower Back Brush exfoliating Brush for Shower Body Scrubber for Men and Women.BPA-Free,Eco-Friendly (Grey, Short)
+  $7.99
+  
+  [button] B08K2VYKR5 [button_]
+  CLEANY - Silicone Bath Body Back Scrubber \\u2013 Massage, Double Sided, Shower Scrubber Exfoliating Brush for Back Acne and Sensitive Skin Care Tool Kit Matching Silicone Facial Silicon Cleaner (Pink)
+  $7.0
+  
+  [button] B09BCLLSG6 [button_]
+  3 Pack Back Scrubber Long Handle Shower Body Brush with Soft Mesh Sponge Bath, Bath Puff Loofah Sponge, Bath Brush,for Women/Men Skin Exfoliating Bath, Massage(L:16.5inch)
+  $6.88
+  
+  [button] B09QM5RNBM [button_]
+  ACTMB Shower Body Brush with Long Handle, Dry Brushing Body Brush Soft Bristles, Perfect for Exfoliating, Improves Blood Circulation
+  $11.26
+  
+  [button] B07SBHK4TD [button_]
+  Yisella Back Bath Brush Long Handle 2pcs Set Loofah Sponge Back Scrubber For Men
+  $17.99
+  
+  [button] B09FLM6MW6 [button_]
+  Qinndhto 5 In 1 Electric Bath Shower Brush Handheld Massage Body Brush Back Clean Long Handle Body Cleaning Spa Exfoliating Washer Brush Bath (Color : Blue)
+  $35.28
+Available Actions:
+- back to search
+- next >
+- b08372z4zz
+- b08p5fdfcw
+- b08nhgvvpp
+- b07fk16nz2
+- b08m993fsf
+- b08k2vykr5
+- b09bcllsg6
+- b09qm5rnbm
+- b07sbhk4td
+- b09flm6mw6
+...
+
+Encouraged:
+click[b07fk16nz2] -> 0.8
+Discouraged:
+click[b08k2vykr5] -> 0.0
+
+Now the new input:
+
+---
+Last 5 Actions:
+- search[facial scrub anti aging natural ingredients]
+Observation: |
+  Instruction:
+  i need a facial scrub that is anti aging and is made of natural ingredients, and price lower than 70.00 dollars
+  [button] Back to Search [button_]
+  Page 1 (Total results: 50)
+  [button] Next > [button_]
+  
+  [button] B07LBY4S4G [button_]
+  Natural Facial Kit \\u2013 Facial Wash, Facial Scrub and Clay Mask made with natural ingredients for a gentle facial. The Wash is an invigorating soap, the Scrub contains anti-aging agents
+  $49.99
+  
+  [button] B00B8BY312 [button_]
+  Radiance Facial Scrub, Gentle Anti-Aging Exfoliator & Face Scrub, Fight Fine Lines & Wrinkles, Brighten and Refresh The Skin, Stages of Beauty, 120mL
+  $4.98
+  
+  [button] B09KNB3JZ8 [button_]
+  Maria Aires Skincare 24K Gold Facial Scrub - Refreshing & Exfoliating - Suitable for All Skin Types - Formulated with Vitamin E, Allantoin, 24K Gold - Cruelty Free, Anti-Aging, Cleansing - Luxury Face Scrub
+  $44.99
+  
+  [button] B00V81ZLJA [button_]
+  Au Natural Premium Organics Barbary Fig Oil Scrub 9 Oz - Natural Moisturizer For Your Face & Body - Cleansing & Antioxidant Power - Anti-Aging & Anti-Wrinkle Benefits
+  $21.99
+  
+  [button] B09PGNCYTD [button_]
+  PK24\\u2019s The Ultimate Refining Scrub for Deep Moisturizing & Exfoliation, Reduces Pores, Non-Abrading, Anti-Aging Skin Care Treatment, Moisturizing Scrub, Smooth Skin, Reduces Wrinkles, Surface Lines, Makeup Primer, 2 Oz.
+  $26.0
+  
+  [button] B013PU1RQM [button_]
+  Glycolic Acid Exfoliating Facial Cleanser - Anti-Aging Face & Body Wash for Women and Men w Jojoba Beads | Works as a Face Scrub, Pore Cleanser, Acne Face Wash & Dark Spot Corrector
+  $18.99
+  
+  [button] B097TK4QYM [button_]
+  FHA Naturally Morocco Coffee Body Scrub and Face Scrub with Argan Oil - 100% Natural Coffee Scrub for Cellulite and Stretch Marks - Exfoliating Body Scrub for Women & Men (8oz)
+  $12.95
+  
+  [button] B08QYML3N9 [button_]
+  Natrulo Turmeric Face Scrub - Skin Brightening Mask with Turmeric - All-Natural Turmeric Face Mask for Acne Treatment, & Glowing Skin - Boosts Circulation, Evens Skin Tone, & Removes Toxins - Detox Turmeric Clay Face Mask Made in USA
+  $12.95
+  
+  [button] B0009F3OO0 [button_]
+  Queen Helene Soothing Cocoa Butter Natural Facial Scrub, 6 Ounce Tube
+  $5.48
+  
+  [button] 0828999813 [button_]
+  Shahnaz Husain Gold Skin Radiance Facial Kit
+  $28.0
+Available Actions:
+- back to search
+- next >
+- b07lby4s4g
+- b00b8by312
+- b09knb3jz8
+- b00v81zlja
+- b09pgncytd
+- b013pu1rqm
+- b097tk4qym
+- b08qyml3n9
+- b0009f3oo0
+- 0828999813
+...
+
+[32mEncouraged:[0m
+[32mclick[b00b8by312] -> 0.8[0m
+[32mDiscouraged:[0m
+[32mclick[b07lby4s4g] -> 0.0[0m
+
+Why don't I choose B07LBY4S4G?
+
+[32mBecause the price of B07LBY4S4G is higher than the instruction requirement of 70.00 dollars.[0m
+
+But the price of B07LBY4S4G is only $49.99 which is lower than the requirement of 70.00 dollars.
+
+[32mThe price of B07LBY4S4G is lower than the requirement of 70.00 dollars, but it is not the most relevant item according to the instruction. The instruction requires a facial scrub that is anti aging and is made of natural ingredients, and B07LBY4S4G does not meet the anti aging requirement. Therefore, it is not the most relevant item and should be discouraged.[0m
+
+However, B07LBY4S4G says it contains anti-aging agents.
+
+[32mYes, B07LBY4S4G does contain anti-aging agents, but it is not explicitly stated that it is an anti-aging facial scrub. Therefore, it is not the most relevant item according to the instruction and should be discouraged.[0m
+
+I think b00b8by312 doesn't say that it is made from natural ingredients.
+
+[32mYes, b00b8by312 does not explicitly state that it is made from natural ingredients, but it does not contain any ingredients that are known to be synthetic or artificial. Therefore, it is the most relevant item according to the instruction and should be encouraged.[0m

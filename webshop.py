@@ -225,8 +225,12 @@ def main():
 
     parser.add_argument("--starts-from", default=0, type=int)
     parser.add_argument("--epochs", default=3, type=int)
+
     parser.add_argument("--except", nargs="+", type=int)
     parser.add_argument("--pub-to-local-mapping", type=str)
+    parser.add_argument("--trainset", default=20, type=int)
+    parser.add_argument("--testseta", default=0, type=int)
+    parser.add_argument("--testsetb", default=10, type=int)
 
     args: argparse.Namespace = parser.parse_args()
     #  }}} Command Line Options # 
@@ -369,8 +373,8 @@ def main():
                                             , f.read().splitlines()
                                             )
                                        )
-    training_set: List[int] = local_mapping[500:520]
-    test_set: List[int] = local_mapping[:10]
+    training_set: List[int] = local_mapping[500:500+args.trainset]
+    test_set: List[int] = local_mapping[args.testseta:args.testsetb]
 
     except_list: Set[int] = set() if getattr(args, "except") is None else set(getattr(args, "except"))
 
