@@ -64,6 +64,6 @@ Available Actions:
 ...
 
 Encouraged:
-click[b08jd14gjf] -> 1.0
+click[b08jd14gjf] -> 1.0 b08jd14gjf offers a women's quick dry long sleeve shirt which conforms to the instruction. Thus I can check if it is moisture wicking and choose a correct color and size.
 Discouraged:
-click[b09qgk5xhz] -> 0.0
+click[b09qgk5xhz] -> 0.0 b09qgk5xhz offers a men's shirt which is not the desired item.

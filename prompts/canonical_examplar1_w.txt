@@ -14,4 +14,4 @@ Available Actions:
 Encouraged:
 search[quick drying moisture wicking women activewear long sleeve] -> 1.0
 Discouraged:
-click[search] -> 0.0
+click[search] -> 0.0 The search button shouldn't be clicked.

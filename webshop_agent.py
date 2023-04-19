@@ -14,7 +14,7 @@ import itertools
 logger = logging.getLogger("webshop")
 
 Key = Tuple[str, str, str] # (observation, task, available_actions)
-Action = str
+Action = Tuple[str, str] # (action, reason)
 
 class Agent(abc.ABC):
     #  class Agent {{{ # 
@@ -65,15 +65,16 @@ class Agent(abc.ABC):
             Action: the action to take
         """
 
-        action_str: Action = self._get_action( task
+        action_tuple: Action = self._get_action( task
                                              , self._preprocess_observation(observation)
                                              , reward
                                              , total_reward
                                              , available_actions
                                              )
+        action_str: str = action_tuple[0]
 
         if action_str!="NOTHINGG":
-            self._action_history.append(action_str)
+            self._action_history.append(action_tuple)
         return action_str
         #  }}} method __call__ # 
 
@@ -214,7 +215,9 @@ class AutoAgent( Agent
                                                       , actions=\
                                                               "\n".join(
                                                                   map( lambda act: "- " + act
-                                                                     , action_history[-min(5, len(action_history)):]
+                                                                     , map( " ".join
+                                                                          , action_history[-min(5, len(action_history)):]
+                                                                          )
                                                                      )
                                                                 )
                                                       , reward="{:.1f}".format(reward)
@@ -228,15 +231,28 @@ class AutoAgent( Agent
                                                       )
         #  }}} method _instantiate_input_template # 
 
-    def _random_action(self, key: Key) -> Action:
+    def _random_action(self, key: Key, encourages: bool = False) -> Action:
         #  method _random_action {{{ # 
         available_actions: List[str] = key[-1].splitlines()
         action: np.int64 = self._rng.integers(len(available_actions))
-        return "click[{:}]".format(available_actions[action])
+        if encourages:
+            if available_actions[action]=="search":
+                action_str: str = "search[{:}]".format(key[1])
+                reason: str = ""
+            else:
+                action_str: str = "click[{:}]".format(available_actions[action])
+                reason: str = "{:} conforms to the instruction.".format(available_actions[action])
+        else:
+            action_str: str = "click[{:}]".format(available_actions[action])
+            if available_actions[action]=="search":
+                reason: str = "The search button shouldn't be clicked."
+            else:
+                reason: str = "{:} is not the desired item.".format(available_actions[action])
+        return (action_str, reason)
         #  }}} method _random_action # 
 
     def _action_to_string(self, action: Action, value: float) -> str:
-        return "{:} -> {:.1f}".format(action, value)
+        return "{:} -> {:.1f} {:}".format(action[0], value, action[1])
 
     def _examplar_to_string( self
                            , index: int
@@ -267,22 +283,30 @@ class AutoAgent( Agent
         encouraged_result: str = response.split("Disc", maxsplit=1)[0]
         encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
         encouraged_result: List[str] = encouraged_result.strip().splitlines()
-        encouraging_texts: List[Tuple[str, float]] =\
-                list( map( lambda itms: (itms[0].strip(), float(itms[1].strip()))
-                         , map( lambda rst: rst.split("->", maxsplit=1)
-                              , encouraged_result
-                              )
-                         )
-                    )
 
-        action_text: str = list( itertools.islice( sorted( encouraging_texts
-                                                         , key=(lambda itm: itm[1])
-                                                         , reverse=True
-                                                         )
-                                                 , 1
-                                                 )
-                               )[0][0]
-        return action_text
+        encouraged_texts: List[Tuple[str, float, str]] = []
+        for rst in encouraged_result:
+            action_text: str
+            action_tail: str
+            action_text, action_tail = rst.split("->", maxsplit=1)
+
+            action_text = action_text.strip()
+
+            action_tail: List[str] = action_tail.strip().split(maxsplit=1)
+            score: float = float(action_tail[0].strip())
+            element_html: str = action_tail[1].strip() if len(action_tail)>1 else ""
+
+            encouraged_texts.append((action_text, score, element_html))
+
+        highest_result: Tuple[str, float, str]\
+                = list( itertools.islice( sorted( encouraged_texts
+                                                , key=(lambda itm: itm[1])
+                                                , reverse=True
+                                                )
+                                        , 1
+                                        )
+                      )[0]
+        return highest_result[0], highest_result[2]
         #  }}} method _parse_action # 
 
     def _get_action( self
@@ -339,11 +363,14 @@ class AutoAgent( Agent
         action: Optional[Action] = self._get_response(prompt)
         if action is None:
             action_text: str = "NOTHINGG"
+            reason: str = ""
         else:
-            action_text: str = action
+            action_text: str
+            reason: str
+            action_text, reason = action
 
-        logger.debug("Action: %s", action_text)
-        return action_text
+        logger.debug("Action: %s %s", action_text, reason)
+        return (action_text, reason)
         #  }}} method _get_action # 
 
     def train(self, train: bool):

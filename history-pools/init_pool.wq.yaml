@@ -8,9 +8,17 @@
 - "Instruction: Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: xx-large, and price lower than 40.00 dollars"
 - search
 : action_dict:
-    search[quick drying moisture wicking women activewear long sleeve]:
-      number: 1
+    ? !!python/tuple
+    - search[quick drying moisture wicking women activewear long sleeve]
+    - ''
+    : number: 1
       qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - click[search]
+    - The search button shouldn't be clicked.
+    : number: 1
+      qvalue: 0.0
       reward: 0.0
   other_info:
     action_history: []
@@ -81,13 +89,23 @@
   b09krlgsc5
   b09kp78g37
 : action_dict:
-    click[b08jd14gjf]:
-      number: 1
+    ? !!python/tuple
+    - click[b08jd14gjf]
+    - b08jd14gjf offers a women's quick dry long sleeve shirt which conforms to the instruction. Thus I can check if it is moisture wicking and choose a correct color and size.
+    : number: 1
       qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - click[b09qgk5xhz]
+    - b09qgk5xhz offers a men's shirt which is not the desired item.
+    : number: 1
+      qvalue: 0.0
       reward: 0.0
   other_info:
     action_history:
-    - search[quick drying moisture wicking women activewear long sleeve]
+    - !!python/tuple
+      - search[quick drying moisture wicking women activewear long sleeve]
+      - ''
     last_reward: 0.0
     number: 1
     total_reward: 0.0

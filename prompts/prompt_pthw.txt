@@ -3,7 +3,7 @@ I'm visiting a shopping website and need to complete the shopping following an i
 search[keywords]
 click[element]
 
-Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the operated element if the action is an INPUT or a CLICK.
+Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the reason of this advice if the action is a "click".
 
 Here are several common principles to make a decision:
 

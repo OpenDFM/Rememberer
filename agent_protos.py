@@ -216,7 +216,7 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
 
             if actions[0][1]<=0.:
                 encouraged: List[Tuple[history.Action, float]]\
-                        = [ ( self._random_action(key)
+                        = [ ( self._random_action(key, True)
                             , self._rng.random()/2.
                             )
                           ]
@@ -229,10 +229,10 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
                                        )
 
             if actions[-1][1]>0.:
-                discouraged_action: history.Action = self._random_action(key)
+                discouraged_action: history.Action = self._random_action(key, False)
                 j = 0
                 while discouraged_action in encouraged_actions:
-                    discouraged_action = self._random_action(key)
+                    discouraged_action = self._random_action(key, False)
                     j += 1
                     if j>=10:
                         break
@@ -277,7 +277,7 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
         #  }}} method _get_examplars # 
 
     @abc.abstractmethod
-    def _random_action(self, key: history.Key) -> history.Action:
+    def _random_action(self, key: history.Key, encourages: bool = False) -> history.Action:
         raise NotImplementedError()
 
     @abc.abstractmethod

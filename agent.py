@@ -20,7 +20,7 @@ import time
 logger = logging.getLogger("wikihow")
 
 Key = Tuple[str, str, str] # (observation, task, instruction)
-Action = Tuple[str, str]
+Action = Tuple[str, str] # (action, html element)
 
 class Agent(abc.ABC):
     #  class Agent {{{ # 
