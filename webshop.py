@@ -24,7 +24,7 @@ import datetime
 import os
 
 from typing import List, Dict, Set
-#import numpy as np
+import numpy as np
 
 #  Interfaces of WebAgentTextEnv {{{ # 
 # def init( observation_mode: str = "html" # "html": raw html
@@ -108,6 +108,9 @@ def traverse_environment( env: gym.Env
 
     success_list: Set[int] = set()
 
+    nb_stepss: List[int] = []
+    rewards: List[float] = []
+    succeedss: List[int] = []
     for idx, i in enumerate(task_set):
         if i in except_list:
             continue
@@ -142,14 +145,29 @@ def traverse_environment( env: gym.Env
             else:
                 nb_nothing_steps += 1
 
+        model.end( task
+                 , observation
+                 , reward
+                 , total_reward
+                 , available_actions
+                 )
+
         if succeeds:
             success_list.add(i)
 
+        nb_stepss.append(nb_steps)
+        rewards.append(total_reward)
+        succeedss.append(int(succeeds))
         logger.info("\x1b[43mEND!\x1b[0m %s", task)
         logger.info( "\x1b[42mEND!\x1b[0m TaskIdx: %d, TaskId: %d, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
                    , idx, i, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
                    )
-    logger.info("────────────────────────────────────────")
+    logger.info( "──────────{:.2f}──────────{:.3f}──────────{:.3f}──────────"\
+                 .format( np.mean(np.asarray(nb_stepss))
+                        , np.mean(np.asarray(rewards))
+                        , np.mean(np.asarray(succeedss))
+                        )
+               )
     return success_list
     #  }}} function traverse_environment # 
 

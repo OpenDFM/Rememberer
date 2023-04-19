@@ -36,6 +36,14 @@ class Agent(abc.ABC):
 
     def reset(self):
         self._action_history.clear()
+    def end( self
+           , task: str
+           , observation: str
+           , reward: float
+           , total_reward: float
+           , available_actions: List[str]
+           ):
+        pass
 
     def __call__( self
                 , task: str
@@ -161,7 +169,27 @@ class AutoAgent( Agent
 
     def reset(self):
         super(AutoAgent, self).reset()
-        self._history_replay.new_trajectory()
+        #self._history_replay.new_trajectory()
+    def end( self
+           , task: str
+           , observation: str
+           , reward: float
+           , total_reward: float
+           , available_actions: List[str]
+           ):
+        #  method end {{{ # 
+        observation: str = "\n".join(self._preprocess_observation(observation))
+        available_actions: str = "\n".join(available_actions)
+        if self._train:
+            last_action: Optional[Action] = self._action_history[-1]\
+                                            if len(self._action_history)>0\
+                                          else None
+            self._history_replay.update( (observation, task, available_actions)
+                                       , reward
+                                       , last_action
+                                       , last_step=True
+                                       )
+        #  }}} method end # 
 
     def _instantiate_input_template( self
                                    , task: str

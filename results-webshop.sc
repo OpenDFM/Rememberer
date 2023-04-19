@@ -3,6 +3,7 @@
 
 newsheet "Old"
 newsheet "LocalSet"
+newsheet "PubSet"
 movetosheet "Old"
 offscr_sc_cols 0
 offscr_sc_rows 0
@@ -534,4 +535,37 @@ leftstring A16 = "自选20（第3轮），测试时温度为0.1"
 leftstring A17 = "自选20（4-6轮）"
 leftstring A18 = "WS2；WS3"
 goto A18
-movetosheet "LocalSet"
+movetosheet "PubSet"
+offscr_sc_cols 0
+offscr_sc_rows 0
+nb_frozen_rows 0
+nb_frozen_cols 0
+nb_frozen_screenrows 0
+nb_frozen_screencols 0
+format A 11 2 0
+label A0 = "Test Set"
+label B0 = "Pub10"
+label C0 = "Pub10"
+label D0 = "Pub10"
+label E0 = "Pub100"
+label F0 = "Pub100"
+label G0 = "Pub100"
+label H0 = "Pub500"
+label I0 = "Pub500"
+label J0 = "Pub500"
+label A1 = "Metrics"
+label B1 = "#Steps"
+label C1 = "Reward"
+label D1 = "Succeeds"
+label E1 = "#Steps"
+label F1 = "Reward"
+label G1 = "Succeeds"
+label H1 = "#Steps"
+label I1 = "Reward"
+label J1 = "Succeeds"
+label A2 = "WS2(Pub520)"
+let B2 = 6.3
+let C2 = 0.54
+let D2 = 0.2
+goto D25
+movetosheet "PubSet"

@@ -494,7 +494,10 @@ class HistoryReplay(Generic[Key, Action]):
         #  }}} method __getitem__ # 
 
     def update( self
-              , step: Key, reward: float, action: Optional[Action]=None
+              , step: Key
+              , reward: float
+              , action: Optional[Action] = None
+              , last_step: bool = False
               ):
         #  method update {{{ # 
         """
@@ -503,6 +506,7 @@ class HistoryReplay(Generic[Key, Action]):
             reward (float): the reward corresponding to the new state
             action (Optional[Action]): the performed action, may be null if it is
               the initial state
+            last_step (bool): whether this is the last step
         """
 
         self._action_buffer.append(action)
@@ -512,37 +516,40 @@ class HistoryReplay(Generic[Key, Action]):
         self._reward_buffer.append(reward)
         self._total_reward += reward
         self._total_reward_buffer.append(self._total_reward)
-        if self._observation_buffer.maxlen is None\
-                or len(self._observation_buffer)<self._observation_buffer.maxlen:
-            return
 
-        step = self._observation_buffer[0]
-        action: Action = self._action_buffer[0]
-        step_: Key = self._observation_buffer[-1]
-        reward: float = self._reward_buffer[1]
+        if self._observation_buffer.maxlen is not None\
+                and len(self._observation_buffer)==self._observation_buffer.maxlen:
 
-        action_history: List[Action] = self._action_history[:-self._n_step_flatten]
-        last_reward: float = self._reward_buffer[0]
-        total_reward: float = self._total_reward_buffer[0]
+            step = self._observation_buffer[0]
+            action: Action = self._action_buffer[0]
+            step_: Key = self._observation_buffer[-1]
+            reward: float = self._reward_buffer[1]
 
-        if not self._insert_key( step
-                               , action_history
-                               , last_reward
-                               , total_reward
-                               ):
-            return
+            action_history: List[Action] = self._action_history[:-self._n_step_flatten]
+            last_reward: float = self._reward_buffer[0]
+            total_reward: float = self._total_reward_buffer[0]
 
-        new_estimation: np.float64 = np.convolve( np.asarray(self._reward_buffer, dtype=np.float32)[1:]
-                                                , self._filter
-                                                , mode="valid"
-                                                )[0]
+            if not self._insert_key( step
+                                   , action_history
+                                   , last_reward
+                                   , total_reward
+                                   ):
+                return
 
-        action_dict: HistoryReplay.ActionDict = self._record[step]["action_dict"]
-        self._update_action_record(action_dict, action, reward, float(new_estimation), step_)
-        self._prune_action(action_dict)
+            new_estimation: np.float64 = np.convolve( np.asarray(self._reward_buffer, dtype=np.float32)[1:]
+                                                    , self._filter
+                                                    , mode="valid"
+                                                    )[0]
+
+            action_dict: HistoryReplay.ActionDict = self._record[step]["action_dict"]
+            self._update_action_record(action_dict, action, reward, float(new_estimation), step_)
+            self._prune_action(action_dict)
+
+        if last_step:
+            self._clear_buffer()
         #  }}} method update # 
 
-    def new_trajectory(self):
+    def _clear_buffer(self):
         #  method new_trajectory {{{ # 
         if len(self._action_buffer)<1\
                 or len(self._action_buffer)==1 and self._action_buffer[0] is None:
