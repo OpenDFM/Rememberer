@@ -636,5 +636,33 @@ let J11 = (G11+0.3*4)/5
 let K11 = (H11+4.1)/2
 let L11 = (I11+0.664)/2
 let M11 = (J11+0.32)/2
-goto H8
+label A13 = "Test Set"
+label B13 = "Pub'5"
+label C13 = "Pub'5"
+label D13 = "Pub'5"
+label E13 = "Pub'10"
+label F13 = "Pub'10"
+label G13 = "Pub'10"
+label H13 = "Pub'50"
+label I13 = "Pub'50"
+label J13 = "Pub'50"
+label K13 = "Pub'100"
+label L13 = "Pub'100"
+label M13 = "Pub'100"
+label N13 = "Pub'500"
+label O13 = "Pub'500"
+label P13 = "Pub'500"
+label A14 = "WS4(Pub'510, 1)"
+let E14 = 7.2
+let F14 = 0.518
+let G14 = 0.3
+label A15 = "WS4(Pub'510, 2)"
+let E15 = 7.9
+let F15 = 0.458
+let G15 = 0.3
+label A16 = "WS4(Pub'510, 3)"
+let E16 = 10
+let F16 = 0.435
+let G16 = 0.2
+goto G16
 movetosheet "PubSet"

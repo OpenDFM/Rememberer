@@ -12,11 +12,10 @@ python webshop.py --log-dir logs-webshop\
 				  --prompt-template prompts/\
 				  --max-tokens 200\
 				  --stop "Discouraged"\
-				  --request-timeout 5.\
-				  --pub-to-local-mapping pub-to-mine.list\
+				  --request-timeout 10.\
 				  --train\
 				  --starts-from 0\
 				  --epochs 3\
 				  --trainset 10\
 				  --testseta 0\
-				  --testsetb 5
+				  --testsetb 10

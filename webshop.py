@@ -375,11 +375,14 @@ def main():
     #test_set = [ 2300, 982, 11797, 3465, 10869
                #, 8205, 2245, 2003, 2998, 4899
                #][:]
-    with open(args.pub_to_local_mapping) as f:
-        local_mapping: List[int] = list( map( int
-                                            , f.read().splitlines()
-                                            )
-                                       )
+    if args.pub_to_local_mapping is None:
+        local_mapping: List[int] = list(range(600))
+    else:
+        with open(args.pub_to_local_mapping) as f:
+            local_mapping: List[int] = list( map( int
+                                                , f.read().splitlines()
+                                                )
+                                           )
     training_set: List[int] = local_mapping[500:500+args.trainset]
     test_set: List[int] = local_mapping[args.testseta:args.testsetb]
 
