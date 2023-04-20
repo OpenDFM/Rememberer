@@ -542,7 +542,7 @@ nb_frozen_rows 0
 nb_frozen_cols 0
 nb_frozen_screenrows 0
 nb_frozen_screencols 0
-format A 23 2 0
+format A 33 2 0
 label A0 = "Test Set"
 label B0 = "Pub5"
 label C0 = "Pub5"
@@ -588,5 +588,34 @@ label A5 = "WS3(Pub520, 6) 新提示语"
 let B5 = 3
 let C5 = 0.625
 let D5 = 0
-goto B5
+label A6 = "WS4(C)"
+let B6 = 4.2
+let C6 = 0.792
+let D6 = 0.4
+label A7 = "WS4(Pub510, 3)"
+let B7 = 3.2
+let C7 = 0.625
+let D7 = 0
+label A8 = "WS4(Pub510, 1) 放宽了输出长度限制"
+let B8 = 3.6
+let C8 = 0.742
+let D8 = 0.4
+let E8 = 3.5
+let F8 = 0.6625
+let G8 = 0.3
+label A9 = "WS4(Pub510, 3) 放宽了输出长度限制"
+let B9 = 3.4
+let C9 = 0.625
+let D9 = 0
+let E9 = 3.4
+let F9 = 0.5475
+let G9 = 0.1
+label A10 = "WS4(C) 新提示语"
+let B10 = 8.2
+let C10 = 0.38
+let D10 = 0
+let E10 = 7.1
+let F10 = 0.433
+let G10 = 0.2
+goto B13
 movetosheet "PubSet"

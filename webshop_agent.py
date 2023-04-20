@@ -160,7 +160,7 @@ class AutoAgent( Agent
                                    , manual
                                    )
 
-        self._input_length_limit: int = 3800
+        self._input_length_limit: int = 3700
 
         self._tokenizer: tiktoken.Encoding = tiktoken.encoding_for_model(model)
         super(agent_protos.OpenAIClient, self).__init__( history_replay
