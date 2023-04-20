@@ -1,4 +1,4 @@
-from typing import NamedTuple, List, Tuple, Set
+from typing import NamedTuple, List, Tuple, Set, Dict
 from typing import TypeVar, Optional, Callable, Generic
 import abc
 
@@ -26,6 +26,7 @@ class TemplateGroup(NamedTuple):
     whole_template: string.Template
     input_template: string.Template
     advice_template: string.Template
+    preamble: str
     canonical1: str
     canonical2: str
 
@@ -81,19 +82,23 @@ class OpenAIClient(abc.ABC, Generic[A]):
             self._extractor: Callable[..., R] = lambda x: x
         else:
             openai.api_key = api_key
-            self._completor: Callable[..., R] = openai.Completion.create
-            self._extractor: Callable[[R], speechopenai.Result] = lambda cplt: cplt.choices[0]
+            #self._completor: Callable[..., R] = openai.Completion.create
+            self._completor: Callable[..., R] = openai.ChatCompletion.create
+            self._extractor: Callable[[R], speechopenai.Result] =\
+                    lambda cplt: speechopenai.Result( text=cplt.choices[0].message["content"]
+                                                    , finish_reason=cplt.choices[0].finish_reason
+                                                    )
 
         self._manual: bool = manual
 
         self._last_request_time: datetime.datetime = datetime.datetime.now()
         #  }}} method __init__ # 
 
-    def _get_response(self, prompt: str) -> Optional[A]:
+    def _get_response(self, prompt: List[Dict[str, str]]) -> Optional[A]:
         #  method _get_response {{{ # 
         """
         Args:
-            prompt (str): the input prompt
+            prompt (List[Dict[str, str]]): the input prompt
 
         Returns:
             Optional[A]: the completion text
@@ -108,7 +113,8 @@ class OpenAIClient(abc.ABC, Generic[A]):
                     time.sleep(self._request_pause-timedelta)
 
                 completion: R = self._completor( model=self._model
-                                               , prompt=prompt
+                                                #, prompt=prompt
+                                               , messages=prompt
                                                , max_tokens=self._max_tokens
                                                , temperature=self._temperature
                                                , stop=self._stop
@@ -125,7 +131,12 @@ class OpenAIClient(abc.ABC, Generic[A]):
 
                 response: str = completion.text.strip()
             else:
-                single_line_response: str = input(prompt)
+                single_line_response: str = input(
+                        "\n".join( map( lambda msg: "{:}: {:}".join(msg["role"], msg["content"])
+                                      , prompt
+                                      )
+                                 )
+                      )
                 response: List[str] = []
                 while single_line_response!="":
                     response.append(single_line_response)
@@ -173,7 +184,7 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
                       , key: history.Key
                       , example_tokens_limit: int
                       , nb_examplars: int = 2
-                      ) -> List[str]:
+                      ) -> List[Tuple[str, str]]:
         #  method _get_examplars {{{ # 
         """
         Args:
@@ -182,7 +193,7 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
             nb_examplars (int): the number of examplars to retrieve
 
         Returns:
-            List[str]: examplar strs
+            List[Tuple[str, str]]: examplar strs
         """
 
         candidates: List[ Tuple[ history.Key
@@ -251,15 +262,20 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
                                              )
                                         )
 
-            examplar: str = self._examplar_to_string( i
-                                                    , key
-                                                    , info_dict
-                                                    , encouraged
-                                                    , discouraged
-                                                    )
+            examplar: Tuple[str, str] = self._examplar_to_string( i
+                                                          , key
+                                                          , info_dict
+                                                          , encouraged
+                                                          , discouraged
+                                                          )
             #  }}} Contruct one Examplar # 
 
-            examplar_length: int = len(self._tokenizer.encode(examplar))+1
+            examplar_length: int = sum( map( len
+                                           , map( self._tokenizer.encode
+                                                , examplar
+                                                )
+                                           )
+                                      )
             if examplar_length<=example_tokens_limit:
                 examplars.append(examplar)
                 examplar_ids.append(record["id"])
@@ -291,7 +307,7 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
                            , info_dict: history.HistoryReplay.InfoDict[history.Action]
                            , encouraged: str
                            , discouraged: str
-                           ) -> str:
+                           ) -> Tuple[str, str]:
         raise NotImplementedError()
 
     def train(self, train: bool):

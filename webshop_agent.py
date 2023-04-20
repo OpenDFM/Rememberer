@@ -1,7 +1,7 @@
 import abc
 import logging
 
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 from typing import Callable, Optional
 import agent_protos
 
@@ -202,7 +202,7 @@ class AutoAgent( Agent
                                    , reward: float
                                    , total_reward: float
                                    , available_actions: str
-                                   ):
+                                   ) -> str:
         #  method _instantiate_input_template {{{ # 
         return self._prompt_templates.input_template.safe_substitute(
                                                         task=task
@@ -260,22 +260,33 @@ class AutoAgent( Agent
                            , info_dict: history.HistoryReplay.InfoDict[Action]
                            , encouraged: str
                            , discouraged: str
-                           ) -> str:
+                           ) -> Tuple[str, str]:
         #  method _examplar_to_string {{{ # 
-        examplar: str = "Example {:d}:\n\n".format(index+1)\
-                      + self._instantiate_input_template( task=key[1]
-                                                        , observation=key[0]
-                                                        , action_history=info_dict["action_history"]
-                                                        , reward=info_dict["last_reward"]
-                                                        , total_reward=info_dict["total_reward"]
-                                                        , available_actions=key[2]
-                                                        )\
-                      + "\n"\
-                      + self._prompt_templates.advice_template.safe_substitute(
-                                                                encouraged=encouraged
-                                                              , discouraged=discouraged
+        #examplar: str = "Example {:d}:\n\n".format(index+1)\
+                #+ self._instantiate_input_template( task=key[1]
+                                                        #, observation=key[0]
+                                                        #, action_history=info_dict["action_history"]
+                                                        #, reward=info_dict["last_reward"]
+                                                        #, total_reward=info_dict["total_reward"]
+                                                        #, available_actions=key[2]
+                                                        #)\
+                                                                #+ "\n"\
+                                                                #+ self._prompt_templates.advice_template.safe_substitute(
+                                                                #encouraged=encouraged
+                                                              #, discouraged=discouraged
+                                                              #)
+        examplar_input: str = self._instantiate_input_template( task=key[1]
+                                                              , observation=key[0]
+                                                              , action_history=info_dict["action_history"]
+                                                              , reward=info_dict["last_reward"]
+                                                              , total_reward=info_dict["total_reward"]
+                                                              , available_actions=key[2]
                                                               )
-        return examplar
+        examplar_output: str = self._prompt_templates.advice_template.safe_substitute(
+                                                                        encouraged=encouraged
+                                                                      , discouraged=discouraged
+                                                                      )
+        return (examplar_input, examplar_output)
         #  }}} method _examplar_to_string # 
 
     def _parse_action(self, response: str) -> Action:
@@ -345,21 +356,32 @@ class AutoAgent( Agent
 
         #  Construct Examplars {{{ # 
         if self._static:
-            examplars: List[str] = [ "Example 2:\n\n" + self._prompt_templates.canonical2
-                                   , "Example 1:\n\n" + self._prompt_templates.canonical1
-                                   ]
+            #examplars: List[str] = [ "Example 2:\n\n" + self._prompt_templates.canonical2
+                                   #, "Example 1:\n\n" + self._prompt_templates.canonical1
+                                   #]
+            pass
         else:
-            examplars: List[str] = self._get_examplars( (observation, task, available_actions)
+            examplars: List[Tuple[str, str]] = self._get_examplars( (observation, task, available_actions)
                                                       , example_tokens_limit
                                                       , 2
                                                       )
 
-        example_str: str = "\n".join(reversed(examplars)).strip()
+        #example_str: str = "\n".join(reversed(examplars)).strip()
         #  }}} Construct Examplars # 
 
-        prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str
-                                                                           , new_input=new_input
-                                                                           )
+        #prompt: str = self._prompt_templates.whole_template.safe_substitute( examples=example_str
+                                                                           #, new_input=new_input
+                                                                           #)
+        prompt: List[Dict[str, str]] = [{"role": "system", "content": self._prompt_templates.preamble}]\
+                                     + list( itertools.chain.from_iterable(
+                                                map( lambda exmp: [ {"role": "user", "content": exmp[0]}
+                                                                  , {"role": "assistant", "content": exmp[1]}
+                                                                  ]
+                                                   , examplars
+                                                   )
+                                              )
+                                           )\
+                                     + [{"role": "user", "content": new_input}]
         action: Optional[Action] = self._get_response(prompt)
         if action is None:
             action_text: str = "NOTHINGG"

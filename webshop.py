@@ -313,6 +313,8 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "preamble_template_w.txt")) as f:
+        preamble_template: str = f.read()
     with open(os.path.join(args.prompt_template, "canonical_examplar1_w.txt")) as f:
         canonical1: str = f.read()
     with open(os.path.join(args.prompt_template, "canonical_examplar2_w.txt")) as f:
@@ -320,6 +322,7 @@ def main():
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                , input_template=input_template
                                                , advice_template=advice_template
+                                               , preamble=preamble_template
                                                , canonical1=canonical1
                                                , canonical2=canonical2
                                                )
@@ -333,6 +336,7 @@ def main():
     model = webshop_agent.AutoAgent( history_replay=history_replay
                                    , prompt_templates=template_group
                                    , api_key=api_key
+                                   , model="gpt-3.5-turbo-0301"
                                    , max_tokens=args.max_tokens
                                    , temperature=args.temperature
                                    , stop=args.stop
