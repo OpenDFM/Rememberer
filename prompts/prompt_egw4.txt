@@ -1,0 +1,152 @@
+I'm visiting a shopping website and need to complete the shopping following an instruction about the desired commodity. On the shopping website, my available actions are:
+
+search[keywords]
+click[element]
+
+Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the reason of this advice if the action is a "click".
+
+Here are several common principles to make a decision:
+
+1. I need to follow the instruction to search and select the most relevant item.
+2. I should only know the properties of the commodity from its description, but not from my imagination.
+3. I may click into a commodity item to check more detailed features.
+4. I can return to the previous page to select a more suitable item if the current commodity cannot satisfy all the requirements.
+5. I will avoid always repeating a wrong action.
+6. I can search only if "search" is listed as an available action. If "search" is not listed as an available action, I need to click "back to search" before conducting a search.
+7. I need to click "buy now" to finish the shopping after all the requirements are satisfied. Or I should check another commodity.
+8. I should encourage the actions with higher value estimations and discouraged the actions with low value estimations.
+
+Here are some examples:
+
+Example 2:
+
+---
+Last 5 Actions:
+- search[multi colored us constitution print ready to hang] This action will help me to find the desired item.
+- click[b07sjr1xfw] b07sjr1xfw offers a multi colored us constitution print that is ready to hang which conforms to the instruction. Thus I can check if it is within the price range.
+Observation: |
+  Instruction:
+  i want a multi colored us constitution print that is ready to hang, and price lower than 90.00 dollars
+  [button] Back to Search [button_]
+  [button] < Prev [button_]
+  color
+    [button] multi1 [button_]
+    [button] multi10 [button_]
+    [button] multi11 [button_]
+    [button] multi12 [button_]
+    [button] multi13 [button_]
+    [button] multi2 [button_]
+    [button] multi3 [button_]
+    [button] multi4 [button_]
+    [button] multi5 [button_]
+    [button] multi6 [button_]
+    [button] multi7 [button_]
+    [button] multi8 [button_]
+    [button] multi9 [button_]
+  US Constitution with quill Pen, Glasses, Candle, Ink and Flag Print On Canvas Wall Artwork Modern Photography Home Decor Unique Pattern Stretched and Framed 3 Piece
+  Price: $59.99
+  Rating: N.A.
+  [button] Description [button_]
+  [button] Features [button_]
+  [button] Reviews [button_]
+  [button] Buy Now [button_]
+Available Actions:
+- back to search
+- < prev
+- description
+- features
+- reviews
+- buy now
+- multi1
+- multi10
+- multi11
+- multi12
+- multi13
+- multi2
+- multi3
+- multi4
+- multi5
+- multi6
+- multi7
+- multi8
+- multi9
+...
+
+Encouraged:
+click[buy now] -> 0.7 The item conforms to the instruction and I can buy it now.
+Discouraged:
+click[< prev] -> 0.0 < prev is not the desired item.
+
+Example 1:
+
+---
+Last 5 Actions:
+- search[highly pigmented green body paint] This action will help me to find the desired item.
+- click[b07ry9xdkz] b07ry9xdkz offers a highly pigmented green body paint which conforms to the instruction. Thus I can check if it is within the price range.
+Observation: |
+  Instruction:
+  i'm looking for a highly pigmented green body paint, and price lower than 140.00 dollars
+  [button] Back to Search [button_]
+  [button] < Prev [button_]
+  Fusion Body Art Pro Face Paint | Pearl Mint Green (25gm), Professional Quality Water Activated Shimmery Face and Body Paint Supplies Single Metallic Makeup Cake Hypoallergenic, Non-Toxic, Safe, Vegan
+  Price: $7.7
+  Rating: N.A.
+  [button] Description [button_]
+  [button] Features [button_]
+  [button] Reviews [button_]
+  [button] Buy Now [button_]
+Available Actions:
+- back to search
+- < prev
+- description
+- features
+- reviews
+- buy now
+...
+
+Encouraged:
+click[buy now] -> 0.7 The item conforms to the instruction and I can buy it now.
+Discouraged:
+click[reviews] -> 0.0 reviews is not the desired item.
+
+Now the new input:
+
+---
+Last 5 Actions:
+- search[c-coffee collection color acrylic nail tools for nail art] This action will help me to find the desired item.
+- click[b08fjhbflt] b08fjhbflt offers a c-coffee collection color acrylic nail tools for nail art which conforms to the instruction. Thus I can check if it is within the price range.
+Observation: |
+  Instruction:
+  i am looking for a c- -coffee collection color acrylic nail tools for mnail art, and price lower than 50.00 dollars
+  [button] Back to Search [button_]
+  [button] < Prev [button_]
+  item form
+    [button] beginners [button_]
+    [button] professional [button_]
+  Nail Kit Set Professional Acrylic with Everything, 12 Glitter Acrylic Powder Kit Nail Art Tips Nail Art Decoration, DIY Nail Art Tool Nail Supplies Acrylic Nail Kit for Beginners (Professional)
+  Price: $15.88
+  Rating: N.A.
+  [button] Description [button_]
+  [button] Features [button_]
+  [button] Reviews [button_]
+  [button] Buy Now [button_]
+Available Actions:
+- back to search
+- < prev
+- description
+- features
+- reviews
+- buy now
+- beginners
+- professional
+...
+
+[32mEncouraged:[0m
+[32mclick[buy now] -> 0.7 The item conforms to the instruction and I can buy it now.[0m
+[32mDiscouraged:[0m
+[32mclick[reviews] -> 0.0 reviews is not the desired item.[0m
+
+But I haven't select the color of c-coffee. Maybe I should go to the previous page to check another item that has color of c-coffee?
+
+[32mEncouraged:[0m
+[32mclick[< prev] -> 0.5 < prev will help me to check another item that has color of c-coffee.[0m
