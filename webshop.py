@@ -205,7 +205,10 @@ def main():
     parser.add_argument("--action-capacity", type=int)
     parser.add_argument( "--matcher"
                        , default="pgpat+iprel", type=str
-                       , choices=["pgpat+iprel", "pgpat+iprel+insrel"]
+                       , choices=[ "pgpat+iprel"
+                                 , "pgpat+iprel+insrel"
+                                 , "pgpat+insrel"
+                                 ]
                        )
     parser.add_argument("--gamma", default=1., type=float)
     parser.add_argument("--step-penalty", default=0., type=float)
@@ -294,6 +297,13 @@ def main():
                                                                         ]
                                                                       , [1/3., 1/3., 1/3.]
                                                                       ).get_lambda_matcher
+              , "pgpat+insrel": history.LambdaMatcherConstructor( [ history.PagePatMatcher
+                                                                  , functools.partial( history.DenseInsMatcher
+                                                                                     , transformer=sentence_transformer
+                                                                                     )
+                                                                  ]
+                                                                , [0.5, 0.5]
+                                                                ).get_lambda_matcher
               }
     history_replay: history.HistoryReplay[webshop_agent.Key, webshop_agent.Action]\
             = history.HistoryReplay( args.item_capacity

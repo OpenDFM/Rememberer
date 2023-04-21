@@ -664,6 +664,9 @@ label A16 = "WS4(Pub'510, 3)"
 let E16 = 10
 let F16 = 0.435
 let G16 = 0.2
+let H16 = (6.5*4+E16)/5
+let I16 = (0.591*4+F16)/5
+let J16 = (0.375*4+0.2)/5
 label A17 = "ReAct(003)"
 label E17 = "###"
 let F17 = 0.7967
@@ -676,5 +679,17 @@ label K17 = "后90个"
 let K17 = (H17*4+7.42*5)/9
 let L17 = (I17+0.7368)/2
 let M17 = (J17+0.46)/2
-goto M17
+label A18 = "WS6(Pub'510, 1)"
+let E18 = 4
+let F18 = 0.724
+let G18 = 0.5
+label A19 = "WS6(Pub'510, 2)"
+let E19 = 5.8
+let F19 = 0.654
+let G19 = 0.3
+label A20 = "WS6(Pub'510, 3)"
+let E20 = 5.2
+let F20 = 0.646
+let G20 = 0.2
+goto G20
 movetosheet "PubSet"

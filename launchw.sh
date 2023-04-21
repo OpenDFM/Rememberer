@@ -8,7 +8,7 @@ python webshop.py --log-dir logs-webshop\
 				  --save-replay history-pools/init_pool.wqu."$date_str".%d.yaml\
 				  --item-capacity 500\
 				  --action-capacity 10\
-				  --matcher pgpat+iprel+insrel\
+				  --matcher pgpat+insrel\
 				  --prompt-template prompts/\
 				  --max-tokens 200\
 				  --stop "Discouraged"\
