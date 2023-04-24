@@ -208,6 +208,7 @@ def main():
                        , choices=[ "pgpat+iprel"
                                  , "pgpat+iprel+insrel"
                                  , "pgpat+insrel"
+                                 , "9pgpat1insrel"
                                  ]
                        )
     parser.add_argument("--gamma", default=1., type=float)
@@ -304,6 +305,13 @@ def main():
                                                                   ]
                                                                 , [0.5, 0.5]
                                                                 ).get_lambda_matcher
+              , "9pgpat1insrel": history.LambdaMatcherConstructor( [ history.PagePatMatcher
+                                                                   , functools.partial( history.DenseInsMatcher
+                                                                                      , transformer=sentence_transformer
+                                                                                      )
+                                                                   ]
+                                                                 , [0.9, 0.1]
+                                                                 ).get_lambda_matcher
               }
     history_replay: history.HistoryReplay[webshop_agent.Key, webshop_agent.Action]\
             = history.HistoryReplay( args.item_capacity

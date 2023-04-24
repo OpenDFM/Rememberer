@@ -492,7 +492,13 @@ class HistoryReplay(Generic[Key, Action]):
                                              , map(lambda k: self._record[k], self._record.keys())
                                              , match_scores
                                              )
-                                        , key=(lambda itm: itm[2])
+                                        , key=( lambda itm: ( itm[2]
+                                                            , sum( map( lambda d: d["number"]
+                                                                      , itm[1]["action_dict"].values()
+                                                                      )
+                                                                 )
+                                                            )
+                                              )
                                         , reverse=True
                                         )
                                 )
