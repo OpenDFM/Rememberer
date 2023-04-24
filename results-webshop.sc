@@ -543,6 +543,7 @@ nb_frozen_cols 0
 nb_frozen_screenrows 0
 nb_frozen_screencols 0
 format A 33 2 0
+hidecol B:D
 label A0 = "Test Set"
 label B0 = "Pub5"
 label C0 = "Pub5"
@@ -700,5 +701,23 @@ let G20 = 0.2
 let H20 = (5.58*4+E20)/5
 let I20 = (0.58*4+F20)/5
 let J20 = (0.3*4+G20)/5
-goto M18
+label A21 = "WS9(Pub'510, 1)"
+let E21 = 4.6
+let F21 = 0.684
+let G21 = 0.4
+let H21 = (3.6*4+E21)/5
+let I21 = (0.605*4+F21)/5
+let J21 = (0.225*4+G21)/5
+label A22 = "WS9(Pub'510, 2)"
+let E22 = 3.8
+let F22 = 0.634
+let G22 = 0.3
+label A23 = "WS9(Pub'510, 3)"
+let E23 = 3.5
+let F23 = 0.634
+let G23 = 0.3
+let H23 = (4.35*4+E23)/5
+let I23 = (0.585*4+F23)/5
+let J23 = (0.3*4+G23)/5
+goto J23
 movetosheet "PubSet"
