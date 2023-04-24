@@ -683,6 +683,12 @@ label A18 = "WS6(Pub'510, 1)"
 let E18 = 4
 let F18 = 0.724
 let G18 = 0.5
+let H18 = (4.62*4+E18)/5
+let I18 = (0.683*4+F18)/5
+let J18 = (0.35*4+G18)/5
+let K18 = (5.08+H18)/2
+let L18 = (0.606+JI8)/2
+let M18 = (0.22+J18)/2
 label A19 = "WS6(Pub'510, 2)"
 let E19 = 5.8
 let F19 = 0.654
@@ -691,5 +697,8 @@ label A20 = "WS6(Pub'510, 3)"
 let E20 = 5.2
 let F20 = 0.646
 let G20 = 0.2
-goto G20
+let H20 = (5.58*4+E20)/5
+let I20 = (0.58*4+F20)/5
+let J20 = (0.3*4+G20)/5
+goto M18
 movetosheet "PubSet"
