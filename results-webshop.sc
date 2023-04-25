@@ -719,5 +719,23 @@ let G23 = 0.3
 let H23 = (4.35*4+E23)/5
 let I23 = (0.585*4+F23)/5
 let J23 = (0.3*4+G23)/5
-goto M18
+label A24 = "WS10(Pub'510, 1)"
+let E24 = 4.5
+let F24 = 0.763
+let G24 = 0.3
+label A25 = "WS10(Pub'510, 2)"
+let E25 = 5.6
+let F25 = 0.638
+let G25 = 0.2
+label A26 = "WS10(Pub'510, 3)"
+let E26 = 5
+let F26 = 0.738
+let G26 = 0.3
+let H26 = (4.12*4+E26)/5
+let I26 = (0.663*4+F26)/5
+let J26 = (0.375*4+G26)/5
+let K26 = (4.28+H26)/2
+let L26 = (0.654+I26)/2
+let M26 = (0.24+J26)/2
+goto M26
 movetosheet "PubSet"
