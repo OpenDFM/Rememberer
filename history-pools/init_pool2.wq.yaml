@@ -1,0 +1,246 @@
+? !!python/tuple
+- |
+  WebShop
+  Instruction:
+  i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
+  [button] Search [button_]
+- "Instruction:i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars"
+- search
+: action_dict:
+    ? &act0 !!python/tuple
+    - search[3 ounce bottle bright citrus deodorant sensitive skin]
+    - ''
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - click[search]
+    - The search button shouldn't be clicked.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 0
+? !!python/tuple
+- |
+  Instruction:
+  i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
+  [button] Back to Search [button_]
+  Page 1 (Total results: 50)
+  [button] Next > [button_]
+  
+  [button] B078GWRC1J [button_]
+  Bright Citrus Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  $10.99
+  
+  [button] B078GTKVXY [button_]
+  Ginger Fresh Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  $10.99
+  
+  [button] B08KBVJ4XN [button_]
+  Barrel and Oak - Aluminum-Free Deodorant, Deodorant for Men, Essential Oil-Based Scent, 24-Hour Odor Protection, Cedar & Patchouli Blend, Gentle on Sensitive Skin (Mountain Sage, 2.7 oz, 2-Pack)
+  $15.95
+  
+  [button] B08SMG4WB9 [button_]
+  Each & Every 2-Pack Natural Aluminum-Free Deodorant for Sensitive Skin with Essential Oils, Plant-Based Packaging (Citrus & Vetiver, 2.5 Ounce (Pack of 2))
+  $25.0
+  
+  [button] B08KVCCSD6 [button_]
+  Each & Every 3-Pack, Natural Aluminum-Free Deodorant for Sensitive Skin Made with Essential Oils, 2.5 Oz. (Lavender & Lemon, Citrus & Vetiver, and Coconut & Lime)
+  $35.0
+  
+  [button] B087WKSR2G [button_]
+  Schmidt's Aluminum Free Natural Deodorant for Women and Men, Here + Now for Sensitive Skin with 24 Hour Odor Protection, Certified Cruelty Free, Vegan Deodorant, 3.25oz 3-pack
+  $19.63
+  
+  [button] B08KC3QXZW [button_]
+  Barrel and Oak - Aluminum-Free Deodorant Variety Pack, Deodorant for Men, Natural Fragrance, 3 Essential Oil-Based Scents, For Sensitive Skin, No Clothing Stains, Vegan (3 oz Per Deodorant, 3-Pack)
+  $26.95
+  
+  [button] B07MGKRMBG [button_]
+  Each & Every Natural Aluminum-Free Deodorant for Sensitive Skin with Essential Oils, Plant-Based Packaging, Cedar & Vanilla, 2.5 Oz.
+  $17.0
+  
+  [button] B071Y2NN62 [button_]
+  Thinksport Deodorant, Unscented (2.9 ounce) , Yellow/White/Black
+  $8.91
+  
+  [button] B00J51MCPQ [button_]
+  EO Organic Deodorant Spray: Aluminum Free, Citrus, 4 Ounce
+  $7.0
+- "Instruction:i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars"
+- 'back to search
+
+  next >
+
+  b078gwrc1j
+
+  b078gtkvxy
+
+  b08kbvj4xn
+
+  b08smg4wb9
+
+  b08kvccsd6
+
+  b087wksr2g
+
+  b08kc3qxzw
+
+  b07mgkrmbg
+
+  b071y2nn62
+
+  b00j51mcpq'
+: action_dict:
+    ? &act1 !!python/tuple
+    - click[b078gwrc1j]
+    - b078gwrc1j and b078gtkvxy are bright citrus deodorant less then 50 dollars. I can check b078gwrc1j first.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 1
+? !!python/tuple
+- |
+  Instruction:
+  i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
+  [button] Back to Search [button_]
+  [button] < Prev [button_]
+  scent
+    [button] assorted scents [button_]
+    [button] bright citrus [button_]
+    [button] calming lavender [button_]
+    [button] ginger fresh [button_]
+    [button] simply non-scents [button_]
+  size
+    [button] travel set (4-pack) [button_]
+    [button] 3 ounce (pack of 1) [button_]
+    [button] 3-ounce (2-pack) [button_]
+  Bright Citrus Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  Price: $10.99
+  Rating: N.A.
+  [button] Description [button_]
+  [button] Features [button_]
+  [button] Reviews [button_]
+  [button] Buy Now [button_]
+- "Instruction:i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars"
+- 'back to search
+
+  < prev
+
+  description
+
+  features
+
+  reviews
+
+  buy now
+
+  assorted scents
+
+  bright citrus
+
+  calming lavender
+
+  ginger fresh
+
+  simply non-scents
+
+  travel set (4-pack)
+
+  3 ounce (pack of 1)
+
+  3-ounce (2-pack)'
+: action_dict:
+    ? &act2 !!python/tuple
+    - click[bright citrus]
+    - For 3 ounce bottle of bright citrus deodorant for sensitive skin, the item has options 'bright citrus' and '3 ounce (pack of 1)' and seems good to buy.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    - *act1
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 2
+? !!python/tuple
+- |
+  You have clicked bright citrus.
+  Instruction:
+  i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
+  [button] Back to Search [button_]
+  [button] < Prev [button_]
+  scent
+    [button] assorted scents [button_]
+    [button] bright citrus [button_]
+    [button] calming lavender [button_]
+    [button] ginger fresh [button_]
+    [button] simply non-scents [button_]
+  size
+    [button] travel set (4-pack) [button_]
+    [button] 3 ounce (pack of 1) [button_]
+    [button] 3-ounce (2-pack) [button_]
+  Bright Citrus Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  Price: $10.99
+  Rating: N.A.
+  [button] Description [button_]
+  [button] Features [button_]
+  [button] Reviews [button_]
+  [button] Buy Now [button_]
+- "Instruction:i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars"
+- 'back to search
+
+  < prev
+
+  description
+
+  features
+
+  reviews
+
+  buy now
+
+  assorted scents
+
+  bright citrus
+
+  calming lavender
+
+  ginger fresh
+
+  simply non-scents
+
+  travel set (4-pack)
+
+  3 ounce (pack of 1)
+
+  3-ounce (2-pack)'
+: action_dict:
+    ? &act3 !!python/tuple
+    - click[3 ounce (pack of 1)]
+    - For 3 ounce bottle of bright citrus deodorant for sensitive skin, the item has options 'bright citrus' and '3 ounce (pack of 1)' and seems good to buy.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    - *act1
+    - *act2
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 3

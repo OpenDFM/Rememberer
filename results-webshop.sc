@@ -688,7 +688,7 @@ let H18 = (4.62*4+E18)/5
 let I18 = (0.683*4+F18)/5
 let J18 = (0.35*4+G18)/5
 let K18 = (5.08+H18)/2
-let L18 = (0.606+JI8)/2
+let L18 = (0.606+I18)/2
 let M18 = (0.22+J18)/2
 label A19 = "WS6(Pub'510, 2)"
 let E19 = 5.8
@@ -719,5 +719,5 @@ let G23 = 0.3
 let H23 = (4.35*4+E23)/5
 let I23 = (0.585*4+F23)/5
 let J23 = (0.3*4+G23)/5
-goto J23
+goto M18
 movetosheet "PubSet"

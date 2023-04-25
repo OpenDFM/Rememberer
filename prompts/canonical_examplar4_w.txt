@@ -1,0 +1,69 @@
+---
+Last 5 Actions:
+- search[3 ounce bottle bright citrus deodorant sensitive skin]
+Observation: |
+  Instruction:
+  i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
+  [button] Back to Search [button_]
+  Page 1 (Total results: 50)
+  [button] Next > [button_]
+  
+  [button] B078GWRC1J [button_]
+  Bright Citrus Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  $10.99
+  
+  [button] B078GTKVXY [button_]
+  Ginger Fresh Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  $10.99
+  
+  [button] B08KBVJ4XN [button_]
+  Barrel and Oak - Aluminum-Free Deodorant, Deodorant for Men, Essential Oil-Based Scent, 24-Hour Odor Protection, Cedar & Patchouli Blend, Gentle on Sensitive Skin (Mountain Sage, 2.7 oz, 2-Pack)
+  $15.95
+  
+  [button] B08SMG4WB9 [button_]
+  Each & Every 2-Pack Natural Aluminum-Free Deodorant for Sensitive Skin with Essential Oils, Plant-Based Packaging (Citrus & Vetiver, 2.5 Ounce (Pack of 2))
+  $25.0
+  
+  [button] B08KVCCSD6 [button_]
+  Each & Every 3-Pack, Natural Aluminum-Free Deodorant for Sensitive Skin Made with Essential Oils, 2.5 Oz. (Lavender & Lemon, Citrus & Vetiver, and Coconut & Lime)
+  $35.0
+  
+  [button] B087WKSR2G [button_]
+  Schmidt's Aluminum Free Natural Deodorant for Women and Men, Here + Now for Sensitive Skin with 24 Hour Odor Protection, Certified Cruelty Free, Vegan Deodorant, 3.25oz 3-pack
+  $19.63
+  
+  [button] B08KC3QXZW [button_]
+  Barrel and Oak - Aluminum-Free Deodorant Variety Pack, Deodorant for Men, Natural Fragrance, 3 Essential Oil-Based Scents, For Sensitive Skin, No Clothing Stains, Vegan (3 oz Per Deodorant, 3-Pack)
+  $26.95
+  
+  [button] B07MGKRMBG [button_]
+  Each & Every Natural Aluminum-Free Deodorant for Sensitive Skin with Essential Oils, Plant-Based Packaging, Cedar & Vanilla, 2.5 Oz.
+  $17.0
+  
+  [button] B071Y2NN62 [button_]
+  Thinksport Deodorant, Unscented (2.9 ounce) , Yellow/White/Black
+  $8.91
+  
+  [button] B00J51MCPQ [button_]
+  EO Organic Deodorant Spray: Aluminum Free, Citrus, 4 Ounce
+  $7.0
+  
+Available Actions:
+- back to search
+- next >
+- b078gwrc1j
+- b078gtkvxy
+- b08kbvj4xn
+- b08smg4wb9
+- b08kvccsd6
+- b087wksr2g
+- b08kc3qxzw
+- b07mgkrmbg
+- b071y2nn62
+- b00j51mcpq
+...
+
+Encouraged:
+click[b078gwrc1j] -> 1.0 b078gwrc1j and b078gtkvxy are bright citrus deodorant less then 50 dollars. I can check b078gwrc1j first.
+Discouraged:
+click[b087wksr2g] -> 0.0 b087wksr2g is not the desired item.

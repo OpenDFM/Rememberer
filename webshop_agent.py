@@ -241,11 +241,30 @@ class AutoAgent( Agent
                 reason: str = ""
             else:
                 action_str: str = "click[{:}]".format(available_actions[action])
-                reason: str = "{:} conforms to the instruction.".format(available_actions[action])
+                if available_actions[action]=="< prev":
+                    reason: str = "The current item doesn't offer the desired options and I need to go back to check other items."
+                elif available_actions[action]=="back to search":
+                    reason: str = "The current item doesn't offer the desired options and I need to search for other items."
+                elif available_actions[action]=="buy now":
+                    reason: str = "All the options are ready now and I will click \"buy now\" to complete the shopping."
+                else:
+                    reason: str = "{:} conforms to the instruction.".format(available_actions[action])
         else:
             action_str: str = "click[{:}]".format(available_actions[action])
             if available_actions[action]=="search":
                 reason: str = "The search button shouldn't be clicked."
+            elif available_actions[action]=="features":
+                reason: str = "There is no need to check the features."
+            elif available_actions[action]=="description":
+                reason: str = "There is no need to check the description."
+            elif available_actions[action]=="reviews":
+                reason: str = "There is no need to review."
+            elif available_actions[action]=="buy now":
+                reason: str = "Not all the requirements are ready now."
+            elif available_actions[action]=="< prev":
+                reason: str = "The current item offers the desired options and I don't need to go back to check other items."
+            elif available_actions[action]=="back to search":
+                reason: str = "The current item offers the desired options and I don't need to search for other items."
             else:
                 reason: str = "{:} is not the desired item.".format(available_actions[action])
         return (action_str, reason)
