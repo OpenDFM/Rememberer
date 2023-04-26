@@ -747,5 +747,20 @@ let J27 = (0.3*4+G27)/5
 let K27 = (5.28+H27)/2
 let L27 = (0.599+I27)/2
 let M27 = (0.18+J27)/2
+label A28 = "WS10(Pub'510, 1) ReAct式的环境"
+let E28 = 5.8
+let F28 = 0.692
+let G28 = 0.4
+label A29 = "WS10(Pub'510, 2)"
+let E29 = 4.2
+let F29 = 0.697
+let G29 = 0.3
+label A30 = "WS10(Pub'510, 3)"
+let E30 = 4.4
+let F30 = 0.792
+let G30 = 0.5
+let H30 = (4.4*4+E30)/5
+let I30 = (0.62*4+F30)/5
+let J30 = (0.275*4+G30)/5
 goto K30
 movetosheet "PubSet"
