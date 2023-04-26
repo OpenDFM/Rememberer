@@ -737,5 +737,15 @@ let J26 = (0.375*4+G26)/5
 let K26 = (4.28+H26)/2
 let L26 = (0.654+I26)/2
 let M26 = (0.24+J26)/2
-goto M26
+label A27 = "ReAct-EP(Pub'510, 3)"
+let E27 = 5.2
+let F27 = 0.64
+let G27 = 0.2
+let H27 = (5.7*4+E27)/5
+let I27 = (0.587*4+F27)/5
+let J27 = (0.3*4+G27)/5
+let K27 = (5.28+H27)/2
+let L27 = (0.599+I27)/2
+let M27 = (0.18+J27)/2
+goto K30
 movetosheet "PubSet"
