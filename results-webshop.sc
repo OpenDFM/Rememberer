@@ -762,5 +762,8 @@ let G30 = 0.5
 let H30 = (4.4*4+E30)/5
 let I30 = (0.62*4+F30)/5
 let J30 = (0.275*4+G30)/5
-goto K30
+let K30 = (4.78+H30)/2
+let L30 = (0.614+I30)/2
+let M30 = (0.28+J30)/2
+goto J27
 movetosheet "PubSet"
