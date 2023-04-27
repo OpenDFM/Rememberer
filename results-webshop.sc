@@ -545,6 +545,7 @@ nb_frozen_screenrows 0
 nb_frozen_screencols 0
 format A 51 2 0
 hidecol B:D
+hidecol T:V
 label A0 = "Test Set"
 label B0 = "Pub5"
 label C0 = "Pub5"
@@ -764,6 +765,8 @@ let G27 = 0.2
 let K27 = (5.7*4+E27)/5
 let L27 = (0.587*4+F27)/5
 let M27 = (0.3*4+G27)/5
+let O27 = 0.701
+let P27 = 0.2
 let Q27 = (5.28+K27)/2
 let R27 = (0.599+L27)/2
 let S27 = (0.18+M27)/2
@@ -829,7 +832,23 @@ let P34 = 0.4
 let W34 = 4.2
 let X34 = 0.758
 let Y34 = 0.4
-goto Y32
+label A35 = "RE2(Pub'510, 3)"
+let N35 = 5.8
+let O35 = 0.683
+let P35 = 0.4
+label A36 = "RE2(C)"
+let N36 = 6.1
+let O36 = 0.75
+let P36 = 0.5
+label A37 = "RE3(Pub'510, 3)"
+let N37 = 5.7
+let O37 = 0.683
+let P37 = 0.4
+label A38 = "RE3(C)"
+let N38 = 6.1
+let O38 = 0.783
+let P38 = 0.5
+goto W48
 movetosheet "逐项回报"
 offscr_sc_cols 0
 offscr_sc_rows 28
@@ -1370,7 +1389,7 @@ label A95 = "备注"
 label B95 = "ReAct(003)"
 label C95 = "WS10(Pub'510, 1) ReAct式的环境"
 label D95 = "WS10(Pub'510, 3)"
-goto L71
+goto C71
 movetosheet "PubSet"
 mark a "逐项回报" A42
 mark b "逐项回报" A91
