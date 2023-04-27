@@ -667,7 +667,7 @@ let F16 = 0.435
 let G16 = 0.2
 let H16 = (6.5*4+E16)/5
 let I16 = (0.591*4+F16)/5
-let J16 = (0.375*4+0.2)/5
+let J16 = (0.375*4+G16)/5
 label A17 = "ReAct(003)"
 label E17 = "###"
 let F17 = 0.7967
@@ -751,6 +751,12 @@ label A28 = "WS10(Pub'510, 1) ReAct式的环境"
 let E28 = 5.8
 let F28 = 0.692
 let G28 = 0.4
+let H28 = (5.05*4+E28)/5
+let I28 = (0.655*4+F28)/5
+let J28 = (0.35*4+G28)/5
+let K28 = (5.4+H28)/2
+let L28 = (0.664+I28)/2
+let M28 = (0.38+J28)/2
 label A29 = "WS10(Pub'510, 2)"
 let E29 = 4.2
 let F29 = 0.697
@@ -765,5 +771,5 @@ let J30 = (0.275*4+G30)/5
 let K30 = (4.78+H30)/2
 let L30 = (0.614+I30)/2
 let M30 = (0.28+J30)/2
-goto J27
+goto M28
 movetosheet "PubSet"
