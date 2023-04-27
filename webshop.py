@@ -159,7 +159,7 @@ def traverse_environment( env: gym.Env
         rewards.append(total_reward)
         succeedss.append(int(succeeds))
         logger.info("\x1b[43mEND!\x1b[0m %s", task)
-        logger.info( "\x1b[42mEND!\x1b[0m TaskIdx: %d, TaskId: %d, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
+        logger.info( "\x1b[42mEND!\x1b[0m TaskIdx: %d, TaskId: %d, #Steps: %d(%d), Reward: %.2f, Succeds: %s"
                    , idx, i, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
                    )
     logger.info( "──────────{:.2f}──────────{:.3f}──────────{:.3f}──────────"\
@@ -422,8 +422,8 @@ def main():
                                                          , logger, except_list
                                                          , max_nb_steps=max_nb_steps
                                                          )
-            if epch%3==0:
-                except_list |= success_list
+            #if epch%3==0:
+                #except_list |= success_list
         model.train(False)
         traverse_environment( env, test_set
                             , model, logger

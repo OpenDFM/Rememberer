@@ -174,7 +174,7 @@
 : action_dict:
     ? &act3 !!python/tuple
     - click[3 ounce (pack of 1)]
-    - For 3 ounce bottle of bright citrus deodorant for sensitive skin, the item has options 'bright citrus' and '3 ounce (pack of 1)' and seems good to buy.
+    - I have clicked for 'bright citrus' and haven't clicked for '3 ounce (pack of 1)'. I need to first click '3 ounce (pack of 1)' and then buy this item.
     : number: 1
       qvalue: 1.0
       reward: 0.0

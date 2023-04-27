@@ -13,8 +13,9 @@ Here are several common principles to make a decision:
 4. I can return to the previous page to select a more suitable item if the current commodity cannot satisfy all the requirements.
 5. I will avoid always repeating a wrong action.
 6. I can search only if "search" is listed as an available action. If "search" is not listed as an available action, I need to click "back to search" before conducting a search.
-7. I need to click "buy now" to finish the shopping after all the requirements are satisfied. Or I should return the search results to check another commodity.
-8. I should encourage the actions with higher value estimations and discouraged the actions with low value estimations.
+7. If multiple groups of options are listed in the item page, I should choose an option for all the groups. Then I can click "buy now".
+8. I need to click "buy now" to finish the shopping after all the options are seletect.
+9. I should encourage the actions with higher value estimations like 1 and discourage the actions with low value estimations like 0.
 
 Here are some examples:
 
