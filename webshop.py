@@ -331,9 +331,9 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
-    with open(os.path.join(args.prompt_template, "canonical_examplar1_w.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar3_w.txt")) as f:
         canonical1: str = f.read()
-    with open(os.path.join(args.prompt_template, "canonical_examplar2_w.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar4_w.txt")) as f:
         canonical2: str = f.read()
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                , input_template=input_template
@@ -422,8 +422,8 @@ def main():
                                                          , logger, except_list
                                                          , max_nb_steps=max_nb_steps
                                                          )
-            #if epch%3==0:
-                #except_list |= success_list
+            if epch%3==0:
+                except_list |= success_list
         model.train(False)
         traverse_environment( env, test_set
                             , model, logger

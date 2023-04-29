@@ -1,0 +1,189 @@
+? !!python/tuple
+- |
+  
+  WebShop
+  Instruction:
+  i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars 
+  [Search]
+- "Instruction:i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars"
+- search
+: action_dict:
+    ? &act0 !!python/tuple
+    - search[unisex sandal vinyl acetate size 11 australian]
+    - ''
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - click[search]
+    - The search button shouldn't be clicked.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 0
+? !!python/tuple
+- |
+  
+  Instruction:
+  i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars 
+  [Back to Search]
+  Page 1 (Total results: 50)
+  [Next >]
+  [B00499CRNG] 
+  Chung -Shi DUX Premium Unisex Beach Sandals Clog, Color:Navy, crocs größe:EUR 
+  $50.29 to $68.93 
+  [B08JFC6P9M] 
+  Gioberti Unisex Men and Women EVA Sandals 
+  $16.99 
+  [B08BZSGTGX] 
+  Palladium Unisex Outdoorsy Urb U Sandal 
+  $74.47 to $98.46 
+- "Instruction:i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars"
+- 'back to search
+
+  next >
+
+  b00499crng
+
+  b08jfc6p9m
+
+  b08bzsgtgx'
+: action_dict:
+    ? &act1 !!python/tuple
+    - click[b08jfc6p9m]
+    - b08jfc6p9m is unisex sandal made with vinyl acetate and price lower than 200 dollars. I can check b08jfc6p9m first.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 1
+? !!python/tuple
+- |
+  
+  Instruction:
+  i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars 
+  [Back to Search]
+  [< Prev]
+  size [6][7][8][9][10][11]
+  color [black][brown]
+  Gioberti Unisex Men and Women EVA Sandals 
+  Price: $16.99 
+  Rating: N.A. 
+  [Description]
+  [Features]
+  [Reviews]
+  [Buy Now]
+- "Instruction:i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars"
+- 'back to search
+
+  < prev
+
+  description
+
+  features
+
+  reviews
+
+  buy now
+
+  6
+
+  7
+
+  8
+
+  9
+
+  10
+
+  11
+
+  black
+
+  brown'
+: action_dict:
+    ? &act2 !!python/tuple
+    - click[11]
+    - For unisex sandal made with vinyl acetate, size 11 australian, the item has options '11' and 'black' and seems good to buy.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    - *act1
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 2
+? !!python/tuple
+- |
+  
+  You have clicked 11.
+  Instruction:
+  i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars 
+  [Back to Search]
+  [< Prev]
+  size [6][7][8][9][10][11]
+  color [black][brown]
+  Gioberti Unisex Men and Women EVA Sandals 
+  Price: $16.99 
+  Rating: N.A. 
+  [Description]
+  [Features]
+  [Reviews]
+  [Buy Now]
+- "Instruction:i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars"
+- 'back to search
+
+  < prev
+
+  description
+
+  features
+
+  reviews
+
+  buy now
+
+  6
+
+  7
+
+  8
+
+  9
+
+  10
+
+  11
+
+  black
+
+  brown'
+: action_dict:
+    ? &act3 !!python/tuple
+    - click[black]
+    - I have clicked for '11' and haven't clicked for 'black'. I need to first click 'black' and then buy this item.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    - *act1
+    - *act2
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 3

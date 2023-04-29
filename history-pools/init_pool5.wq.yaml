@@ -1,0 +1,182 @@
+? !!python/tuple
+- |
+  
+  WebShop
+  Instruction:
+  i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars 
+  [Search]
+- "Instruction:i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars"
+- search
+: action_dict:
+    ? &act0 !!python/tuple
+    - search[black hands free denon home 250 wireless speaker]
+    - ''
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - click[search]
+    - The search button shouldn't be clicked.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 0
+? !!python/tuple
+- |
+  
+  Instruction:
+  i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars 
+  [Back to Search]
+  Page 1 (Total results: 50)
+  [Next >]
+  [B08RMKR4PC] 
+  Powerful Denon Home Sound Bar 550, a Compact Soundbar for Your Television and Music. Engineered for Denon 3D Audio with Dolby Atmos and DTS:X. Syncs with Other
+   Denon Home and HEOS Built-in Products 
+  $640.19 
+  [B0837JNX9T] 
+  Denon Home 250 Wireless Speaker (2020 Model) | HEOS Built-in, Alexa Built-in, AirPlay 2, and Bluetooth | Compact Design | Black 
+  $499.0 
+  [B0947PKCRF] 
+  Denon Home 350 Black Studio Pair (2) + $25 Kindle Fire Gift Card 
+  $1423.0 
+- "Instruction:i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars"
+- 'back to search
+
+  next >
+
+  b08rmkr4pc
+
+  b0837jnx9t
+
+  b0947pkcrf'
+: action_dict:
+    ? &act1 !!python/tuple
+    - click[b0837jnx9t]
+    - b0837jnx9t is a black hands free denon home 250 wireless speaker and it is less than 530 dollars.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 1
+? !!python/tuple
+- |
+  
+  Instruction:
+  i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars 
+  [Back to Search]
+  [< Prev]
+  style [home 150][home 250][home 350][sound bar]
+  color [black][white]
+  Denon Home 250 Wireless Speaker (2020 Model) | HEOS Built-in, Alexa Built-in, AirPlay 2, and Bluetooth | Compact Design | Black 
+  Price: $499.0 
+  Rating: N.A. 
+  [Description]
+  [Features]
+  [Reviews]
+  [Buy Now]
+- "Instruction:i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars"
+- 'back to search
+
+  < prev
+
+  description
+
+  features
+
+  reviews
+
+  buy now
+
+  home 150
+
+  home 250
+
+  home 350
+
+  sound bar
+
+  black
+
+  white'
+: action_dict:
+    ? &act2 !!python/tuple
+    - click[black]
+    - For black hands free denon home 250 wireless speaker, the item has options 'black' and 'home 250' and seems good to buy.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    - *act1
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 2
+? !!python/tuple
+- |
+  
+  You have clicked black.
+  Instruction:
+  i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars 
+  [Back to Search]
+  [< Prev]
+  style [home 150][home 250][home 350][sound bar]
+  color [black][white]
+  Denon Home 250 Wireless Speaker (2020 Model) | HEOS Built-in, Alexa Built-in, AirPlay 2, and Bluetooth | Compact Design | Black 
+  Price: $499.0 
+  Rating: N.A. 
+  [Description]
+  [Features]
+  [Reviews]
+  [Buy Now]
+- "Instruction:i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars"
+- 'back to search
+
+  < prev
+
+  description
+
+  features
+
+  reviews
+
+  buy now
+
+  home 150
+
+  home 250
+
+  home 350
+
+  sound bar
+
+  black
+
+  white'
+: action_dict:
+    ? &act3 !!python/tuple
+    - click[home 250]
+    - I have clicked for 'black' and haven't clicked for 'home 250'. I need to first click 'home 250' and then buy this item.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    - *act1
+    - *act2
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 3

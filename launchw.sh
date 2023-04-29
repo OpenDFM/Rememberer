@@ -13,9 +13,9 @@ python webshop.py --log-dir logs-webshop\
 				  --max-tokens 200\
 				  --stop "Discouraged"\
 				  --request-timeout 10.\
+				  --static\
 				  --starts-from 0\
-				  --train\
 				  --epochs 3\
 				  --trainset 10\
-				  --testseta 70\
-				  --testsetb 80
+				  --testseta 0\
+				  --testsetb 10

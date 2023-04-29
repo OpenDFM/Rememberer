@@ -2,11 +2,11 @@
 Last 5 Actions:
 
 Observation: |
+  
   WebShop
   Instruction:
   i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
-  [button] Search [button_]
-  
+  [Search]
 Available Actions:
 - search
 ...
