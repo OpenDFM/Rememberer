@@ -355,6 +355,7 @@ def main():
                                    , temperature=args.temperature
                                    , stop=args.stop
                                    , request_timeout=args.request_timeout
+                                   , static=args.static
                                    , manual=args.manual
                                    , train=args.train
                                    , with_speech=args.speech

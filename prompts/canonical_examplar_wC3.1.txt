@@ -1,0 +1,17 @@
+---
+Last 5 Actions:
+
+Observation: |
+  
+  WebShop
+  Instruction:
+  i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars 
+  [Search]
+Available Actions:
+- search
+...
+
+Encouraged:
+search[black hands free denon home 250 wireless speaker] -> 1.0
+Discouraged:
+click[search] -> 0.0 The search button shouldn't be clicked.

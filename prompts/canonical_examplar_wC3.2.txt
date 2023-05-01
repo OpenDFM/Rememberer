@@ -1,0 +1,32 @@
+---
+Last 5 Actions:
+- search[black hands free denon home 250 wireless speaker]
+Observation: |
+  
+  Instruction:
+  i want a black hands free denon home 250 wireless speaker, and price lower than 530.00 dollars 
+  [Back to Search]
+  Page 1 (Total results: 50)
+  [Next >]
+  [B08RMKR4PC] 
+  Powerful Denon Home Sound Bar 550, a Compact Soundbar for Your Television and Music. Engineered for Denon 3D Audio with Dolby Atmos and DTS:X. Syncs with Other
+   Denon Home and HEOS Built-in Products 
+  $640.19 
+  [B0837JNX9T] 
+  Denon Home 250 Wireless Speaker (2020 Model) | HEOS Built-in, Alexa Built-in, AirPlay 2, and Bluetooth | Compact Design | Black 
+  $499.0 
+  [B0947PKCRF] 
+  Denon Home 350 Black Studio Pair (2) + $25 Kindle Fire Gift Card 
+  $1423.0 
+Available Actions:
+- back to search
+- next >
+- b08rmkr4pc
+- b0837jnx9t
+- b0947pkcrf
+...
+
+Encouraged:
+click[b0837jnx9t] -> 1.0 b0837jnx9t is a black hands free denon home 250 wireless speaker and it is less than 530 dollars.
+Discouraged:
+click[b0947pkcrf] -> 0.0 b0947pkcrf is not the desired item.

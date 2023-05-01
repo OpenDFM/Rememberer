@@ -168,7 +168,7 @@ class AutoAgent( Agent
                                                        , self._tokenizer
                                                        )
 
-        self._static: bool = False
+        self._static: bool = static
         #  }}} method __init__ # 
 
     def reset(self):
