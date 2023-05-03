@@ -389,7 +389,6 @@ def main():
         if args.train:
             history_replay.save_yaml(args.save_replay % epch)
 
-
         epoch_str = "Epoch {:}".format(epch)
         logger.info("\x1b[31m━━━━━━━━━━━━━━━━━━━%s━━━━━━━━━━━━━━━━━━━━\x1b[0m", epoch_str)
         logger.info( "Size: %d, Avg AD Size: %d"
