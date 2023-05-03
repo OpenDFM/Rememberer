@@ -233,7 +233,8 @@ def main():
 
     parser.add_argument("--except", nargs="+", type=int)
     parser.add_argument("--pub-to-local-mapping", type=str)
-    parser.add_argument("--trainset", default=20, type=int)
+    parser.add_argument("--trainseta", default=0, type=int)
+    parser.add_argument("--trainsetb", default=20, type=int)
     parser.add_argument("--testseta", default=0, type=int)
     parser.add_argument("--testsetb", default=10, type=int)
 
@@ -402,7 +403,7 @@ def main():
                                                 , f.read().splitlines()
                                                 )
                                            )
-    training_set: List[int] = local_mapping[500:500+args.trainset]
+    training_set: List[int] = local_mapping[500+args.trainseta:500+args.trainsetb]
     test_set: List[int] = local_mapping[args.testseta:args.testsetb]
 
     except_list: Set[int] = set() if getattr(args, "except") is None else set(getattr(args, "except"))
