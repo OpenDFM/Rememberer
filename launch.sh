@@ -14,7 +14,8 @@ python main.py --log-dir logs-historyless/\
 			   --action-capacity 10\
 			   --matcher lcs+inspat\
 			   --prompt-template prompts/\
-			   --max-tokens 50\
+			   --max-tokens 100\
 			   --stop "Discouraged"\
-			   --request-timeout 5.\
+			   --request-timeout 10.\
+			   --starts-from 0\
 			   --epochs 3

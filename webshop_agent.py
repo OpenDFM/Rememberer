@@ -313,7 +313,7 @@ class AutoAgent( Agent
 
             action_tail: List[str] = action_tail.strip().split(maxsplit=1)
             score: float = float(action_tail[0].strip())
-            element_html: str = action_tail[1].strip() if len(action_tail)>1 else ""
+            element_html: str = action_tail[1].strip() if len(action_tail)>1 else "" # action reason
 
             encouraged_texts.append((action_text, score, element_html))
 

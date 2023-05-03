@@ -42,6 +42,43 @@ class Agent(abc.ABC):
 
     def reset(self):
         self._action_history.clear()
+    def end( self
+           , task: str
+           , screen: lxml.etree.Element
+           , instruction: str
+           , reward: float
+           , total_reward: float
+           ):
+        pass
+
+    def _process_observation(screen: lxml.etree.Element)\
+            -> Tuple[ List[lxml.html.Element]
+                    , str
+                    ]:
+        #  method _process_observation {{{ # 
+        """
+        Args:
+            screen (lxml.etree.Element): the screen view hierarchy
+
+        Returns:
+            List[lxml.html.Element]: the html elements
+            str: the screen representation
+        """
+
+        html_elements: List[lxml.html.Element] =\
+                vh_to_html.convert_tree(screen)[0]
+
+        screen_representation: List[str] = []
+        for html in html_elements:
+            screen_representation.append( lxml.html.tostring( html
+                                                            , pretty_print=True
+                                                            , encoding="unicode"
+                                                            ).strip()\
+                                                             .replace("\n", "&#10;")\
+                                                             .replace("\r", "&#13;")
+                                        )
+        screen_representation: str = "\n".join(screen_representation)
+        #  }}} method _process_observation # 
 
     def __call__( self
                 , task: str
@@ -80,19 +117,9 @@ class Agent(abc.ABC):
               all the values in `action` are wrapped in np.ndarray.
         """
 
-        html_elements: List[lxml.html.Element] =\
-                vh_to_html.convert_tree(screen)[0]
-
-        screen_representation: List[str] = []
-        for html in html_elements:
-            screen_representation.append( lxml.html.tostring( html
-                                                            , pretty_print=True
-                                                            , encoding="unicode"
-                                                            ).strip()\
-                                                             .replace("\n", "&#10;")\
-                                                             .replace("\r", "&#13;")
-                                        )
-        screen_representation: str = "\n".join(screen_representation)
+        html_elements: List[lxml.html.Element]
+        screen_representation: str
+        html_elements, screen_representation = self._process_observation(screen)
 
         action_tuple: Action = self._get_action( task
                                           , screen_representation.strip()
@@ -209,6 +236,7 @@ class AutoAgent( Agent
                 , temperature: float = 0.1
                 , stop: Optional[str] = None
                 , request_timeout: float = 3.
+                , static: bool = False
                 , manual: bool = False
                 , train: bool = True
                 , with_speech: bool = False
@@ -255,11 +283,33 @@ class AutoAgent( Agent
                                                        , train
                                                        , self._tokenizer
                                                        )
+        self._static: bool = static
         #  }}} method __init__ # 
 
     def reset(self):
         super(AutoAgent, self).reset()
-        self._history_replay.new_trajectory()
+        #self._history_replay.new_trajectory()
+    def end( self
+           , task: str
+           , screen: lxml.etree.Element
+           , instruction: str
+           , reward: float
+           , total_reward: float
+           ):
+        #  method end {{{ # 
+        screen_representation: str
+        _, screen_representation = self._process_observation(screen)
+
+        if self._train:
+            last_action: Optional[Action] = self._action_history[-1]\
+                                            if len(self._action_history) > 0\
+                                          else None
+            self._history_replay.update( (screen, task, instruction)
+                                       , reward
+                                       , last_action
+                                       , last_step=True
+                                       )
+        #  }}} method end # 
 
     def _instantiate_input_template( self
                                    , command: str
@@ -285,7 +335,7 @@ class AutoAgent( Agent
                                                       )
         #  }}} method _instantiate_input_template # 
 
-    def _random_action( self, key: Key) -> Action:
+    def _random_action(self, key: Key, encourages: bool = False) -> Action:
         #  method _random_action {{{ # 
         screen: str = key[0]
         elements: List[str] = screen.splitlines()
@@ -393,10 +443,15 @@ class AutoAgent( Agent
         #  }}} Construct New Input # 
 
         #  Construct Examplars {{{ # 
-        examplars: List[str] = self._get_examplars( (screen, task, instruction)
-                                                  , example_tokens_limit
-                                                  , 2
-                                                  )
+        if self._static:
+            examplars: List[str] = [ "Example 2:\n\n" + self._prompt_templates.canonical2
+                                   , "Example 1:\n\n" + self._prompt_templates.canonical1
+                                   ]
+        else:
+            examplars: List[str] = self._get_examplars( (screen, task, instruction)
+                                                      , example_tokens_limit
+                                                      , 2
+                                                      )
         example_str: str = "\n".join(reversed(examplars)).strip()
         #  }}} Construct Examplars # 
 

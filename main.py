@@ -83,6 +83,9 @@ def traverse_environment( env: AndroidEnv
 
     success_list: Set[int] = set()
 
+    nb_stepss: List[int] = []
+    rewards: List[float] = []
+    succeedss: List[int] = []
     for i in range(env.nb_tasks):
         if i in except_list:
             continue
@@ -132,13 +135,27 @@ def traverse_environment( env: AndroidEnv
                 succeeds = False
                 break
 
+        model.end( command
+                 , step.observation["view_hierarchy"]
+                 , instruction
+                 , step.reward
+                 , reward
+                 )
+
         if succeeds:
             success_list.add(i)
 
+        nb_stepss.append(nb_steps)
+        rewards.append(total_reward)
+        succeeds.append(int(success))
         logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, TaskName: %s, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
                    , i, env.task_id, nb_steps, nb_nothing_steps, reward, str(succeeds)
                    )
-    logger.info("────────────────────────────────────────")
+    logger.info( "──────────%.2f──────────%.3f──────────%.3f──────────"
+               , np.mean(np.asarray(nb_stepss))
+               , np.mean(np.asarray(rewards))
+               , np.mean(np.asarray(succeeds))
+               )
     return success_list
     #  }}} function traverse_environment # 
 
@@ -170,6 +187,7 @@ def main():
     parser.add_argument("--temperature", default=0.1, type=float)
     parser.add_argument("--stop", type=str)
     parser.add_argument("--request-timeout", default=3., type=float)
+    parser.add_argument("--static", action="store_true")
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--speech", action="store_true")
@@ -269,9 +287,15 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "canonical_examplar1.txt")) as f:
+        canonical1: str = f.read()
+    with open(os.path.join(args.prompt_template, "canonical_examplar2.txt")) as f:
+        canonical2: str = f.read()
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                , input_template=input_template
                                                , advice_template=advice_template
+                                               , canonical1=canonical1
+                                               , canonical2=canonical2
                                                )
     with open(args.config) as f:
         openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
@@ -286,6 +310,7 @@ def main():
                            , temperature=args.temperature
                            , stop=args.stop
                            , request_timeout=args.request_timeout
+                           , static=args.static
                            , manual=args.manual
                            , train=args.train
                            , with_speech=args.speech
@@ -335,18 +360,25 @@ def main():
     #  }}} Build Agent and Environment # 
 
     #  Work Flow {{{ # 
-    nb_epochs = args.epochs if args.train else 1
-    max_nb_steps = 15
     except_list: Set[int] = set() if getattr(args, "except") is None else set(getattr(args, "except"))
+
+    if not args.train:
+        starts_from = 0
+        nb_epochs = 1
+    else:
+        starts_from: int = args.starts_from
+        nb_epochs: int = args.epochs
+    #nb_epochs = args.epochs if args.train else 1
+    max_nb_steps = 15
     #except_list = {0, 1, 2, 3, 5, 6, 7, 8, 9}
-    for epch in range(args.starts_from, nb_epochs):
+    for epch in range(starts_from, nb_epochs):
         if args.train:
             model.train(True)
             success_list: Set[int] = traverse_environment( train_env, model
                                                          , logger, except_list
                                                          , max_nb_steps=max_nb_steps
                                                          )
-            if epch==0:
+            if epch%3==0:
                 except_list |= success_list
         model.train(False)
         traverse_environment( env, model
