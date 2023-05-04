@@ -1,0 +1,87 @@
+# A31, A24
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"apply cc cream \" type=\"text\" id=\"1\"\
+  \ clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear query\" id=\"\
+  2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to Apply CC Cream</div>\n\
+  <div id=\"4\" clickable=\"true\">\u2022 </div>\n<p id=\"5\" clickable=\"true\">172,915\
+  \ views</p>\n<div id=\"6\" clickable=\"true\">\u2022 </div>\n<p id=\"7\" clickable=\"\
+  true\">Updated</p>\n<p id=\"8\" clickable=\"true\">2 years ago</p>\n<div id=\"9\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"10\" clickable=\"true\">Expert Co-Authored</p>\n\
+  <div id=\"11\" clickable=\"true\">How to Apply BB Cream</div>\n<div id=\"12\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"13\" clickable=\"true\">1,105,975 views</p>\n<div\
+  \ id=\"14\" clickable=\"true\">\u2022 </div>\n<p id=\"15\" clickable=\"true\">Updated</p>\n\
+  <p id=\"16\" clickable=\"true\">2 years ago</p>\n<div id=\"17\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"18\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  19\" clickable=\"true\">How to Apply Cream Blush</div>\n<div id=\"20\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"21\" clickable=\"true\">139,726 views</p>\n<div id=\"\
+  22\" clickable=\"true\">\u2022 </div>\n<p id=\"23\" clickable=\"true\">Updated</p>\n\
+  <p id=\"24\" clickable=\"true\">1 year ago</p>\n<div id=\"25\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"26\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  27\" clickable=\"true\">How to Apply Cream Contour</div>\n<div id=\"28\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"29\" clickable=\"true\">21,819 views</p>\n<div id=\"\
+  30\" clickable=\"true\">\u2022 </div>\n<p id=\"31\" clickable=\"true\">Updated</p>\n\
+  <p id=\"32\" clickable=\"true\">2 years ago</p>\n<div id=\"33\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"34\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  35\" clickable=\"true\">How to Apply Cream Foundation</div>\n<div id=\"36\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"37\" clickable=\"true\">15,308 views</p>\n<div id=\"\
+  38\" clickable=\"true\">\u2022 </div>\n<p id=\"39\" clickable=\"true\">Updated</p>\n\
+  <p id=\"40\" clickable=\"true\">1 year ago</p>\n<div id=\"41\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"42\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  43\" clickable=\"true\">How to Apply Cream Highlighter</div>\n<div id=\"44\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"45\" clickable=\"true\">10,463 views</p>\n<div id=\"\
+  46\" clickable=\"true\">\u2022 </div>\n<p id=\"47\" clickable=\"true\">Updated</p>\n\
+  <p id=\"48\" clickable=\"true\">1 year ago</p>\n<div id=\"49\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"50\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  51\" clickable=\"true\">How to Apply Eye Cream</div>\n<div id=\"52\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"53\" clickable=\"true\">192,306 views</p>\n<div class=\"\
+  statusBarBackground\" id=\"54\" clickable=\"false\"></div>"
+- 'Search an article to learn how to apply cc cream.
+
+  Then, access the article "How to Apply CC Cream"
+
+  Then, access the about page to learn why people trust wikihow.'
+- Access the article "How to Apply CC Cream"
+: action_dict:
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Apply CC Cream</div>
+    : number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, apply cc cream)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+  id: 0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to change a lightbulb in a recessed light.
+
+  Then, access the article "How to Change a Lightbulb in a Recessed Light"'
+- ''
+: action_dict:
+    ? !!python/tuple
+    - INPUT(2, change a lightbulb in a recessed light)
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
+      qvalue: 2.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 1

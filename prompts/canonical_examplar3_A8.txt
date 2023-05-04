@@ -1,0 +1,44 @@
+```
+Task:
+Search an article to learn how to be a good friend to a guy.
+Then, access the article "How to Be a Good Friend to a Guy"
+Then, check the author page of Trudi Griffin, LPC, MS.
+Then, access the article "How to Overcome Fear"
+Last 5 Actions:
+INPUT(2, be a good friend to a guy) <img class="search button" alt="Search" id="2" clickable="true">
+CLICK(3) <div id="3" clickable="true">How to Be a Good Friend to a Guy</div>
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="search button" alt="Search" id="1" clickable="true">
+<img alt="More options" id="2" clickable="true">
+<p id="3" clickable="true">Learn why people </p>
+<p id="4" clickable="true">trust wikiHow</p>
+<p id="5" clickable="true">FRIENDS</p>
+<p id="6" clickable="false"> »</p>
+<p id="7" clickable="true">FORMING FRIENDSHIPS</p>
+<p id="8" clickable="true">How to Be a Good Friend to a Guy</p>
+<p id="9" clickable="false">Co-authored by</p>
+<p id="10" clickable="false"> </p>
+<p id="11" clickable="true">Trudi Griffin, LPC, MS</p>
+<p id="12" clickable="false"> and </p>
+<p id="13" clickable="true">Amy Bobinger</p>
+<button id="14" clickable="true">Last Updated: December 7, 2020</button>
+<p id="15" clickable="true">References</p>
+<p id="16" clickable="false"> </p>
+<button id="17" clickable="true">Approved</button>
+<div id="18" clickable="false">Guys often tend to be less expressive than females, so it can be hard to know how to build a close, supportive friendship. However, guys are often very loyal to the people they do choose as their friends, so it's worth putting the time in when you find someone you like. By spending time hanging out and opening up a little at a time, you could end up with an awesome new friend!</div>
+<div id="19" clickable="false">Method 1 Method 1 of 3: Getting to Know Each Other</div>
+<img alt="v4-460px-Be-a-Good-Friend-to-a-Guy-Step-1-Version-3" id="20" clickable="false">
+<div class="statusBarBackground" id="21" clickable="false"></div>
+Instruction:
+Check the author page of Trudi Griffin, LPC, MS.
+Last Reward:
+1.0
+Total Reward:
+2.0
+---
+
+Encouraged:
+CLICK(11) <p id="11" clickable="true">Trudi Griffin, LPC, MS</p>
+Discouraged:
+CLICK(4) <p id="4" clickable="true">trust wikiHow</p>
