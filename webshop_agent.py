@@ -51,7 +51,7 @@ class Agent(abc.ABC):
                 , reward: float
                 , total_reward: float
                 , available_actions: List[str]
-                ) -> Action:
+                ) -> str:
         #  method __call__ {{{ # 
         """
         Args:
