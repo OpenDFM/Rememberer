@@ -146,15 +146,15 @@ def traverse_environment( env: AndroidEnv
             success_list.add(i)
 
         nb_stepss.append(nb_steps)
-        rewards.append(total_reward)
-        succeeds.append(int(success))
+        rewards.append(reward)
+        succeedss.append(int(succeeds))
         logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, TaskName: %s, #Steps: %d(%d), Reward: %.1f, Succeds: %s"
                    , i, env.task_id, nb_steps, nb_nothing_steps, reward, str(succeeds)
                    )
     logger.info( "──────────%.2f──────────%.3f──────────%.3f──────────"
                , np.mean(np.asarray(nb_stepss))
                , np.mean(np.asarray(rewards))
-               , np.mean(np.asarray(succeeds))
+               , np.mean(np.asarray(succeedss))
                )
     return success_list
     #  }}} function traverse_environment # 

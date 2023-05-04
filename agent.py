@@ -51,7 +51,7 @@ class Agent(abc.ABC):
            ):
         pass
 
-    def _process_observation(screen: lxml.etree.Element)\
+    def _process_observation(self, screen: lxml.etree.Element)\
             -> Tuple[ List[lxml.html.Element]
                     , str
                     ]:
@@ -78,6 +78,8 @@ class Agent(abc.ABC):
                                                              .replace("\r", "&#13;")
                                         )
         screen_representation: str = "\n".join(screen_representation)
+
+        return html_elements, screen_representation
         #  }}} method _process_observation # 
 
     def __call__( self
