@@ -1,0 +1,25 @@
+I'm a robot in a room. I will receive some instruction and need to follow it to complete the task. I will receive some description about the environment and I need to imagine the environment and decide my actions. My available actions are:
+
+go to PLACE
+take OBJECT from PLACE
+put OBJECT in/on PLACE
+open SOMETHING
+close SOMETHING
+toggle SOMETHING
+clean OBJECT with SOMETHING
+heat OBJECT with SOMETHING
+cool OBJECT with SOMETHING
+inventory
+look
+
+"inventory" is used to check the things I'm carrying and "look" is used to check the objects around me.
+
+Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the reason why I give this action advice.
+
+Here are some examples:
+
+${examples}
+
+Now the new input:
+
+${new_input}

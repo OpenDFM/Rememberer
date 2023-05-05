@@ -298,6 +298,7 @@ class DenseInsMatcher(Matcher[Tuple[Any, str, Any]]):
     def __init__( self
                 , query: Tuple[Any, str, Any]
                 , transformer: SentenceTransformer = None
+                , index: int = 1
                 ):
         #  method __init__ {{{ # 
         super(DenseInsMatcher, self).__init__(query)
@@ -305,7 +306,8 @@ class DenseInsMatcher(Matcher[Tuple[Any, str, Any]]):
         assert transformer is not None
         self._transformer: SentenceTransformer = transformer
 
-        instruction: str = self._query[1]
+        self._index = index
+        instruction: str = self._query[self._index]
         # (1, D)
         self._query_encoding: torch.Tensor =\
                 self._transformer.encode( [instruction]
@@ -317,7 +319,7 @@ class DenseInsMatcher(Matcher[Tuple[Any, str, Any]]):
 
     def __call__(self, key: Tuple[Any, str, Any]) -> float:
         #  method __call__ {{{ # 
-        instruction: str = key[1]
+        instruction: str = key[self._index]
         # (1, D)
         query_encoding: torch.Tensor =\
                 self._transformer.encode( [instruction]
@@ -334,6 +336,51 @@ class DenseInsMatcher(Matcher[Tuple[Any, str, Any]]):
         return similarity
         #  }}} method __call__ # 
     #  }}} class DenseInsMatcher # 
+
+class DenseTrajectoryMatcher(Matcher[Tuple[Any, str, Any]]):
+    #  class DenseTrajectoryMatcher {{{ # 
+    def __init__( self
+                , query: Tuple[Any, str, Any]
+                , transformer: SentenceTransformer = None
+                ):
+        #  method __init__ {{{ # 
+        super(DenseTrajectoryMatcher, self).__init__(query)
+
+        assert transformer is not None
+        self._transformer: SentenceTransformer = transformer
+
+        trajectory: str = self._query[2]
+        # (M, D)
+        self._query_encoding: torch.Tensor =\
+                self._transformer.encode( trajectory.splitlines()
+                                        , show_progress_bar=False
+                                        , convert_to_tensor=True
+                                        , normalize_embeddings=True
+                                        )
+        #  }}} method __init__ # 
+
+    def __call__(self, key: Tuple[Any, str, Any]) -> float:
+        #  method __call__ {{{ # 
+        trajectory: str = key[2]
+        # (N, D)
+        query_encoding: torch.Tensor =\
+                self._transformer.encode( trajectory.splitlines()
+                                        , show_progress_bar=False
+                                        , convert_to_tensor=True
+                                        , normalize_embeddings=True
+                                        )
+
+        relevancy: torch.Tensor = dot_score( self._query_encoding
+                                           , query_encoding
+                                           ) # (M, N)
+        similarity: torch.Tensor = ( relevancy.max(dim=1).values.mean()
+                                   + relevancy.max(dim=0).values.mean()
+                                   ) / 2. # ()
+        similarity: float = similarity.cpu().item()
+        hlogger.debug("Sim: %.2f", similarity)
+        return similarity
+        #  }}} method __call__ # 
+    #  }}} class DenseTrajectoryMatcher # 
 
 class LambdaMatcher(Matcher[Key]):
     #  class LambdaMatcher {{{ # 

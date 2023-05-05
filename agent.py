@@ -387,33 +387,7 @@ class AutoAgent( Agent
 
     def _parse_action(self, response: str) -> Action:
         #  Parse Action Text {{{ # 
-        encouraged_result: str = response.split("Disc", maxsplit=1)[0]
-        encouraged_result = encouraged_result.split(":", maxsplit=1)[1]
-        encouraged_result: List[str] = encouraged_result.strip().splitlines()
-
-        encouraged_texts: List[Tuple[str, float, str]] = []
-        for rst in encouraged_result:
-            action_text: str
-            action_tail: str
-            action_text, action_tail = rst.split("->", maxsplit=1)
-
-            action_text = action_text.strip()
-
-            action_tail: List[str] = action_tail.strip().split(maxsplit=1)
-            score: float = float(action_tail[0].strip())
-            element_html: str = action_tail[1].strip() if len(action_tail)>1 else ""
-
-            encouraged_texts.append((action_text, score, element_html))
-
-        highest_result: Tuple[str, float, str]\
-                = list( itertools.islice( sorted( encouraged_texts
-                                                , key=(lambda itm: itm[1])
-                                                , reverse=True
-                                                )
-                                        , 1
-                                        )
-                      )[0]
-        return highest_result[0], highest_result[2]
+        return agent_protos.parse_action_with_optional(response)
         #return action_text, element_html
         #  }}} Parse Action Text # 
 

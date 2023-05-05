@@ -1,0 +1,10 @@
+```
+Task:
+${task}
+Initial State:
+${init_env}
+Last 5 Actons:
+${actions}
+Observations:
+${trajectory}
+---

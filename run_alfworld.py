@@ -42,6 +42,7 @@ def traverse_environment( env: environment.AlfredTWEnv
         assert goal.startswith("Your task is to: ")
         goal = goal[17:]
         trajectory = ""
+        available_actions: List[str] = info["admissible_commands"][0]
 
         model.reset()
 
@@ -55,14 +56,19 @@ def traverse_environment( env: environment.AlfredTWEnv
             action: str = model( init_state
                                , goal
                                , trajectory
+                               , tuple(available_actions)
                                , reward[0]
                                )
 
             if action!="NOTHINGG":
                 observation, reward, done, info = env.step([action])
 
-                trajectory += "> {:}\n".format(action)
-                trajectory += "{:}\n".format(observation[0])
+                #trajectory += "> {:}\n".format(action)
+                observation: str = observation[0]
+                if observation.startswith("You arrive at loc "):
+                    observation = observation[observation.find(". ")+2:]
+                trajectory += "{:}\n".format(observation)
+                available_actions = info["admissible_commands"][0]
                 total_reward += reward[0]
 
                 nb_steps += 1
@@ -75,6 +81,7 @@ def traverse_environment( env: environment.AlfredTWEnv
         model.end( init_state
                  , goal
                  , trajectory
+                 , tuple(available_actions)
                  , reward[0]
                  )
 
