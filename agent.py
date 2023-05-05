@@ -310,7 +310,7 @@ class AutoAgent( Agent
             last_action: Optional[Action] = self._action_history[-1]\
                                             if len(self._action_history) > 0\
                                           else None
-            self._history_replay.update( (screen, task, instruction)
+            self._history_replay.update( (screen_representation, task, instruction)
                                        , reward
                                        , last_action
                                        , last_step=True
