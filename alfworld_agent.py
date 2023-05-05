@@ -1,9 +1,14 @@
 import abc
 import logging
 
+from typing import Tuple, List
+
+import agent_protos
+import history
+
 logger = logging.getLogger("alfworld")
 
-#Key = 
+Key = Tuple[str, str, str] # (init_env, task, trajectory)
 Action = Tuple[str, str] # (action, reason)
 
 class Agent(abc.ABC):
@@ -17,6 +22,7 @@ class Agent(abc.ABC):
            , init_env: str
            , task: str
            , trajectory: str
+           , reward: float
            ):
         pass
 
@@ -24,6 +30,7 @@ class Agent(abc.ABC):
                 , init_env: str
                 , task: str
                 , trajectory: str
+                , reward: float
                 ) -> str:
         #  method __call__ {{{ # 
         """
@@ -33,6 +40,7 @@ class Agent(abc.ABC):
             task (str): the task goal
             trajectory (str): the trajectory. the taken actions are prefixed
               with `> `. the last line is the last observation return.
+            reward (float): the reward of the last action
 
         Returns:
             str: the action to take
@@ -42,7 +50,7 @@ class Agent(abc.ABC):
                                                , task
                                                , trajectory
                                                )
-        
+
         action_str: str = action_tuple[0]
 
         if action_str!="NOTHINGG":
@@ -61,3 +69,26 @@ class Agent(abc.ABC):
     def train(self, train: bool):
         pass
     #  }}} class Agent # 
+
+class ManualAgent(Agent):
+    #  class ManualAgent {{{ # 
+    def __init__(self):
+        super(ManualAgent, self).__init__()
+
+    def _get_action( self
+                   , init_env: str
+                   , task: str
+                   , trajectory: str
+                   ) -> Action:
+        #  method _get_action {{{ # 
+        print("Init State")
+        print(init_env)
+        print("Task:")
+        print(task)
+        print("Trajectory:")
+        print(trajectory)
+
+        action_str: str = input("Please input the next action:")
+        return action_str, "something"
+        #  }}} method _get_action # 
+    #  }}} class ManualAgent # 

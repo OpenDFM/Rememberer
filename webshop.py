@@ -127,12 +127,12 @@ def traverse_environment( env: gym.Env
         total_reward = 0.
         succeeds = False
         while nb_steps<max_nb_steps:
-            action: webshop_agent.Action = model( task
-                                                , observation
-                                                , reward
-                                                , total_reward
-                                                , available_actions
-                                                )
+            action: str = model( task
+                               , observation
+                               , reward
+                               , total_reward
+                               , available_actions
+                               )
             if action!="NOTHINGG":
                 observation, reward, done, _ = env.step(action)
                 total_reward += reward

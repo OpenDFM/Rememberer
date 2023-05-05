@@ -119,7 +119,7 @@ class ManualAgent(Agent):
         print(", ".join(available_actions))
 
         action_str: str = input("Please input the next action:")
-        return action_str
+        return action_str, "something"
         #  }}} method _get_action # 
     #  }}} class ManualAgent # 
 
