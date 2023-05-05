@@ -242,6 +242,7 @@ class AutoAgent( Agent
                 , manual: bool = False
                 , train: bool = True
                 , with_speech: bool = False
+                , norandom: bool = False
                 ):
         #  method __init__ {{{ # 
         """
@@ -263,6 +264,8 @@ class AutoAgent( Agent
 
             with_speech (bool): whether the speech wrapper should be used
               instead or not
+
+            norandom (bool): do not generate random action advices
         """
 
         super(AutoAgent, self).__init__()
@@ -284,6 +287,7 @@ class AutoAgent( Agent
         super(agent_protos.OpenAIClient, self).__init__( history_replay
                                                        , train
                                                        , self._tokenizer
+                                                       , norandom
                                                        )
         self._static: bool = static
         #  }}} method __init__ # 

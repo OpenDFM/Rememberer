@@ -159,6 +159,7 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
                 , history_replay: history.HistoryReplay[history.Key, history.Action]
                 , train: bool
                 , tokenizer: tiktoken.Encoding
+                , norandom: bool = False
                 ):
         #  method __init__ {{{ # 
         self._history_replay: history.HistoryReplay[history.Key, history.Action]\
@@ -167,6 +168,8 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
 
         self._rng: np.random.Generator = np.random.default_rng()
         self._tokenizer: tiktoken.Encoding = tokenizer
+
+        self._norandom: bool = norandom
         #  }}} method __init__ # 
 
     def _get_examplars( self
@@ -215,11 +218,15 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
                           )
 
             if actions[0][1]<=0.:
-                encouraged: List[Tuple[history.Action, float]]\
-                        = [ ( self._random_action(key, True)
-                            , self._rng.random()/2.
-                            )
-                          ]
+                if self._norandom:
+                    encouraged: List[Tuple[history.Action, float]]\
+                            = actions[:1]
+                else:
+                    encouraged: List[Tuple[history.Action, float]]\
+                            = [ ( self._random_action(key, True)
+                                , self._rng.random()/2.
+                                )
+                              ]
             else:
                 encouraged: List[Tuple[history.Action, float]] = actions[:1]
             encouraged_actions: Set[history.Action] = set(map(lambda itm: itm[0], encouraged))
@@ -229,18 +236,22 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
                                        )
 
             if actions[-1][1]>0.:
-                discouraged_action: history.Action = self._random_action(key, False)
-                j = 0
-                while discouraged_action in encouraged_actions:
-                    discouraged_action = self._random_action(key, False)
-                    j += 1
-                    if j>=10:
-                        break
-                discouraged: List[Tuple[history.Action, float]]\
-                        = [ ( discouraged_action
-                            , 0.
-                            )
-                          ]
+                if self._norandom:
+                    discouraged: List[Tuple[history.Action, float]]\
+                            = actions[-1:]
+                else:
+                    discouraged_action: history.Action = self._random_action(key, False)
+                    j = 0
+                    while discouraged_action in encouraged_actions:
+                        discouraged_action = self._random_action(key, False)
+                        j += 1
+                        if j>=10:
+                            break
+                    discouraged: List[Tuple[history.Action, float]]\
+                            = [ ( discouraged_action
+                                , 0.
+                                )
+                              ]
             else:
                 discouraged: List[Tuple[history.Action, float]] = list( itertools.takewhile( lambda itm: itm[1]==0.
                                                                       , reversed(actions)

@@ -191,6 +191,7 @@ def main():
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--speech", action="store_true")
+    parser.add_argument("--norandom", action="store_true")
 
     parser.add_argument("--starts-from", default=0, type=int)
     parser.add_argument("--epochs", default=3, type=int)
@@ -314,6 +315,7 @@ def main():
                            , manual=args.manual
                            , train=args.train
                            , with_speech=args.speech
+                           , norandom=args.norandom
                            )
     #model = agent.ManualAgent()
     #model = agent.ReplayAgent(args.replay_file)
