@@ -1,0 +1,41 @@
+You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 3, a drawer 2, a drawer 1, a garbagecan 1, a safe 1, a shelf 5, a shelf 4, a shelf 3, a shelf 2, a shelf 1, a sidetable 2, and a sidetable 1.
+Your task is to: look at bowl under the desklamp.
+> think: To solve the task, I need to find and take a bowl, then find and use a desklamp. 
+OK. 
+> think: First I need to find a bowl. A bowl is more likely to appear in drawer (1-3), desk (1), sidetable (1-2), shelf (1-5), garbagecan (1). I can check one by one, starting with drawer 1.
+OK.
+> go to drawer 1
+On the drawer 1, you see nothing.
+> go to drawer 2
+The drawer 2 is closed.
+> open drawer 2
+You open the drawer 2. The drawer 2 is open. In it, you see nothing.
+> go to drawer 3
+The drawer 3 is closed.
+> open drawer 3
+You open the drawer 3. The drawer 3 is open. In it, you see nothing.
+> go to desk 1
+On the desk 1, you see a alarmclock 2, a book 1, a cellphone 1, a keychain 1, a laptop 2, a laptop 1, and a pen 3.
+> go to sidetable 1
+On the sidetable 1, you see a cd 1, a pen 1, and a pencil 1.
+> go to shelf 1
+On the shelf 1, you see nothing.
+> go to shelf 2
+On the shelf 2, you see a bowl 1.
+> think: Now I find a bowl (1). Next, I need to take it.
+OK.
+> take bowl 1 from shelf 2
+You pick up the bowl 1 from the shelf 2.
+> think: Now I take a bowl (1). Next, I need to find a desklamp. A desklamp is more likely to appear in desk (1), sidetable (1-2), shelf (1-5), bed (1), drawer (1-3). I can check one by one, starting with desk 1.
+OK.
+> go to desk 1
+On the desk 1, you see a alarmclock 2, a book 1, a cellphone 1, a keychain 1, a laptop 2, a laptop 1, and a pen 3.
+> go to sidetable 1
+On the sidetable 1, you see a cd 1, a pen 1, and a pencil 1.
+> go to sidetable 2
+On the sidetable 2, you see a alarmclock 1, a desklamp 1, and a pen 2.
+> think: Now I find a desklamp (1). Next, I need to use it.
+OK.
+> use desklamp 1
+You turn on the desklamp 1.
+

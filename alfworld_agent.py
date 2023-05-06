@@ -183,7 +183,7 @@ class AutoAgent( Agent
                                                       , actions=\
                                                               "\n".join(
                                                                   map( " ".join
-                                                                     , action_history[-min(5, len(action_history)):]
+                                                                     , action_history #[-min(5, len(action_history)):]
                                                                      )
                                                                 )
                                                       , trajectory=trajectory
@@ -194,7 +194,7 @@ class AutoAgent( Agent
         available_actions: Tuple[str, ...] = key[-1]
         action: np.int64 = self._rng.integers(len(available_actions))
         action_str: str = available_actions[action]
-        reason: str = ("I need to " if encourages else "I don't need to ") + action_str
+        reason: str = ("I need to " if encourages else "I shouldn't ") + action_str
         return action_str, reason
         #  }}} method _random_action # 
     def _action_to_string(self, action: Action, value: float) -> str:

@@ -1,0 +1,29 @@
+You are in the middle of a room. Looking quickly around you, you see a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 2, a countertop 1, a diningtable 1, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+Your task is to: cool some potato and put it in diningtable.
+> think: To solve the task, I need to find and take a potato, then cool it with fridge, then put it in diningtable.
+OK.
+> think: First I need to find a potato. A potato is more likely to appear in fridge (1), diningtable (1), countertop (1-2), cabinet (1-12), drawer (1-3), garbagecan (1). I can check one by one, starting with fridge 1.
+OK.
+> go to fridge 1
+The fridge 1 is closed.
+> open fridge 1
+You open the fridge 1. The fridge 1 is open. In it, you see a apple 1, a bowl 1, a lettuce 2, and a lettuce 1.
+> go to diningtable 1
+On the diningtable 1, you see a apple 3, a bread 1, a butterknife 3, a egg 2, a fork 1, a knife 2, a knife 1, a mug 1, a peppershaker 3, a plate 1, a potato 4, a potato 2, a saltshaker 2, a soapbottle 2, and a tomato 3.
+> think: Now I find a potato (2). Next, I need to take it.
+OK.
+> take potato 2 from diningtable 1
+You pick up the potato 2 from the diningtable 1.
+> think: Now I take a potato (2). Next, I need to go to a fridge (1) and cool it.
+OK.
+> go to fridge 1
+The fridge 1 is open. In it, you see a apple 1, a bowl 1, a lettuce 2, and a lettuce 1.
+> cool potato 2 with fridge 1
+You cool the potato 2 using the fridge 1.
+> think: Now I cool a potato (2). Next, I need to put it in/on diningtable 1.
+OK.
+> go to diningtable 1
+On the diningtable 1, you see a apple 3, a bread 1, a butterknife 3, a egg 2, a fork 1, a knife 2, a knife 1, a mug 1, a peppershaker 3, a plate 1, a potato 4, a saltshaker 2, a soapbottle 2, and a tomato 3.
+> put potato 2 in/on diningtable 1
+You put the potato 2 in/on the diningtable 1.
+

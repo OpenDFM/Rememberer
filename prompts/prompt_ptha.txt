@@ -5,7 +5,7 @@ take OBJECT from PLACE
 put OBJECT in/on PLACE
 open SOMETHING
 close SOMETHING
-toggle SOMETHING
+use SOMETHING
 clean OBJECT with SOMETHING
 heat OBJECT with SOMETHING
 cool OBJECT with SOMETHING
@@ -15,6 +15,12 @@ look
 "inventory" is used to check the things I'm carrying and "look" is used to check the objects around me.
 
 Specifically, given an input, I will give some action advices with encouraging or discouraging along with their value estimation, and the reason why I give this action advice.
+
+Here are several common principles to make a decision:
+
+1. I need to check some more likely places for a disired object one by one until I find the object.
+2. I will avoid always repeating a wrong action.
+3. I should encourage the actions with higher value estimations like 1 and discourage the actions with low value estimations like 0.
 
 Here are some examples:
 
