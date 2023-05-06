@@ -337,10 +337,10 @@ class DenseInsMatcher(Matcher[Tuple[Any, str, Any]]):
         #  }}} method __call__ # 
     #  }}} class DenseInsMatcher # 
 
-class DenseTrajectoryMatcher(Matcher[Tuple[Any, str, Any]]):
+class DenseTrajectoryMatcher(Matcher[Tuple[Any, Any, str, Any]]):
     #  class DenseTrajectoryMatcher {{{ # 
     def __init__( self
-                , query: Tuple[Any, str, Any]
+                , query: Tuple[Any, Any, str, Any]
                 , transformer: SentenceTransformer = None
                 ):
         #  method __init__ {{{ # 
@@ -359,7 +359,7 @@ class DenseTrajectoryMatcher(Matcher[Tuple[Any, str, Any]]):
                                         )
         #  }}} method __init__ # 
 
-    def __call__(self, key: Tuple[Any, str, Any]) -> float:
+    def __call__(self, key: Tuple[Any, Any, str, Any]) -> float:
         #  method __call__ {{{ # 
         trajectory: str = key[2]
         # (N, D)

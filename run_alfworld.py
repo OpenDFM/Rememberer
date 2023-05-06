@@ -3,8 +3,13 @@
 import numpy as np
 import alfworld.agents.environment as environment
 #import alfworld.agents.modules.generic as generic
+import functools
+from sentence_transformers import SentenceTransformer
+import string
 
 import alfworld_agent
+import history
+import agent_protos
 
 import yaml
 import argparse
@@ -42,6 +47,9 @@ def traverse_environment( env: environment.AlfredTWEnv
         assert goal.startswith("Your task is to: ")
         goal = goal[17:]
         trajectory = ""
+
+        task_name: str = "/".join(info["extra.gamefile"][0].split("/")[-3:-1])
+
         available_actions: List[str] = info["admissible_commands"][0]
 
         model.reset()
@@ -68,6 +76,7 @@ def traverse_environment( env: environment.AlfredTWEnv
                 if observation.startswith("You arrive at loc "):
                     observation = observation[observation.find(". ")+2:]
                 trajectory += "{:}\n".format(observation)
+
                 available_actions = info["admissible_commands"][0]
                 total_reward += reward[0]
 
@@ -92,8 +101,8 @@ def traverse_environment( env: environment.AlfredTWEnv
         rewards.append(total_reward)
         succeedss.append(int(succeeds))
         logger.info("\x1b[43mEND!\x1b[0m %s, %s", init_state, goal)
-        logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, #Steps: %d(%d), Reward: %.2f, Succeds: %s"
-                   , i, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
+        logger.info( "\x1b[42mEND!\x1b[0m TaskId: %d, TaskName: %s, #Steps: %d(%d), Reward: %.2f, Succeds: %s"
+                   , i, task_name, nb_steps, nb_nothing_steps, total_reward, str(succeeds)
                    )
     logger.info( "──────────{:.2f}──────────{:.3f}──────────{:.3f}──────────"\
                  .format( np.mean(np.asarray(nb_stepss))
@@ -115,11 +124,39 @@ def main():
     parser.add_argument("--alfworld-config", default="alfworld_config.yaml", type=str)
 
     # Matcher Options
+    parser.add_argument( "--sentence-transformer"
+                       , default="all-MiniLM-L12-v2", type=str
+                       , choices=[ "all-MiniLM-L12-v2"
+                                 , "all-mpnet-base-v2"
+                                 ]
+                       )
 
     # Replay Options
+    parser.add_argument("--load-replay", type=str)
+    parser.add_argument("--save-replay", type=str)
+    parser.add_argument("--item-capacity", type=int)
+    parser.add_argument("--action-capacity", type=int)
+    parser.add_argument( "--matcher"
+                       , default="4insrel3istrel3trjrel"
+                       , type=str
+                       , choices=["4insrel3istrel3trjrel"]
+                       )
+    parser.add_argument("--gamma", default=1., type=float)
+    parser.add_argument("--step-penalty", default=0., type=float)
+    parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
+    parser.add_argument("--learning-rate", default=0.1, type=float)
+    parser.add_argument("--n-step-flatten", type=int)
 
     # Agent Options
+    parser.add_argument("--prompt-template", type=str)
+    parser.add_argument("--max-tokens", default=20, type=int)
+    parser.add_argument("--temperature", default=0.1, type=float)
+    parser.add_argument("--stop", type=str)
+    parser.add_argument("--request-timeout", default=3., type=float)
+    parser.add_argument("--static", action="store_true")
+    parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
+    parser.add_argument("--speech", action="store_true")
 
     # Trainging Options
     parser.add_argument("--starts-from", default=0, type=int)
@@ -173,7 +210,69 @@ def main():
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
-    model = alfworld_agent.ManualAgent()
+    sentence_transformer = SentenceTransformer(args.sentence_transformer)
+    matcher_functions: Dict[str, history.LambdaMatcherConstructor[alfworld_agent.Key]]\
+            = { "4insrel3istrel3trjrel": history.LambdaMatcherConstructor( [ functools.partial( history.DenseInsMatcher
+                                                                                              , transformer=sentence_transformer
+                                                                                              )
+                                                                           , functools.partial( history.DenseInsMatcher
+                                                                                              , transformer=sentence_transformer
+                                                                                              , index=0
+                                                                                              )
+                                                                           , functools.partial( history.DenseTrajectoryMatcher
+                                                                                              , transformer=sentence_transformer
+                                                                                              )
+                                                                           ]
+                                                                         , [0.4, 0.3, 0.3]
+                                                                         ).get_lambda_matcher
+              }
+    history_replay: history.HistoryReplay[alfworld_agent.Key, alfworld_agent.Action]\
+            = history.HistoryReplay( args.item_capacity
+                                   , args.action_capacity
+                                   , matcher=matcher_functions[args.matcher]
+                                   , gamma=args.gamma
+                                   , step_penalty=args.step_penalty
+                                   , update_mode=args.update_mode
+                                   , learning_rate=args.learning_rate
+                                   , n_step_flatten=args.n_step_flatten
+                                   )
+    history_replay.load_yaml(args.load_replay)
+
+    with open(os.path.join(args.prompt_template, "prompt_ptha.txt")) as f:
+        prompt_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "input_template_a.txt")) as f:
+        input_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
+        advice_template = string.Template(f.read())
+    with open(os.path.join(args.prompt_template, "canonical_examplar1_a.txt")) as f:
+        canonical1: str = f.read()
+    with open(os.path.join(args.prompt_template, "canonical_examplar2_a.txt")) as f:
+        canonical2: str = f.read()
+    template_group = agent_protos.TemplateGroup( whole_template=prompt_template
+                                               , input_template=input_template
+                                               , advice_template=advice_template
+                                               , canonical1=canonical1
+                                               , canonical2=canonical2
+                                               )
+    with open(args.config) as f:
+        openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
+    if args.speech:
+        api_key: str = openaiconfig["spc_token"]
+    else:
+        api_key: str = openaiconfig["api_key"]
+    model = alfworld_agent.AutoAgent( history_replay=history_replay
+                                    , prompt_templates=template_group
+                                    , api_key=api_key
+                                    , max_tokens=args.max_tokens
+                                    , temperature=args.temperature
+                                    , stop=args.stop
+                                    , request_timeout=args.request_timeout
+                                    , static=args.static
+                                    , manual=args.manual
+                                    , train=args.train
+                                    , with_speech=args.speech
+                                    )
+    #model = alfworld_agent.ManualAgent()
 
     with open(args.alfworld_config) as f:
         config = yaml.load(f, Loader=yaml.Loader)
@@ -218,7 +317,7 @@ def main():
                             )
 
         if args.train:
-            pass # TODO
+            history_replay.save_yaml(args.save_replay % epch)
 
         epoch_str = "Epoch {:}".format(epch)
         logger.info("\x1b[31m━━━━━━━━━━━━━━━━━━━%s━━━━━━━━━━━━━━━━━━━━\x1b[0m", epoch_str)
