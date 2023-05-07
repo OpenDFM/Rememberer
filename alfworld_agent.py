@@ -176,6 +176,7 @@ class AutoAgent( Agent
                                    , task: str
                                    , trajectory: str
                                    , action_history: List[Action]
+                                   , available_actions: Tuple[Action]
                                    ):
         #  method _instantiate_input_template {{{ # 
         return self._prompt_templates.input_template.safe_substitute(
@@ -188,6 +189,7 @@ class AutoAgent( Agent
                                                                      )
                                                                 )
                                                       , trajectory=trajectory
+                                                      , available_actions="\n".join(available_actions)
                                                       )
         #  }}} method _instantiate_input_template # 
     def _random_action(self, key: Key, encourages: bool = False) -> Action:
@@ -213,6 +215,7 @@ class AutoAgent( Agent
                                                         , task=key[1]
                                                         , trajectory=key[2]
                                                         , action_history=info_dict["action_history"]
+                                                        , available_actions=key[3]
                                                         )\
                       + "\n"\
                       + self._prompt_templates.advice_template.safe_substitute(
@@ -248,6 +251,7 @@ class AutoAgent( Agent
                                                          , task=task
                                                          , trajectory=trajectory
                                                          , action_history=self._action_history
+                                                         , available_actions=available_actions
                                                          )
         nb_new_input_tokens: int = len(self._tokenizer.encode(new_input))
         example_tokens_limit: int = self._input_length_limit - nb_new_input_tokens

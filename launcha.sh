@@ -14,10 +14,11 @@ python run_alfworld.py --log-dir logs\
 					   --max-tokens 200\
 					   --stop "Discouraged"\
 					   --request-timeout 10.\
-					   --static\
+					   --train\
 				   	   --starts-from 0\
 				   	   --epochs 3\
 				   	   --trainseta 0\
-				   	   --trainsetb 10\
+				   	   --trainsetb 17\
+					   --except 3 4 10 11 12 13 14\
 				   	   --testseta 0\
 				   	   --testsetb 5
