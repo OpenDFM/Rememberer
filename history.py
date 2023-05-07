@@ -1,4 +1,4 @@
-from typing import Dict, Tuple, Deque, List
+from typing import Dict, Tuple, Deque, List, Set
 from typing import Union, Optional, Callable, Sequence, TypeVar, Generic, Hashable, Any
 import abc
 #import dm_env
@@ -233,6 +233,232 @@ class PagePatMatcher(Matcher[Tuple[Any, str]]):
         #  }}} method _get_pattern # 
     #  }}} class PagePatMatcher # 
 
+class AlfInsPatMatcher(Matcher[Tuple[Any, str, Any]]):
+    #  class AlfInsPatMatcher {{{ # 
+    _score_matrix: np.ndarray\
+            = np.array( [ [1., 0., .1, .1, .1, .8]
+                        , [0., 1., 0., 0., 0., .3]
+                        , [.1, 0., 1., .8, .8, .1]
+                        , [.1, 0., .8, 1., .8, .1]
+                        , [.1, 0., .8, .8, 1., .1]
+                        , [.8, .3, .1, .1, .1, 1.]
+                        ]
+                      , dtype=np.float32
+                      )
+
+    def __init__(self, query: Tuple[Any, str, Any]):
+        #  method __init__ {{{ # 
+        super(AlfInsPatMatcher, self).__init__(query)
+
+        instruction: str = self._query[1]
+
+        self._pattern_id: int
+        self._pattern_name: str
+        self._pattern_id, self._pattern_name = AlfInsPatMatcher._get_pattern(instruction)
+
+        hlogger.debug( "Ins: %s, Pat: %d.%s"
+                     , instruction
+                     , self._pattern_id
+                     , self._pattern_name
+                     )
+        #  }}} method __init__ # 
+
+    def __call__(self, key: Tuple[Any, str, Any]) -> float:
+        #  method __call__ {{{ # 
+        if self._pattern_id==-1:
+            return 0.
+
+        key_instruction: str = key[1]
+        key_pattern_id: int
+        key_pattern_name: str
+        key_pattern_id, key_pattern_name = AlfInsPatMatcher._get_pattern(key_instruction)
+
+        hlogger.debug( "Key: %s, Pat: %d.%s"
+                     , key_instruction
+                     , key_pattern_id
+                     , key_pattern_name
+                     )
+
+        if key_pattern_id==-1:
+            return 0.
+        similarity: np.float32 = InsPatMatcher._score_matrix[ self._pattern_id
+                                                            , key_pattern_id
+                                                            ]
+
+        hlogger.debug("Sim: %.2f", similarity)
+        return float(similarity)
+        #  }}} method __call__ # 
+
+    @staticmethod
+    def _get_pattern(instruction: str) -> Tuple[int, str]:
+        #  method _get_pattern {{{ # 
+        if instruction.startswith("look"):
+            return 1, "examine"
+        if instruction.startswith("examine"):
+            return 1, "examine"
+        if instruction.startswith("clean"):
+            return 2, "clean"
+        if instruction.startswith("heat"):
+            return 3, "heat"
+        if instruction.startswith("cool"):
+            return 4, "cool"
+        if instruction.startswith("find"):
+            return 5, "puttwo"
+        if instruction.startswith("put "):
+            if instruction[4:].startswith("some"):
+                return 0, "put"
+            if instruction[4:].startswith("two"):
+                return 5, "puttwo"
+            if instruction[4:].startswith("a "):
+                if instruction[6:].startswith("clean"):
+                    return 2, "clean"
+                if instruction[6:].startswith("hot"):
+                    return 3, "heat"
+                if instruction[6:].startswith("cool"):
+                    return 4, "cool"
+                return 0, "put"
+        return -1, "unknown"
+        #  }}} method _get_pattern # 
+    #  }}} class AlfInsPatMatcher # 
+
+class AlfObvPatMatcher(Matcher[Tuple[Any, Any, str, Any]]):
+    #  class AlfObvPatMatcher {{{ # 
+    _score_matrix: np.ndarray\
+            = np.array( [ [1., .9, .8, .5, .3, 0., 0., 0., 0., 0., 0., .1, .1, 0.]
+                        , [.9, 1., .9, .5, .3, 0., 0., 0., 0., 0., 0., .1, .1, 0.]
+                        , [.8, .9, 1., .3, .5, .1, .1, .1, .1, .1, .1, 0., 0., 0.]
+                        , [.5, .5, .3, 1., .9, 0., 0., 0., 0., 0., 0., .1, .1, 0.]
+                        , [.3, .3, .5, .9, 1., .1, .1, .1, .1, .1, .1, 0., 0., 0.]
+                        , [0., 0., .1, 0., .1, 1., .5, .5, .5, .5, .5, .3, .2, 0.]
+                        , [0., 0., .1, 0., .1, .5, 1., .5, .5, .5, .5, .3, .2, 0.]
+                        , [0., 0., .1, 0., .1, .5, .5, 1., .6, .6, .6, .1, .1, 0.]
+                        , [0., 0., .1, 0., .1, .5, .5, .6, 1., .8, .8, 0., .3, 0.]
+                        , [0., 0., .1, 0., .1, .5, .5, .6, .8, 1., .8, 0., .3, 0.]
+                        , [0., 0., .1, 0., .1, .5, .5, .6, .8, .8, 1., 0., .3, 0.]
+                        , [.1, .1, 0., .1, 0., .3, .3, .1, 0., 0., 0., 1., .3, 0.]
+                        , [.1, .1, 0., .1, 0., .2, .2, .1, .3, .3, .3, .3, .3, 0.]
+                        , [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]
+                        ]
+                      , dtype=np.float32
+                      )
+
+    def __init__(self, query: Tuple[Any, Any, str, Any]):
+        #  method __init__ {{{ # 
+        super(AlfObvPatMatcher, self).__init__(query)
+
+        trajectory: str = self._query[2]
+        self._pattern_id: List[int] = []
+        for obv in trajectory.splitlines():
+            pattern_id: int
+            pattern_name: str
+            pattern_id, pattern_name = AlfInsPatMatcher._get_pattern(obv)
+            self._pattern_id.append(pattern_id)
+
+            hlogger.debug( "Ins: %s, Pat: %d.%s"
+                         , obv
+                         , pattern_id
+                         , pattern_name
+                         )
+        self._pattern_id: np.ndarray = np.asarray(self._pattern_id, dtype=np.int32) # (M,)
+        #  }}} method __init__ # 
+
+    def __call__(self, key: Tuple[Any, Any, str, Any]) -> float:
+        #  method __call__ {{{ # 
+        trajectory: str = key[2]
+        pattern_ids: List[int] = []
+        for obv in trajectory.splitlines():
+            pattern_id: int
+            pattern_name: str
+            pattern_id, pattern_name = AlfInsPatMatcher._get_pattern(obv)
+            pattern_ids.append(pattern_id)
+
+            hlogger.debug( "Ins: %s, Pat: %d.%s"
+                         , obv
+                         , pattern_id
+                         , pattern_name
+                         )
+        pattern_ids: np.ndarray = np.asarray(pattern_ids, dtype=np.int32) # (N,)
+
+        if self._pattern_id.shape[0]==0:
+            return 1. if pattern_ids.shape[0]==0 else 0.
+        if pattern_ids.shape[0]==0:
+            return 0.
+        similarities: np.ndarray =\
+                AlfObvPatMatcher._score_matrix[ self._pattern_id[:, None]
+                                              , pattern_ids[None, :]
+                                              ]
+
+        similarity: np.float64 = ( np.mean(np.amax(similarities, axis=1))
+                                 + np.mean(np.amax(similarities, axis=0))
+                                 ) / 2.
+        return float(similarity)
+        #  }}} method __call__ # 
+
+    @staticmethod
+    def _get_pattern(observation: str) -> Tuple[int, str]:
+        if observation.startswith("On the"):
+            return 0, "On the"
+        if observation.startswith("The"):
+            if observation.endswith("closed."):
+                return 3, "The _ is closed."
+            return 1, "The _ is open."
+        if observation.startswith("This is"):
+            return 12, "This is"
+        if observation.startswith("You "):
+            if observation[4:].startswith("open"):
+                return 2, "You open"
+            if observation[4:].startswith("close"):
+                return 4, "You close"
+            if observation[4:].startswith("pick"):
+                return 5, "You pick"
+            if observation[4:].startswith("put"):
+                return 6, "You put"
+            if observation[4:].startswith("turn"):
+                return 7, "You turn"
+            if observation[4:].startswith("heat"):
+                return 8, "You heat"
+            if observation[4:].startswith("cool"):
+                return 9, "You cool"
+            if observation[4:].startswith("clean"):
+                return 10, "You clean"
+            if observation[4:].startswith("are"):
+                return 11, "You are"
+        return -1, "unknown"
+    #  }}} class AlfObvPatMatcher # 
+
+class ReceptacleIoUMatcher(Matcher[Tuple[str, Any]]):
+    #  class ReceptacleIoUMatcher {{{ # 
+    def __init__(self, query: Tuple[str, Any]):
+        #  method __init__ {{{ # 
+        super(ReceptacleIoUMatcher, self).__init__(query)
+
+        init_env: str = self._query[0]
+        self._query_set: Set[str] = set()
+        if not init_env.startswith("You are in the middle of a room. Looking quickly around you, you see "):
+            pass
+        else:
+            init_env = init_env[69:-1]
+            items: List[str] = init_env.split(", ")
+            for itm in items:
+                self._query_set.add(itm.split()[-2])
+        #  }}} method __init__ # 
+
+    def __call__(self, key: Tuple[str, Any]) -> float:
+        #  method __call__ {{{ # 
+        init_env: str = key[0]
+        query_set: Set[str] = set()
+        if not init_env.startswith("You are in the middle of a room. Looking quickly around you, you see "):
+            pass
+        else:
+            init_env = init_env[69:-1]
+            items: List[str] = init_env.split(", ")
+            for itm in items:
+                query_set.add(itm.split()[-2])
+
+        return len(self._query_set & query_set)/float(len(self._query_set | query_set))
+        #  }}} method __call__ # 
+    #  }}} class ReceptacleIoUMatcher # 
+
 class InsPageRelMatcher(Matcher[Tuple[str, str, Any]]):
     #  class InsPageRelMatcher {{{ # 
     """
@@ -349,22 +575,28 @@ class DenseTrajectoryMatcher(Matcher[Tuple[Any, Any, str, Any]]):
         assert transformer is not None
         self._transformer: SentenceTransformer = transformer
 
-        trajectory: str = self._query[2]
-        # (M, D)
-        self._query_encoding: torch.Tensor =\
-                self._transformer.encode( trajectory.splitlines()
-                                        , show_progress_bar=False
-                                        , convert_to_tensor=True
-                                        , normalize_embeddings=True
-                                        )
+        trajectory: str = self._query[2].splitlines()
+        if len(trajectory)>0:
+            # (M, D)
+            self._query_encoding: torch.Tensor =\
+                    self._transformer.encode( trajectory
+                                            , show_progress_bar=False
+                                            , convert_to_tensor=True
+                                            , normalize_embeddings=True
+                                            )
         #  }}} method __init__ # 
 
     def __call__(self, key: Tuple[Any, Any, str, Any]) -> float:
         #  method __call__ {{{ # 
-        trajectory: str = key[2]
+        trajectory: str = key[2].splitlines()
+        if not hasattr(self, "_query_encoding"):
+            return 1. if len(trajectory)==0 else 0.
+        if len(trajectory)==0:
+            return 0.
+
         # (N, D)
         query_encoding: torch.Tensor =\
-                self._transformer.encode( trajectory.splitlines()
+                self._transformer.encode( trajectory
                                         , show_progress_bar=False
                                         , convert_to_tensor=True
                                         , normalize_embeddings=True
@@ -501,9 +733,10 @@ class HistoryReplay(Generic[Key, Action]):
         self._total_reward: float = 0.
         self._total_reward_buffer: Deque[float] = collections.deque(maxlen=maxlenp1)
 
-        self._similarity_matrix: np.ndarray = np.zeros( (self._item_capacity, self._item_capacity)
-                                                      , dtype=np.float32
-                                                      )
+        if self._item_capacity is not None:
+            self._similarity_matrix: np.ndarray = np.zeros( (self._item_capacity, self._item_capacity)
+                                                          , dtype=np.float32
+                                                          )
         #self._index_pool: Deque[int] = collections.deque(range(self._item_capacity))
         #self._index_dict: Dict[HistoryReplay.Key, int] = {}
         self._keys: List[HistoryReplay] = []
@@ -721,10 +954,10 @@ class HistoryReplay(Generic[Key, Action]):
                                     }
                 self._max_id += 1
             else:
-                new_index: int = len(self._record)
+                #new_index: int = len(self._record)
                 self._keys.append(key)
-                self._similarity_matrix[new_index, :new_index] = similarities
-                self._similarity_matrix[:new_index, new_index] = similarities
+                #self._similarity_matrix[new_index, :new_index] = similarities
+                #self._similarity_matrix[:new_index, new_index] = similarities
                 self._record[key] = { "other_info": { "action_history": action_history
                                                     , "last_reward": last_reward
                                                     , "total_reward": total_reward
@@ -849,8 +1082,8 @@ class HistoryReplay(Generic[Key, Action]):
                            )
             self._item_capacity = len(keys)
             self._similarity_matrix = similarity_matrix
-        else:
-            self._similarity_matrix[:len(keys), :len(keys)] = similarity_matrix
+        #else:
+            #self._similarity_matrix[:len(keys), :len(keys)] = similarity_matrix
 
         action_size: int = max( map( lambda rcd: len(rcd["action_dict"])
                                    , self._record.values()

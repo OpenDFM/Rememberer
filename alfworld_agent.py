@@ -147,6 +147,7 @@ class AutoAgent( Agent
                                                        )
 
         self._static: bool = static
+        self._static_prompts: Tuple[str, str] = ("", "")
         #  }}} method __init__ # 
 
     def reset(self):
@@ -159,7 +160,7 @@ class AutoAgent( Agent
            , reward: float
            ):
         #  method end {{{ # 
-        if self.train:
+        if self._train:
             last_action: Optional[Action] = self._action_history[-1]\
                                             if len(self._action_history) > 0\
                                           else None
@@ -254,8 +255,8 @@ class AutoAgent( Agent
 
         #  Construct Exemplars {{{ # 
         if self._static:
-            examplars: List[str] = [ "Example 2:\n\n" + self._prompt_templates.canonical2
-                                   , "Example 1:\n\n" + self._prompt_templates.canonical1
+            examplars: List[str] = [ "Example 2:\n\n" + self._static_prompts[1]
+                                   , "Example 1:\n\n" + self._static_prompts[0]
                                    ]
         else:
             examplars: List[str] = self._get_examplars( (init_env, task, trajectory, available_actions)
@@ -284,4 +285,7 @@ class AutoAgent( Agent
 
     def train(self, train: bool):
         super(agent_protos.OpenAIClient, self).train(train)
+
+    def set_static_prompts(self, prompts: Tuple[str, str]):
+        self._static_prompts = prompts
     #  }}} class AutoAgent # 

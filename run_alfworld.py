@@ -10,6 +10,7 @@ import string
 import alfworld_agent
 import history
 import agent_protos
+import alfworld_prompts
 
 import yaml
 import argparse
@@ -21,8 +22,59 @@ import logging
 from typing import Set, List, Tuple, Dict
 from typing import Any
 
+#  Static Prompts Config {{{ # 
+training_set_type: List[str] = [ "puttwo", "examine", "heat", "puttwo", "puttwo"
+                               , "clean", "cool", "clean", "put", "cool"
+                               , "puttwo", "examine", "examine", "cool", "cool"
+                               , "heat", "put", "examine", "put", "puttwo"
+                               , "put", "clean", "heat", "puttwo", "puttwo"
+                               , "puttwo", "put", "puttwo", "put", "put"
+                               , "puttwo", "put", "heat", "cool", "put"
+                               , "clean", "puttwo", "puttwo", "put", "heat"
+                               , "puttwo", "heat", "examine", "put", "puttwo"
+                               , "clean", "put", "put", "puttwo", "heat"
+                               ]
+test_set_type: List[str] = [ "put", "clean", "cool", "puttwo", "heat"
+                           , "put", "clean", "puttwo", "heat", "clean"
+                           , "clean", "put", "put", "cool", "cool"
+                           , "heat", "heat", "clean", "put", "clean"
+                           , "examine", "examine", "put", "examine", "cool"
+                           , "examine", "put", "clean", "clean", "put"
+                           , "puttwo", "examine", "heat", "puttwo", "puttwo"
+                           , "heat", "heat", "put", "heat", "heat"
+                           , "examine", "heat", "puttwo", "put", "puttwo"
+                           , "examine", "clean", "put", "put", "clean"
+                           , "put", "cool", "heat", "clean", "cool"
+                           , "heat", "put", "cool", "puttwo", "examine"
+                           , "clean", "heat", "puttwo", "cool", "heat"
+                           , "heat", "examine", "clean", "cool", "put"
+                           , "heat", "cool", "heat", "cool", "examine"
+                           , "examine", "clean", "put", "put", "put"
+                           , "clean", "puttwo", "heat", "clean", "clean"
+                           , "puttwo", "examine", "cool", "put", "cool"
+                           , "clean", "clean", "puttwo", "put", "cool"
+                           , "cool", "cool", "put", "cool", "cool"
+                           , "heat", "clean", "clean", "examine", "heat"
+                           , "puttwo", "clean", "heat", "clean", "clean"
+                           , "put", "examine", "puttwo", "examine", "clean"
+                           , "clean", "cool", "put", "heat", "heat"
+                           , "puttwo", "clean", "puttwo", "cool", "put"
+                           , "cool", "clean", "clean", "clean", "examine"
+                           , "examine", "examine", "puttwo", "clean"
+                           ]
+per_type_prompts: Dict[str, Tuple[str, str]]\
+        = { "put": (alfworld_prompts.put_1_0, alfworld_prompts.put_1_1)
+          , "clean": (alfworld_prompts.clean_1_0, alfworld_prompts.clean_1_1)
+          , "cool": (alfworld_prompts.cool_1_0, alfworld_prompts.cool_1_1)
+          , "puttwo": (alfworld_prompts.puttwo_1_0, alfworld_prompts.puttwo_1_1)
+          , "heat": (alfworld_prompts.heat_1_0, alfworld_prompts.heat_1_1)
+          , "examine": (alfworld_prompts.examine_1_0, alfworld_prompts.examine_1_1)
+          }
+#  }}} Static Prompts Config # 
+
 def traverse_environment( env: environment.AlfredTWEnv
                         , max_task_id: int
+                        , task_types: List[str]
                         , model: alfworld_agent.Agent
                         , logger: logging.Logger
                         , except_list: Set[int] = set()
@@ -34,7 +86,7 @@ def traverse_environment( env: environment.AlfredTWEnv
     nb_stepss: List[int] = []
     rewards: List[float] = []
     succeedss: List[int] = []
-    for i in range(max_task_id):
+    for i, t in zip(range(max_task_id), task_types):
         observation: Tuple[str]
         info: Dict[str, Any]
         observation, info = env.reset()
@@ -53,6 +105,8 @@ def traverse_environment( env: environment.AlfredTWEnv
         available_actions: List[str] = info["admissible_commands"][0]
 
         model.reset()
+        if hasattr(model, "set_static_prompts"):
+            model.set_static_prompts(per_type_prompts[t])
 
         nb_steps = 0
         nb_nothing_steps = 0
@@ -139,7 +193,9 @@ def main():
     parser.add_argument( "--matcher"
                        , default="4insrel3istrel3trjrel"
                        , type=str
-                       , choices=["4insrel3istrel3trjrel"]
+                       , choices=[ "4insrel3istrel3trjrel"
+                                 , "4inspata3recpiou3obvpat"
+                                 ]
                        )
     parser.add_argument("--gamma", default=1., type=float)
     parser.add_argument("--step-penalty", default=0., type=float)
@@ -225,6 +281,12 @@ def main():
                                                                            ]
                                                                          , [0.4, 0.3, 0.3]
                                                                          ).get_lambda_matcher
+              , "4inspata3recpiou3obvpat": history.LambdaMatcherConstructor( [ history.AlfInsPatMatcher
+                                                                             , history.ReceptacleIoUMatcher
+                                                                             , history.AlfObvPatMatcher
+                                                                             ]
+                                                                           , [0.4, 0.3, 0.3]
+                                                                           ).get_lambda_matcher
               }
     history_replay: history.HistoryReplay[alfworld_agent.Key, alfworld_agent.Action]\
             = history.HistoryReplay( args.item_capacity
@@ -244,9 +306,9 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
-    with open(os.path.join(args.prompt_template, "canonical_examplar1_a.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar1_a_clean.txt")) as f:
         canonical1: str = f.read()
-    with open(os.path.join(args.prompt_template, "canonical_examplar2_a.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar2_a_clean.txt")) as f:
         canonical2: str = f.read()
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                , input_template=input_template
@@ -302,6 +364,7 @@ def main():
         if args.train:
             model.train(True)
             success_list: Set[int] = traverse_environment( train_env, args.trainsetb
+                                                         , training_set_type[:args.trainsetb]
                                                          , model
                                                          , logger, except_list
                                                          , max_nb_steps=max_nb_steps
@@ -311,6 +374,7 @@ def main():
 
         model.train(False)
         traverse_environment( env, args.testsetb
+                            , test_set_type[:args.testsetb]
                             , model
                             , logger, set(range(args.testseta))
                             , max_nb_steps=max_nb_steps
