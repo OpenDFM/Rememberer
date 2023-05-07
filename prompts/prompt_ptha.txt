@@ -9,6 +9,7 @@ use SOMETHING
 clean OBJECT with SOMETHING
 heat OBJECT with SOMETHING
 cool OBJECT with SOMETHING
+examine SOMETHING
 inventory
 look
 
@@ -19,6 +20,7 @@ Specifically, given an input, I will give some action advices with encouraging o
 Here are several common principles to make a decision:
 
 1. I need to check some more likely places for a disired object one by one until I find the object.
+2. I cannot carry more than 1 objects. I must put down the object I carry before I want to take a new object.
 2. I will avoid always repeating a wrong action.
 3. I should encourage the actions with higher value estimations like 1 and discourage the actions with low value estimations like 0.
 

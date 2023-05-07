@@ -1,0 +1,1261 @@
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 13, a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 1, a diningtable 1, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+- put a clean lettuce in diningtable.
+- ''
+- !!python/tuple
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to cabinet 5
+  - go to cabinet 6
+  - go to cabinet 7
+  - go to cabinet 8
+  - go to cabinet 9
+  - go to cabinet 10
+  - go to cabinet 11
+  - go to cabinet 12
+  - go to cabinet 13
+  - go to coffeemachine 1
+  - go to countertop 1
+  - go to diningtable 1
+  - go to drawer 1
+  - go to fridge 1
+  - go to garbagecan 1
+  - go to microwave 1
+  - go to shelf 1
+  - go to shelf 2
+  - go to shelf 3
+  - go to sinkbasin 1
+  - go to stoveburner 1
+  - go to stoveburner 2
+  - go to stoveburner 3
+  - go to stoveburner 4
+  - go to toaster 1
+  - inventory
+  - look
+: action_dict:
+    ? &id001 !!python/tuple
+    - go to fridge 1
+    - First I need to find a lettuce. A lettuce is more likely to appear in fridge (1), diningtable (1), sinkbasin (1), stoveburner (1-3), cabinet (1-13). I can check one by one, starting with fridge 1.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to coffeemachine 1
+    - The lettuce shouldn't be in a coffeemachine.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 0
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 13, a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 1, a diningtable 1, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+- put a clean lettuce in diningtable.
+- 'The fridge 1 is closed.
+
+  You open the fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 2, a potato 3, and a potato 2.
+
+  On the diningtable 1, you see a apple 1, a bread 1, a butterknife 2, a cup 2, a fork 2, a knife 2, a knife 1, a ladle 1, a lettuce 1, a mug 2, a mug 1, a pan 2, a peppershaker 1, a spatula 3, a tomato 2, and a tomato 1.
+
+  You pick up the lettuce 1 from the diningtable 1.
+
+  On the sinkbasin 1, you see a apple 2, a ladle 2, a spoon 1, and a tomato 3.'
+- !!python/tuple
+  - clean lettuce 1 with sinkbasin 1
+  - examine lettuce
+  - examine sinkbasin 1
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to cabinet 5
+  - go to cabinet 6
+  - go to cabinet 7
+  - go to cabinet 8
+  - go to cabinet 9
+  - go to cabinet 10
+  - go to cabinet 11
+  - go to cabinet 12
+  - go to cabinet 13
+  - go to coffeemachine 1
+  - go to countertop 1
+  - go to diningtable 1
+  - go to drawer 1
+  - go to fridge 1
+  - go to garbagecan 1
+  - go to microwave 1
+  - go to shelf 1
+  - go to shelf 2
+  - go to shelf 3
+  - go to stoveburner 1
+  - go to stoveburner 2
+  - go to stoveburner 3
+  - go to stoveburner 4
+  - go to toaster 1
+  - inventory
+  - look
+  - put lettuce 1 in/on sinkbasin 1
+: action_dict:
+    ? &id002 !!python/tuple
+    - clean lettuce 1 with sinkbasin 1
+    - I arrived at sinkbasin 1. Next, I need to clean lettuce 1 with it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - clean lettuce 1 with stoveburner 1
+    - Stoveburner cannot be used for cleaning.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id001
+    - !!python/tuple
+      - open fridge 1
+      - I need to open fridge 1 to check if there is a lettuce.
+    - !!python/tuple
+      - go to diningtable 1
+      - There is no lettuce in fridge 1. I can check diningtable 1 then.
+    - !!python/tuple
+      - take lettuce 1 from diningtable 1
+      - Now I find a lettuce (1). Next, I need to take it.
+    - !!python/tuple
+      - go to sinkbasin 1
+      - Now I take a lettuce (1). Next, I need to go to sinkbasin (1) and clean it.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 1
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 13, a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 1, a diningtable 1, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+- put a clean lettuce in diningtable.
+- 'The fridge 1 is closed.
+
+  You open the fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 2, a potato 3, and a potato 2.
+
+  On the diningtable 1, you see a apple 1, a bread 1, a butterknife 2, a cup 2, a fork 2, a knife 2, a knife 1, a ladle 1, a lettuce 1, a mug 2, a mug 1, a pan 2, a peppershaker 1, a spatula 3, a tomato 2, and a tomato 1.
+
+  You pick up the lettuce 1 from the diningtable 1.
+
+  On the sinkbasin 1, you see a apple 2, a ladle 2, a spoon 1, and a tomato 3.
+
+  You clean the lettuce 1 using the sinkbasin 1.
+
+  On the diningtable 1, you see a apple 1, a bread 1, a butterknife 2, a cup 2, a fork 2, a knife 2, a knife 1, a ladle 1, a mug 2, a mug 1, a pan 2, a peppershaker 1, a spatula 3, a tomato 2, and a tomato 1.'
+- !!python/tuple
+  - examine diningtable 1
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to cabinet 5
+  - go to cabinet 6
+  - go to cabinet 7
+  - go to cabinet 8
+  - go to cabinet 9
+  - go to cabinet 10
+  - go to cabinet 11
+  - go to cabinet 12
+  - go to cabinet 13
+  - go to coffeemachine 1
+  - go to countertop 1
+  - go to drawer 1
+  - go to fridge 1
+  - go to garbagecan 1
+  - go to microwave 1
+  - go to shelf 1
+  - go to shelf 2
+  - go to shelf 3
+  - go to sinkbasin 1
+  - go to stoveburner 1
+  - go to stoveburner 2
+  - go to stoveburner 3
+  - go to stoveburner 4
+  - go to toaster 1
+  - inventory
+  - look
+  - put lettuce 1 in/on diningtable 1
+: action_dict:
+    ? &id003 !!python/tuple
+    - put lettuce 1 in/on diningtable 1
+    - I arrived at diningtable 1. Next, I need to put the lettuce in/on it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to diningtable 2
+    - I shouldn't go to other places.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id001
+    - !!python/tuple
+      - open fridge 1
+      - I need to open fridge 1 to check if there is a lettuce.
+    - !!python/tuple
+      - go to diningtable 1
+      - There is no lettuce in fridge 1. I can check diningtable 1 then.
+    - !!python/tuple
+      - take lettuce 1 from diningtable 1
+      - Now I find a lettuce (1). Next, I need to take it.
+    - !!python/tuple
+      - go to sinkbasin 1
+      - Now I take a lettuce (1). Next, I need to go to sinkbasin (1) and clean it.
+    - *id002
+    - !!python/tuple
+      - go to diningtable 1
+      - Now I clean a lettuce (1). Next, I need to go to diningtable 1 to put lettuce 1 in/on it.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 2
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 16, a cabinet 15, a cabinet 14, a cabinet 13, a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 2, a countertop 1, a diningtable 1, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a safe 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+- cool some pan and put it in stoveburner.
+- ''
+- !!python/tuple
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to cabinet 5
+  - go to cabinet 6
+  - go to cabinet 7
+  - go to cabinet 8
+  - go to cabinet 9
+  - go to cabinet 10
+  - go to cabinet 11
+  - go to cabinet 12
+  - go to cabinet 13
+  - go to cabinet 14
+  - go to cabinet 15
+  - go to cabinet 16
+  - go to coffeemachine 1
+  - go to countertop 1
+  - go to countertop 2
+  - go to diningtable 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to drawer 3
+  - go to drawer 4
+  - go to drawer 5
+  - go to fridge 1
+  - go to garbagecan 1
+  - go to microwave 1
+  - go to safe 1
+  - go to sinkbasin 1
+  - go to stoveburner 1
+  - go to stoveburner 2
+  - go to stoveburner 3
+  - go to stoveburner 4
+  - go to toaster 1
+  - inventory
+  - look
+: action_dict:
+    ? &id004 !!python/tuple
+    - go to stoveburner 1
+    - First I need to find a pan. An pan is more likely to appear in stoveburner (1-4), sinkbasin (1), diningtable (1), countertop (1-2), cabinet (1-16), drawer (1-5). I can check one by one, starting with stoveburner 1.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to garbagecan 1
+    - The pan shouldn't be in a garbagecan.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 3
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 16, a cabinet 15, a cabinet 14, a cabinet 13, a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 2, a countertop 1, a diningtable 1, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a safe 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+- cool some pan and put it in stoveburner.
+- 'On the stoveburner 1, you see nothing.
+
+  On the stoveburner 2, you see a pot 1.
+
+  On the stoveburner 3, you see a pan 1.
+
+  You pick up the pan 1 from the stoveburner 3.
+
+  The fridge 1 is closed.'
+- !!python/tuple
+  - cool pan 1 with fridge 1
+  - examine fridge 1
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to cabinet 5
+  - go to cabinet 6
+  - go to cabinet 7
+  - go to cabinet 8
+  - go to cabinet 9
+  - go to cabinet 10
+  - go to cabinet 11
+  - go to cabinet 12
+  - go to cabinet 13
+  - go to cabinet 14
+  - go to cabinet 15
+  - go to cabinet 16
+  - go to coffeemachine 1
+  - go to countertop 1
+  - go to countertop 2
+  - go to diningtable 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to drawer 3
+  - go to drawer 4
+  - go to drawer 5
+  - go to garbagecan 1
+  - go to microwave 1
+  - go to safe 1
+  - go to sinkbasin 1
+  - go to stoveburner 1
+  - go to stoveburner 2
+  - go to stoveburner 3
+  - go to stoveburner 4
+  - go to toaster 1
+  - inventory
+  - look
+  - open fridge 1
+: action_dict:
+    ? &id005 !!python/tuple
+    - cool pan 1 with fridge 1
+    - I arrived at fridge 1. Next, I need to cool pan 1 with it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - heat pan 1 with fridge 1
+    - I need to cool the pan but not to heat it.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id004
+    - !!python/tuple
+      - go to stoveburner 2
+      - There is no pan in stoveburner 1. I can check stoveburner 2 then.
+    - !!python/tuple
+      - go to stoveburner 3
+      - There is no pan in stoveburner 2. I can check stoveburner 3 then.
+    - !!python/tuple
+      - take pan 1 from stoveburner 3
+      - Now I find a pan (1). Next, I need to take it.
+    - !!python/tuple
+      - go to fridge 1
+      - Now I take a pan (1). Next, I need to go to a fridge (1) and cool it.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 4
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 16, a cabinet 15, a cabinet 14, a cabinet 13, a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 2, a countertop 1, a diningtable 1, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a safe 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+- cool some pan and put it in stoveburner.
+- 'On the stoveburner 1, you see nothing.
+
+  On the stoveburner 2, you see a pot 1.
+
+  On the stoveburner 3, you see a pan 1.
+
+  You pick up the pan 1 from the stoveburner 3.
+
+  The fridge 1 is closed.
+
+  You cool the pan 1 using the fridge 1.
+
+  On the stoveburner 1, you see nothing.'
+- !!python/tuple
+  - examine pan 1
+  - examine stoveburner 1
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to cabinet 5
+  - go to cabinet 6
+  - go to cabinet 7
+  - go to cabinet 8
+  - go to cabinet 9
+  - go to cabinet 10
+  - go to cabinet 11
+  - go to cabinet 12
+  - go to cabinet 13
+  - go to cabinet 14
+  - go to cabinet 15
+  - go to cabinet 16
+  - go to coffeemachine 1
+  - go to countertop 1
+  - go to countertop 2
+  - go to diningtable 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to drawer 3
+  - go to drawer 4
+  - go to drawer 5
+  - go to fridge 1
+  - go to garbagecan 1
+  - go to microwave 1
+  - go to safe 1
+  - go to sinkbasin 1
+  - go to stoveburner 2
+  - go to stoveburner 3
+  - go to stoveburner 4
+  - go to toaster 1
+  - inventory
+  - look
+  - put pan 1 in/on stoveburner
+: action_dict:
+    ? &id006 !!python/tuple
+    - put pan 1 in/on stoveburner 1
+    - I arrived at stoveburner 1. Next, I need to put pan 1 in/on it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to drawer 4
+    - I shouldn't go to other places.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id004
+    - !!python/tuple
+      - go to stoveburner 2
+      - There is no pan in stoveburner 1. I can check stoveburner 2 then.
+    - !!python/tuple
+      - go to stoveburner 3
+      - There is no pan in stoveburner 2. I can check stoveburner 3 then.
+    - !!python/tuple
+      - take pan 1 from stoveburner 3
+      - Now I find a pan (1). Next, I need to take it.
+    - !!python/tuple
+      - go to fridge 1
+      - Now I take a pan (1). Next, I need to go to a fridge (1) and cool it.
+    - *id005
+    - !!python/tuple
+      - go to stoveburner 1 Now I cool a pan (1).
+      - Next, I need to go to stoveburner 1 to put pan 1 in/on it.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 5
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 3, a drawer 2, a drawer 1, a garbagecan 1, a safe 1, a shelf 5, a shelf 4, a shelf 3, a shelf 2, a shelf 1, a sidetable 2, and a sidetable 1.
+- look at bowl under the desklamp.
+- ''
+- !!python/tuple
+  - go to bed 1
+  - go to desk 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to drawer 3
+  - go to garbagecan 1
+  - go to safe 1
+  - go to shelf 1
+  - go to shelf 2
+  - go to shelf 3
+  - go to shelf 4
+  - go to shelf 5
+  - go to sidetable 1
+  - go to sidetable 2
+  - inventory
+  - look
+: action_dict:
+    ? &id007 !!python/tuple
+    - go to drawer 1
+    - First I need to find a bowl. A bowl is more likely to appear in drawer (1-3), desk (1), sidetable (1-2), shelf (1-5), garbagecan (1). I can check one by one, starting with drawer 1.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to safe 1
+    - The bowl shouldn't be in a safe.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 6
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 3, a drawer 2, a drawer 1, a garbagecan 1, a safe 1, a shelf 5, a shelf 4, a shelf 3, a shelf 2, a shelf 1, a sidetable 2, and a sidetable 1.
+- look at bowl under the desklamp.
+- 'On the drawer 1, you see nothing.
+
+  The drawer 2 is closed.
+
+  You open the drawer 2. The drawer 2 is open. In it, you see nothing.
+
+  The drawer 3 is closed.
+
+  You open the drawer 3. The drawer 3 is open. In it, you see nothing.
+
+  On the desk 1, you see a alarmclock 2, a book 1, a cellphone 1, a keychain 1, a laptop 2, a laptop 1, and a pen 3.
+
+  On the sidetable 1, you see a cd 1, a pen 1, and a pencil 1.
+
+  On the sidetable 2, you see a alarmclock 1, a desklamp 1, and a pen 2.
+
+  On the shelf 1, you see nothing.
+
+  On the shelf 2, you see a bowl 1.
+
+  You pick up the bowl 1 from the shelf 2.'
+- !!python/tuple
+  - examine shelf 2
+  - examine bowl 1
+  - go to bed 1
+  - go to desk 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to drawer 3
+  - go to garbagecan 1
+  - go to safe 1
+  - go to shelf 1
+  - go to shelf 3
+  - go to shelf 4
+  - go to shelf 5
+  - go to sidetable 1
+  - go to sidetable 2
+  - inventory
+  - look
+  - put bowl 1 in/on shelf 2
+: action_dict:
+    ? &id008 !!python/tuple
+    - go to sidetable 2
+    - Now I take a bowl (1). Next, I need to find a desklamp. Desklamp 1 is on sidetable 2. Thus, I can directly go to sidetable 2.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to sidetable 1
+    - There is no desklamp on sidetable 1.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id007
+    - !!python/tuple
+      - go to drawer 2
+      - There is no bowl in drawer 1. I can check drawer 2 then.
+    - !!python/tuple
+      - open drawer 2
+      - I need to open drawer 2 to check if there is a bowl.
+    - !!python/tuple
+      - go to drawer 3
+      - There is no bowl in drawer 2. I can check drawer 3 then.
+    - !!python/tuple
+      - open drawer 3
+      - I need to open drawer 3 to check if there is a bowl.
+    - !!python/tuple
+      - go to desk 1
+      - There is no bowl in drawer 3. I can check desk 1 then.
+    - !!python/tuple
+      - go to sidetable 1
+      - There is no bowl on desk 1. I can check sidetable 1 then.
+    - !!python/tuple
+      - go to sidetable 2
+      - There is no bowl on sidee 1. I can check sidetable 2 then.
+    - !!python/tuple
+      - go to shelf 1
+      - There is no bowl on sidetable 2. I can check shelf 1 then.
+    - !!python/tuple
+      - go to shelf 2
+      - There is no bowl on shelf 1. I can check shelf 2 then.
+    - !!python/tuple
+      - take bowl 1 from shelf 2
+      - Now I find a bowl (1). Next, I need to take it.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 7
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 3, a drawer 2, a drawer 1, a garbagecan 1, a safe 1, a shelf 5, a shelf 4, a shelf 3, a shelf 2, a shelf 1, a sidetable 2, and a sidetable 1.
+- look at bowl under the desklamp.
+- 'On the drawer 1, you see nothing.
+
+  The drawer 2 is closed.
+
+  You open the drawer 2. The drawer 2 is open. In it, you see nothing.
+
+  The drawer 3 is closed.
+
+  You open the drawer 3. The drawer 3 is open. In it, you see nothing.
+
+  On the desk 1, you see a alarmclock 2, a book 1, a cellphone 1, a keychain 1, a laptop 2, a laptop 1, and a pen 3.
+
+  On the sidetable 1, you see a cd 1, a pen 1, and a pencil 1.
+
+  On the sidetable 2, you see a alarmclock 1, a desklamp 1, and a pen 2.
+
+  On the shelf 1, you see nothing.
+
+  On the shelf 2, you see a bowl 1.
+
+  You pick up the bowl 1 from the shelf 2.
+
+  On the sidetable 2, you see a alarmclock 1, a desklamp 1, and a pen 2.'
+- !!python/tuple
+  - examine bowl 1
+  - examine sidetable 2
+  - go to bed 1
+  - go to desk 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to drawer 3
+  - go to garbagecan 1
+  - go to safe 1
+  - go to shelf 1
+  - go to shelf 2
+  - go to shelf 3
+  - go to shelf 4
+  - go to shelf 5
+  - go to sidetable 1
+  - inventory
+  - look
+  - put bowl 1 in/on sidetable 2
+  - use desklamp 1
+: action_dict:
+    ? &id009 !!python/tuple
+    - use desklamp 1
+    - Now I find a desklamp (1). Next, I need to use it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to sidetable 1
+    - I shouldn't go to other places.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id007
+    - !!python/tuple
+      - go to drawer 2
+      - There is no bowl in drawer 1. I can check drawer 2 then.
+    - !!python/tuple
+      - open drawer 2
+      - I need to open drawer 2 to check if there is a bowl.
+    - !!python/tuple
+      - go to drawer 3
+      - There is no bowl in drawer 2. I can check drawer 3 then.
+    - !!python/tuple
+      - open drawer 3
+      - I need to open drawer 3 to check if there is a bowl.
+    - !!python/tuple
+      - go to desk 1
+      - There is no bowl in drawer 3. I can check desk 1 then.
+    - !!python/tuple
+      - go to sidetable 1
+      - There is no bowl on desk 1. I can check sidetable 1 then.
+    - !!python/tuple
+      - go to sidetable 2
+      - There is no bowl on sidee 1. I can check sidetable 2 then.
+    - !!python/tuple
+      - go to shelf 1
+      - There is no bowl on sidetable 2. I can check shelf 1 then.
+    - !!python/tuple
+      - go to shelf 2
+      - There is no bowl on shelf 1. I can check shelf 2 then.
+    - !!python/tuple
+      - take bowl 1 from shelf 2
+      - Now I find a bowl (1). Next, I need to take it.
+    - *id008
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 8
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 3, a countertop 2, a countertop 1, a diningtable 1, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+- heat some egg and put it in diningtable.
+- ''
+- !!python/tuple
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to cabinet 5
+  - go to cabinet 6
+  - go to cabinet 7
+  - go to cabinet 8
+  - go to cabinet 9
+  - go to cabinet 10
+  - go to coffeemachine 1
+  - go to countertop 1
+  - go to countertop 2
+  - go to countertop 3
+  - go to diningtable 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to drawer 3
+  - go to drawer 4
+  - go to drawer 5
+  - go to drawer 6
+  - go to fridge 1
+  - go to garbagecan 1
+  - go to microwave 1
+  - go to sinkbasin 1
+  - go to stoveburner 1
+  - go to stoveburner 2
+  - go to stoveburner 3
+  - go to stoveburner 4
+  - go to toaster 1
+  - inventory
+  - look
+: action_dict:
+    ? &id010 !!python/tuple
+    - go to fridge 1
+    - First I need to find an egg. An egg is more likely to appear in fridge (1), countertop (1-3), diningtable (1), stoveburner (1-4), toaster (1), garbagecan (1), cabinet (1-10). I can check one by one, starting with fridge 1.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to coffeemachine 1
+    - The egg shouldn't be in a coffeemachine.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 9
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 3, a countertop 2, a countertop 1, a diningtable 1, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+- heat some egg and put it in diningtable.
+- 'The fridge 1 is closed.
+
+  You open the fridge 1. The fridge 1 is open. In it, you see a lettuce 2, a mug 2, and a potato 3.
+
+  On the countertop 1, you see a bread 1, a fork 1, and a saltshaker 1.
+
+  On the countertop 2, you see nothing.
+
+  On the countertop 3, you see a bowl 1, a butterknife 1, a egg 2, a kettle 2, a plate 1, a sink 1, and a spatula 2.
+
+  You pick up the egg 2 from the countertop 3.
+
+  The microwave 1 is closed.'
+- !!python/tuple
+  - heat egg2 with microwave
+  - examine egg 2
+  - examine microwave 1
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to cabinet 5
+  - go to cabinet 6
+  - go to cabinet 7
+  - go to cabinet 8
+  - go to cabinet 9
+  - go to cabinet 10
+  - go to coffeemachine 1
+  - go to countertop 1
+  - go to countertop 2
+  - go to countertop 3
+  - go to diningtable 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to drawer 3
+  - go to drawer 4
+  - go to drawer 5
+  - go to drawer 6
+  - go to fridge 1
+  - go to garbagecan 1
+  - go to sinkbasin 1
+  - go to stoveburner 1
+  - go to stoveburner 2
+  - go to stoveburner 3
+  - go to stoveburner 4
+  - go to toaster 1
+  - inventory
+  - look
+  - open microwave
+: action_dict:
+    ? &id011 !!python/tuple
+    - heat egg 2 with microwave 1
+    - I arrive at microwave 1. Next, I need to heat egg 2 with it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - heat egg 2 with stoveburner 2
+    - I'm not aside with stoveburner 2
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id010
+    - !!python/tuple
+      - open fridge 1
+      - I need to open fridge 1 to check if there is an agg.
+    - !!python/tuple
+      - go to countertop 1
+      - There is no egg in fridge 1. I can check countertop 1 then.
+    - !!python/tuple
+      - go to countertop 2
+      - There is no egg on countertop 1. I can check countertop 2 then.
+    - !!python/tuple
+      - go to countertop 3
+      - There is no egg on countertop 2. I can check countertop 3 then.
+    - !!python/tuple
+      - take egg 2 from countertop 3
+      - Now I find an egg (2). Next, I need to take it.
+    - !!python/tuple
+      - go to microwave 1
+      - Now I take an egg (2). Next, I need go to a microwave (1) and heat it.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 10
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 3, a countertop 2, a countertop 1, a diningtable 1, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+- heat some egg and put it in diningtable.
+- 'The fridge 1 is closed.
+
+  You open the fridge 1. The fridge 1 is open. In it, you see a lettuce 2, a mug 2, and a potato 3.
+
+  On the countertop 1, you see a bread 1, a fork 1, and a saltshaker 1.
+
+  On the countertop 2, you see nothing.
+
+  On the countertop 3, you see a bowl 1, a butterknife 1, a egg 2, a kettle 2, a plate 1, a sink 1, and a spatula 2.
+
+  You pick up the egg 2 from the countertop 3.
+
+  The microwave 1 is closed.
+
+  You heat the egg 2 using the microwave 1.
+
+  On the diningtable 1, you see a apple 2, a bread 3, a egg 1, a kettle 1, a knife 1, a mug 1, a papertowelroll 1, a peppershaker 2, a potato 1, a soapbottle 1, and a spatula 1.'
+- !!python/tuple
+  - examine egg 2
+  - examine diningtable 1
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to cabinet 5
+  - go to cabinet 6
+  - go to cabinet 7
+  - go to cabinet 8
+  - go to cabinet 9
+  - go to cabinet 10
+  - go to coffeemachine 1
+  - go to countertop 1
+  - go to countertop 2
+  - go to countertop 3
+  - go to drawer 1
+  - go to drawer 2
+  - go to drawer 3
+  - go to drawer 4
+  - go to drawer 5
+  - go to drawer 6
+  - go to fridge 1
+  - go to garbagecan 1
+  - go to microwave 1
+  - go to sinkbasin 1
+  - go to stoveburner 1
+  - go to stoveburner 2
+  - go to stoveburner 3
+  - go to stoveburner 4
+  - go to toaster 1
+  - inventory
+  - look
+  - put egg 2 in/on diningtable 1
+: action_dict:
+    ? &id012 !!python/tuple
+    - put egg 2 in/on diningtable 1
+    - I arrived at diningtable 1. Next, I need to put egg 2 in/on it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to coutertop 3
+    - I shouldn't go to other places.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id010
+    - !!python/tuple
+      - open fridge 1
+      - I need to open fridge 1 to check if there is an agg.
+    - !!python/tuple
+      - go to countertop 1
+      - There is no egg in fridge 1. I can check countertop 1 then.
+    - !!python/tuple
+      - go to countertop 2
+      - There is no egg on countertop 1. I can check countertop 2 then.
+    - !!python/tuple
+      - go to countertop 3
+      - There is no egg on countertop 2. I can check countertop 3 then.
+    - !!python/tuple
+      - take egg 2 from countertop 3
+      - Now I find an egg (2). Next, I need to take it.
+    - !!python/tuple
+      - go to microwave 1
+      - Now I take an egg (2). Next, I need go to a microwave (1) and heat it.
+    - *id011
+    - !!python/tuple
+      - go to diningtable 1
+      - Now I heat an egg (2). Next, I need to go to diningtable 1 to put egg 2 in/on 1.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 11
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a countertop 1, a garbagecan 1, a handtowelholder 2, a handtowelholder 1, a sinkbasin 2, a sinkbasin 1, a toilet 1, a toiletpaperhanger 1, and a towelholder 1.
+- put some spraybottle on toilet.
+- ''
+- !!python/tuple
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to countertop 1
+  - go to garbagecan 1
+  - go to handtowelholder 1
+  - go to handtowelholder 2
+  - go to sinkbasin 1
+  - go to sinkbasin 2
+  - go to toilet 1
+  - go to toiletpaperhanger 1
+  - go to towelholder 1
+  - inventory
+  - look
+: action_dict:
+    ? &id013 !!python/tuple
+    - go to cabinet 1
+    - First I need to find a spraybottle. A spraybottle is more likely to appear in cabinet (1-4), countertop (1), toilet (1), sinkbasin (1-2), garbagecan (1). I can check one by one, starting with cabinet 1.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to toiletpaperhanger 1
+    - The spraybottle shouldn't be on a toiletpaperhanger.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 12
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a countertop 1, a garbagecan 1, a handtowelholder 2, a handtowelholder 1, a sinkbasin 2, a sinkbasin 1, a toilet 1, a toiletpaperhanger 1, and a towelholder 1.
+- put some spraybottle on toilet.
+- 'On the cabinet 1, you see a cloth 1, a soapbar 1, a soapbottle 1.
+
+  The cabinet 2 is closed.
+
+  You open the cabinet 2. The cabinet 2 is open. In it, you see a candle 1, and a spraybottle 2.'
+- !!python/tuple
+  - close cabinet 2
+  - examine cabinet 2
+  - go to cabinet 1
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to countertop 1
+  - go to garbagecan 1
+  - go to handtowelholder 1
+  - go to handtowelholder 2
+  - go to sinkbasin 1
+  - go to sinkbasin 2
+  - go to toilet 1
+  - go to toiletpaperhanger 1
+  - go to towelholder 1
+  - inventory
+  - look
+  - take candle 1 from cabinet 2
+  - take spraybottle 2 from cabinet 2
+: action_dict:
+    ? &id014 !!python/tuple
+    - take spraybottle 2 from cabinet 2
+    - Now I find a spraybottle (2). Next, I need to take it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to cabinet 1
+    - The spraybottle is in cabinet 2 and I shouldn't go to cabinet 1.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id013
+    - !!python/tuple
+      - go to cabinet 2
+      - There is no spraybottle on cabinet 1. I can check cabinet 2 then.
+    - !!python/tuple
+      - open cabinet 2
+      - I need to open cabinet 2 to check if there is a spraybottle.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 13
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a countertop 1, a garbagecan 1, a handtowelholder 2, a handtowelholder 1, a sinkbasin 2, a sinkbasin 1, a toilet 1, a toiletpaperhanger 1, and a towelholder 1.
+- put some spraybottle on toilet.
+- 'On the cabinet 1, you see a cloth 1, a soapbar 1, a soapbottle 1.
+
+  The cabinet 2 is closed.
+
+  You open the cabinet 2. The cabinet 2 is open. In it, you see a candle 1, and a spraybottle 2.
+
+  You pick up the spraybottle 2 from the cabinet 2.
+
+  On the toilet 1, you see a soapbottle 2.'
+- !!python/tuple
+  - examine spraybottle 2
+  - examine toilet 1
+  - go to cabinet 1
+  - go to cabinet 2
+  - go to cabinet 3
+  - go to cabinet 4
+  - go to countertop 1
+  - go to garbagecan 1
+  - go to handtowelholder 1
+  - go to handtowelholder 2
+  - go to sinkbasin 1
+  - go to sinkbasin 2
+  - go to toiletpaperhanger 1
+  - go to towelholder 1
+  - inventory
+  - look
+  - put spraybottle 2 in/on toilet 1
+: action_dict:
+    ? &id015 !!python/tuple
+    - put spraybottle 2 in/on toilet 1
+    - Now I arrived at spraybottle 2. Next, I need to put spraybottle 2 in/on it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to sinkbasin 1
+    - I shouldn't go to other places.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id013
+    - !!python/tuple
+      - go to cabinet 2
+      - There is no spraybottle on cabinet 1. I can check cabinet 2 then.
+    - !!python/tuple
+      - open cabinet 2
+      - I need to open cabinet 2 to check if there is a spraybottle.
+    - *id014
+    - !!python/tuple
+      - go to toilet 1
+      - Now I take a spraybottle (2). Next, I need to go to toilet 1 to put spraybottle 2 in/on it.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 14
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a armchair 2, a armchair 1, a bed 1, a countertop 1, a diningtable 1, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a laundryhamper 1, and a sidetable 1.
+- put two creditcard in dresser.
+- ''
+- !!python/tuple
+  - go to armchair 1
+  - go to armchair 2
+  - go to bed 1
+  - go to countertop 1
+  - go to diningtable 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to dresser 1
+  - go to garbagecan 1
+  - go to laundryhamper 1
+  - go to sidetable 1
+  - inventory
+  - look
+: action_dict:
+    ? &id016 !!python/tuple
+    - go to drawer 1
+    - First I need to find the first creditcard. A creditcard is more likely to appear in drawer (1-2), coutertop (1), sidetable (1), diningtable (1), armchair (1-2), bed (1). I can check one by one, starting with drawer 1.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to laundryhamper 1
+    - The creditcard shouldn't be in a laundryhamper.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 15
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a armchair 2, a armchair 1, a bed 1, a countertop 1, a diningtable 1, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a laundryhamper 1, and a sidetable 1.
+- put two creditcard in dresser.
+- 'The drawer 1 is closed.
+
+  You open the drawer 1. The drawer 1 is open. In it, you see a book 1, a cd 1, and a pen 1.
+
+  The drawer 2 is closed.
+
+  You open the drawer 2. The drawer 2 is open. In it, you see nothing.
+
+  On the countertop 1, you see a cellphone 2, a creditcard 4, a creditcard 3, a creditcard 2, a mirror 1, a pencil 2, and a pencil 1.
+
+  You pick up the creditcard 2 from the countertop 1.
+
+  On the dresser 1, you see a mug 1, and a television 1.'
+- !!python/tuple
+  - examine creditcard 2
+  - examine dresser 1
+  - go to armchair 1
+  - go to armchair 2
+  - go to bed 1
+  - go to countertop 1
+  - go to diningtable 1
+  - go to drawer 1
+  - go to drawer 2
+  - go to garbagecan 1
+  - go to laundryhamper 1
+  - go to sidetable 1
+  - inventory
+  - look
+  - put creditcard 2 in/on dresser 1
+: action_dict:
+    ? &id017 !!python/tuple
+    - put creditcard 2 in/on dresser 1
+    - I arrived at dresser 1. Next, I need to put creditcard 2 in/on it.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - take mug 1
+    - I need to put creditcard 2 down but not take other objects.
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id016
+    - !!python/tuple
+      - open drawer 1
+      - I need to open drawer 1 to check if there is a creditcard.
+    - !!python/tuple
+      - go to drawer 2
+      - There is no creditcard in drawer 1. I can check drawer 2 then.
+    - !!python/tuple
+      - open drawer 2
+      - I need to open drawer 2 to check if there is a creditcard.
+    - !!python/tuple
+      - go to countertop 1
+      - There is no creditcard in drawer 2. I can check coutertop 1 then.
+    - !!python/tuple
+      - take creditcard 2 from countertop 1
+      - Now I find the first creditcard (2). Next, I need to take it. I can find the second creditcard (3) later in countertop 1.
+    - !!python/tuple
+      - go to dresser 1
+      - Now I take the first creditcard (2). Next, I need to go to dresser 1 to put creditcard 2 in/on it.
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 16
+? !!python/tuple
+- You are in the middle of a room. Looking quickly around you, you see a armchair 2, a armchair 1, a bed 1, a countertop 1, a diningtable 1, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a laundryhamper 1, and a sidetable 1.
+- put two creditcard in dresser.
+- 'The drawer 1 is closed.
+
+  You open the drawer 1. The drawer 1 is open. In it, you see a book 1, a cd 1, and a pen 1.
+
+  The drawer 2 is closed.
+
+  You open the drawer 2. The drawer 2 is open. In it, you see nothing.
+
+  On the countertop 1, you see a cellphone 2, a creditcard 4, a creditcard 3, a creditcard 2, a mirror 1, a pencil 2, and a pencil 1.
+
+  You pick up the creditcard 2 from the countertop 1.
+
+  On the dresser 1, you see a mug 1, and a television 1.
+
+  You put the creditcard 2 in/on the dresser 1.'
+- !!python/tuple
+  - examine dresser 1
+  - go to armchair 1
+  - go to armchair 2
+  - go to bed 1
+  - go to countertop 1
+  - go to diningtable 1
+  - go to drawer 2
+  - go to garbagecan 1
+  - go to laundryhamper 1
+  - go to sidetable 1
+  - inventory
+  - look
+  - take mug 1 from dresser 1
+  - take television 1 from dresser 1
+  - take creditcard 2 from dresser 1
+: action_dict:
+    ? &id018 !!python/tuple
+    - go to countertop 1
+    - Now I put the first creditcard in dresser. Next, I need to find the second creditcard. Creditcards (3-4) are on countertop 1. Thus, I can directly go to countertop 1.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+    ? !!python/tuple
+    - go to drawer 2
+    - There is no creditcard in drawer 2
+    : number: 1
+      qvalue: 0.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *id016
+    - !!python/tuple
+      - open drawer 1
+      - I need to open drawer 1 to check if there is a creditcard.
+    - !!python/tuple
+      - go to drawer 2
+      - There is no creditcard in drawer 1. I can check drawer 2 then.
+    - !!python/tuple
+      - open drawer 2
+      - I need to open drawer 2 to check if there is a creditcard.
+    - !!python/tuple
+      - go to countertop 1
+      - There is no creditcard in drawer 2. I can check coutertop 1 then.
+    - !!python/tuple
+      - take creditcard 2 from countertop 1
+      - Now I find the first creditcard (2). Next, I need to take it. I can find the second creditcard (3) later in countertop 1.
+    - !!python/tuple
+      - go to dresser 1
+      - Now I take the first creditcard (2). Next, I need to go to dresser 1 to put creditcard 2 in/on it.
+    - *id017
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 17
