@@ -100,6 +100,8 @@ def traverse_environment( env: environment.AlfredTWEnv
         goal = goal[17:]
         trajectory = ""
 
+        logger.debug("%s. %s.", init_state, goal)
+
         task_name: str = "/".join(info["extra.gamefile"][0].split("/")[-3:-1])
 
         available_actions: List[str] = info["admissible_commands"][0]
@@ -130,6 +132,7 @@ def traverse_environment( env: environment.AlfredTWEnv
                 if observation.startswith("You arrive at loc "):
                     observation = observation[observation.find(". ")+2:]
                 trajectory += "{:}\n".format(observation)
+                logger.debug(observation)
 
                 available_actions = info["admissible_commands"][0]
                 total_reward += reward[0]
