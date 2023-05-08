@@ -362,7 +362,7 @@ def main():
     else:
         starts_from: int = args.starts_from
         nb_epochs: int = args.epochs
-    max_nb_steps = 50
+    max_nb_steps = 20
     for epch in range(starts_from, nb_epochs):
         if args.train:
             model.train(True)

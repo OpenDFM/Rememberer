@@ -440,7 +440,7 @@ class ReceptacleIoUMatcher(Matcher[Tuple[str, Any]]):
             init_env = init_env[69:-1]
             items: List[str] = init_env.split(", ")
             for itm in items:
-                self._query_set.add(itm.split()[-2])
+                self._query_set.add(itm.strip().split()[-2])
         #  }}} method __init__ # 
 
     def __call__(self, key: Tuple[str, Any]) -> float:
@@ -814,6 +814,8 @@ class HistoryReplay(Generic[Key, Action]):
 
             step = self._observation_buffer[0]
             action: Action = self._action_buffer[0]
+            if action is None:
+                return
             step_: Key = self._observation_buffer[-1]
             reward: float = self._reward_buffer[1]
 

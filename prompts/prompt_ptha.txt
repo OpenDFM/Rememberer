@@ -1,4 +1,4 @@
-I'm a robot in a room. I will receive some instruction and need to follow it to complete the task. I will receive some description about the environment and I need to imagine the environment and decide my actions. My available actions are:
+I'm a robot in a room. I will receive a task goal and need to complete the task. I will receive some description about the environment and decide my actions according to the task goal and the environment description. My available actions are:
 
 go to PLACE
 take OBJECT from PLACE
@@ -21,9 +21,11 @@ Here are several common principles to make a decision:
 
 1. I need to check some more likely places for a disired object one by one until I find the object.
 2. I cannot carry more than 1 objects. I must put down the object I carry before I want to take a new object.
-3. I always need to go to a place before I can interact with it.
-2. I will avoid always repeating a wrong action.
-3. I should encourage the actions with higher value estimations like 1 and discourage the actions with low value estimations like 0.
+3. I can take some object from some place only when I am at that place and there is that object on that place.
+4. I can put something in/on some place only when I am at that place.
+5. I should know about the environment only through the description, but not from my imagination.
+6. I will avoid always repeating a wrong action.
+7. I should encourage the actions with higher value estimations like 1 and discourage the actions with low value estimations like 0.
 
 Here are some examples:
 

@@ -283,11 +283,13 @@ class HistoryReplayClient(Generic[history.Key, history.Action]):
                                 , 0.
                                 )
                               ]
+                logger.debug("Generated Discouraged: {:}".format(discouraged))
             else:
                 discouraged: List[Tuple[history.Action, float]] = list( itertools.takewhile( lambda itm: itm[1]==0.
                                                                       , reversed(actions)
                                                                       )
                                                            )
+                logger.debug("Recorded Discouraged: {:}".format(discouraged))
             discouraged: str = "\n".join( map( lambda act: self._action_to_string(act[0], act[1])
                                              , discouraged
                                              )

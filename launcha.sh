@@ -10,6 +10,7 @@ python run_alfworld.py --log-dir logs\
 					   --save-replay history-pools/init_pool.aqu."$date_str".%d.yaml\
 					   --action-capacity 10\
 					   --matcher 4inspata3recpiou3obvpat\
+					   --n-step-flatten 5\
 					   --prompt-template prompts\
 					   --max-tokens 200\
 					   --stop "Discouraged"\

@@ -148,10 +148,17 @@ class AutoAgent( Agent
 
         self._static: bool = static
         self._static_prompts: Tuple[str, str] = ("", "")
+
+        self._position: str = "room middle"
+        self._carrying: str = ""
+        self._facing: List[str] = []
         #  }}} method __init__ # 
 
     def reset(self):
         super(AutoAgent, self).reset()
+        self._position = "room middle"
+        self._carrying = ""
+        self._facing = []
     def end( self
            , init_env: str
            , task: str
@@ -197,8 +204,37 @@ class AutoAgent( Agent
         available_actions: Tuple[str, ...] = key[-1]
         action: np.int64 = self._rng.integers(len(available_actions))
         action_str: str = available_actions[action]
-        reason: str = ("I need to " if encourages else "I shouldn't ") + action_str
-        return action_str, reason
+        #reason: str = ("I need to " if encourages else "I shouldn't ") + action_str
+
+        new_carrying: str = self._carrying
+        new_position: str = self._position
+        if action_str.startswith("go to "):
+            new_position = action_str[6:]
+        elif action_str.startswith("put "):
+            new_carrying = ""
+        elif action_str.startswith("take "):
+            new_carrying = action_str[5:action_str.find("from")-1]
+
+        if len(self._facing)>0 and self._facing[0]=="closed":
+            facing_str = "The {:} is closed.".format(self._position)
+        else:
+            facing_str = "There {:} {:} on {:}."\
+                            .format( "is" if len(self._facing)<=1 else "are"
+                                   , "nothing" if len(self._facing)==0\
+                                             else ( self._facing[0] if len(self._facing)==1\
+                                                                  else ", ".join(self._facing[:-1])\
+                                                                     + ", and " + self._facing[-1]
+                                                  )
+                                   , self._position
+                                   )
+        additional: str = "I carry {:}. I am at {:}. {:} I will carry {:}. I will be at {:}."\
+                            .format( "nothing" if self._carrying=="" else self._carrying
+                                   , self._position
+                                   , facing_str
+                                   , "nothing" if new_carrying=="" else new_carrying
+                                   , new_position
+                                   )
+        return action_str, additional
         #  }}} method _random_action # 
     def _action_to_string(self, action: Action, value: float) -> str:
         return "{:} -> {:.1f} {:}".format(action[0], value, action[1])
@@ -246,6 +282,32 @@ class AutoAgent( Agent
                                        )
         #  }}} Replay Updating # 
 
+        if len(trajectory)>0:
+            last_observation: str = trajectory.splitlines()[-1]
+            observation_pattern: str
+            _, observation_pattern = history.AlfObvPatMatcher._get_pattern(last_observation)
+            if observation_pattern in {"On the", "The _ is open.", "You open"}:
+                you_see_position: int = last_observation.find("you see ")
+                if you_see_position!=-1:
+                    self._facing = list( map( lambda itm: " ".join(itm.strip().split()[-2:])
+                                            , last_observation[you_see_position+8:].split(", ")
+                                            )
+                                       )
+                    if self._facing[0]=="nothing":
+                        self._facing = []
+            elif observation_pattern=="The _ is closed.":
+                self._facing = "closed"
+            elif observation_pattern=="You pick":
+                object_: str = last_observation[16:last_observation.find("from")-1]
+                self._carrying = object_
+                if object_ in self._facing:
+                    self._facing.remove(object_)
+            elif observation_pattern=="You put":
+                self._facing.append(self._carrying)
+                self._carrying = ""
+
+        logger.debug("%s, %s, %s", self._carrying, self._position, self._facing)
+
         #  Construct New Input {{{ # 
         new_input: str = self._instantiate_input_template( init_env=init_env
                                                          , task=task
@@ -282,6 +344,10 @@ class AutoAgent( Agent
             action_text: str
             reason: str
             action_text, reason = action
+
+        if action_text!="NOTHINGG":
+            if action_text.startswith("go to "):
+                self._position = action_text[6:]
 
         logger.debug("Action: %s %s", action_text, reason)
         return (action_text, reason)

@@ -37,13 +37,13 @@
 : action_dict:
     ? &id001 !!python/tuple
     - go to fridge 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at fridge 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at fridge 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to coffeemachine 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at coffeemachine 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at coffeemachine 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -103,7 +103,7 @@
 : action_dict:
     ? &id002 !!python/tuple
     - clean lettuce 1 with sinkbasin 1
-    - I carry lettuce 1. I am at sinkbasin 1. I will carry lettuce 1. I will be at sinkbasin 1.
+    - I carry lettuce 1. I am at sinkbasin 1. There are apple 2, ladle 2, spoon 1, and tomato 3 on sinkbasin 1. I will carry lettuce 1. I will be at sinkbasin 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
@@ -112,16 +112,16 @@
     - *id001
     - !!python/tuple
       - open fridge 1
-      - I carry nothing. I am at fridge 1. I will carry nothing. I will be at fridge 1.
+      - I carry nothing. I am at fridge 1. The fridge is closed. I will carry nothing. I will be at fridge 1.
     - !!python/tuple
       - go to diningtable 1
-      - I carry nothing. I am at fridge 1. I will carry nothing. I will be at diningtable 1.
+      - I carry nothing. I am at fridge 1. There are cup 3, egg 2, potato 3 and potato 2 in fridge 1. I will carry nothing. I will be at diningtable 1.
     - !!python/tuple
       - take lettuce 1 from diningtable 1
-      - I carry nothing. I am at diningtable 1. I will carry lettuce 1. I will be at diningtable 1.
+      - I carry nothing. I am at diningtable 1. There are apple 1, bread 1, butterknife 2, cup 2, fork 2, knife 2, knife 1, ladle 1, lettuce 1, mug 2, mug 1, pan 2, peppershaker 1, spatula 3, tomato 2, and tomato 1 on diningtable 1. I will carry lettuce 1. I will be at diningtable 1.
     - !!python/tuple
       - go to sinkbasin 1
-      - I carry lettuce 1. I am at diningtable 1. I will carry lettuce. I will be at sinkbasin 1.
+      - I carry lettuce 1. I am at diningtable 1. There are apple 1, bread 1, butterknife 2, cup 2, fork 2, knife 2, knife 1, ladle 1, mug 2, mug 1, pan 2, peppershaker 1, spatula 3, tomato 2, and tomato 1 on diningtable 1. I will carry lettuce. I will be at sinkbasin 1.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -178,13 +178,13 @@
 : action_dict:
     ? &id003 !!python/tuple
     - put lettuce 1 in/on diningtable 1
-    - I carry lettuce 1. I am at diningtable 1. I will carry nothing. I will be at diningtable 1.
+    - I carry lettuce 1. I am at diningtable 1. There are apple 1, bread 1, butterknife 2, cup 2, fork 2, knife 2, knife 1, ladle 1, mug 2, mug 1, pan 2, peppershaker 1, spatula 3, tomato 2, and tomato 1 on diningtable 1. I will carry nothing. I will be at diningtable 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to diningtable 2
-    - I carry lettuce 1. I am at diningtable 1. I will carry lettuce 1. I will be at diningtable 2.
+    - I carry lettuce 1. I am at diningtable 1. There are apple 1, bread 1, butterknife 2, cup 2, fork 2, knife 2, knife 1, ladle 1, mug 2, mug 1, pan 2, peppershaker 1, spatula 3, tomato 2, and tomato 1 on diningtable 1. I will carry lettuce 1. I will be at diningtable 2.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -193,20 +193,20 @@
     - *id001
     - !!python/tuple
       - open fridge 1
-      - I carry nothing. I am at fridge 1. I will carry nothing. I will be at fridge 1.
+      - I carry nothing. I am at fridge 1. The fridge 1 is closed. I will carry nothing. I will be at fridge 1.
     - !!python/tuple
       - go to diningtable 1
-      - I carry nothing. I am at fridge 1. I will carry nothing. I will be at diningtable 1.
+      - I carry nothing. I am at fridge 1. There are cup 3, egg 2, potato 3 and potato 2 in fridge 1. I will carry nothing. I will be at diningtable 1.
     - !!python/tuple
       - take lettuce 1 from diningtable 1
-      - I carry nothing. I am at diningtable 1. I will carry lettuce 1. I will be at diningtable 1.
+      - I carry nothing. I am at diningtable 1. There are apple 1, bread 1, butterknife 2, cup 2, fork 2, knife 2, knife 1, ladle 1, lettuce 1, mug 2, mug 1, pan 2, peppershaker 1, spatula 3, tomato 2, and tomato 1 on diningtable 1. I will carry lettuce 1. I will be at diningtable 1.
     - !!python/tuple
       - go to sinkbasin 1
-      - I carry lettuce 1. I am at diningtable 1. I will carry lettuce. I will be at sinkbasin 1.
+      - I carry lettuce 1. I am at diningtable 1. There are apple 1, bread 1, butterknife 2, cup 2, fork 2, knife 2, knife 1, ladle 1, mug 2, mug 1, pan 2, peppershaker 1, spatula 3, tomato 2, and tomato 1 on diningtable 1. I will carry lettuce. I will be at sinkbasin 1.
     - *id002
     - !!python/tuple
       - go to diningtable 1
-      - I carry lettuce 1. I am at sinkbasin 1. I will carry lettuce 1. I will be at diningtable 1.
+      - I carry lettuce 1. I am at sinkbasin 1. There are apple 2, ladle 2, spoon 1, and tomato 3 on sinkbasin 1. I will carry lettuce 1. I will be at diningtable 1.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -256,13 +256,13 @@
 : action_dict:
     ? &id004 !!python/tuple
     - go to stoveburner 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at stoveburner 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at stoveburner 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to garbagecan 1
-    - I carry nothing. I am at roo middle. I will carry nothing. I will be at garbagecan 1.
+    - I carry nothing. I am at roo middle. There is nothing on room middle. I will carry nothing. I will be at garbagecan 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -327,7 +327,7 @@
 : action_dict:
     ? &id005 !!python/tuple
     - cool pan 1 with fridge 1
-    - I carry pan 1. I am at fridge 1. I will carry pan 1. I will be at fridge 1.
+    - I carry pan 1. I am at fridge 1. The fridge 1 is closed. I will carry pan 1. I will be at fridge 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
@@ -336,16 +336,16 @@
     - *id004
     - !!python/tuple
       - go to stoveburner 2
-      - I carry nothing. I am at stoveburner 1. I will carry nothing. I will be at stoveburner 2.
+      - I carry nothing. I am at stoveburner 1. There is nothing on stoveburner 1. I will carry nothing. I will be at stoveburner 2.
     - !!python/tuple
       - go to stoveburner 3
-      - I carry nothing. I am at stoveburner 2. I will carry nothing. I will be at stoveburner 3.
+      - I carry nothing. I am at stoveburner 2. There is pot 1 on stoveburner 2. I will carry nothing. I will be at stoveburner 3.
     - !!python/tuple
       - take pan 1 from stoveburner 3
-      - I carry nothing. I am at stoveburner 3. I will carry pan 1. I will be at stoveburner 3.
+      - I carry nothing. I am at stoveburner 3. There is pan 1 on stoveburner 3. I will carry pan 1. I will be at stoveburner 3.
     - !!python/tuple
       - go to fridge 1
-      - I carry pan 1. I am at stoveburner 3. I will carry pan 1. I will be at fridge 1.
+      - I carry pan 1. I am at stoveburner 3. There is nothing on stoveburner 3. I will carry pan 1. I will be at fridge 1.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -409,13 +409,13 @@
 : action_dict:
     ? &id006 !!python/tuple
     - put pan 1 in/on stoveburner 1
-    - I carry pan 1. I am at stoveburner 1. I will carry nothing. I will be at stoveburner 1.
+    - I carry pan 1. I am at stoveburner 1. There is nothing on stoveburner 1. I will carry nothing. I will be at stoveburner 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to drawer 4
-    - I carry pan 1. I am at stoveburner 1. I will carry pan 1. I will be at drawer 4.
+    - I carry pan 1. I am at stoveburner 1. There is nothing on stoveburner 1. I will carry pan 1. I will be at drawer 4.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -424,20 +424,20 @@
     - *id004
     - !!python/tuple
       - go to stoveburner 2
-      - I carry nothing. I am at stoveburner 1. I will carry nothing. I will be at stoveburner 2.
+      - I carry nothing. I am at stoveburner 1. There is nothing on stoveburner 1. I will carry nothing. I will be at stoveburner 2.
     - !!python/tuple
       - go to stoveburner 3
-      - I carry nothing. I am at stoveburner 2. I will carry nothing. I will be at stoveburner 3.
+      - I carry nothing. I am at stoveburner 2. There is pot 1 on stoveburner 2. I will carry nothing. I will be at stoveburner 3.
     - !!python/tuple
       - take pan 1 from stoveburner 3
-      - I carry nothing. I am at stoveburner 3. I will carry pan 1. I will be at stoveburner 3.
+      - I carry nothing. I am at stoveburner 3. There is pan 1 on stoveburner 3. I will carry pan 1. I will be at stoveburner 3.
     - !!python/tuple
       - go to fridge 1
-      - I carry pan 1. I am at stoveburner 3. I will carry pan 1. I will be at fridge 1.
+      - I carry pan 1. I am at stoveburner 3. There is nothing on stoveburner 3. I will carry pan 1. I will be at fridge 1.
     - *id005
     - !!python/tuple
       - go to stoveburner 1
-      - I carry pan 1. I am at fridge 1. I will carry pan 1. I will be at stoveburner 1.
+      - I carry pan 1. I am at fridge 1. The fridge 1 is closed. I will carry pan 1. I will be at stoveburner 1.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -466,13 +466,13 @@
 : action_dict:
     ? &id007 !!python/tuple
     - go to drawer 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at drawer 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at drawer 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to safe 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at safe 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at safe 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -528,13 +528,13 @@
 : action_dict:
     ? &id008 !!python/tuple
     - go to sidetable 2
-    - I carry bowl 1. I am at shelf 2. I will carry bowl 1. I will be at sidetable 2.
+    - I carry bowl 1. I am at shelf 2. There is nothing on shelf 2. I will carry bowl 1. I will be at sidetable 2.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to sidetable 1
-    - I carry bowl 1. I am at shelf 2. I will carry bowl 1. I will be at sidetable 1.
+    - I carry bowl 1. I am at shelf 2. There is nothing on shelf 2. I will carry bowl 1. I will be at sidetable 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -543,34 +543,34 @@
     - *id007
     - !!python/tuple
       - go to drawer 2
-      - I carry nothing. I am at drawer 1. I will carry nothing. I will be at drawer 2.
+      - I carry nothing. I am at drawer 1. There is nothing on drawer 1. I will carry nothing. I will be at drawer 2.
     - !!python/tuple
       - open drawer 2
-      - I carry nothing. I am at drawer 2. I will carry nothing. I will be at drawer 2.
+      - I carry nothing. I am at drawer 2. The drawer 2 is closed. I will carry nothing. I will be at drawer 2.
     - !!python/tuple
       - go to drawer 3
-      - I carry nothing. I am at drawer 2. I will carry nothing. I will be at drawer 3.
+      - I carry nothing. I am at drawer 2. There is nothing in drawer 2. I will carry nothing. I will be at drawer 3.
     - !!python/tuple
       - open drawer 3
-      - I carry nothing. I am at drawer 3. I will carry nothing. I will be at drawer 3.
+      - I carry nothing. I am at drawer 3. The drawer 3 is closed. I will carry nothing. I will be at drawer 3.
     - !!python/tuple
       - go to desk 1
-      - I carry nothing. I am at drawer 3. I will carry nothing. I will be at desk 1.
+      - I carry nothing. I am at drawer 3. There is nothing in drawer 3. I will carry nothing. I will be at desk 1.
     - !!python/tuple
       - go to sidetable 1
-      - I carry nothing. I am at desk 1. I will carry nothing. I will be at sidetable 1.
+      - I carry nothing. I am at desk 1. There are alarmclock 2, book 1, cellphone 1, keychain 1, laptop 2, laptop 1, and pen 3 on desk 1. I will carry nothing. I will be at sidetable 1.
     - !!python/tuple
       - go to sidetable 2
-      - I carry nothing. I am at sidetable 1. I will carry nothing. I will be at sidetable 2.
+      - I carry nothing. I am at sidetable 1. There are cd 1, pen 1, and pencil 1 on sidetable 1. I will carry nothing. I will be at sidetable 2.
     - !!python/tuple
       - go to shelf 1
-      - I carry nothing. I am at sidetable 2. I will carry nothing. I will be at shelf 1.
+      - I carry nothing. I am at sidetable 2. There are alarmclock 1, desklamp 1, and pen 2 on sidetable 2. I will carry nothing. I will be at shelf 1.
     - !!python/tuple
       - go to shelf 2
-      - I carry nothing. I am at shelf 1. I will carry nothing. I will be at shelf 2.
+      - I carry nothing. I am at shelf 1. There is nothing on shelf 1. I will carry nothing. I will be at shelf 2.
     - !!python/tuple
       - take bowl 1 from shelf 2
-      - I carry nothing. I am at shelf 2. I will carry bowl 1. I will be at shelf 2.
+      - I carry nothing. I am at shelf 2. There is bowl 1 on shelf 2. I will carry bowl 1. I will be at shelf 2.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -624,13 +624,13 @@
 : action_dict:
     ? &id009 !!python/tuple
     - use desklamp 1
-    - I carry bowl 1. I am at sidetable 2. I will carry bowl 1. I will be at sidetable 2.
+    - I carry bowl 1. I am at sidetable 2. There are alarmclock 1, desklamp 1, and pen 2 on sidetable 2. I will carry bowl 1. I will be at sidetable 2.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to sidetable 1
-    - I carry bowl 1. I am at sidetable 2. I will carry bowl 1. I will be at sidetable 1.
+    - I carry bowl 1. I am at sidetable 2. There are alarmclock 1, desklamp 1, and pen 2 on sidetable 2. I will carry bowl 1. I will be at sidetable 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -639,34 +639,34 @@
     - *id007
     - !!python/tuple
       - go to drawer 2
-      - I carry nothing. I am at drawer 1. I will carry nothing. I will be at drawer 2.
+      - I carry nothing. I am at drawer 1. There is nothing on drawer 1. I will carry nothing. I will be at drawer 2.
     - !!python/tuple
       - open drawer 2
-      - I carry nothing. I am at drawer 2. I will carry nothing. I will be at drawer 2.
+      - I carry nothing. I am at drawer 2. The drawer 2 is closed. I will carry nothing. I will be at drawer 2.
     - !!python/tuple
       - go to drawer 3
-      - I carry nothing. I am at drawer 2. I will carry nothing. I will be at drawer 3.
+      - I carry nothing. I am at drawer 2. There is nothing in drawer 2. I will carry nothing. I will be at drawer 3.
     - !!python/tuple
       - open drawer 3
-      - I carry nothing. I am at drawer 3. I will carry nothing. I will be at drawer 3.
+      - I carry nothing. I am at drawer 3. The drawer 3 is closed. I will carry nothing. I will be at drawer 3.
     - !!python/tuple
       - go to desk 1
-      - I carry nothing. I am at drawer 3. I will carry nothing. I will be at desk 1.
+      - I carry nothing. I am at drawer 3. There is nothing in drawer 3. I will carry nothing. I will be at desk 1.
     - !!python/tuple
       - go to sidetable 1
-      - I carry nothing. I am at desk 1. I will carry nothing. I will be at sidetable 1.
+      - I carry nothing. I am at desk 1. There are alarmclock 2, book 1, cellphone 1, keychain 1, laptop 2, laptop 1, and pen 3 on desk 1. I will carry nothing. I will be at sidetable 1.
     - !!python/tuple
       - go to sidetable 2
-      - I carry nothing. I am at sidetable 1. I will carry nothing. I will be at sidetable 2.
+      - I carry nothing. I am at sidetable 1. There are cd 1, pen 1, and pencil 1 on sidetable 1. I will carry nothing. I will be at sidetable 2.
     - !!python/tuple
       - go to shelf 1
-      - I carry nothing. I am at sidetable 2. I will carry nothing. I will be at shelf 1.
+      - I carry nothing. I am at sidetable 2. There are alarmclock 1, desklamp 1, and pen 2 on sidetable 2. I will carry nothing. I will be at shelf 1.
     - !!python/tuple
       - go to shelf 2
-      - I carry nothing. I am at shelf 1. I will carry nothing. I will be at shelf 2.
+      - I carry nothing. I am at shelf 1. There is nothing on shelf 1. I will carry nothing. I will be at shelf 2.
     - !!python/tuple
       - take bowl 1 from shelf 2
-      - I carry nothing. I am at shelf 2. I will carry bowl 1. I will be at shelf 2.
+      - I carry nothing. I am at shelf 2. There is bowl 1 on shelf 2. I will carry bowl 1. I will be at shelf 2.
     - *id008
     last_reward: 0.0
     number: 1
@@ -712,13 +712,13 @@
 : action_dict:
     ? &id010 !!python/tuple
     - go to fridge 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at fridge 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at fridge 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to coffeemachine 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at coffeemachine 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at coffeemachine 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -783,7 +783,7 @@
 : action_dict:
     ? &id011 !!python/tuple
     - heat egg 2 with microwave 1
-    - I carry egg 2. I am at microwave 1. I will carry egg 2. I will be at microwave 1.
+    - I carry egg 2. I am at microwave 1. The microwave 1 is closed. I will carry egg 2. I will be at microwave 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
@@ -792,22 +792,22 @@
     - *id010
     - !!python/tuple
       - open fridge 1
-      - I carry nothing. I am at fridge 1. I will carry nothing. I will be at fridge 1.
+      - I carry nothing. I am at fridge 1. The fridge 1 is closed. I will carry nothing. I will be at fridge 1.
     - !!python/tuple
       - go to countertop 1
-      - I carry nothing. I am at fridge 1. I will carry nothing. I will be at countertop 1.
+      - I carry nothing. I am at fridge 1. There are lettuce 2, mug 2, and potato 3 in fridge 1. I will carry nothing. I will be at countertop 1.
     - !!python/tuple
       - go to countertop 2
-      - I carry nothing. I am at countertop 1. I will carry nothing. I will be at countertop 2.
+      - I carry nothing. I am at countertop 1. There are bread 1, fork 1, and saltshaker 1 on countertop 1. I will carry nothing. I will be at countertop 2.
     - !!python/tuple
       - go to countertop 3
-      - I carry nothing. I am at countertop 2. I will carry nothing. I will be at countertop 3.
+      - I carry nothing. I am at countertop 2. There is nothing on countertop 2. I will carry nothing. I will be at countertop 3.
     - !!python/tuple
       - take egg 2 from countertop 3
-      - I carry nothing. I am at countertop 3. I will carry egg 2. I will be at countertop 3.
+      - I carry nothing. I am at countertop 3. There are bowl 1, butterknife 1, egg 2, kettle 2, plate 1, sink 1, and spatula 2 on countertop 3. I will carry egg 2. I will be at countertop 3.
     - !!python/tuple
       - go to microwave 1
-      - I carry egg 2. I am at microwave 1. I will carry egg 2. I will be at microwave 1.
+      - I carry egg 2. I am at countertop 3. There are bowl 1, butterknife 1, kettle 2, plate 1, sink 1, and spatula 2 on countertop 3. I will carry egg 2. I will be at microwave 1.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -870,13 +870,13 @@
 : action_dict:
     ? &id012 !!python/tuple
     - put egg 2 in/on diningtable 1
-    - I carry egg 2. I am at diningtable 1. I will carry nothing. I will be at diningtable 1.
+    - I carry egg 2. I am at diningtable 1. There are apple 2, bread 3, egg 1, kettle 1, knife 1, mug 1, papertowelroll 1, peppershaker 2, potato 1, soapbottle 1, and spatula 1 on diningtable 1. I will carry nothing. I will be at diningtable 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to coutertop 3
-    - I carry egg 2. I am at diningtable 1. I will carry egg 2. I will be at countertop 3.
+    - I carry egg 2. I am at diningtable 1. There are apple 2, bread 3, egg 1, kettle 1, knife 1, mug 1, papertowelroll 1, peppershaker 2, potato 1, soapbottle 1, and spatula 1 on diningtable 1. I will carry egg 2. I will be at countertop 3.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -885,26 +885,26 @@
     - *id010
     - !!python/tuple
       - open fridge 1
-      - I carry nothing. I am at fridge 1. I will carry nothing. I will be at fridge 1.
+      - I carry nothing. I am at fridge 1. The fridge 1 is closed. I will carry nothing. I will be at fridge 1.
     - !!python/tuple
       - go to countertop 1
-      - I carry nothing. I am at fridge 1. I will carry nothing. I will be at countertop 1.
+      - I carry nothing. I am at fridge 1. There are lettuce 2, mug 2, and potato 3 in fridge 1. I will carry nothing. I will be at countertop 1.
     - !!python/tuple
       - go to countertop 2
-      - I carry nothing. I am at countertop 1. I will carry nothing. I will be at countertop 2.
+      - I carry nothing. I am at countertop 1. There are bread 1, fork 1, and saltshaker 1 on countertop 1. I will carry nothing. I will be at countertop 2.
     - !!python/tuple
       - go to countertop 3
-      - I carry nothing. I am at countertop 2. I will carry nothing. I will be at countertop 3.
+      - I carry nothing. I am at countertop 2. There is nothing on countertop 2. I will carry nothing. I will be at countertop 3.
     - !!python/tuple
       - take egg 2 from countertop 3
-      - I carry nothing. I am at countertop 3. I will carry egg 2. I will be at countertop 3.
+      - I carry nothing. I am at countertop 3. There are bowl 1, butterknife 1, egg 2, kettle 2, plate 1, sink 1, and spatula 2 on countertop 3. I will carry egg 2. I will be at countertop 3.
     - !!python/tuple
       - go to microwave 1
-      - I carry egg 2. I am at microwave 1. I will carry egg 2. I will be at microwave 1.
+      - I carry egg 2. I am at countertop 3. There are bowl 1, butterknife 1, kettle 2, plate 1, sink 1, and spatula 2 on countertop 3. I will carry egg 2. I will be at microwave 1.
     - *id011
     - !!python/tuple
       - go to diningtable 1
-      - I carry egg 2. I am at microwave 1. I will carry egg 2. I will be at diningtable 1.
+      - I carry egg 2. I am at microwave 1. The microwave 1 is closed. I will carry egg 2. I will be at diningtable 1.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -932,13 +932,13 @@
 : action_dict:
     ? &id013 !!python/tuple
     - go to cabinet 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at cabinet 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at cabinet 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to toiletpaperhanger 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at toiletpaperhanger 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at toiletpaperhanger 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -978,13 +978,13 @@
 : action_dict:
     ? &id014 !!python/tuple
     - take spraybottle 2 from cabinet 2
-    - I carry nothing. I am at cabinet 2. I will carry spraybottle 2. I will be at cabinet 2.
+    - I carry nothing. I am at cabinet 2. There are candle 1 and spraybottle 2 on cabinet 2. I will carry spraybottle 2. I will be at cabinet 2.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to cabinet 1
-    - I carry nothing. I am at cabinet 2. I will carry nothing. I will be at cabinet 1.
+    - I carry nothing. I am at cabinet 2. There are candle 1 and spraybottle 2 on cabinet 2. I will carry nothing. I will be at cabinet 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -993,10 +993,10 @@
     - *id013
     - !!python/tuple
       - go to cabinet 2
-      - I carry nothing. I am at cabinet 1. I will carry nothing. I will be at cabinet 2.
+      - I carry nothing. I am at cabinet 1. There are cloth 1, soapbar 1, and soapbottle 1 on cabinet 1. I will carry nothing. I will be at cabinet 2.
     - !!python/tuple
       - open cabinet 2
-      - I carry nothing. I am at cabinet 2. I will carry nothing. I will be at cabinet 2.
+      - I carry nothing. I am at cabinet 2. The cabinet 2 is closed. I will carry nothing. I will be at cabinet 2.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -1034,13 +1034,13 @@
 : action_dict:
     ? &id015 !!python/tuple
     - put spraybottle 2 in/on toilet 1
-    - I carry spraybottle 2. I am at toilet 1. I will carry nothing. I will be at toilet 1.
+    - I carry spraybottle 2. I am at toilet 1. There is soapbottle 2 on toilet 1. I will carry nothing. I will be at toilet 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to sinkbasin 1
-    - I carry spraybottle 2. I am at toilet 1. I will carry spraybottle 2. I will be at sinkbasin 1.
+    - I carry spraybottle 2. I am at toilet 1. There is soapbottle 2 on toilet 1. I will carry spraybottle 2. I will be at sinkbasin 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -1049,14 +1049,14 @@
     - *id013
     - !!python/tuple
       - go to cabinet 2
-      - I carry nothing. I am at cabinet 1. I will carry nothing. I will be at cabinet 2.
+      - I carry nothing. I am at cabinet 1. There are cloth 1, soapbar 1, and soapbottle 1 on cabinet 1. I will carry nothing. I will be at cabinet 2.
     - !!python/tuple
       - open cabinet 2
-      - I carry nothing. I am at cabinet 2. I will carry nothing. I will be at cabinet 2.
+      - I carry nothing. I am at cabinet 2. The cabinet 2 is closed. I will carry nothing. I will be at cabinet 2.
     - *id014
     - !!python/tuple
       - go to toilet 1
-      - I carry spraybottle 2. I am at cabinet 2. I will carry spraybottle 2. I will be at toilet 1.
+      - I carry spraybottle 2. I am at cabinet 2. There is candle 1 on cabinet 2. I will carry spraybottle 2. I will be at toilet 1.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -1082,13 +1082,13 @@
 : action_dict:
     ? &id016 !!python/tuple
     - go to drawer 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at drawer 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at drawer 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to laundryhamper 1
-    - I carry nothing. I am at room middle. I will carry nothing. I will be at laundryhamper 1.
+    - I carry nothing. I am at room middle. There is nothing on room middle. I will carry nothing. I will be at laundryhamper 1.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -1133,7 +1133,7 @@
 : action_dict:
     ? &id017 !!python/tuple
     - put creditcard 2 in/on dresser 1
-    - I carry creditcard 2. I am at dresser 1. I will carry nothing. I will be at dresser 1.
+    - I carry creditcard 2. I am at dresser 1. There are mug 1 and television 1 on dresser 1. I will carry nothing. I will be at dresser 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
@@ -1142,22 +1142,22 @@
     - *id016
     - !!python/tuple
       - open drawer 1
-      - I carry nothing. I am at drawer 1. I will carry nothing. I will be at drawer 1.
+      - I carry nothing. I am at drawer 1. The drawer 1 is closed. I will carry nothing. I will be at drawer 1.
     - !!python/tuple
       - go to drawer 2
-      - I carry nothing. I am at drawer 1. I will carry nothing. I will be at drawer 2.
+      - I carry nothing. I am at drawer 1. There are boo1, cd 1, and pen 1 in drawer 1. I will carry nothing. I will be at drawer 2.
     - !!python/tuple
       - open drawer 2
-      - I carry nothing. I am at drawer 2. I will carry nothing. I will be at drawer 2.
+      - I carry nothing. I am at drawer 2. The drawer 2 is closed. I will carry nothing. I will be at drawer 2.
     - !!python/tuple
       - go to countertop 1
-      - I carry nothing. I am at drawer 2. I will carry nothing. I will be at countertop 1.
+      - I carry nothing. I am at drawer 2. There is nothing in drawer 2. I will carry nothing. I will be at countertop 1.
     - !!python/tuple
       - take creditcard 2 from countertop 1
-      - I carry nothing. I am at countertop 1. I will carry creditcard 2. I will be at countertop 1.
+      - I carry nothing. I am at countertop 1. There are cellphone 2, creditcard 4, creditcard 3, creditcard 2, mirror 1, pencil 2, and pencil 1 on countertop 1. I will carry creditcard 2. I will be at countertop 1.
     - !!python/tuple
       - go to dresser 1
-      - I carry creditcard 2. I am at countertop 1. I will carry creditcard 2. I will be at dresser 1.
+      - I carry creditcard 2. I am at countertop 1. There are cellphone 2, creditcard 4, creditcard 3, mirror 1, pencil 2, and pencil 1 on countertop 1. I will carry creditcard 2. I will be at dresser 1.
     last_reward: 0.0
     number: 1
     total_reward: 0.0
@@ -1199,13 +1199,13 @@
 : action_dict:
     ? &id018 !!python/tuple
     - go to countertop 1
-    - I carry nothing. I am at dresser 1. I will carry nothing. I will be at countertop 1.
+    - I carry nothing. I am at dresser 1. There are mug 1, television 1, and creditcard 2 on dresser 1. I will carry nothing. I will be at countertop 1.
     : number: 1
       qvalue: 1.0
       reward: 0.0
     ? !!python/tuple
     - go to drawer 2
-    - I carry nothing. I am at dresser 1. I will carry nothing. I will be at dresser 2.
+    - I carry nothing. I am at dresser 1. There are mug 1, television 1, and creditcard 2 on dresser 1. I will carry nothing. I will be at dresser 2.
     : number: 1
       qvalue: 0.0
       reward: 0.0
@@ -1214,22 +1214,22 @@
     - *id016
     - !!python/tuple
       - open drawer 1
-      - I carry nothing. I am at drawer 1. I will carry nothing. I will be at drawer 1.
+      - I carry nothing. I am at drawer 1. The drawer 1 is closed. I will carry nothing. I will be at drawer 1.
     - !!python/tuple
       - go to drawer 2
-      - I carry nothing. I am at drawer 1. I will carry nothing. I will be at drawer 2.
+      - I carry nothing. I am at drawer 1. There are boo1, cd 1, and pen 1 in drawer 1. I will carry nothing. I will be at drawer 2.
     - !!python/tuple
       - open drawer 2
-      - I carry nothing. I am at drawer 2. I will carry nothing. I will be at drawer 2.
+      - I carry nothing. I am at drawer 2. The drawer 2 is closed. I will carry nothing. I will be at drawer 2.
     - !!python/tuple
       - go to countertop 1
-      - I carry nothing. I am at drawer 2. I will carry nothing. I will be at countertop 1.
+      - I carry nothing. I am at drawer 2. There is nothing in drawer 2. I will carry nothing. I will be at countertop 1.
     - !!python/tuple
       - take creditcard 2 from countertop 1
-      - I carry nothing. I am at countertop 1. I will carry creditcard 2. I will be at countertop 1.
+      - I carry nothing. I am at countertop 1. There are cellphone 2, creditcard 4, creditcard 3, creditcard 2, mirror 1, pencil 2, and pencil 1 on countertop 1. I will carry creditcard 2. I will be at countertop 1.
     - !!python/tuple
       - go to dresser 1
-      - I carry creditcard 2. I am at countertop 1. I will carry creditcard 2. I will be at dresser 1.
+      - I carry creditcard 2. I am at countertop 1. There are cellphone 2, creditcard 4, creditcard 3, mirror 1, pencil 2, and pencil 1 on countertop 1. I will carry creditcard 2. I will be at dresser 1.
     - *id017
     last_reward: 0.0
     number: 1
