@@ -1,0 +1,31 @@
+---
+Last 5 Actions:
+- search[unisex sandal vinyl acetate size 11 australian]
+Observation: |
+  
+  Instruction:
+  i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars 
+  [Back to Search]
+  Page 1 (Total results: 50)
+  [Next >]
+  [B00499CRNG] 
+  Chung -Shi DUX Premium Unisex Beach Sandals Clog, Color:Navy, crocs größe:EUR 
+  $50.29 to $68.93 
+  [B08JFC6P9M] 
+  Gioberti Unisex Men and Women EVA Sandals 
+  $16.99 
+  [B08BZSGTGX] 
+  Palladium Unisex Outdoorsy Urb U Sandal 
+  $74.47 to $98.46 
+Available Actions:
+- back to search
+- next >
+- b00499crng
+- b08jfc6p9m
+- b08bzsgtgx
+...
+
+Encouraged:
+click[b08jfc6p9m] -> 1.0 b08jfc6p9m is unisex sandal made with vinyl acetate and price lower than 200 dollars. I can check b08jfc6p9m first.
+Discouraged:
+click[b08bzsgtgx] -> 0.0 b08bzsgtgx is not the desired item.

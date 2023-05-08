@@ -288,9 +288,9 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
-    with open(os.path.join(args.prompt_template, "canonical_examplar1.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar_C5.1_A22.txt")) as f:
         canonical1: str = f.read()
-    with open(os.path.join(args.prompt_template, "canonical_examplar2.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar_C5.2_A8.txt")) as f:
         canonical2: str = f.read()
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                , input_template=input_template

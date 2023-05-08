@@ -1,0 +1,17 @@
+---
+Last 5 Actions:
+
+Observations: |
+  
+  WebShop
+  Instruction:
+  i need to find a unisex sandal that’s made with vinyl acetate; i am a size 11 australian, and price lower than 200.00 dollars 
+  [Search]
+Available Actions:
+- search
+...
+
+Encouraged:
+search[unisex sandal vinyl acetate size 11 australian] -> 1.0
+Discouraged:
+click[search] -> 0.0 The search button shouldn't be clicked.

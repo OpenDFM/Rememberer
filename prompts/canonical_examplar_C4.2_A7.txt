@@ -1,0 +1,41 @@
+```
+Task:
+Search an article to learn how to clean utensils.
+Then, access the article "How to Clean Utensils"
+Then, check the reference list
+Last 5 Actions:
+INPUT(2, clean utensils) <img class="search button" alt="Search" id="2" clickable="true">
+CLICK(3) <div id="3" clickable="true">How to Clean Utensils</div>
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="search button" alt="Search" id="1" clickable="true">
+<img alt="More options" id="2" clickable="true">
+<p id="3" clickable="true">Learn why people </p>
+<p id="4" clickable="true">trust wikiHow</p>
+<p id="5" clickable="true">FOOD AND ENTERTAINING</p>
+<p id="6" clickable="false"> »</p>
+<p id="7" clickable="true">KITCHEN UTENSILS</p>
+<p id="8" clickable="true">How to Clean Utensils</p>
+<p id="9" clickable="false">Co-authored by</p>
+<p id="10" clickable="false"> </p>
+<p id="11" clickable="true">Melanie Garcia</p>
+<button id="12" clickable="true">Last Updated: March 19, 2021</button>
+<p id="13" clickable="true">References</p>
+<div id="14" clickable="false">Utensils are quick and easy to clean. Simply wash the utensils with hot water and soap, or use the natural cleaning power of the sun, salt, and lemon if you’re cleaning wooden utensils. If you want to sterilise the utensils, try soaking them in boiling water. Before you know it your utensils will be sparkling clean.</div>
+<div id="15" clickable="false">Method 1 Method 1 of 3: Washing Utensils by Hand</div>
+<div id="16" clickable="false"></div>
+<div id="17" clickable="false"></div>
+<div id="18" clickable="false">1</div>
+<div class="statusBarBackground" id="19" clickable="false"></div>
+Instruction:
+Check the reference list
+Last Reward:
+1.0
+Total Reward:
+2.0
+---
+
+Encouraged:
+CLICK(13) -> 3.0 <p id="13" clickable="true">References</p>
+Discouraged:
+CLICK(7) -> 0.0 <p id="7" clickable="true">KITCHEN UTENSILS</p>
