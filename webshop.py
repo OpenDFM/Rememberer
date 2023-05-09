@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import sys
-sys.path.append("../WebShop")
+sys.path.append("../../../WebShop")
 
 import gym
 import importlib
@@ -332,9 +332,9 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
-    with open(os.path.join(args.prompt_template, "canonical_examplar3_w.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar_wC3.1.txt")) as f:
         canonical1: str = f.read()
-    with open(os.path.join(args.prompt_template, "canonical_examplar4_w.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar_wC3.2.txt")) as f:
         canonical2: str = f.read()
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                , input_template=input_template
