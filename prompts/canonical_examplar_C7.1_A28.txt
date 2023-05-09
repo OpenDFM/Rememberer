@@ -1,0 +1,77 @@
+```
+Task:
+Search an article to learn how to be a good friend to a guy.
+Then, access the article "How to Be a Good Friend to a Guy"
+Then, check the author page of Trudi Griffin, LPC, MS.
+Then, access the article "How to Overcome Fear"
+Last 5 Actions:
+INPUT(2, be a good friend to a guy) <img class="search button" alt="Search" id="2" clickable="true">
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<input class="search src text" value="Be good friend to guy " type="text" id="1" clickable="true">
+<img class="search close btn" alt="Clear query" id="2" clickable="true">
+<div id="3" clickable="true">How to Be a Good Friend to a Guy</div>
+<div id="4" clickable="true">• </div>
+<p id="5" clickable="true">562,039 views</p>
+<div id="6" clickable="true">• </div>
+<p id="7" clickable="true">Updated</p>
+<p id="8" clickable="true">2 years ago</p>
+<div id="9" clickable="true">• </div>
+<p id="10" clickable="true">Expert Co-Authored</p>
+<div id="11" clickable="true">How to Be Good Friends With a Girl (Guys)</div>
+<div id="12" clickable="true">• </div>
+<p id="13" clickable="true">646,594 views</p>
+<div id="14" clickable="true">• </div>
+<p id="15" clickable="true">Updated</p>
+<p id="16" clickable="true">11 months ago</p>
+<div id="17" clickable="true">• </div>
+<p id="18" clickable="true">Expert Co-Authored</p>
+<div id="19" clickable="true">How to Be Friends with Guys</div>
+<div id="20" clickable="true">• </div>
+<p id="21" clickable="true">564,672 views</p>
+<div id="22" clickable="true">• </div>
+<p id="23" clickable="true">Updated</p>
+<p id="24" clickable="true">9 months ago</p>
+<div id="25" clickable="true">How to Be a Good Friend</div>
+<div id="26" clickable="true">• </div>
+<p id="27" clickable="true">2,480,373 views</p>
+<div id="28" clickable="true">• </div>
+<p id="29" clickable="true">Updated</p>
+<p id="30" clickable="true">9 months ago</p>
+<div id="31" clickable="true">• </div>
+<p id="32" clickable="true">Expert Co-Authored</p>
+<div id="33" clickable="true">How to Become Friends With a Guy</div>
+<div id="34" clickable="true">• </div>
+<p id="35" clickable="true">282,162 views</p>
+<div id="36" clickable="true">• </div>
+<p id="37" clickable="true">Updated</p>
+<p id="38" clickable="true">1 year ago</p>
+<div id="39" clickable="true">• </div>
+<p id="40" clickable="true">Expert Co-Authored</p>
+<div id="41" clickable="true">How to Be a Good Prom Date (for Guys)</div>
+<div id="42" clickable="true">• </div>
+<p id="43" clickable="true">372,578 views</p>
+<div id="44" clickable="true">• </div>
+<p id="45" clickable="true">Updated</p>
+<p id="46" clickable="true">6 months ago</p>
+<div id="47" clickable="true">• </div>
+<p id="48" clickable="true">Expert Co-Authored</p>
+<div id="49" clickable="true">How to Make a Guy Feel Good</div>
+<div id="50" clickable="true">• </div>
+<p id="51" clickable="true">177,345 views</p>
+<div id="52" clickable="true">• </div>
+<p id="53" clickable="true">Updated</p>
+<p id="54" clickable="true">1 year ago</p>
+<div class="statusBarBackground" id="55" clickable="false"></div>
+Instruction:
+Access the article "How to Be a Good Friend to a Guy"
+Last Reward:
+1.0
+Total Reward:
+1.0
+---
+
+Encouraged:
+CLICK(3) -> 3.0 <div id="3" clickable="true">How to Be a Good Friend to a Guy</div>
+Discouraged:
+CLICK(11) -> 0.0 <div id="11" clickable="true">How to Be Good Friends With a Girl (Guys)</div>

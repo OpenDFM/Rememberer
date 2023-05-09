@@ -1,0 +1,26 @@
+```
+Task:
+Search an article to learn how to buy stocks (for beginners).
+Then, access the article "How to Buy Stocks (for Beginners)"
+Then, access the page of category Financial Stocks
+Then, access the article "How to Research a Stock"
+Last 5 Actions:
+
+Screen:
+<button alt="Open navigation drawer" id="0" clickable="true"></button>
+<img class="wikihow toolbar logo" id="1" clickable="false">
+<img class="search button" alt="Search" id="2" clickable="true">
+<div class="webView" id="3" clickable="true"></div>
+<div class="statusBarBackground" id="4" clickable="false"></div>
+Instruction:
+
+Last Reward:
+0.0
+Total Reward:
+0.0
+---
+
+Encouraged:
+INPUT(2, buy stocks (for beginners)) -> 4.0 <img class="search button" alt="Search" id="2" clickable="true">
+Discouraged:
+CLICK(1) -> 0.0 <img class="wikihow toolbar logo" id="1" clickable="false">

@@ -1,0 +1,95 @@
+# A28, A21
+? !!python/tuple
+- "<button alt=\"Open navigation drawer\" id=\"0\" clickable=\"true\"></button>\n\
+  <input class=\"search src text\" value=\"Be good friend to guy \" type=\"text\"\
+  \ id=\"1\" clickable=\"true\">\n<img class=\"search close btn\" alt=\"Clear query\"\
+  \ id=\"2\" clickable=\"true\">\n<div id=\"3\" clickable=\"true\">How to Be a Good\
+  \ Friend to a Guy</div>\n<div id=\"4\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  5\" clickable=\"true\">562,039 views</p>\n<div id=\"6\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"7\" clickable=\"true\">Updated</p>\n<p id=\"8\" clickable=\"true\"\
+  >2 years ago</p>\n<div id=\"9\" clickable=\"true\">\u2022 </div>\n<p id=\"10\" clickable=\"\
+  true\">Expert Co-Authored</p>\n<div id=\"11\" clickable=\"true\">How to Be Good\
+  \ Friends With a Girl (Guys)</div>\n<div id=\"12\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"13\" clickable=\"true\">646,594 views</p>\n<div id=\"14\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"15\" clickable=\"true\">Updated</p>\n<p id=\"16\" clickable=\"\
+  true\">11 months ago</p>\n<div id=\"17\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  18\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"19\" clickable=\"true\"\
+  >How to Be Friends with Guys</div>\n<div id=\"20\" clickable=\"true\">\u2022 </div>\n\
+  <p id=\"21\" clickable=\"true\">564,672 views</p>\n<div id=\"22\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"23\" clickable=\"true\">Updated</p>\n<p id=\"24\" clickable=\"\
+  true\">9 months ago</p>\n<div id=\"25\" clickable=\"true\">How to Be a Good Friend</div>\n\
+  <div id=\"26\" clickable=\"true\">\u2022 </div>\n<p id=\"27\" clickable=\"true\"\
+  >2,480,373 views</p>\n<div id=\"28\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  29\" clickable=\"true\">Updated</p>\n<p id=\"30\" clickable=\"true\">9 months ago</p>\n\
+  <div id=\"31\" clickable=\"true\">\u2022 </div>\n<p id=\"32\" clickable=\"true\"\
+  >Expert Co-Authored</p>\n<div id=\"33\" clickable=\"true\">How to Become Friends\
+  \ With a Guy</div>\n<div id=\"34\" clickable=\"true\">\u2022 </div>\n<p id=\"35\"\
+  \ clickable=\"true\">282,162 views</p>\n<div id=\"36\" clickable=\"true\">\u2022\
+  \ </div>\n<p id=\"37\" clickable=\"true\">Updated</p>\n<p id=\"38\" clickable=\"\
+  true\">1 year ago</p>\n<div id=\"39\" clickable=\"true\">\u2022 </div>\n<p id=\"\
+  40\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"41\" clickable=\"true\"\
+  >How to Be a Good Prom Date (for Guys)</div>\n<div id=\"42\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"43\" clickable=\"true\">372,578 views</p>\n<div id=\"44\"\
+  \ clickable=\"true\">\u2022 </div>\n<p id=\"45\" clickable=\"true\">Updated</p>\n\
+  <p id=\"46\" clickable=\"true\">6 months ago</p>\n<div id=\"47\" clickable=\"true\"\
+  >\u2022 </div>\n<p id=\"48\" clickable=\"true\">Expert Co-Authored</p>\n<div id=\"\
+  49\" clickable=\"true\">How to Make a Guy Feel Good</div>\n<div id=\"50\" clickable=\"\
+  true\">\u2022 </div>\n<p id=\"51\" clickable=\"true\">177,345 views</p>\n<div id=\"\
+  52\" clickable=\"true\">\u2022 </div>\n<p id=\"53\" clickable=\"true\">Updated</p>\n\
+  <p id=\"54\" clickable=\"true\">1 year ago</p>\n<div class=\"statusBarBackground\"\
+  \ id=\"55\" clickable=\"false\"></div>"
+- 'Search an article to learn how to be a good friend to a guy.
+
+  Then, access the article "How to Be a Good Friend to a Guy"
+
+  Then, check the author page of Trudi Griffin, LPC, MS.
+
+  Then, access the article "How to Overcome Fear"'
+- Access the article "How to Be a Good Friend to a Guy"
+: action_dict:
+    ? !!python/tuple
+    - CLICK(3)
+    - <div id="3" clickable="true">How to Be a Good Friend to a Guy</div>
+    : number: 1
+      qvalue: 3.0
+      reward: 1.0
+  other_info:
+    action_history:
+    - !!python/tuple
+      - INPUT(2, be a good friend to a guy)
+      - <img class="search button" alt="Search" id="2" clickable="true">
+    last_reward: 1.0
+    number: 1
+    total_reward: 1.0
+  id: 0
+? !!python/tuple
+- '<button alt="Open navigation drawer" id="0" clickable="true"></button>
+
+  <img class="wikihow toolbar logo" id="1" clickable="false">
+
+  <img class="search button" alt="Search" id="2" clickable="true">
+
+  <div class="webView" id="3" clickable="true"></div>
+
+  <div class="statusBarBackground" id="4" clickable="false"></div>'
+- 'Search an article to learn how to buy stocks (for beginners).
+
+  Then, access the article "How to Buy Stocks (for Beginners)"
+
+  Then, access the page of category Financial Stocks
+
+  Then, access the article "How to Research a Stock"'
+- ''
+: action_dict:
+    ? !!python/tuple
+    - INPUT(2, buy stocks (for beginners))
+    - <img class="search button" alt="Search" id="2" clickable="true">
+    : number: 1
+      qvalue: 4.0
+      reward: 1.0
+  other_info:
+    action_history: []
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 1

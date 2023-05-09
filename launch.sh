@@ -8,8 +8,8 @@ python main.py --log-dir logs/\
 			   --task-path ../../../android_env/apps/wikihow/templates.miniout.microbuffer.valset\
 			   --avd-name Pixel_2_API_30_ga_x64_1\
 			   --tokenizer-path weights/vilt-b32-mlm-tiny-tkn\
-			   --load-replay history-pools/init_pool6.q.yaml\
-			   --save-replay history-pools/init_pool6.qu."$date_str".%d.yaml\
+			   --load-replay history-pools/init_pool7.qu.2023-05-09T10:44:19.2.yaml\
+			   --save-replay history-pools/init_pool7.qu."$date_str".%d.yaml\
 			   --item-capacity 500\
 			   --action-capacity 10\
 			   --matcher lcs+inspat\
@@ -18,6 +18,6 @@ python main.py --log-dir logs/\
 			   --max-tokens 100\
 			   --stop "Discouraged"\
 			   --request-timeout 10.\
-			   --train\
+			   --static\
 			   --starts-from 0\
 			   --epochs 3
