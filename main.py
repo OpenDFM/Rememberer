@@ -175,7 +175,7 @@ def main():
     parser.add_argument("--save-replay", type=str)
     parser.add_argument("--item-capacity", type=int)
     parser.add_argument("--action-capacity", type=int)
-    parser.add_argument("--matcher", default="lcs", type=str, choices=["lcs", "lcs+inspat"])
+    parser.add_argument("--matcher", default="lcs", type=str, choices=["lcs", "lcs+inspat", "inspat"])
     parser.add_argument("--gamma", default=1., type=float)
     parser.add_argument("--step-penalty", default=0., type=float)
     parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
@@ -264,6 +264,7 @@ def main():
     #  Build Agent and Environment {{{ # 
     matcher_functions: Dict[str, history.MatcherConstructor[agent.Key]]\
             = { "lcs": history.LCSNodeMatcher
+              , "inspat": history.InsPatMatcher
               , "lcs+inspat": history.LambdaMatcherConstructor( [ history.LCSNodeMatcher
                                                                 , history.InsPatMatcher
                                                                 ]
