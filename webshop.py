@@ -209,6 +209,8 @@ def main():
                                  , "pgpat+iprel+insrel"
                                  , "pgpat+insrel"
                                  , "9pgpat1insrel"
+                                 , "pgpat"
+                                 , "insrel"
                                  ]
                        )
     parser.add_argument("--gamma", default=1., type=float)
@@ -227,6 +229,7 @@ def main():
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--speech", action="store_true")
+    parser.add_argument("--norandom", action="store_true")
 
     parser.add_argument("--starts-from", default=0, type=int)
     parser.add_argument("--epochs", default=3, type=int)
@@ -313,6 +316,10 @@ def main():
                                                                    ]
                                                                  , [0.9, 0.1]
                                                                  ).get_lambda_matcher
+              , "pgpat": history.PagePatMatcher
+              , "insrel": functools.partial( history.DenseInsMatcher
+                                           , transformer=sentence_transformer
+                                           )
               }
     history_replay: history.HistoryReplay[webshop_agent.Key, webshop_agent.Action]\
             = history.HistoryReplay( args.item_capacity
@@ -361,6 +368,7 @@ def main():
                                    , train=args.train
                                    , with_speech=args.speech
                                    , env_mode=args.observation_mode
+                                   , norandom=args.norandom
                                    )
     #model = webshop_agent.ManualAgent(args.observation_mode)
 

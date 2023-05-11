@@ -142,6 +142,7 @@ class AutoAgent( Agent
                 , train: bool = True
                 , with_speech: bool = False
                 , env_mode: str = "text_rich"
+                , norandom: bool = False
                 ):
         #  method __init__ {{{ # 
         super(AutoAgent, self).__init__(env_mode)
@@ -166,6 +167,7 @@ class AutoAgent( Agent
         super(agent_protos.OpenAIClient, self).__init__( history_replay
                                                        , train
                                                        , self._tokenizer
+                                                       , norandom
                                                        )
 
         self._static: bool = static
