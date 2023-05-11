@@ -11,6 +11,6 @@ with open("llmcases/debug-20230420@191814.log.api_version.-1") as f:
 
 completion = openai.Completion.create( model="text-davinci-003"
                                      , prompt=prompt
-                                     , request_timeout=5.
+                                     , request_timeout=20.
                                      )
 print(completion.choices)

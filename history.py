@@ -809,7 +809,8 @@ class HistoryReplay(Generic[Key, Action]):
         self._total_reward += reward
         self._total_reward_buffer.append(self._total_reward)
 
-        if self._observation_buffer.maxlen is not None\
+        if not last_step\
+                and self._observation_buffer.maxlen is not None\
                 and len(self._observation_buffer)==self._observation_buffer.maxlen:
 
             step = self._observation_buffer[0]
