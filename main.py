@@ -190,7 +190,6 @@ def main():
     parser.add_argument("--static", action="store_true")
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
-    parser.add_argument("--speech", action="store_true")
     parser.add_argument("--norandom", action="store_true")
 
     parser.add_argument("--starts-from", default=0, type=int)
@@ -289,9 +288,9 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
-    with open(os.path.join(args.prompt_template, "canonical_examplar_C7.1_A28.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar_E0.1.txt")) as f:
         canonical1: str = f.read()
-    with open(os.path.join(args.prompt_template, "canonical_examplar_C7.2_A21.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar_E0.2.txt")) as f:
         canonical2: str = f.read()
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                , input_template=input_template
@@ -301,10 +300,7 @@ def main():
                                                )
     with open(args.config) as f:
         openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
-    if args.speech:
-        api_key: str = openaiconfig["spc_token"]
-    else:
-        api_key: str = openaiconfig["api_key"]
+    api_key: str = openaiconfig["api_key"]
     model = agent.AutoAgent( history_replay=history_replay
                            , prompt_templates=template_group
                            , api_key=api_key
@@ -315,7 +311,6 @@ def main():
                            , static=args.static
                            , manual=args.manual
                            , train=args.train
-                           , with_speech=args.speech
                            , norandom=args.norandom
                            )
     #model = agent.ManualAgent()

@@ -29,6 +29,10 @@ class TemplateGroup(NamedTuple):
     canonical1: str
     canonical2: str
 
+class Result(NamedTuple):
+    text: str
+    finish_reason: str
+
 R = TypeVar("Result")
 A = TypeVar("Action")
 
@@ -73,7 +77,6 @@ class OpenAIClient(abc.ABC, Generic[A]):
                 , stop: Optional[str] = None
                 , request_timeout: float = 5.
                 , request_pause: float = 3.1
-                , with_speech: bool = False
                 , manual: bool = False
                 ):
         #  method __init__ {{{ # 
@@ -90,8 +93,6 @@ class OpenAIClient(abc.ABC, Generic[A]):
 
             request_timeout (float): waiting time for the client to timeout
             request_pause (float): waiting time between two consecutive request
-            with_speech (bool): whether the speech wrapper should be used
-              instead or not
             manual (bool):
         """
 
@@ -107,13 +108,9 @@ class OpenAIClient(abc.ABC, Generic[A]):
         self._request_timeout: float = request_timeout
         self._request_pause: float = request_pause
 
-        if with_speech:
-            self._completor: Callable[..., R] = speechopenai.OpenAI(api_key).Completion
-            self._extractor: Callable[..., R] = lambda x: x
-        else:
-            openai.api_key = api_key
-            self._completor: Callable[..., R] = openai.Completion.create
-            self._extractor: Callable[[R], speechopenai.Result] = lambda cplt: cplt.choices[0]
+        openai.api_key = api_key
+        self._completor: Callable[..., R] = openai.Completion.create
+        self._extractor: Callable[[R], Result] = lambda cplt: cplt.choices[0]
 
         self._manual: bool = manual
 

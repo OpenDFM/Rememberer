@@ -140,7 +140,6 @@ class AutoAgent( Agent
                 , static: bool = False
                 , manual: bool = False
                 , train: bool = True
-                , with_speech: bool = False
                 , env_mode: str = "text_rich"
                 , norandom: bool = False
                 ):
@@ -157,7 +156,6 @@ class AutoAgent( Agent
                                    , stop
                                    , request_timeout
                                    , 3.1
-                                   , with_speech
                                    , manual
                                    )
 

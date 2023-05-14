@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import sys
-sys.path.append("../../../WebShop")
+sys.path.append("../WebShop")
 
 import gym
 import importlib
@@ -228,7 +228,6 @@ def main():
     parser.add_argument("--static", action="store_true")
     parser.add_argument("--manual", action="store_true")
     parser.add_argument("--train", action="store_true")
-    parser.add_argument("--speech", action="store_true")
     parser.add_argument("--norandom", action="store_true")
 
     parser.add_argument("--starts-from", default=0, type=int)
@@ -339,9 +338,9 @@ def main():
         input_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
-    with open(os.path.join(args.prompt_template, "canonical_examplar_wC3.1.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar_wE0.1.txt")) as f:
         canonical1: str = f.read()
-    with open(os.path.join(args.prompt_template, "canonical_examplar_wC3.2.txt")) as f:
+    with open(os.path.join(args.prompt_template, "canonical_examplar_wE0.2.txt")) as f:
         canonical2: str = f.read()
     template_group = agent_protos.TemplateGroup( whole_template=prompt_template
                                                , input_template=input_template
@@ -366,7 +365,6 @@ def main():
                                    , static=args.static
                                    , manual=args.manual
                                    , train=args.train
-                                   , with_speech=args.speech
                                    , env_mode=args.observation_mode
                                    , norandom=args.norandom
                                    )

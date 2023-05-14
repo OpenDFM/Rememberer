@@ -1,5 +1,0 @@
-INPUT(2, deal with little sisters) <-> <img class="search button" alt="Search" id="2" clickable="true">
-CLICK(3) <-> <div id="3" clickable="true">How to Deal With Little Sisters</div>
-CLICK(5) <-> <p id="5" clickable="true">CONFLICT RESOLUTION</p>
-CLICK(2) <-> <p id="2" clickable="true">&lt;</p>
-CLICK(2) <-> <p id="2" clickable="true">&lt;</p>

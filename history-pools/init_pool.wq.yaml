@@ -1,15 +1,15 @@
 ? !!python/tuple
 - |
-  WebShop
-  Instruction: 
-  Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: xx-large, and price lower than 40.00 dollars
-  [button] Search [button_]
   
-- "Instruction: Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: xx-large, and price lower than 40.00 dollars"
+  WebShop
+  Instruction:
+  i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
+  [Search]
+- "Instruction:i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars"
 - search
 : action_dict:
-    ? !!python/tuple
-    - search[quick drying moisture wicking women activewear long sleeve]
+    ? &act0 !!python/tuple
+    - search[3 ounce bottle bright citrus deodorant sensitive skin]
     - ''
     : number: 1
       qvalue: 1.0
@@ -28,85 +28,162 @@
   id: 0
 ? !!python/tuple
 - |
+  
   Instruction:
-  Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: xx-large, and price lower than 40.00 dollars
-  [button] Back to Search [button_]
+  i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
+  [Back to Search]
   Page 1 (Total results: 50)
-  [button] Next > [button_]
-  
-  [button] B09QCP4579 [button_]
-  LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants
-  $13.99
-  
-  [button] B07WMMYB6G [button_]
-  MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking
-  $17.98 to $17.99
-  
-  [button] B08JD14GJF [button_]
-  COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing
-  $9.98 to $16.98
-  
-  [button] B09QQJJ3KM [button_]
-  One Lucky Teacher St Patrick Day Shamrock Tee Teachers Custom Personalized Unisex T-Shirts Long Sleeve Hoodie Sweatshirt Gifts
-  $100.0
-  
-  [button] B09Q8RD8YN [button_]
-  Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt
-  $19.99
-  
-  [button] B09QGK5XHZ [button_]
-  WENKOMG1 Men's Long Sleeve Undershirt with Mask Turtleneck Hooded T-Shirt Solid Color Workout Tops Zipper Side Slit Shirts Slim Fit Sweatshirt Spring/Summer Tee Shirts(Gray,)
-  $8.39
-  
-  [button] B098824K9T [button_]
-  Spa Savvy Shower Cap and Twist Hair Turban Duo, Enhance Your Shower Experience with this Complete Set, Fully Lined Shower Cap, Microfiber Turban (Green)
-  $11.99
-  
-  [button] B09P5CRVQ6 [button_]
-  Womens Tops Casual, Sweatshirt for Women Graphic, Womens Sweatshirt Hoodie, Women Love Print Sweatshirt Long Sleeve Cute Heart Sweater Pullover Tops Blouse
-  $22.78
-  
-  [button] B09KRLGSC5 [button_]
-  SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops
-  $25.99
-  
-  [button] B09KP78G37 [button_]
-  Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush   Overcoat
-  $47.41 to $59.07
-  
-- "Instruction: Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: xx-large, and price lower than 40.00 dollars"
-- |
-  back to search
+  [Next >]
+  [B078GWRC1J]
+  Bright Citrus Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  $10.99
+  [B078GTKVXY]
+  Ginger Fresh Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  $10.99
+  [B08KBVJ4XN]
+  Barrel and Oak - Aluminum-Free Deodorant, Deodorant for Men, Essential Oil-Based Scent, 24-Hour Odor Protection, Cedar & Patchouli Blend, Gentle on Sensitive Skin (Mountain Sage, 2.7 oz, 2-Pack)
+  $15.95
+- "Instruction:i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars"
+- 'back to search
+
   next >
-  b09qcp4579
-  b07wmmyb6g
-  b08jd14gjf
-  b09qqjj3km
-  b09q8rd8yn
-  b09qgk5xhz
-  b098824k9t
-  b09p5crvq6
-  b09krlgsc5
-  b09kp78g37
+
+  b078gwrc1j
+
+  b078gtkvxy
+
+  b08kbvj4xn'
 : action_dict:
-    ? !!python/tuple
-    - click[b08jd14gjf]
-    - b08jd14gjf offers a women's quick dry long sleeve shirt which conforms to the instruction. Thus I can check if it is moisture wicking and choose a correct color and size.
+    ? &act1 !!python/tuple
+    - click[b078gwrc1j]
+    - b078gwrc1j and b078gtkvxy are bright citrus deodorant less then 50 dollars. I can check b078gwrc1j first.
     : number: 1
       qvalue: 1.0
       reward: 0.0
-    ? !!python/tuple
-    - click[b09qgk5xhz]
-    - b09qgk5xhz offers a men's shirt which is not the desired item.
-    : number: 1
-      qvalue: 0.0
-      reward: 0.0
   other_info:
     action_history:
-    - !!python/tuple
-      - search[quick drying moisture wicking women activewear long sleeve]
-      - ''
+    - *act0
     last_reward: 0.0
     number: 1
     total_reward: 0.0
   id: 1
+? !!python/tuple
+- |
+  
+  Instruction:
+  i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
+  [Back to Search]
+  [< Prev]
+  scent [assorted scents][bright citrus][calming lavender][ginger fresh][simply non-scents]
+  size [travel set (4-pack)][3 ounce (pack of 1)][3-ounce (2-pack)]
+  Bright Citrus Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  Price: $10.99
+  Rating: N.A.
+  [Description]
+  [Features]
+  [Reviews]
+  [Buy Now]
+- "Instruction:i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars"
+- 'back to search
+
+  < prev
+
+  description
+
+  features
+
+  reviews
+
+  buy now
+
+  assorted scents
+
+  bright citrus
+
+  calming lavender
+
+  ginger fresh
+
+  simply non-scents
+
+  travel set (4-pack)
+
+  3 ounce (pack of 1)
+
+  3-ounce (2-pack)'
+: action_dict:
+    ? &act2 !!python/tuple
+    - click[bright citrus]
+    - For 3 ounce bottle of bright citrus deodorant for sensitive skin, the item has options 'bright citrus' and '3 ounce (pack of 1)' and seems good to buy.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    - *act1
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 2
+? !!python/tuple
+- |
+  
+  You have clicked bright citrus.
+  Instruction:
+  i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars
+  [Back to Search]
+  [< Prev]
+  scent [assorted scents][[bright citrus]][calming lavender][ginger fresh][simply non-scents]
+  size [travel set (4-pack)][3 ounce (pack of 1)][3-ounce (2-pack)]
+  Bright Citrus Deodorant by Earth Mama | Natural and Safe for Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic Calendula 3-Ounce
+  Price: $10.99
+  Rating: N.A.
+  [Description]
+  [Features]
+  [Reviews]
+  [Buy Now]
+- "Instruction:i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 40.00 dollars"
+- 'back to search
+
+  < prev
+
+  description
+
+  features
+
+  reviews
+
+  buy now
+
+  assorted scents
+
+  bright citrus
+
+  calming lavender
+
+  ginger fresh
+
+  simply non-scents
+
+  travel set (4-pack)
+
+  3 ounce (pack of 1)
+
+  3-ounce (2-pack)'
+: action_dict:
+    ? &act3 !!python/tuple
+    - click[3 ounce (pack of 1)]
+    - I have clicked for 'bright citrus' and haven't clicked for '3 ounce (pack of 1)'. I need to first click '3 ounce (pack of 1)' and then buy this item.
+    : number: 1
+      qvalue: 1.0
+      reward: 0.0
+  other_info:
+    action_history:
+    - *act0
+    - *act1
+    - *act2
+    last_reward: 0.0
+    number: 1
+    total_reward: 0.0
+  id: 3

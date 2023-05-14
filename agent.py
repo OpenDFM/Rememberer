@@ -241,7 +241,6 @@ class AutoAgent( Agent
                 , static: bool = False
                 , manual: bool = False
                 , train: bool = True
-                , with_speech: bool = False
                 , norandom: bool = False
                 ):
         #  method __init__ {{{ # 
@@ -262,9 +261,6 @@ class AutoAgent( Agent
             train (bool): indicats whether the history replay should be updated
               or not
 
-            with_speech (bool): whether the speech wrapper should be used
-              instead or not
-
             norandom (bool): do not generate random action advices
         """
 
@@ -277,7 +273,6 @@ class AutoAgent( Agent
                                    , stop
                                    , request_timeout
                                    , 1.1
-                                   , with_speech
                                    , manual
                                    )
 
