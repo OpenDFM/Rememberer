@@ -7,7 +7,6 @@ import datetime
 import time
 
 import openai
-import speechopenai
 
 import logging
 import io
@@ -142,7 +141,7 @@ class OpenAIClient(abc.ABC, Generic[A]):
                                                , stop=self._stop
                                                , request_timeout=self._request_timeout
                                                )
-                completion: speechopenai.Result = self._extractor(completion)
+                completion: Result = self._extractor(completion)
 
                 self._last_request_time = datetime.datetime.now()
 

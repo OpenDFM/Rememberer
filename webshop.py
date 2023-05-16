@@ -351,10 +351,7 @@ def main():
 
     with open(args.config) as f:
         openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
-    if args.speech:
-        api_key: str = openaiconfig["spc_token"]
-    else:
-        api_key: str = openaiconfig["api_key"]
+    api_key: str = openaiconfig["api_key"]
     model = webshop_agent.AutoAgent( history_replay=history_replay
                                    , prompt_templates=template_group
                                    , api_key=api_key
