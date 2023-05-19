@@ -395,14 +395,6 @@ def main():
     #  }}} Build Agent and Environment # 
 
     #  Workflow {{{ # 
-    #training_set = [ 5300, 3971, 1147, 8277, 1813
-                   #, 6308, 9970, 9077, 6967, 11116
-                   #, 311, 5105, 7245, 317, 8312
-                   #, 2690, 7914, 4483, 9391, 1387
-                   #][:]
-    #test_set = [ 2300, 982, 11797, 3465, 10869
-               #, 8205, 2245, 2003, 2998, 4899
-               #][:]
     if args.pub_to_local_mapping is None:
         local_mapping: List[int] = list(range(600))
     else:
@@ -423,7 +415,6 @@ def main():
         starts_from: int = args.starts_from
         nb_epochs: int = args.epochs
     max_nb_steps = 15
-    #rng = np.random.default_rng()
     for epch in range(starts_from, nb_epochs):
         if args.train:
             model.train(True)
@@ -432,11 +423,29 @@ def main():
                                                          , logger, except_list
                                                          , max_nb_steps=max_nb_steps
                                                          )
-            if epch%3==0:
+            if epch==0:
                 except_list |= success_list
         model.train(False)
+        # [ 2,  8,  9, 15, 16, 18, 21, 22, 32, 38, 40, 58, 63, 66, 70, 76, 85, 90, 91, 93]
         traverse_environment( env, test_set
                             , model, logger
+                            , except_list=[ 81, 34, 48, 20, 29
+                                          , 11, 73, 83, 64, 62
+                                          , 78, 36, 80, 41, 33
+                                          , 99,  3,  0, 55, 96
+                                          , 50, 37, 75, 23, 94
+                                          , 19,  6, 67, 97, 13
+                                          , 87, 45, 52, 95, 88
+                                          , 51, 47, 12, 89, 49
+                                          ,  4, 84, 30, 71, 35
+                                          , 42, 65, 61, 10, 26
+                                          , 92, 82,  5, 25, 74
+                                          , 46, 86, 77, 17, 31
+                                          , 24, 53, 39, 72, 60
+                                          ,  1, 59, 56, 54, 57
+                                          , 98, 28, 43, 27, 44
+                                          , 68, 79, 69,  7, 14
+                                          ]
                             , max_nb_steps=max_nb_steps
                             )
 
