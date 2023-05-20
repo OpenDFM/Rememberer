@@ -11,7 +11,7 @@ import datetime
 import string
 
 import agent_protos
-import agent
+import wikihow_agent
 import android_env
 from android_env.wrappers import VhIoWrapper
 from android_env.environment import AndroidEnv
@@ -61,7 +61,7 @@ def dump( path: str
     #  }}} function dump # 
 
 def traverse_environment( env: AndroidEnv
-                        , model: agent.Agent
+                        , model: wikihow_agent.Agent
                         , logger: logging.Logger
                         , except_list: Set[int] = set()
                         , max_nb_steps: int = 15
@@ -70,7 +70,7 @@ def traverse_environment( env: AndroidEnv
     """
     Args:
         env (AndroidEnv): the traversed environment
-        model (agent.Agent): the agent
+        model (wikihow_agent.Agent): the agent
         logger (logging.Logger): the logger
         except_list (Set[int]): tasks in this set won't be tested
 
@@ -262,7 +262,7 @@ def main():
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
-    matcher_functions: Dict[str, history.MatcherConstructor[agent.Key]]\
+    matcher_functions: Dict[str, history.MatcherConstructor[wikihow_agent.Key]]\
             = { "lcs": history.LCSNodeMatcher
               , "inspat": history.InsPatMatcher
               , "lcs+inspat": history.LambdaMatcherConstructor( [ history.LCSNodeMatcher
@@ -271,7 +271,7 @@ def main():
                                                               , [0.5, 0.5]
                                                               ).get_lambda_matcher
               }
-    history_replay: history.HistoryReplay[agent.Key, agent.Action]\
+    history_replay: history.HistoryReplay[wikihow_agent.Key, wikihow_agent.Action]\
             = history.HistoryReplay( args.item_capacity
                                    , args.action_capacity
                                    , matcher=matcher_functions[args.matcher]
@@ -305,7 +305,7 @@ def main():
         api_key: str = openaiconfig["spc_token"]
     else:
         api_key: str = openaiconfig["api_key"]
-    model = agent.AutoAgent( history_replay=history_replay
+    model = wikihow_agent.AutoAgent( history_replay=history_replay
                            , prompt_templates=template_group
                            , api_key=api_key
                            , max_tokens=args.max_tokens
@@ -318,8 +318,8 @@ def main():
                            , with_speech=args.speech
                            , norandom=args.norandom
                            )
-    #model = agent.ManualAgent()
-    #model = agent.ReplayAgent(args.replay_file)
+    #model = wikihow_agent.ManualAgent()
+    #model = wikihow_agent.ReplayAgent(args.replay_file)
 
     env = android_env.load( args.task_path
                           , args.avd_name
