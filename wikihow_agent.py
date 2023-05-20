@@ -272,7 +272,8 @@ class AutoAgent( Agent
                                    , temperature
                                    , stop
                                    , request_timeout
-                                   , 1.1
+                                   , 3.1
+                                   , with_speech
                                    , manual
                                    )
 

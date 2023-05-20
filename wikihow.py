@@ -11,7 +11,7 @@ import datetime
 import string
 
 import agent_protos
-import agent
+import wikihow_agent
 import android_env
 from android_env.wrappers import VhIoWrapper
 from android_env.environment import AndroidEnv
@@ -61,7 +61,7 @@ def dump( path: str
     #  }}} function dump # 
 
 def traverse_environment( env: AndroidEnv
-                        , model: agent.Agent
+                        , model: wikihow_agent.Agent
                         , logger: logging.Logger
                         , except_list: Set[int] = set()
                         , max_nb_steps: int = 15
@@ -70,7 +70,7 @@ def traverse_environment( env: AndroidEnv
     """
     Args:
         env (AndroidEnv): the traversed environment
-        model (agent.Agent): the agent
+        model (wikihow_agent.Agent): the agent
         logger (logging.Logger): the logger
         except_list (Set[int]): tasks in this set won't be tested
 
@@ -261,7 +261,7 @@ def main():
     #  }}} Config Logger # 
 
     #  Build Agent and Environment {{{ # 
-    matcher_functions: Dict[str, history.MatcherConstructor[agent.Key]]\
+    matcher_functions: Dict[str, history.MatcherConstructor[wikihow_agent.Key]]\
             = { "lcs": history.LCSNodeMatcher
               , "inspat": history.InsPatMatcher
               , "lcs+inspat": history.LambdaMatcherConstructor( [ history.LCSNodeMatcher
@@ -270,7 +270,7 @@ def main():
                                                               , [0.5, 0.5]
                                                               ).get_lambda_matcher
               }
-    history_replay: history.HistoryReplay[agent.Key, agent.Action]\
+    history_replay: history.HistoryReplay[wikihow_agent.Key, wikihow_agent.Action]\
             = history.HistoryReplay( args.item_capacity
                                    , args.action_capacity
                                    , matcher=matcher_functions[args.matcher]
@@ -301,7 +301,7 @@ def main():
     with open(args.config) as f:
         openaiconfig: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
     api_key: str = openaiconfig["api_key"]
-    model = agent.AutoAgent( history_replay=history_replay
+    model = wikihow_agent.AutoAgent( history_replay=history_replay
                            , prompt_templates=template_group
                            , api_key=api_key
                            , max_tokens=args.max_tokens
@@ -313,8 +313,8 @@ def main():
                            , train=args.train
                            , norandom=args.norandom
                            )
-    #model = agent.ManualAgent()
-    #model = agent.ReplayAgent(args.replay_file)
+    #model = wikihow_agent.ManualAgent()
+    #model = wikihow_agent.ReplayAgent(args.replay_file)
 
     env = android_env.load( args.task_path
                           , args.avd_name
@@ -366,9 +366,7 @@ def main():
     else:
         starts_from: int = args.starts_from
         nb_epochs: int = args.epochs
-    #nb_epochs = args.epochs if args.train else 1
     max_nb_steps = 15
-    #except_list = {0, 1, 2, 3, 5, 6, 7, 8, 9}
     for epch in range(starts_from, nb_epochs):
         if args.train:
             model.train(True)
@@ -376,11 +374,23 @@ def main():
                                                          , logger, except_list
                                                          , max_nb_steps=max_nb_steps
                                                          )
-            if epch%3==0:
+            if epch==0:
                 except_list |= success_list
         model.train(False)
+        # [ 3,  5,  7,  8,  9, 10, 16, 17, 25, 30, 38, 39, 43, 44, 46, 47, 48, 55, 57, 58]
         traverse_environment( env, model
                             , logger
+                             #, except_list={ 64, 23, 52,  1, 56
+                             #, 65, 27, 40, 20, 63
+                             #, 60, 24, 54, 31, 42
+                             #, 51, 59, 33,  4,  6
+                             #, 67, 29, 37, 19, 61
+                             #, 34, 28, 50,  0, 18
+                             #, 32, 13, 21,  2, 53
+                             #, 26, 15, 66, 14, 22
+                             #, 36, 69, 35, 41, 68
+                             #, 11, 62, 45, 49, 12
+                             #}
                             , max_nb_steps=max_nb_steps
                             )
 
