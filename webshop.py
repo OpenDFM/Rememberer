@@ -89,6 +89,7 @@ def traverse_environment( env: gym.Env
                         , logger: logging.Logger
                         , except_list: Set[int] = set()
                         , max_nb_steps: int = 15
+                        , max_nb_consective_nothings: int = 15
                         ) -> Set[int]:
     #  function traverse_environment {{{ # 
     """
@@ -100,7 +101,10 @@ def traverse_environment( env: gym.Env
         except_list (Set[int]): tasks in this set won't be tested
 
         max_nb_steps (int): if the number of steps exceeds `max_nb_steps`, the
-          episode will be killed and considered as failed.
+          episode will be killed and considered failed.
+        max_nb_consective_nothings (int): if the number of consecutive NOTHINGG
+          steps exceeds `max_nb_consective_nothings`, the episode will be
+          killed and considered failed.
 
     Returns:
         Set[int]: set of the succeeded tasks
@@ -122,11 +126,12 @@ def traverse_environment( env: gym.Env
 
         nb_steps = 0
         nb_nothing_steps = 0
+        nb_consecutive_nothings = 0
 
         reward = 0.
         total_reward = 0.
         succeeds = False
-        while nb_steps<max_nb_steps:
+        while nb_steps<max_nb_steps and nb_consecutive_nothings<max_nb_consective_nothings:
             action: str = model( task
                                , observation
                                , reward
@@ -139,11 +144,13 @@ def traverse_environment( env: gym.Env
                 available_actions = env.get_available_actions()["clickables"]
 
                 nb_steps += 1
+                nb_consecutive_nothings = 0
                 if done:
                     succeeds = reward==1.
                     break
             else:
                 nb_nothing_steps += 1
+                nb_consecutive_nothings += 1
 
         model.end( task
                  , observation
