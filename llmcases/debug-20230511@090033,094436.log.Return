@@ -1,0 +1,573 @@
+{text: '\nEncouraged:\nsearch[long clip-in hair extension natural looking] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08h5dcd65] -> 1.0 b08h5dcd65 is a long clip-in hair extension which is natural looking, and price lower than 20.00 dollars. I can check b08h5dcd65 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[natural black #1b] -> 1.0 I need to select an option for all the groups before clicking "buy now".\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After selecting an option for all the groups, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----0
+{text: '\nEncouraged:\nsearch[noise cancelling cosycost usb microphone] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0972q1t8t] -> 1.0 b0972q1t8t is a noise cancelling cosycost usb microphone with price lower than 70.00 dollars. I can check b0972q1t8t first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked the item and all the requirements are satisfied. I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----1
+{text: '\nEncouraged:\nsearch[sulfate paraben free high quality hair treatments bottle 60 capsules] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07jhss3cr] -> 1.0 b07jhss3cr is a sulfate and paraben free hair treatment with high quality and price lower than 70.00 dollars. I can check b07jhss3cr first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[hair oil] -> 1.0 Hair oil is the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[hair oil] -> 1.0 Hair oil is the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[hair oil] -> 1.0 Hair oil is the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[hair oil] -> 1.0 Hair oil is the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[description] -> 1.0 I need to check the detailed features of the item before buying it.\n', reason: 'stop'}
+{text: '\nEncouraged:\nsearch[hair oil 60 capsules] -> 1.0 I need to search for the desired item with the specific requirements.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b076hdd4ft] -> 1.0 b076hdd4ft is a hair treatment that is sulfate and paraben free and is of high quality with 60 capsules and price lower than 70.00 dollars. I can check b076hdd4ft first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[3] -> 1.0 I need to select an option for all the groups. Then I can click "buy now".\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have selected an option for all the groups. Now I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----2
+{text: '\nEncouraged:\nsearch[gluten free vegetarian smoked peppered bacon 4 ounce pack of 2] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07gjtkyjq] -> 0.7 b07gjtkyjq is a pack of 2 gluten free vegetarian smoked peppered bacon with price lower than 50.00 dollars. I can check b07gjtkyjq first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for the desired item and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----3
+{text: '\nEncouraged:\nsearch[high speed dual style package 12" power amplifier car subwoofer] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b06xw8pl68] -> 1.0 b06xw8pl68 is a high speed dual style package with 12" power amplifier car subwoofer with price lower than 200.00 dollars. I can check b06xw8pl68 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked all the features of the item and need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----4
+{text: '\nEncouraged:\nsearch[space-saving ottoman bench blue 100x45x45cm] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08kvx5dpb] -> 1.0 b08kvx5dpb is a space-saving ottoman bench with blue color and 100x45x45cm size, and the price is lower than 430.00 dollars. I can check b08kvx5dpb first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[100x45x45cm] -> 1.0 I need to select the size '100x45x45cm' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[blue] -> 1.0 I need to select the color 'blue' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 All the requirements are ready now, so I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----5
+{text: '\nEncouraged:\nsearch[queen size bedspread set redwood] -> 0.8 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07b4kxqzv] -> 0.8 b07b4kxqzv is a queen size bedspread set in the color redwood with price lower than 80.00 dollars. I can check b07b4kxqzv first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[redwood] -> 0.5 I need to select the color 'redwood' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.5 I have clicked for 'queen size bedspread set' and 'redwood'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----6
+{text: '\nEncouraged:\nsearch[styling cream cruelty free short hair] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b008hrrwhm] -> 1.0 b008hrrwhm is a styling cream that is cruelty free and for short hair with price lower than 40.00 dollars. I can check b008hrrwhm first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[8.5 ounce (pack of 1)] -> 1.0 For styling cream that is cruelty free and for short hair, the item has options '2 pack' and '8.5 ounce (pack of 1)' and seems good to buy.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After selecting the desired item, I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----7
+{text: '\nEncouraged:\nsearch[xx-large black workout sweatpants relaxed fit] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0962x9s1w] -> 0.8 b0962x9s1w is a xx-large black workout sweatpants with a relaxed fit and price lower than 50.00 dollars. I can check b0962x9s1w first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[xx-large] -> 1.0 I have clicked for 'black workout sweatpants' and haven't clicked for 'xx-large'. I need to first click 'xx-large' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'xx-large' and all the other options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----8
+{text: '\nEncouraged:\nsearch[grey sectional sofa] -> 0.5 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09gvdtn7s] -> 0.5 b09gvdtn7s is a grey sectional sofa. I can check b09gvdtn7s first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[dark grey a] -> 0.5 I need to select the color 'dark grey a' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.5 I have clicked for 'grey sectional sofa' and 'dark grey a'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----9
+{text: '\nEncouraged:\nsearch[bundle crackers spicy beef cheese shelf stable keto gluten free] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0978q1kk9] -> 0.5 b0978q1kk9 and b0978p4l31 are bundles of crackers, spicy beef and cheese which is shelf stable, keto and gluten free, and price lower than 40.00 dollars. I can check b0978q1kk9 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[spicy beef backpack bundle] -> 1.0 For the bundle of crackers, spicy beef and cheese which is shelf stable, keto and gluten free, the item has options 'original beef backpack bundle' and 'spicy beef backpack bundle' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'spicy beef backpack bundle' and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----10
+{text: "\nEncouraged:\nsearch[woman's us size 5 high heel shoe rubber sole color patent-beige] -> 1.0 This action will help me find the desired item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[b09q63d79z] -> 1.0 b09q63d79z is a woman's us size 5 high heel shoe with a rubber sole and color patent-beige, and price lower than 90.00 dollars. I can check b09q63d79z first.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[5] -> 0.8 I have clicked for 'apricot' and 'beige' and 'black' and haven't clicked for '5'. I need to first click '5' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[patent-beige] -> 0.8 I have clicked for '3.5' and '4' and '5' and '6' and '7' and '8' and 'apricot' and 'beige' and haven't clicked for 'patent-beige'. I need to first click 'patent-beige' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for '3.5' and '4' and '5' and '6' and '7' and '8' and 'apricot' and 'beige' and 'patent-beige'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----11
+{text: '\nEncouraged:\nsearch[remote control lg blu-ray dvd home theater system] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08b5xz7lr] -> 1.0 b08b5xz7lr is a remote control for an lg blu-ray dvd home theater system with price lower than 70.00 dollars. I can check b08b5xz7lr first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked the item and all the requirements are satisfied. I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----12
+{text: "\nEncouraged:\nsearch[long lasting 6.76 fl oz bottle l'eau d'issey] -> 1.0 This action will help me find the desired item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[b000vohh8i] -> 1.0 b000vohh8i is a long lasting 6.76 fl oz bottle of l'eau d'issey and price lower than 100.00 dollars. I can check b000vohh8i first.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[6.76 fl oz (pack of 1)] -> 1.0 I need to click '6.76 fl oz (pack of 1)' to select the desired item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for '6.76 fl oz (pack of 1)' and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----13
+{text: '\nEncouraged:\nsearch[dairy free apple variety pack chips] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b01kmhy5pg] -> 1.0 b01kmhy5pg is a dairy free and apple variety pack of chips with price lower than 40.00 dollars. I can check b01kmhy5pg first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[variety pack] -> 0.8 I have clicked for 'caramel apple' and 'caramel blondie' and 'carrot cake' and 'cocoa loco' and 'lemon blueberry poppy seed' and 'sunseed crunch' and haven't clicked for 'variety pack'. I need to first click 'variety pack' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[bars + cookies, variety pack, 4 count boxes] -> 0.8 I have clicked for 'caramel apple' and 'caramel blondie' and 'carrot cake' and 'cocoa loco' and 'lemon blueberry poppy seed' and 'sunseed crunch' and 'variety pack' and haven't clicked for 'bars + cookies, variety pack, 4 count boxes'. I need to first click 'bars + cookies, variety pack, 4 count boxes' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for all the options and haven't clicked for 'buy now'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----14
+{text: '\nEncouraged:\nsearch[gingko light 20"x20" pillow cover hand painted] -> 0.7 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08z74q2l7] -> 0.7 b08z74q2l7 is a 20"x20" pillow cover with price lower than 50.00 dollars. I can check b08z74q2l7 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[nudes (gingko light)] -> 0.5 I need to select 'nudes (gingko light)' to match the instruction.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 0.5 I have selected the size \'20"x20"\' and color \'nudes (gingko light)\'. I need to click \'buy now\' to finish the shopping.\n', reason: 'stop'}
+----15
+{text: '\nEncouraged:\nsearch[lead free luxury scented candle tin voyager] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b091d87qmm] -> 0.9 b091d87qmm is a lead free luxury scented candle in tin voyager with 25+ hours burning time and price lower than 40.00 dollars. I can check b091d87qmm first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[voyager] -> 1.0 I have clicked for 'lead free luxury scented candle tin' and haven't clicked for 'voyager'. I need to first click 'voyager' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[25+ hour] -> 1.0 I have clicked for 'voyager' and haven't clicked for '25+ hour'. I need to first click '25+ hour' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'voyager' and '25+ hour'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----16
+{text: '\nEncouraged:\nsearch[mn4 color foundation sensitive skin] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b077pr9tl4] -> 1.0 b077pr9tl4 and b09j1x9m1p are mn4 color foundation for sensitive skin with price lower than 30.00 dollars. I can check b077pr9tl4 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[mn4] -> 1.0 I have clicked for 'b077pr9tl4' and haven't clicked for 'mn4'. I need to first click 'mn4' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[1 fl oz (pack of 1)] -> 1.0 I have clicked for 'mn4' and haven't clicked for '1 fl oz (pack of 1)'. I need to first click '1 fl oz (pack of 1)' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'mn4' and '1 fl oz (pack of 1)'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----17
+{text: '\nEncouraged:\nsearch[double horn bluetooth wireless speakers] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b093c1thvp] -> 0.8 b093c1thvp is a double horn bluetooth wireless speaker which is portable and easy to carry with price lower than 70.00 dollars. I can check b093c1thvp first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked all the features and the price is lower than 70.00 dollars. I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----18
+{text: '\nEncouraged:\nsearch[high power sound column subwoofer bluetooth 3d surround sound system] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08sl7lrrq] -> 1.0 b08sl7lrrq is a high power sound column subwoofer with bluetooth and 3d surround sound system, and the price is lower than 660.00 dollars. I can check b08sl7lrrq first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[description] -> 1.0 I can click into a commodity item to check more detailed features.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[back to search] -> 1.0 I need to search only if "search" is listed as an available action. If "search" is not listed as an available action, I need to click "back to search" before conducting a search.\n', reason: 'stop'}
+{text: '\nEncouraged:\nsearch[high power sound column subwoofer bluetooth 3d surround sound system] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08sl7lrrq] -> 1.0 b08sl7lrrq is a high power sound column subwoofer with bluetooth and 3d surround sound system, and the price is lower than 660.00 dollars. I can check b08sl7lrrq first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I need to click "buy now" to finish the shopping after all the options are selected.\n', reason: 'stop'}
+----19
+{text: '\nEncouraged:\nsearch[manual toothbrushes sensitive teeth] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08b83m3w5] -> 0.9 b08b83m3w5 is a six pack of manual toothbrushes that are good for sensitive teeth with price lower than 40.00 dollars. I can check b08b83m3w5 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After checking the item, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----20
+{text: '\nEncouraged:\nsearch[shelf stable potato side dish microwave] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b004peet4k] -> 1.0 b004peet4k, b001eq5avi and b000v1jvai are shelf stable potato side dishes that can be cooked in the microwave, and the price is lower than 40.00 dollars. I can check b004peet4k first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[turkey & dressing] -> 1.0 I need to select the style 'turkey & dressing' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have selected the style 'turkey & dressing' and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----21
+{text: '\nEncouraged:\nsearch[highspeed hdmi cable purple] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08tznp5z4] -> 0.8 b08tznp5z4 is a highspeed hdmi cable that is purple with price lower than 80.00 dollars. I can check b08tznp5z4 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked all the features of the item and it meets the requirements. I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----22
+{text: '\nEncouraged:\nsearch[machine washable savannan burlap placemat compatible table runner dahlia flower print table set golden circlesan4455 size 13x70inch+13x19inch*4] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09bcfh9zk] -> 0.5 b09bcfh9zk is a machine washable savannan burlap placemat with compatible table runner with dahlia flower print table set of 6 pcs, golden circlesan4455 with size 13x70inch+13x19inch*4, and price lower than 70.00 dollars. I can check b09bcfh9zk first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[golden circlesan4455] -> 1.0 I need to select the color 'golden circlesan4455' to match the instruction.\nclick[13x70inch+13x19inch*4] -> 1.0 I need to select the size '13x70inch+13x19inch*4' to match the instruction.\nclick[buy now] -> 1.0 I have selected the color and size, and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have selected the color 'golden circlesan4455' and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----23
+{text: '\nEncouraged:\nsearch[high speed 3 foot red usb cable] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0855pg5lj] -> 0.8 b0855pg5lj is a high speed 3 foot red usb cable with price lower than 40.00 dollars. I can check b0855pg5lj first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[red] -> 1.0 I have not clicked for 'red' yet. I need to first click 'red' and then buy this item.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have selected all the options and I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----24
+{text: '\nEncouraged:\nsearch[great river organic milling flour] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0049yma9w] -> 1.0 b0049yma9w is a great river organic milling flour with price lower than 70.00 dollars. I can check b0049yma9w first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[25 pound (pack of 1)] -> 0.8 I need to select an option for all the groups before clicking "buy now".\nclick[whole wheat] -> 0.8 I need to select an option for all the groups before clicking "buy now".\nclick[flour] -> 0.8 I need to select an option for all the groups before clicking "buy now".\nclick[buy now] -> 1.0 After selecting all the options, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----25
+{text: '\nEncouraged:\nsearch[20m digital 4g lte coaxial cable male to female] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[b08bzjmhn8] -> 0.7 b08bzjmhn8 is a 20m digital 4g lte coaxial cable that's male to female with price lower than 70.00 dollars. I can check b08bzjmhn8 first.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[500cm |  16.4ft] -> 1.0 I need to select the length of the cable before buying it.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have selected the length of the cable and now I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----26
+{text: '\nEncouraged:\nsearch[high quality pillow covers color a-8 fade resistant] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0967r1x7m] -> 1.0 b0967r1x7m is a high quality pillow cover in color a-8 and it is fade resistant and price lower than 40.00 dollars. I can check b0967r1x7m first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.5 I have selected the item 'b0967r1x7m' and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----27
+{text: '\nEncouraged:\nsearch[oral hygiene toothbrush easy to carry] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09s8syl9v] -> 1.0 b09s8syl9v is an oral hygiene toothbrush with easy to carry design and price lower than 40.00 dollars. I can check b09s8syl9v first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[blue] -> 0.8 The item meets all the requirements and I can select the color "blue" to finish the shopping.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After selecting the color, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----28
+{text: '\nEncouraged:\nsearch[long lasting fragrance gift set women] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0999dwr51] -> 0.9 b0999dwr51 is a long lasting fragrance gift set for women with price lower than 70.00 dollars. I can check b0999dwr51 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 The item has the desired features and price, so I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----29
+{text: '\nEncouraged:\nsearch[gluten free popcorn] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08frlyzfd] -> 1.0 b08frlyzfd is a gluten free popcorn and price lower than 140.00 dollars. I can check b08frlyzfd first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 The item meets the requirements and I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----30
+{text: '\nEncouraged:\nsearch[gluten free black rock salt himalayan 2.8 ounce pack himalayan pink salt coarse grind] -> 0.8 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07d96svd2] -> 0.8 b07d96svd2 is a 2.8 ounce pack of himalayan pink salt coarse grind with price lower than 40.00 dollars. I can check b07d96svd2 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[pink salt- coarse grind 1 lbs jar] -> 0.8 I have not clicked for 'pink salt- coarse grind 1 lbs jar'. I need to first click 'pink salt- coarse grind 1 lbs jar' and then buy this item.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 0.7 The item meets all the requirements and I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----31
+{text: '\nEncouraged:\nsearch[black fast wireless universal charging stand] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07fx8q28n] -> 0.9 b07fx8q28n is a black fast wireless universal charging stand with price lower than 60.00 dollars. I can check b07fx8q28n first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After all the options are selected, I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----32
+{text: '\nEncouraged:\nsearch[leak proof bpa free jars] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b01mt15l0g] -> 0.8 b01mt15l0g is a set of leak proof, bpa free jars with price lower than 50.00 dollars. I can check b01mt15l0g first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[6 pack] -> 1.0 For a set of leak proof, bpa free jars, the item has options '6 pack' and 'heavy duty twist lock cream lotion pump' and seems good to buy.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 The item meets all the requirements and I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----33
+{text: '\nEncouraged:\nsearch[made cookies birthday parties] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b000h7exta] -> 1.0 b000h7exta is a made cookies for birthday parties with price lower than 30.00 dollars. I can check b000h7exta first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After checking the description, features and reviews, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----34
+{text: '\nEncouraged:\nsearch[gold color smart watch bands compatible for apple 38mm 40mm 41mm] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08mt4fdzq] -> 1.0 b08mt4fdzq is a gold color smart watch band compatible for apple and any one of the sizes 38mm | 40mm | 41mm with price lower than 30.00 dollars. I can check b08mt4fdzq first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[38mm | 40mm | 41mm] -> 0.8 I have clicked for 'black' and 'gold' and 'rose gold' and 'silver' and haven't clicked for '38mm | 40mm | 41mm'. I need to first click '38mm | 40mm | 41mm' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for '38mm | 40mm | 41mm' and all the requirements are ready now. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----35
+{text: '\nEncouraged:\nsearch[old style brown hair dye] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b009s7dk4y] -> 1.0 b009s7dk4y is a single pack of old style, brown hair dye with price lower than 30.00 dollars. I can check b009s7dk4y first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After checking the item, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----36
+{text: '\nEncouraged:\nsearch[pendant light dimmer switch] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b089zxvxtc] -> 1.0 b089zxvxtc is a pendant light with dimmer switch and price lower than 130.00 dollars. I can check b089zxvxtc first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked all the features and reviews of the item, and I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----37
+{text: '\nEncouraged:\nsearch[high gloss tv stand additional storage space ob] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09qyk7h9y] -> 1.0 b09qyk7h9y is a high gloss tv stand with additional storage space, ob color, and price lower than 180.00 dollars. I can check b09qyk7h9y first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have checked the item and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----38
+{text: '\nEncouraged:\nsearch[but lifting grey skinny jean shorts] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08ymzp8j4] -> 1.0 b08ymzp8j4 is a pair of but lifting grey skinny jean shorts with price lower than 40.00 dollars. I can check b08ymzp8j4 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'cool grey-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt", reason: 'length'}
+{text: "\nEncouraged:\nclick[grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'cool grey-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt", reason: 'length'}
+{text: "\nEncouraged:\nclick[grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'cool grey-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt", reason: 'length'}
+{text: "\nEncouraged:\nclick[grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'cool grey-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt", reason: 'length'}
+{text: "\nEncouraged:\nclick[grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'cool grey-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt", reason: 'length'}
+{text: "\nEncouraged:\nclick[cool grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt lift' and 'royal-", reason: 'length'}
+{text: "\nEncouraged:\nclick[blue-gray] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'cool grey-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt lift", reason: 'length'}
+{text: "\nEncouraged:\nclick[cool grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt lift' and 'royal-", reason: 'length'}
+{text: "\nEncouraged:\nclick[blue-gray] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'cool grey-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt lift", reason: 'length'}
+{text: "\nEncouraged:\nclick[cool grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt lift' and 'royal-", reason: 'length'}
+{text: "\nEncouraged:\nclick[blue-gray] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'cool grey-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt lift", reason: 'length'}
+{text: "\nEncouraged:\nclick[cool grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt lift' and 'royal-", reason: 'length'}
+{text: "\nEncouraged:\nclick[cool grey-butt lift] -> 0.8 I have clicked for 'black' and 'black-pull-on' and 'black1-butt lift' and 'black1-ripped' and 'black2-butt lift' and 'brown-butt lift' and 'burgundy-butt lift' and 'khaki-butt lift' and 'khaki-pull-on' and 'light grey-butt lift' and 'lightblue-butt lift' and 'navy-butt lift' and 'navy-pull-on' and 'olive-butt lift' and 'olive-pull-on' and 'orange-butt lift' and 'orange-pull-on' and 'pink-butt lift' and 'pink-pull-on' and 'purplegrey-butt lift' and 'red-butt lift' and 'royal-butt lift' and 'royal-", reason: 'length'}
+----39
+{text: '\nEncouraged:\nsearch[futon chaise set faux leather navy linen] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b005fkmuhq] -> 0.5 b005fkmuhq is a futon and chaise set made with faux leather, navy linen color, and price lower than 130.00 dollars. I can check b005fkmuhq first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[navy linen] -> 1.0 I have clicked for 'black feax leather' and haven't clicked for 'navy linen'. I need to first click 'navy linen' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[futon and chaise set] -> 1.0 I have clicked for 'navy linen' and haven't clicked for 'futon and chaise set'. I need to first click 'futon and chaise set' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'futon and chaise set' and 'navy linen'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----40
+{text: '\nEncouraged:\nsearch[white bluetooth speakers water resistant stereo sound] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b076b8y5cf] -> 0.8 b076b8y5cf is a white bluetooth speaker that is water resistant and comes with stereo sound with price lower than 70.00 dollars. I can check b076b8y5cf first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked all the features of the item and it meets the requirements. I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----41
+{text: '\nEncouraged:\nsearch[8 fluid ounce bottle tea tree lotion] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08m7fdbll] -> 1.0 b08m7fdbll is a 8 fluid ounce bottle of tea tree lotion and price lower than 30.00 dollars. I can check b08m7fdbll first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[shampoo] -> 1.0 The item is a shampoo and I need to click 'shampoo' to select it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[back to search] -> 1.0 The item is a shampoo and not the desired item. I need to click 'back to search' to find the desired item.\n", reason: 'stop'}
+{text: '\nEncouraged:\nsearch[8 fluid ounce bottle tea tree lotion] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08m7fdbll] -> 1.0 b08m7fdbll is a 8 fluid ounce bottle of tea tree lotion and price lower than 30.00 dollars. I can check b08m7fdbll first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[conditioner] -> 1.0 The item is a conditioner and I need to click 'conditioner' to select it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[back to search] -> 1.0 The item is a conditioner and not the desired item. I need to click 'back to search' to find the desired item.\n", reason: 'stop'}
+{text: '\nEncouraged:\nsearch[8 fluid ounce bottle tea tree lotion] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08m7fdbll] -> 1.0 b08m7fdbll is a 8 fluid ounce bottle of tea tree lotion and price lower than 30.00 dollars. I can check b08m7fdbll first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[scalp treatment] -> 1.0 The item is a scalp treatment and I need to click 'scalp treatment' to select it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 All the requirements are ready now and I can click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----42
+{text: '\nEncouraged:\nsearch[black high heeled sandals size 5.5] -> 0.8 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09pdvqq6w] -> 1.0 b09pdvqq6w is a black high heeled sandal for size 5.5 with price lower than 60.00 dollars. I can check b09pdvqq6w first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[5.5] -> 0.8 I have clicked for 'black' and 'brown' and 'wine red' and 'xa01-khaki' and 'xa03-black' and 'xa03-brown' and 'xa02-gold' and 'xb01-beige' and 'xb01-black' and 'xb01-gray' and 'xb01-green' and 'xb01-pink' and 'xa02-black' and 'xa02-white' and haven't clicked for '5.5'. I need to first click '5.5' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[black] -> 0.8 I have clicked for '5.5' and haven't clicked for 'black'. I need to first click 'black' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for 'black' and '5.5' and all the other options. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----43
+{text: '\nEncouraged:\nsearch[silicon exfoliating body scrubber easy to use] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b098q7tfkn] -> 1.0 b098q7tfkn is a silicon exfoliating body scrubber which is easy to use and price lower than 20.00 dollars. I can check b098q7tfkn first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[premium gray] -> 1.0 For silicon exfoliating body scrubber which is easy to use and price lower than 20.00 dollars, the item has options 'charming pink', 'natural flesh' and 'premium gray' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'premium gray' and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----44
+{text: '\nEncouraged:\nsearch[easy to install gold plated banana plugs for speaker wire] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0978wh9l1] -> 0.8 b0978wh9l1 is a easy to install gold plated banana plugs for speaker wire with price lower than 20.00 dollars. I can check b0978wh9l1 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked the item and all the requirements are satisfied. I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----45
+{text: '\nEncouraged:\nsearch[hair extensions natural hair straight hair] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08qyzt9bd] -> 1.0 b08qyzt9bd is a hair extension for natural hair and straight hair with price lower than 50.00 dollars. I can check b08qyzt9bd first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[20"-straight] -> 1.0 I have clicked for \'b08qyzt9bd\' and haven\'t clicked for \'20"-straight\'. I need to first click \'20"-straight\' and then buy this item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[straight-medium brown] -> 1.0 I have clicked for \'20"-straight\' and haven\'t clicked for \'straight-medium brown\'. I need to first click \'straight-medium brown\' and then buy this item.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'straight-medium brown' and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----46
+{text: '\nEncouraged:\nsearch[capri sun pacific cooler mixed fruit naturally flavored juice drinks] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b000r30x2a] -> 1.0 b000r30x2a is a capri sun pacific cooler mixed fruit naturally flavored juice drink with price lower than 40.00 dollars. I can check b000r30x2a first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[pacific cooler] -> 1.0 For capri sun pacific cooler mixed fruit naturally flavored juice drinks, the item has options 'pacific cooler' and '6 fl oz (pack of 10)' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[6 fl oz (pack of 10)] -> 1.0 For capri sun pacific cooler mixed fruit naturally flavored juice drinks, the item has options 'pacific cooler' and '6 fl oz (pack of 10)' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 All the options are selected and I can click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----47
+{text: '\nEncouraged:\nsearch[motion detection high definition outdoor camera with 1080p hd definition] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07sw3jxh3] -> 1.0 b07sw3jxh3 is a motion detection high definition outdoor camera with 1080p hd definition and price lower than 170.00 dollars. I can check b07sw3jxh3 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[description] -> 0.8 I need to check the detailed description of the item before buying it.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[b07sw3jxh3] -> 0.8 I have clicked for 'description' and haven't clicked for 'b07sw3jxh3'. I need to first click 'b07sw3jxh3' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[b07sw3jxh3] -> 0.8 I have clicked for 'description' and haven't clicked for 'b07sw3jxh3'. I need to first click 'b07sw3jxh3' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[b07sw3jxh3] -> 0.8 I have clicked for 'description' and haven't clicked for 'b07sw3jxh3'. I need to first click 'b07sw3jxh3' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for 'b07sw3jxh3' and 'description' and I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+{text: '\nEncouraged:\nsearch[motion detection high definition outdoor camera with 1080p hd definition] -> 0.8 I need to search for the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07sw3jxh3] -> 1.0 b07sw3jxh3 is a motion detection high definition outdoor camera with 1080p hd definition and price lower than 170.00 dollars. I can check b07sw3jxh3 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for 'b07sw3jxh3' and 'description' and I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----48
+{text: '\nEncouraged:\nsearch[engineered wood end table] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08dk8hx2b] -> 0.5 b08dk8hx2b is an engineered wood end table and the price is lower than 170.00 dollars. I can check b08dk8hx2b first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have found the desired item and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----49
+{text: "\nEncouraged:\nsearch[women's gift set long-lasting edt spray body cream] -> 1.0 This action will help me find the desired item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[b000c20zhe] -> 1.0 b000c20zhe is a women's gift set that contains long-lasting edt spray and body cream with price lower than 90.00 dollars. I can check b000c20zhe first.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 The item meets the requirements and I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----50
+{text: '\nEncouraged:\nsearch[ambesonne harbour stripe throw pillow cover 18 x 18 inch double sided salmon brown] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b075fzmxgs] -> 1.0 b075fzmxgs is a ambesonne harbour stripe throw pillow cover, 18 x 18 inch, double sided, salmon brown color, and price lower than 40.00 dollars. I can check b075fzmxgs first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[salmon brown] -> 0.5 I need to select the color 'salmon brown' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.5 I have selected the color 'salmon brown' and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----51
+{text: '\nEncouraged:\nsearch[body wash dermatologist tested cucumber aloe scent] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b093zndmms] -> 1.0 b093zndmms is a body wash that is dermatologist tested, has a cucumber and aloe scent, and price lower than 30.00 dollars. I can check b093zndmms first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[cucumber + aloe] -> 1.0 For body wash that is dermatologist tested, has a cucumber and aloe scent, and price lower than 30.00 dollars, the item has options 'cucumber + aloe' and '24.5 fl oz' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[24.5 fl oz] -> 1.0 I have clicked for 'cucumber + aloe' and haven't clicked for '24.5 fl oz'. I need to first click '24.5 fl oz' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'cucumber + aloe' and '24.5 fl oz', and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----52
+{text: '\nEncouraged:\nsearch[beige green shower brush long handle] -> 0.7 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09cf4x81y] -> 0.7 b09cf4x81y is a beige or green shower brush with a long handle and price lower than 50.00 dollars. I can check b09cf4x81y first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[2 pcs=green+beige] -> 0.8 This is the desired item and I can click "2 pcs=green+beige" to select it.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.5 I have selected the item '2 pcs=green+beige' and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----53
+{text: '\nEncouraged:\nsearch[16.9 fluid ounce amber bottle hair salon] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b091tztd5g] -> 1.0 b091tztd5g is a 16.9 fluid ounce amber bottle that could be used in a hair salon with price lower than 30.00 dollars. I can check b091tztd5g first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[16.9 fl oz (pack of 1)] -> 1.0 I have clicked for 'amber' and haven't clicked for '16.9 fl oz (pack of 1)'. I need to first click '16.9 fl oz (pack of 1)' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[amber] -> 1.0 For 16.9 fluid ounce amber bottle that could be used in a hair salon, the item has options 'amber' and '16.9 fl oz (pack of 1)' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'amber' and '16.9 fl oz (pack of 1)'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----54
+{text: '\nEncouraged:\nsearch[black alarm clock radio temperature usb port] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09qq7754d] -> 1.0 b09qq7754d is a black alarm clock radio that displays the temperature and uses a usb port with price lower than 90.00 dollars. I can check b09qq7754d first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[black] -> 1.0 I have clicked for 'black alarm clock radio temperature usb port' and haven't clicked for 'black'. I need to first click 'black' and then buy this item.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have selected all the options and now I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----55
+{text: '\nEncouraged:\nsearch[high performance paint contrast projector] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08x6mnwbn] -> 1.0 b08x6mnwbn is a high performance paint contrast projector with price lower than 250.00 dollars. I can check b08x6mnwbn first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint contrast] -> 1.0 I have clicked for 'projection paint' and haven't clicked for 'projection paint contrast'. I need to first click 'projection paint contrast' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint contrast] -> 1.0 I have clicked for 'projection paint' and haven't clicked for 'projection paint contrast'. I need to first click 'projection paint contrast' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint contrast] -> 1.0 I have clicked for 'projection paint' and haven't clicked for 'projection paint contrast'. I need to first click 'projection paint contrast' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[projection paint pro] -> 1.0 I have clicked for 'projection paint contrast' and haven't clicked for 'projection paint pro'. I need to first click 'projection paint pro' and then buy this item.\n", reason: 'stop'}
+----56
+{text: '\nEncouraged:\nsearch[kosher sea salt] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b088g1k5zq] -> 1.0 b088g1k5zq is a kosher sea salt and price lower than 30.00 dollars. I can check b088g1k5zq first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[1.1 pound (pack of 1)] -> 1.0 For kosher sea salt, the item has options '1.1 pound (pack of 1)' and 'pack of 2' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for '1.1 pound (pack of 1)' and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----57
+{text: '\nEncouraged:\nsearch[2 light bath vanity lighting set nickel finish] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b000nk4kus] -> 1.0 b000nk4kus is a 2 light bath vanity lighting set with nickel finish and price lower than 160.00 dollars. I can check b000nk4kus first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 0.7 The item meets all the requirements and I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----58
+{text: '\nEncouraged:\nsearch[non gmo sesame pretzels 12 pack] -> 0.8 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08wlck9qf] -> 0.8 b08wlck9qf is a 12 pack of non gmo sesame pretzels with price lower than 120.00 dollars. I can check b08wlck9qf first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have checked the item and it meets all the requirements. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----59
+{text: '\nEncouraged:\nsearch[yellow manual toothbrush 7-14 year old kids sensitive teeth] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09rfm8q7g] -> 1.0 b09rfm8q7g is a yellow manual toothbrush suitable for 7-14 year old kids with sensitive teeth with price lower than 50.00 dollars. I can check b09rfm8q7g first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[7-14 year] -> 0.8 I need to select the size of the toothbrush before clicking "buy now".\nclick[yellow-f] -> 0.8 I need to select the color of the toothbrush before clicking "buy now".\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[yellow-b] -> 0.8 I need to select the color of the toothbrush before clicking "buy now".\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After selecting the size and color, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----60
+{text: '\nEncouraged:\nsearch[press on nails babalal cat eye non toxic purple] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b092vgfjy3] -> 1.0 b092vgfjy3 is a press on nails with babalal cat eye, non toxic, purple, and price lower than 40.00 dollars. I can check b092vgfjy3 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[purple] -> 1.0 I need to select the desired color 'purple' before buying this item.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After selecting the desired color \'purple\', I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----61
+{text: '\nEncouraged:\nsearch[dell ultra small desktop computer core i5 16gb ram 256gb ssd windows 10 pro] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07st3yb1w] -> 1.0 b07st3yb1w is a dell ultra small desktop computer with core i5, 16gb ram, 256gb ssd and windows 10 pro, and price lower than 220.00 dollars. I can check b07st3yb1w first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[16gb ram | 256gb ssd] -> 1.0 I need to select the configuration with 16gb ram and 256gb ssd to meet the requirements.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have selected the configuration with 16gb ram and 256gb ssd to meet the requirements. I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----62
+{text: '\nEncouraged:\nsearch[kahuna colored capri pant relaxed fit size 20 plus] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09qs2qx2l] -> 0.8 b09qs2qx2l is a kahuna colored capri pant with relaxed fit and size 20 plus, and price lower than 50.00 dollars. I can check b09qs2qx2l first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[x-large] -> 1.0 I have clicked for 'large' and haven't clicked for 'x-large'. I need to first click 'x-large' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[black] -> 1.0 I have clicked for 'x-large' and haven't clicked for 'black'. I need to first click 'black' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'x-large' and 'black', and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----63
+{text: '\nEncouraged:\nsearch[tongue cleaner easy clean stainless steel] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09plbxxyq] -> 0.8 b09plbxxyq is a stainless steel tongue cleaner that is easy clean and use, and is also stainless steel, with price lower than 30.00 dollars. I can check b09plbxxyq first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After checking the item, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----64
+{text: '\nEncouraged:\nsearch[all natural no artificial ingredients savory spicy sauce 3 pack sweet kick mustard flavor] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0781mt9h6] -> 0.9 b0781mt9h6 is a 3 pack with sweet kick mustard flavor, all natural and no artificial ingredients savory and spicy sauce, and price lower than 120.00 dollars. I can check b0781mt9h6 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After checking the description, features, and reviews, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----65
+{text: '\nEncouraged:\nsearch[alcohol free skin care] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08h1x53jr] -> 1.0 b08h1x53jr is an alcohol free skin care with price lower than 60.00 dollars. I can check b08h1x53jr first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[description] -> 1.0 I need to check the description of the item to make sure it meets all the requirements.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[back to search] -> 1.0 I need to search for more items to make sure I can find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nsearch[alcohol free skin care] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08h1x53jr] -> 1.0 b08h1x53jr is an alcohol free skin care with price lower than 60.00 dollars. I can check b08h1x53jr first.\nclick[b000u5o650] -> 1.0 b000u5o650 is an alcohol free skin care with price lower than 60.00 dollars. I can check b000u5o650.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked the description and the item meets all the requirements. I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----66
+{text: '\nEncouraged:\nsearch[stainless steel gua sha set roller box] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0922pdbsk] -> 1.0 b0922pdbsk is a stainless steel gua sha set that includes the roller and box, and price lower than 110.00 dollars. I can check b0922pdbsk first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[roller and box] -> 1.0 I need to select the option "roller and box" to meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 The item meets all the requirements and I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----67
+{text: '\nEncouraged:\nsearch[brown size 7 shoes rubber sole] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08fsysm24] -> 0.8 b08fsysm24 is a brown size 7 shoe with a rubber sole and price lower than 90.00 dollars. I can check b08fsysm24 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[brown] -> 0.8 I have clicked for '7' and '8.5' and '9' and '10' and '11' and '12' and haven't clicked for 'brown'. I need to first click 'brown' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[7] -> 0.8 I have clicked for 'brown' and 'grey' and 'black' and haven't clicked for '7'. I need to first click '7' and then buy this item.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 0.8 All the requirements are ready now. I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----68
+{text: '\nEncouraged:\nsearch[30 pair pack skin care masks eyes wrinkles] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08rdq4llc] -> 0.9 b08rdq4llc is a 30 pair pack of skin care masks for eyes and wrinkles with price lower than 40.00 dollars. I can check b08rdq4llc first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 The item meets all the requirements and I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----69
+{text: '\nEncouraged:\nsearch[purple braces brush easy to carry] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09k3yk7hk] -> 1.0 b09k3yk7hk is a purple braces brush that is easy to carry with price lower than 50.00 dollars. I can check b09k3yk7hk first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[purple] -> 1.0 I need to select the color purple to make sure the item meets all the requirements.\nclick[buy now] -> 1.0 After selecting the color purple, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After selecting the color purple, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----70
+{text: '\nEncouraged:\nsearch[long lasting foundation spf50+ color no. 21] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b01m73r7r2] -> 1.0 b01m73r7r2 is a long lasting foundation with spf50+ and color no. 21, and price lower than 50.00 dollars. I can check b01m73r7r2 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[#21] -> 1.0 For long lasting foundation with spf50+ and color no. 21, the item has option '#21' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have checked the item and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----71
+{text: '\nEncouraged:\nsearch[easy spirit traveltime529 mule arch support rubber soles size 7.5 wide] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09ktv71r2] -> 1.0 b09ktv71r2 is an easy spirit traveltime529 mule with arch support, rubber soles, size 7.5 wide, and price lower than 120.00 dollars. I can check b09ktv71r2 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[7.5 wide] -> 0.8 I have clicked for '5' and '5.5' and '6' and '6 narrow' and '6 wide' and '6 x-wide' and '6.5' and '6.5 narrow' and '6.5 wide' and '6.5 x-wide' and '7' and '7 narrow' and '7 wide' and '7 x-wide' and '7.5' and '7.5 narrow' and haven't clicked for '7.5 wide'. I need to first click '7.5 wide' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for '7.5 wide' and now I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----72
+{text: '\nEncouraged:\nsearch[fomiyes 4pcs silicone travel bottles] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09mvlwsvx] -> 1.0 b09mvlwsvx is a fomiyes 4pcs silicone travel bottles that are easy to carry and price lower than 60.00 dollars. I can check b09mvlwsvx first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After checking the features and description, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----73
+{text: '\nEncouraged:\nsearch[pink ottoman solid wooden frame] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09gxg8hxk] -> 1.0 b09gxg8hxk is a pink ottoman with solid wooden frame and price lower than 360.00 dollars. I can check b09gxg8hxk first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[pink-white] -> 1.0 I need to select the color 'pink-white' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[large] -> 1.0 I need to select the size 'large' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have checked the item and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----74
+{text: '\nEncouraged:\nsearch[three pack 4 fluid ounce green envy hair dye] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b01ipzcpxq] -> 1.0 b01ipzcpxq is a three pack of 4 fluid ounce green envy hair dye with price lower than 40.00 dollars. I can check b01ipzcpxq first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[4 fl oz (pack of 3)] -> 1.0 4 fl oz (pack of 3) is the desired item.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[green envy] -> 1.0 For three pack of 4 fluid ounce green envy hair dye, the item has options 'green envy' and '4 fl oz (pack of 3)' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 All the requirements are ready now, so I can click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----75
+{text: '\nEncouraged:\nsearch[mid century console sofa table] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09g9t2x9w] -> 0.5 b09g9t2x9w is a mid century console sofa table with price lower than 80.00 dollars. I can check b09g9t2x9w first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have checked the item and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----76
+{text: '\nEncouraged:\nsearch[pink cosmetic bag easy to clean] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09hh2krvg] -> 1.0 b09hh2krvg is a pink cosmetic bag that is easy to clean with price lower than 30.00 dollars. I can check b09hh2krvg first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After checking the item, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----77
+{text: '\nEncouraged:\nsearch[grey mules & clogs for day comfert] -> 0.8 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07956dfsp] -> 0.8 b07956dfsp is a grey mules & clogs for day comfert with price lower than 80.00 dollars. I can check b07956dfsp first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[6.5-7.5] -> 0.8 I have clicked for '5-6' and haven't clicked for '6.5-7.5'. I need to first click '6.5-7.5' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[fairisle hoodback - grey] -> 0.8 I have clicked for '6.5-7.5' and haven't clicked for 'fairisle hoodback - grey'. I need to first click 'fairisle hoodback - grey' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for '5-6' and '6.5-7.5' and 'fairisle hoodback - grey' and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----78
+{text: '\nEncouraged:\nsearch[24 pack 7.5 ounce bottles non-gmo classic tonic] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b087cym49l] -> 0.8 b087cym49l is a 24 pack of 7.5 ounce bottles of non-gmo classic tonic with price lower than 60.00 dollars. I can check b087cym49l first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[7.5 fluid ounces (pack of 24)] -> 1.0 I have clicked for 'classic tonic' and haven't clicked for '7.5 fluid ounces (pack of 24)'. I need to first click '7.5 fluid ounces (pack of 24)' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[classic tonic] -> 1.0 For 24 pack of 7.5 ounce bottles of non-gmo classic tonic, the item has options 'classic tonic' and '7.5 fluid ounces (pack of 24)' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for '7.5 fluid ounces (pack of 24)' and 'classic tonic'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----79
+{text: '\nEncouraged:\nsearch[9.5 rubber soled hiking shoe light weight vinyl acetate] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b092f97bw4] -> 1.0 b092f97bw4 is a 9.5 rubber soled hiking shoe made of light weight vinyl acetate, and price lower than 140.00 dollars. I can check b092f97bw4 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide women] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide women'. I need to first click '9.5 wide women' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide women] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide women'. I need to first click '9.5 wide women' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide women] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide women'. I need to first click '9.5 wide women' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide women] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide women'. I need to first click '9.5 wide women' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[black] -> 0.8 I have clicked for '9.5 wide women' and haven't clicked for 'black'. I need to first click 'black' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide women] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide women'. I need to first click '9.5 wide women' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide men] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide men'. I need to first click '9.5 wide men' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide women] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide women'. I need to first click '9.5 wide women' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide men] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide men'. I need to first click '9.5 wide men' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide women] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide women'. I need to first click '9.5 wide women' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide men] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide men'. I need to first click '9.5 wide men' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide women] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide women'. I need to first click '9.5 wide women' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[9.5 wide men] -> 0.8 I have clicked for 'black' and 'marine' and 'sky blue' and 'white' and 'light pink' and 'sea green' and haven't clicked for '9.5 wide men'. I need to first click '9.5 wide men' and then buy this item.\n", reason: 'stop'}
+----80
+{text: '\nEncouraged:\nsearch[french vanilla soy wax candle] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08slj2dj1] -> 1.0 b08slj2dj1 is a french vanilla soy wax candle with price lower than 40.00 dollars. I can check b08slj2dj1 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[french vanilla_beige] -> 1.0 I have clicked for 'b08slj2dj1' and haven't clicked for 'french vanilla_beige'. I need to first click 'french vanilla_beige' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'french vanilla_beige' and all the options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----81
+{text: '\nEncouraged:\nsearch[black brown to tan hairpiece synthetic hair] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09p62mvhz] -> 1.0 b09p62mvhz is a black brown to tan hairpiece made from synthetic hair with price lower than 30.00 dollars. I can check b09p62mvhz first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[a] -> 1.0 For black brown to tan hairpiece made from synthetic hair, the item has option 'a' and seems good to buy.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After selecting the color option, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----82
+{text: '\nEncouraged:\nsearch[slim fit gray coat long sleeves x-large] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09njxq1t3] -> 1.0 b09njxq1t3 is a slim fit gray colored coat with long sleeves in x-large size and price lower than 60.00 dollars. I can check b09njxq1t3 first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[x-large] -> 1.0 I have clicked for 'slim fit gray coat long sleeves' and haven't clicked for 'x-large'. I need to first click 'x-large' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'x-large' and all the other options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----83
+{text: '\nEncouraged:\nsearch[plug and play high speed usb flash drive blue black 3 32g 2 64g] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07tz3nzd6] -> 1.0 b07tz3nzd6 is a plug and play high speed usb flash drive that is blue and black, with 64g capacity and price lower than 50.00 dollars. I can check b07tz3nzd6 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[(2) 64g-usb 3.0] -> 1.0 I need to select the desired item with the quantity and capacity that meet the instruction.\n', reason: 'stop'}
+----84
+{text: '\nEncouraged:\nsearch[chocolate coated wafers 4.41 ounce caramel] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b085qmttsc] -> 1.0 b085qmttsc is a chocolate coated wafers with a 4.41 ounce size and caramel flavor with price lower than 70.00 dollars. I can check b085qmttsc first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[caramel] -> 1.0 For chocolate coated wafers with a 4.41 ounce size and caramel flavor, the item has option 'caramel' and seems good to buy.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[4.41 ounce] -> 1.0 For chocolate coated wafers with a 4.41 ounce size and caramel flavor, the item has option '4.41 ounce' and seems good to buy.\n", reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After checking the item, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----85
+{text: '\nEncouraged:\nsearch[high speed hdmi cables 10 feet long 5 pack] -> 0.8 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07d6m7lmp] -> 0.8 b07d6m7lmp is a 5 pack of high speed hdmi cables that are 10 feet long with price lower than 70.00 dollars. I can check b07d6m7lmp first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[10 feet] -> 0.8 I have clicked for '3 feet' and '6 feet' and haven't clicked for '10 feet'. I need to first click '10 feet' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[10-pack] -> 0.8 I have clicked for '10 feet' and haven't clicked for '10-pack'. I need to first click '10-pack' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[cable + cable, (5-pack)] -> 0.8 I have clicked for '10 feet' and '10-pack' and haven't clicked for 'cable + cable, (5-pack)'. I need to first click 'cable + cable, (5-pack)' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for '3 feet', '6 feet', '10 feet', '1-pack', '10-pack', 'cable', 'cable + cable - 6 feet', 'cable + cable, (5-pack)' and I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----86
+{text: '\nEncouraged:\nsearch[yellow machine washable batmerry summer bright decorative pillow covers] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0824cbd9p] -> 1.0 b0824cbd9p is a yellow machine washable batmerry summer bright decorative pillow cover and price lower than 50.00 dollars. I can check b0824cbd9p first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[sunshine yellow] -> 0.5 I need to select the color 'sunshine yellow' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.5 I have selected the color 'sunshine yellow' and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----87
+{text: "\nEncouraged:\nsearch[women's bootcut pants tapata] -> 1.0 This action will help me find the desired item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[b08dtg3p4b] -> 1.0 b08dtg3p4b is a women's bootcut pants in the brand of tapata with price lower than 80.00 dollars. I can check b08dtg3p4b first.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[black] -> 0.8 I have clicked for '30 inseam(regular)' and '34 inseam(tall)' and 'medium tall' and 'large' and 'xx-large' and haven't clicked for 'black'. I need to first click 'black' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[navy blue] -> 0.8 I have clicked for '30 inseam(regular)' and '34 inseam(tall)' and 'medium tall' and 'large' and 'xx-large' and 'black' and haven't clicked for 'navy blue'. I need to first click 'navy blue' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for '30 inseam(regular)', '34 inseam(tall)', 'medium tall', 'large', 'xx-large', 'black', and 'navy blue'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----88
+{text: '\nEncouraged:\nsearch[khaki steel toe shoes size 11 women] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b08xytsz9t] -> 1.0 b08xytsz9t is a khaki steel toe shoe in size 11 women with price lower than 50.00 dollars. I can check b08xytsz9t first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[11 women | 9.5 men] -> 0.8 I have clicked for 'black 024' and 'brown' and 'khaki' and 'black' and haven't clicked for '11 women | 9.5 men'. I need to first click '11 women | 9.5 men' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[khaki] -> 0.8 I have clicked for '7 women | 5.5 men' and '7.5 women | 6 men' and '8 women | 6.5 men' and '8.5 women | 7 men' and '9 women | 7.5 men' and '10 women | 8.5 men' and '10.5 women | 9 men' and '11 women | 9.5 men' and '11.5 women | 10 men' and '12 women | 10.5 men' and '12.5 women | 11 men' and '13 women | 11.5 men' and 'black 024' and 'brown' and haven't clicked for 'khaki'. I need to first click 'khaki' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[black] -> 0.8 I have clicked for '7 women | 5.5 men' and '7.5 women | 6 men' and '8 women | 6.5 men' and '8.5 women | 7 men' and '9 women | 7.5 men' and '10 women | 8.5 men' and '10.5 women | 9 men' and '11 women | 9.5 men' and '11.5 women | 10 men' and '12 women | 10.5 men' and '12.5 women | 11 men' and '13 women | 11.5 men' and 'black 024' and 'brown' and 'khaki' and haven't clicked for 'black'. I need to first click 'black' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for '7 women | 5.5 men' and '7.5 women | 6 men' and '8 women | 6.5 men' and '8.5 women | 7 men' and '9 women | 7.5 men' and '10 women | 8.5 men' and '10.5 women | 9 men' and '11 women | 9.5 men' and '11.5 women | 10 men' and '12 women | 10.5 men' and '12.5 women | 11 men' and '13 women | 11.5 men' and 'black 024' and 'brown' and 'khaki' and 'black'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----89
+{text: '\nEncouraged:\nsearch[7 piece king comforter set flowers machine washable] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b005y8ge6c] -> 1.0 b005y8ge6c is a 7 piece king comforter set decorated with flowers and is machine washable, and price lower than 90.00 dollars. I can check b005y8ge6c first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[king (104 in x 92 in)] -> 0.5 I need to select the size 'king (104 in x 92 in)' to match the instruction.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.5 I have selected the size 'king (104 in x 92 in)' and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----90
+{text: '\nEncouraged:\nsearch[earbud headphones je-04b] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b0768gklnl] -> 0.7 b0768gklnl is a earbud headphones with stereo sound quality of style je-04b and price lower than 50.00 dollars. I can check b0768gklnl first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[description] -> 1.0 I need to check the detailed features of the item before buying it.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[earbuds with microphone] -> 1.0 I need to click 'earbuds with microphone' to check the detailed features of the item before buying it.\n", reason: 'stop'}
+----91
+{text: '\nEncouraged:\nsearch[blue 2.95 foot wire pendent light living room] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07rqjf1rv] -> 1.0 b07rqjf1rv is a blue 2.95 foot wire pendent light with price lower than 210.00 dollars. I can check b07rqjf1rv first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After all the options are selected, I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----92
+{text: '\nEncouraged:\nsearch[wireless bluetooth speakers color a] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b00tt3snhg] -> 0.8 b00tt3snhg is a wireless bluetooth speaker in the color a with price lower than 130.00 dollars. I can check b00tt3snhg first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 I have checked the item and all the requirements are satisfied. I need to click "buy now" to finish the shopping.\n', reason: 'stop'}
+----93
+{text: '\nEncouraged:\nsearch[x-large casual dresses with long sleeves] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09sq6xvmk] -> 0.8 b09sq6xvmk is a x-large casual dress with long sleeves and price lower than 40.00 dollars. I can check b09sq6xvmk first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[x-large] -> 0.8 I have clicked for '*02black' and '*02hot pink' and '*02light blue' and '01blue' and '01navy' and '02black' and '02yellow' and '01yellow' and '02pink' and haven't clicked for 'x-large'. I need to first click 'x-large' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for '*02black' and '*02hot pink' and '*02light blue' and '01blue' and '01navy' and '02black' and '02yellow' and '01yellow' and '02pink' and 'x-large'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----94
+{text: '\nEncouraged:\nsearch[kosher gelato] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b084l27rjk] -> 1.0 b084l27rjk is a kosher gelato and price lower than 120.00 dollars. I can check b084l27rjk first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 After checking the description, features, and reviews, I can click "buy now" to finish the shopping.\n', reason: 'stop'}
+----95
+{text: "\nEncouraged:\nsearch[pink women's quilted puffy vest machine wash extra large] -> 1.0 This action will help me find the desired item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[b09pd7b83n] -> 1.0 b09pd7b83n is a pink women's quilted puffy vest that can be machine washed, size extra large, and price lower than 70.00 dollars. I can check b09pd7b83n first.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[xx-large] -> 1.0 I have clicked for 'pink women's quilted puffy vest' and haven't clicked for 'xx-large'. I need to first click 'xx-large' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 1.0 I have clicked for 'xx-large' and all the other options are selected. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----96
+{text: '\nEncouraged:\nsearch[light weight fitbit versa bands men women size large] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b09clbdtwz] -> 1.0 b09clbdtwz is a light weight fitbit versa band for men women with size large and price lower than 50.00 dollars. I can check b09clbdtwz first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[large] -> 0.8 I have clicked for 'glistening rose gold | glistening champagne gold | wine red | blue | black | gray | white | pink' and 'rose gold | champagne gold | wine red | white | black | blue | olive green | gray' and 'wine red | olive green | blue | black | lavender | light blue | gray | white' and haven't clicked for 'large'. I need to first click 'large' and then buy this item.\n", reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.8 I have clicked for 'small' and 'large' and 'glistening rose gold | glistening champagne gold | wine red | blue | black | gray | white | pink' and 'rose gold | champagne gold | wine red | white | black | blue | olive green | gray' and 'wine red | olive green | blue | black | lavender | light blue | gray | white' and haven't clicked for 'buy now'. I need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----97
+{text: '\nEncouraged:\nsearch[fragrance free facial wash] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b003bmi628] -> 1.0 b003bmi628 is a fragrance free facial wash and price lower than 50.00 dollars. I can check b003bmi628 first.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[buy now] -> 1.0 All the requirements are ready now.\n', reason: 'stop'}
+----98
+{text: '\nEncouraged:\nsearch[14 inch rose gold throw pillow cover] -> 1.0 This action will help me find the desired item.\n', reason: 'stop'}
+{text: '\nEncouraged:\nclick[b07th8f8pr] -> 1.0 b07th8f8pr is a 14 inch rose gold throw pillow cover and price lower than 50.00 dollars. I can check b07th8f8pr first.\n', reason: 'stop'}
+{text: "\nEncouraged:\nclick[buy now] -> 0.5 I have selected the color 'rose gold & white' and need to click 'buy now' to finish the shopping.\n", reason: 'stop'}
+----99
