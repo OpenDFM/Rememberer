@@ -4,6 +4,15 @@ from typing import List, NamedTuple, Dict
 import requests
 import json
 
+import logging
+
+import datetime
+import os
+import sys
+import yaml
+
+logger = logging.getLogger("openai")
+
 _BASE_URL: Dict[str, str] =\
         { "completion": "http://54.193.55.85:10030/v1/completions"
         }
@@ -107,3 +116,193 @@ class OpenAI:
                      , "length" if response["result"]["is_truncated"] else "stop"
                      )
         #  }}} method Completion # 
+
+# {
+#   "role": "system" | "user" | "assistant" | "function"
+#   "content": str
+#   "name": str, required for "function" role
+#   "function_call": {
+#       "name": str
+#       "arguments": dict like {str: anything}
+#   }
+# }
+Message = Dict[ str
+              , Union[ str
+                     , Dict[ str
+                           , Union[ str
+                                  , Dict[str, Any]
+                                  ]
+                           ]
+                     ]
+              ]
+
+class GPTProxy:
+    #  class GPTProxy {{{ # 
+    def __init__(self, fetch_api: str):
+        self._fetch_api: str = fetch_api
+
+    def _chat( self, model: str
+             , messages: List[Message]
+             , max_tokens: int = 100
+             , temperature: float = 0.1
+             , top_p: int = 1
+             , stream: bool = False
+             , presence_penalty: float = 0.
+             , frequency_penalty: float = 0.
+             , request_timeout: float = 60.
+             , **params
+             ) -> Message:
+        #  method _call {{{ # 
+        header = { "Content-Type":"application/json"
+                 , "Authorization": "Bearer {:}".format(self._fetch_api)
+                 }
+        post_dict = { "model": model
+                    , "messages": messages
+                    , "max_tokens": max_tokens
+                    , "temperature": temperature
+                    , "top_p": top_p
+                    , "presence_penalty": presence_penalty
+                    , "frequency_penalty": frequency_penalty
+                    , "request_timeout": request_timeout
+                    }
+        logger.debug("Request: %s", json.dumps(post_dict))
+
+        response: requests.Response = requests.post( "https://frostsnowjh.com/v1/chat/completions"
+                                                   , json=post_dict, headers=header
+                                                   )
+        logger.debug("Response: %s", repr(response))
+        response: Dict[str, Any] = response.json()
+
+        return response["choices"][0]["message"]
+        #  }}} method _call # 
+
+    def _completion( self, model: str
+                   , messages: str
+                   , max_tokens: int = 100
+                   , temperature: float = 0.1
+                   , top_p: int = 1
+                   , stream: bool = False
+                   , presence_penalty: float = 0.
+                   , frequency_penalty: float = 0.
+                   , request_timeout: float = 60.
+                   , **params
+                   ) -> str:
+        #  method _call {{{ # 
+        header = { "Content-Type":"application/json"
+                 , "Authorization": "Bearer {:}".format(self._fetch_api)
+                 }
+        post_dict = { "model": model
+                    , "messages": messages
+                    , "max_tokens": max_tokens
+                    , "temperature": temperature
+                    , "top_p": top_p
+                    , "presence_penalty": presence_penalty
+                    , "frequency_penalty": frequency_penalty
+                    , "request_timeout": request_timeout
+                    }
+        logger.debug("Request: %s", json.dumps(post_dict))
+
+        response: requests.Response = requests.post( "https://frostsnowjh.com/v1/completions"
+                                                   , json=post_dict, headers=header
+                                                   )
+        logger.debug("Response: %s", repr(response))
+        response: Dict[str, Any] = response.json()
+
+        return response["choices"][0]["text"]
+        #  }}} method _call # 
+
+    def chatgpt( self, version: str
+               , messages: List[Message]
+               , max_tokens: int = 100
+               , temperature: float = 0.1
+               , top_p: int = 1
+               , stream: bool = False
+               , presence_penalty: float = 0.
+               , frequency_penalty: float = 0.
+               , request_timeout: float = 60.
+               , **params
+               ) -> Message:
+        #  method chatgpt {{{ # 
+        return self._chat( "gpt-3.5-turbo{:}".format(version)
+                         , messages
+                         , max_tokens
+                         , temperature
+                         , top_p
+                         , stream
+                         , presence_penalty
+                         , frequency_penalty
+                         , request_timeout
+                         , **params
+                         )
+        #  }}} method chatgpt # 
+
+    def gpt4( self, version: str
+            , messages: List[Message]
+            , max_tokens: int = 100
+            , temperature: float = 0.1
+            , top_p: int = 1
+            , stream: bool = False
+            , presence_penalty: float = 0.
+            , frequency_penalty: float = 0.
+            , request_timeout: float = 60.
+            , **params
+            ) -> Message:
+        #  method chatgpt {{{ # 
+        return self._chat( "gpt-4{:}".format(version)
+                         , messages
+                         , max_tokens
+                         , temperature
+                         , top_p
+                         , stream
+                         , presence_penalty
+                         , frequency_penalty
+                         , request_timeout
+                         , **params
+                         )
+        #  }}} method chatgpt # 
+    #  }}} class GPTProxy # 
+
+if __name__ == "__main__":
+    #  Logger Config {{{ # 
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+    
+    datetime_str: str = datetime.datetime.now().strftime("%Y%m%d@%H%M%S")
+    
+    file_handler = logging.FileHandler(os.path.join("logs-tmp", "normal-{:}.log".format(datetime_str)))
+    debug_handler = logging.FileHandler(os.path.join("logs-tmp", "debug-{:}.log".format(datetime_str)))
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    sdebug_handler = logging.FileHandler(os.path.join("logs-tmp", "sdebug-{:}.log".format(datetime_str)))
+    
+    file_handler.setLevel(logging.INFO)
+    debug_handler.setLevel(logging.DEBUG)
+    stdout_handler.setLevel(logging.INFO)
+    sdebug_handler.setLevel(logging.DEBUG)
+    
+    formatter = logging.Formatter(fmt="\x1b[1;33m[%(asctime)s \x1b[31m%(levelname)s \x1b[32m%(module)s/%(lineno)d-%(processName)s\x1b[1;33m] \x1b[0m%(message)s")
+    file_handler.setFormatter(formatter)
+    debug_handler.setFormatter(formatter)
+    stdout_handler.setFormatter(formatter)
+    sdebug_handler.setFormatter(formatter)
+    
+    stdout_handler.addFilter(logging.Filter("openai"))
+    sdebug_handler.addFilter(logging.Filter("openai"))
+    
+    logger.addHandler(file_handler)
+    logger.addHandler(debug_handler)
+    logger.addHandler(stdout_handler)
+    logger.addHandler(sdebug_handler)
+    #  }}} Logger Config # 
+
+    with open("openaiconfig.yaml") as f:
+        config: Dict[str, str] = yaml.load(f, Loader=yaml.Loader)
+        fetch_api: str = config["fetch_api"]
+    proxy = GPTProxy(fetch_api)
+
+    message = "Hello,"
+    response: str = proxy._completion( "text-davinci-003"
+                                     , message
+                                     , max_tokens=50
+                                     , request_timeout=300.
+                                     )
+    print(response)
