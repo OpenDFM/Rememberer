@@ -361,7 +361,7 @@ def main():
         prompt_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "input_template_w.txt")) as f:
         input_template = string.Template(f.read())
-    with open(os.path.join(args.prompt_template, "advice_template_nodis.txt")) as f:
+    with open(os.path.join(args.prompt_template, "advice_template.txt")) as f:
         advice_template = string.Template(f.read())
     with open(os.path.join(args.prompt_template, "canonical_examplar_wC3.1.txt")) as f:
         canonical1: str = f.read()

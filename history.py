@@ -845,7 +845,7 @@ class HistoryReplay(AbstractHistoryReplay[Key, Action]):
               , action: Optional[Action] = None
               , last_step: bool = False
               , truly_update: bool = True
-              , reference_q_table: Optional["HistoryReplay"[Key, Action]] = None
+              , reference_q_table: Optional["HistoryReplay[Key, Action]"] = None
               ):
         #  method update {{{ # 
         """
@@ -1074,7 +1074,7 @@ class HistoryReplay(AbstractHistoryReplay[Key, Action]):
                              , reward: float
                              , new_estimation: float
                              , end_step: Optional[Key]
-                             , reference_q_table: Optional["HistoryReplay"[Key, Action]] = None
+                             , reference_q_table: Optional["HistoryReplay[Key, Action]"] = None
                              ):
         #  method _update_action_record {{{ # 
         if action not in action_dict:
@@ -1272,9 +1272,9 @@ class DoubleHistoryReplay(AbstractHistoryReplay[Key, Action]):
             if k in record_dict1:
                 # merge other_info
                 other_info1: AbstractHistoryReplay.InfoDict =\
-                        record_dict1[k]["info_dict"]
+                        record_dict1[k]["other_info"]
                 other_info2: AbstractHistoryReplay.InfoDict =\
-                        record_dict1[k]["info_dict"]
+                        record_dict1[k]["other_info"]
                 _update_action_history( self._action_history_update_mode
                                       , other_info1
                                       , other_info2["action_history"]
@@ -1350,6 +1350,9 @@ class DoubleHistoryReplay(AbstractHistoryReplay[Key, Action]):
             self._last_update ^= 1
 
         another_index: int = self._last_update^1
+        hlogger.debug( "Updating memory %d, referencing memory %d"
+                     , self._last_update, another_index
+                     )
         self._history_replays[self._last_update].update( step, reward
                                                        , action, last_step
                                                        , reference_q_table=self._history_replays[another_index]
