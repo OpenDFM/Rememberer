@@ -10,6 +10,7 @@ import yaml
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.util import dot_score
 import torch
+import copy
 
 import logging
 
@@ -1265,8 +1266,8 @@ class DoubleHistoryReplay(AbstractHistoryReplay[Key, Action]):
         """
 
         #  Merge Record Dict {{{ # 
-        record_dict1: AbstractHistoryReplay.Record = self._history_replays[0]._record.copy()
-        record_dict2: AbstractHistoryReplay.Record = self._history_replays[1]._record.copy()
+        record_dict1: AbstractHistoryReplay.Record = copy.deepcopy(self._history_replays[0]._record)
+        record_dict2: AbstractHistoryReplay.Record = copy.deepcopy(self._history_replays[1]._record)
 
         for k in record_dict2:
             if k in record_dict1:
@@ -1375,8 +1376,8 @@ class DoubleHistoryReplay(AbstractHistoryReplay[Key, Action]):
         self._history_replays[0].save_yaml(yaml_file[0])
         self._history_replays[1].save_yaml(yaml_file[1])
     def __len__(self) -> int:
-        return len( set( itertools.chain( self._history_replays[0].keys()
-                                        , self._history_replays[1].keys()
+        return len( set( itertools.chain( self._history_replays[0]._record.keys()
+                                        , self._history_replays[1]._record.keys()
                                         )
                        )
                   )
