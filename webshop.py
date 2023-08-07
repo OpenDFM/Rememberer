@@ -488,8 +488,8 @@ def main():
                    , len(history_replay)
                    , sum( map( lambda rcd: len(rcd["action_dict"])
                              , history_replay._record.values() if args.double_q_learning\
-                          else itertools.chain( history_replay._history_replays[0].values()
-                                              , history_replay._history_replays[1].values()
+                          else itertools.chain( history_replay._history_replays[0]._record.values()
+                                              , history_replay._history_replays[1]._record.values()
                                               )
                              )
                         )\
