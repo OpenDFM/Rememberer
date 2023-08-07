@@ -17,6 +17,7 @@ import yaml
 import string
 import webshop_agent
 import agent_protos
+import itertools
 
 import logging
 import argparse
@@ -206,8 +207,8 @@ def main():
                        )
 
     # Replay Options
-    parser.add_argument("--load-replay", type=str)
-    parser.add_argument("--save-replay", type=str)
+    parser.add_argument("--load-replay", action="append", type=str)
+    parser.add_argument("--save-replay", action="append", type=str)
     parser.add_argument("--item-capacity", type=int)
     parser.add_argument("--action-capacity", type=int)
     parser.add_argument( "--matcher"
@@ -225,6 +226,8 @@ def main():
     parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
     parser.add_argument("--learning-rate", default=0.1, type=float)
     parser.add_argument("--n-step-flatten", type=int)
+    parser.add_argument("--double-q-learning", action="store_true")
+    parser.add_argument("--iteration-mode", default="turn", type=str, choices=["turn", "random"])
 
     # Agent Options
     parser.add_argument("--prompt-template", type=str)
@@ -328,17 +331,31 @@ def main():
                                            , transformer=sentence_transformer
                                            )
               }
-    history_replay: history.HistoryReplay[webshop_agent.Key, webshop_agent.Action]\
-            = history.HistoryReplay( args.item_capacity
-                                   , args.action_capacity
-                                   , matcher=matcher_functions[args.matcher]
-                                   , gamma=args.gamma
-                                   , step_penalty=args.step_penalty
-                                   , update_mode=args.update_mode
-                                   , learning_rate=args.learning_rate
-                                   , n_step_flatten=args.n_step_flatten
-                                   )
-    history_replay.load_yaml(args.load_replay)
+    if args.double_q_learning:
+        history_replay: history.AbstractHistoryReplay[webshop_agent.Key, webshop_agent.Action]\
+                = history.DoubleHistoryReplay( args.item_capacity
+                                             , args.action_capacity
+                                             , matcher=matcher_functions[args.matcher]
+                                             , gamma=args.gamma
+                                             , step_penalty=args.step_penalty
+                                             , update_mode=args.update_mode
+                                             , learning_rate=args.learning_rate
+                                             , n_step_flatten=args.n_step_flatten
+                                             , iteration_mode=args.iteration_mode
+                                             )
+        history_replay.load_yaml(args.load_replay)
+    else:
+        history_replay: history.AbstractHistoryReplay[webshop_agent.Key, webshop_agent.Action]\
+                = history.HistoryReplay( args.item_capacity
+                                       , args.action_capacity
+                                       , matcher=matcher_functions[args.matcher]
+                                       , gamma=args.gamma
+                                       , step_penalty=args.step_penalty
+                                       , update_mode=args.update_mode
+                                       , learning_rate=args.learning_rate
+                                       , n_step_flatten=args.n_step_flatten
+                                       )
+        history_replay.load_yaml(args.load_replay[0])
 
     with open(os.path.join(args.prompt_template, "prompt_pthw.txt")) as f:
         prompt_template = string.Template(f.read())
@@ -457,14 +474,23 @@ def main():
                             )
 
         if args.train:
-            history_replay.save_yaml(args.save_replay % epch)
+            if args.double_q_learning:
+                history_replay.save_yaml( [ args.save_replay[0] % epch
+                                          , args.save_replay[1] % epch
+                                          ]
+                                        )
+            else:
+                history_replay.save_yaml(args.save_replay % epch)
 
         epoch_str = "Epoch {:}".format(epch)
         logger.info("\x1b[31m━━━━━━━━━━━━━━━━━━━%s━━━━━━━━━━━━━━━━━━━━\x1b[0m", epoch_str)
         logger.info( "Size: %d, Avg AD Size: %d"
                    , len(history_replay)
                    , sum( map( lambda rcd: len(rcd["action_dict"])
-                             , history_replay._record.values()
+                             , history_replay._record.values() if args.double_q_learning\
+                          else itertools.chain( history_replay._history_replays[0].values()
+                                              , history_replay._history_replays[1].values()
+                                              )
                              )
                         )\
                    / float(len(history_replay))
