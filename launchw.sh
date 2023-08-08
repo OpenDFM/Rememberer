@@ -4,8 +4,8 @@ date_str=$(date +%Y-%m-%dT%H:%M:%S)
 
 python webshop.py --log-dir logs\
 				  --observation-mode text_rich\
-				  --load-replay history-pools/init_pool3.wqu.2023-08-08T00:06:24.1.a.yaml\
-				  --load-replay history-pools/init_pool3.wqu.2023-08-08T00:06:24.1.b.yaml\
+				  --load-replay history-pools/init_pool3.wqu.2023-08-08T00:14:30.2.a.yaml\
+				  --load-replay history-pools/init_pool3.wqu.2023-08-08T00:14:30.2.b.yaml\
 				  --save-replay history-pools/init_pool3.wqu."$date_str".%d.a.yaml\
 				  --save-replay history-pools/init_pool3.wqu."$date_str".%d.b.yaml\
 				  --item-capacity 500\
@@ -16,8 +16,8 @@ python webshop.py --log-dir logs\
 				  --max-tokens 200\
 				  --request-timeout 20.\
 				  --train\
-				  --starts-from 2\
-				  --epochs 3\
+				  --starts-from 3\
+				  --epochs 6\
 				  --except 501 504 506 507 508\
 				  --trainseta 0\
 				  --trainsetb 10\
