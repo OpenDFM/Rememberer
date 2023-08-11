@@ -480,7 +480,7 @@ def main():
                                           ]
                                         )
             else:
-                history_replay.save_yaml(args.save_replay % epch)
+                history_replay.save_yaml(args.save_replay[0] % epch)
 
         epoch_str = "Epoch {:}".format(epch)
         logger.info("\x1b[31m━━━━━━━━━━━━━━━━━━━%s━━━━━━━━━━━━━━━━━━━━\x1b[0m", epoch_str)
