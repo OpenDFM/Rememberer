@@ -273,7 +273,6 @@ class AutoAgent( Agent
                                    , stop
                                    , request_timeout
                                    , 3.1
-                                   , with_speech
                                    , manual
                                    )
 

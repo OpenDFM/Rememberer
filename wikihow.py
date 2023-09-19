@@ -18,6 +18,7 @@ from android_env.environment import AndroidEnv
 from transformers import AutoTokenizer
 import dm_env
 import history
+import itertools
 
 from typing import Dict, List, Set
 import numpy as np
@@ -171,8 +172,8 @@ def main():
     parser.add_argument("--avd-name", type=str)
     parser.add_argument("--tokenizer-path", type=str)
 
-    parser.add_argument("--load-replay", type=str)
-    parser.add_argument("--save-replay", type=str)
+    parser.add_argument("--load-replay", action="append", type=str)
+    parser.add_argument("--save-replay", action="append", type=str)
     parser.add_argument("--item-capacity", type=int)
     parser.add_argument("--action-capacity", type=int)
     parser.add_argument("--matcher", default="lcs", type=str, choices=["lcs", "lcs+inspat", "inspat"])
@@ -181,6 +182,8 @@ def main():
     parser.add_argument("--update-mode", default="mean", type=str, choices=["mean", "const"])
     parser.add_argument("--learning-rate", default=0.1, type=float)
     parser.add_argument("--n-step-flatten", type=int)
+    parser.add_argument("--double-q-learning", action="store_true")
+    parser.add_argument("--iteration-mode", default="turn", type=str, choices=["turn", "random"])
 
     parser.add_argument("--prompt-template", type=str)
     parser.add_argument("--max-tokens", default=20, type=int)
@@ -270,17 +273,31 @@ def main():
                                                               , [0.5, 0.5]
                                                               ).get_lambda_matcher
               }
-    history_replay: history.HistoryReplay[wikihow_agent.Key, wikihow_agent.Action]\
-            = history.HistoryReplay( args.item_capacity
-                                   , args.action_capacity
-                                   , matcher=matcher_functions[args.matcher]
-                                   , gamma=args.gamma
-                                   , step_penalty=args.step_penalty
-                                   , update_mode=args.update_mode
-                                   , learning_rate=args.learning_rate
-                                   , n_step_flatten=args.n_step_flatten
-                                   )
-    history_replay.load_yaml(args.load_replay)
+    if args.double_q_learning:
+        history_replay: history.AbstractHistoryReplay[wikihow_agent.Key, wikihow_agent.Action]\
+                = history.DoubleHistoryReplay( args.item_capacity
+                                             , args.action_capacity
+                                             , matcher=matcher_functions[args.matcher]
+                                             , gamma=args.gamma
+                                             , step_penalty=args.step_penalty
+                                             , update_mode=args.update_mode
+                                             , learning_rate=args.learning_rate
+                                             , n_step_flatten=args.n_step_flatten
+                                             , iteration_mode=args.iteration_mode
+                                             )
+        history_replay.load_yaml(args.load_replay)
+    else:
+        history_replay: history.AbstractHistoryReplay[wikihow_agent.Key, wikihow_agent.Action]\
+                = history.HistoryReplay( args.item_capacity
+                                       , args.action_capacity
+                                       , matcher=matcher_functions[args.matcher]
+                                       , gamma=args.gamma
+                                       , step_penalty=args.step_penalty
+                                       , update_mode=args.update_mode
+                                       , learning_rate=args.learning_rate
+                                       , n_step_flatten=args.n_step_flatten
+                                       )
+        history_replay.load_yaml(args.load_replay[0])
 
     with open(os.path.join(args.prompt_template, "prompt_pth.txt")) as f:
         prompt_template = string.Template(f.read())
@@ -395,14 +412,23 @@ def main():
                             )
 
         if args.train:
-            history_replay.save_yaml(args.save_replay % epch)
+            if args.double_q_learning:
+                history_replay.save_yaml( [ args.save_replay[0] % epch
+                                          , args.save_replay[1] % epch
+                                          ]
+                                        )
+            else:
+                history_replay.save_yaml(args.save_replay[0] % epch)
 
         epoch_str = "Epoch {:}".format(epch)
         logger.info("\x1b[31m━━━━━━━━━━━━━━━━━━━%s━━━━━━━━━━━━━━━━━━━━\x1b[0m", epoch_str)
         logger.info( "Size: %d, Avg AD Size: %d"
                    , len(history_replay)
                    , sum( map( lambda rcd: len(rcd["action_dict"])
-                             , history_replay._record.values()
+                             , itertools.chain( history_replay._history_replays[0]._record.values()
+                                              , history_replay._history_replays[1]._record.values()
+                                              ) if args.double_q_learning\
+                          else history_replay._record.values()
                              )
                         )\
                    / float(len(history_replay))

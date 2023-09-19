@@ -9,6 +9,7 @@ logs-historyless/
 bandits.logs/
 logs-webshop/
 logs-alfworld/
+logs-tmp
 history-pools/*.*qu.*.yaml
 
 __pycache__
@@ -21,4 +22,4 @@ data-backup/
 llmdemo*
 
 snapshots
-branch-config/
+#branch-config/

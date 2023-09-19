@@ -9,7 +9,9 @@ python wikihow.py --log-dir logs/\
 			      --avd-name Pixel_2_API_30_ga_x64\
 			      --tokenizer-path weights/vilt-b32-mlm-tiny-tkn\
 			      --load-replay history-pools/init_pool.q.yaml\
-			      --save-replay history-pools/init_pool.qu."$date_str".%d.yaml\
+			      --load-replay history-pools/init_pool.q.yaml\
+			      --save-replay history-pools/init_pool.qu."$date_str".a.yaml\
+			      --save-replay history-pools/init_pool.qu."$date_str".b.yaml\
 			      --item-capacity 500\
 			      --action-capacity 20\
 			      --matcher lcs+inspat\

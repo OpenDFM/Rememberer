@@ -5,7 +5,9 @@ date_str=$(date +%Y-%m-%dT%H:%M:%S)
 python webshop.py --log-dir logs\
 				  --observation-mode text_rich\
 				  --load-replay history-pools/init_pool.wq.yaml\
-				  --save-replay history-pools/init_pool.wqu."$date_str".%d.yaml\
+				  --load-replay history-pools/init_pool.wq.yaml\
+				  --save-replay history-pools/init_pool.wqu."$date_str".%d.a.yaml\
+				  --save-replay history-pools/init_pool.wqu."$date_str".%d.b.yaml\
 				  --item-capacity 500\
 				  --action-capacity 20\
 				  --matcher pgpat+insrel\

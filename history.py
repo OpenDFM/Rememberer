@@ -10,6 +10,7 @@ import yaml
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.util import dot_score
 import torch
+import copy
 
 import logging
 
@@ -370,13 +371,8 @@ class LambdaMatcherConstructor(Generic[Key]):
         return LambdaMatcher(matchers, self._weights)
     #  }}} class LambdaMatcherConstructor # 
 
-class HistoryReplay(Generic[Key, Action]):
-    #  class HistoryReplay {{{ # 
-    #Key = Tuple[ str # screen representation
-               #, str # task description
-               #, str # step instruction
-               #]
-    #Action = Tuple[str, str]
+class AbstractHistoryReplay(abc.ABC, Generic[Key, Action]):
+    #  class AbstractHistoryReplay {{{ # 
     InfoDict = Dict[ str
                    , Union[ float
                           , int
@@ -389,6 +385,65 @@ class HistoryReplay(Generic[Key, Action]):
                            ]
                      ]
     Record = Dict[str, Union[InfoDict, ActionDict, int]]
+
+    @abc.abstractmethod
+    def __getitem__(self, request: Key) ->\
+            List[ Tuple[ Key
+                       , Record
+                       , float
+                       ]
+                ]:
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def update( self
+              , step: Key
+              , reward: float
+              , action: Optional[Action] = None
+              , last_step: bool = False
+              ):
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def load_yaml(self, yaml_file: Union[str, Sequence[str]]):
+        raise NotImplementedError()
+    @abc.abstractmethod
+    def save_yaml(self, yaml_file: Union[str, Sequence[str]]):
+        raise NotImplementedError()
+    @abc.abstractmethod
+    def __len__(self) -> int:
+        raise NotImplementedError()
+    #  }}} class AbstractHistoryReplay # 
+
+def _update_action_history( mode: str
+                          , info_dict: AbstractHistoryReplay.InfoDict
+                          , action_history: List[Action]
+                          ):
+    #  function _update_action_history {{{ # 
+    """
+    This function updates `info_dict` in-place.
+
+    Args:
+        mode (str): "longest", "shortest", "newest", or "oldest"
+        info_dict (AbstractHistoryReplay.InfoDict): information dictionary to
+          be updated
+        action_history (List[Action]): another action history
+    """
+
+    if mode=="longest"\
+            and len(action_history) >= len(info_dict["action_history"]):
+        info_dict["action_history"] = action_history
+    elif mode=="shortest"\
+            and len(action_history) <= len(info_dict["action_history"]):
+        info_dict["action_history"] = action_history
+    elif mode=="newest":
+        info_dict["action_history"] = action_history
+    elif mode=="oldest":
+        pass
+    #  }}} function _update_action_history # 
+
+class HistoryReplay(AbstractHistoryReplay[Key, Action]):
+    #  class HistoryReplay {{{ # 
 
     def __init__( self
                 , item_capacity: Optional[int]
@@ -423,7 +478,7 @@ class HistoryReplay(Generic[Key, Action]):
         """
 
         self._record: Dict[ Key
-                          , HistoryReplay.Record
+                          , AbstractHistoryReplay.Record
                           ] = {}
 
         self._item_capacity: Optional[int] = item_capacity
@@ -468,7 +523,7 @@ class HistoryReplay(Generic[Key, Action]):
 
     def __getitem__(self, request: Key) ->\
             List[ Tuple[ Key
-                       , Record
+                       , AbstractHistoryReplay.Record
                        , float
                        ]
                 ]:
@@ -513,6 +568,8 @@ class HistoryReplay(Generic[Key, Action]):
               , reward: float
               , action: Optional[Action] = None
               , last_step: bool = False
+              , truly_update: bool = True
+              , reference_q_table: Optional["HistoryReplay[Key, Action]"] = None
               ):
         #  method update {{{ # 
         """
@@ -522,6 +579,11 @@ class HistoryReplay(Generic[Key, Action]):
             action (Optional[Action]): the performed action, may be null if it is
               the initial state
             last_step (bool): whether this is the last step
+
+            truly_update (bool): whether the update to `action_dict` should be
+              truly performed or only the buffers will be updated
+            reference_q_table (Optional[HistoryReplay[Key, Action]]):
+              reference Q table, defaults to `self`
         """
 
         self._action_buffer.append(action)
@@ -531,6 +593,16 @@ class HistoryReplay(Generic[Key, Action]):
         self._reward_buffer.append(reward)
         self._total_reward += reward
         self._total_reward_buffer.append(self._total_reward)
+
+        if not truly_update:
+            if last_step:
+                self._action_buffer.clear()
+                self._action_history.clear()
+                self._observation_buffer.clear()
+                self._reward_buffer.clear()
+                self._total_reward_buffer.clear()
+                self._total_reward = 0.
+            return
 
         if not last_step\
                 and self._observation_buffer.maxlen is not None\
@@ -560,7 +632,11 @@ class HistoryReplay(Generic[Key, Action]):
                                                     )[0]
 
             action_dict: HistoryReplay.ActionDict = self._record[step]["action_dict"]
-            self._update_action_record(action_dict, action, reward, float(new_estimation), step_)
+            self._update_action_record( action_dict
+                                      , action, reward
+                                      , float(new_estimation)
+                                      , step_, reference_q_table
+                                      )
             self._prune_action(action_dict)
 
         if last_step:
@@ -697,16 +773,9 @@ class HistoryReplay(Generic[Key, Action]):
         else:
             other_info: HistoryReplay.InfoDict = self._record[key]["other_info"]
 
-            if self._action_history_update_mode=="longest"\
-                    and len(action_history) >= len(other_info["action_history"]):
-                other_info["action_history"] = action_history
-            elif self._action_history_update_mode=="shortest"\
-                    and len(action_history) <= len(other_info["action_history"]):
-                other_info["action_history"] = action_history
-            elif self._action_history_update_mode=="newest":
-                other_info["action_history"] = action_history
-            elif self._action_history_update_mode=="oldest":
-                pass
+            _update_action_history( self._action_history_update_mode
+                                  , other_info, action_history
+                                  )
 
             number: int = other_info["number"]
             number_: int = number + 1
@@ -724,13 +793,13 @@ class HistoryReplay(Generic[Key, Action]):
         #  }}} method _insert_key # 
 
     def _update_action_record( self
-                             , action_dict: ActionDict
+                             , action_dict: AbstractHistoryReplay.ActionDict
                              , action: Action
                              , reward: float
                              , new_estimation: float
                              , end_step: Optional[Key]
-                             )\
-            -> Dict[str, Union[int, float]]:
+                             , reference_q_table: Optional["HistoryReplay[Key, Action]"] = None
+                             ):
         #  method _update_action_record {{{ # 
         if action not in action_dict:
             action_dict[action] = { "reward": 0.
@@ -745,10 +814,12 @@ class HistoryReplay(Generic[Key, Action]):
 
         #  New Estimation of Q Value {{{ # 
         if end_step is not None:
-            if end_step in self._record:
-                action_dict: HistoryReplay.ActionDict = self._record[end_step]["action_dict"]
+            reference_q_table: HistoryReplay = reference_q_table or self
+
+            if end_step in reference_q_table._record:
+                action_dict: HistoryReplay.ActionDict = reference_q_table._record[end_step]["action_dict"]
             else:
-                record: HistoryReplay.Record = self[end_step][0][1]
+                record: HistoryReplay.Record = reference_q_table[end_step][0][1]
                 action_dict: HistoryReplay.ActionDict = record["action_dict"]
             qvalue_: float = max(map(lambda act: act["qvalue"], action_dict.values()))
             qvalue_ *= self._multi_gamma
@@ -768,7 +839,7 @@ class HistoryReplay(Generic[Key, Action]):
             action_record["qvalue"] += self._learning_rate * (new_estimation-action_record["qvalue"])
         #  }}} method _update_action_record # 
 
-    def _prune_action(self, action_dict: ActionDict):
+    def _prune_action(self, action_dict: AbstractHistoryReplay.ActionDict):
         #  method _remove_action {{{ # 
         if self._action_capacity is not None and self._action_capacity>0\
                 and len(action_dict)>self._action_capacity:
@@ -835,3 +906,202 @@ class HistoryReplay(Generic[Key, Action]):
     def __len__(self) -> int:
         return len(self._record)
     #  }}} class HistoryReplay # 
+
+class DoubleHistoryReplay(AbstractHistoryReplay[Key, Action]):
+    #  class DoubleHistoryReplay {{{ # 
+    def __init__( self
+                , item_capacity: Optional[int]
+                , action_capacity: Optional[int]
+                , matcher: MatcherConstructor
+                , gamma: float = 1.
+                , step_penalty: float = 0.
+                , update_mode: str = "mean"
+                , learning_rate: float = 0.1
+                , n_step_flatten: Optional[int] = 1
+                , action_history_update_mode: str = "shortest"
+                , iteration_mode: str = "turn"
+                ):
+        #  method __init__ {{{ # 
+        """
+        Args:
+            item_capacity (Optional[int]): the optional item capacity limit of
+              the history pool
+            action_capacity (Optional[int]): the optional action capacity of
+              each item in the history pool
+            matcher (MatcherConstructor): matcher constructor
+
+            gamma (float): the discount in calculation of the value function
+            step_penalty (float): an optional penalty for the step counts
+
+            update_mode (str): "mean" or "const"
+            learning_rate (float): learning rate
+            n_step_flatten (Optional[int]): flatten the calculation of the estimated q
+              value up to `n_step_flatten` steps
+
+            action_history_update_mode (str): "longest", "shortest", "newest",
+              or "oldest"
+
+            iteration_mode (str): mode to choose the pool to update; "turn" or
+              "random"
+        """
+
+        self._item_capacity: int = item_capacity or 1000 # CONSTANT WARNING!
+        self._matcher: MatcherConstructor = matcher
+        self._action_history_update_mode: str = action_history_update_mode
+
+        self._history_replays: Tuple[HistoryReplay[Key, Action]] =\
+                ( HistoryReplay( item_capacity, action_capacity
+                               , matcher
+                               , gamma, step_penalty
+                               , update_mode, learning_rate
+                               , n_step_flatten
+                               , action_history_update_mode
+                               )
+                , HistoryReplay( item_capacity, action_capacity
+                               , matcher
+                               , gamma, step_penalty
+                               , update_mode, learning_rate
+                               , n_step_flatten
+                               , action_history_update_mode
+                               )
+                )
+
+        self._iteration_mode: str = iteration_mode
+        self._last_update: int = 1
+        if self._iteration_mode=="random":
+            self._rng: np.random.Generator = np.random.default_rng()
+        #  }}} method __init__ # 
+
+    def __getitem__(self, request: Key) ->\
+            List[ Tuple[ Key
+                       , AbstractHistoryReplay.Record
+                       , float
+                       ]
+                ]:
+        #  method __getitem__ {{{ # 
+        """
+        Args:
+            request (Key): the observation
+
+        Returns:
+            List[Tuple[Key, Record, float]]: the retrieved action-state value
+              estimations sorted by matching scores
+        """
+
+        #  Merge Record Dict {{{ # 
+        record_dict1: AbstractHistoryReplay.Record = copy.deepcopy(self._history_replays[0]._record)
+        record_dict2: AbstractHistoryReplay.Record = copy.deepcopy(self._history_replays[1]._record)
+
+        for k in record_dict2:
+            if k in record_dict1:
+                # merge other_info
+                other_info1: AbstractHistoryReplay.InfoDict =\
+                        record_dict1[k]["other_info"]
+                other_info2: AbstractHistoryReplay.InfoDict =\
+                        record_dict1[k]["other_info"]
+                _update_action_history( self._action_history_update_mode
+                                      , other_info1
+                                      , other_info2["action_history"]
+                                      )
+                other_info1["number"] = (other_info1["number"]+other_info2["number"]) // 2
+                other_info1["last_reward"] = (other_info1["last_reward"]+other_info2["last_reward"]) / 2.
+                other_info1["total_reward"] = (other_info1["total_reward"]+other_info2["total_reward"]) / 2.
+
+                # merge action_dict
+                action_dict1: AbstractHistoryReplay.ActionDict =\
+                        record_dict1[k]["action_dict"]
+                action_dict2: AbstractHistoryReplay.ActionDict =\
+                        record_dict1[k]["action_dict"]
+                for act in action_dict2:
+                    if act in action_dict1:
+                        action_dict1[act]["reward"] =\
+                                (action_dict1[act]["reward"] + action_dict2[act]["reward"]) / 2.
+                        action_dict1[act]["qvalue"] =\
+                                (action_dict1[act]["qvalue"] + action_dict2[act]["qvalue"]) / 2.
+                        action_dict1[act]["number"] =\
+                                (action_dict1[act]["number"] + action_dict2[act]["number"]) // 2
+                    else:
+                        action_dict1[act] = action_dict2[act]
+
+                # merge id
+                record_dict1[k]["id"] += record_dict2[k]["id"]*self._item_capacity*2 # CONSTANT WARNING!
+            else:
+                record_dict1[k] = record_dict2[k]
+                record_dict1[k]["id"] *= self._item_capacity*2
+
+        record_dict: AbstractHistoryReplay.Record = record_dict1
+        #  }}} Merge Record Dict # 
+
+        #  Calculate Similarity and Sort {{{ # 
+        matcher: Matcher = self._matcher(request)
+        match_scores: List[float] =\
+                list( map( matcher
+                         , record_dict.keys()
+                         )
+                    )
+        candidates: List[ Tuple[ HistoryReplay.Record
+                               , float
+                               ]
+                        ] = list( sorted( zip( record_dict.keys()
+                                             , map(lambda k: record_dict[k], record_dict.keys())
+                                             , match_scores
+                                             )
+                                        , key=( lambda itm: ( itm[2]
+                                                            , sum( map( lambda d: d["number"]
+                                                                      , itm[1]["action_dict"].values()
+                                                                      )
+                                                                 )
+                                                            )
+                                              )
+                                        , reverse=True
+                                        )
+                                )
+        #  }}} Calculate Similarity and Sort # 
+
+        return candidates
+        #  }}} method __getitem__ # 
+
+    def update( self
+              , step: Key
+              , reward: float
+              , action: Optional[Action] = None
+              , last_step: bool = False
+              ):
+        #  method update {{{ # 
+        if self._iteration_mode=="random":
+            self._last_update = int(self._rng.integers(2))
+        elif self._iteration_mode=="turn":
+            self._last_update ^= 1
+
+        another_index: int = self._last_update^1
+        hlogger.debug( "Updating memory %d, referencing memory %d"
+                     , self._last_update, another_index
+                     )
+        self._history_replays[self._last_update].update( step, reward
+                                                       , action, last_step
+                                                       , reference_q_table=self._history_replays[another_index]
+                                                       )
+        self._history_replays[another_index].update( step, reward
+                                                   , action, last_step
+                                                   , truly_update=False
+                                                   )
+        #  }}} method update # 
+
+    def __str__(self) -> str:
+        return "#Memory 1:\n"\
+             + str(self._history_replays[0])\
+             + "\n#Memory 2:\n"\
+             + str(self._history_replays[1])
+    def load_yaml(self, yaml_file: Sequence[str]):
+        self._history_replays[0].load_yaml(yaml_file[0])
+        self._history_replays[1].load_yaml(yaml_file[1])
+    def save_yaml(self, yaml_file: Sequence[str]):
+        self._history_replays[0].save_yaml(yaml_file[0])
+        self._history_replays[1].save_yaml(yaml_file[1])
+    def __len__(self) -> int:
+        return len( set( itertools.chain( self._history_replays[0]._record.keys()
+                                        , self._history_replays[1]._record.keys()
+                                        )
+                       )
+                  )
+    #  }}} class DoubleHistoryReplay # 
