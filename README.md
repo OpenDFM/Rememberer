@@ -4,7 +4,8 @@
 
 Code repository for RLEM (Reinforcement Learning with Experience Memory) agent,
 Rememberer. The corresponding paper is available at
-[arXiv](https://arxiv.org/abs/2306.07929).
+[arXiv](https://arxiv.org/abs/2306.07929).  Our paper is accepted by NeurIPS
+2023.
 
 ### Launch Test
 
