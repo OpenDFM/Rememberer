@@ -1,0 +1,13 @@
+mobile-env-rl
+# webshop
+gym
+
+sentence-transformers==2.2.2
+transformers==4.29.1
+# torch
+
+Pillow==10.0.1
+lxml==4.9.2
+
+tiktoken==0.3.2
+openai==0.27.6

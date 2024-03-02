@@ -31,6 +31,8 @@ to prevent a complete evaluation each epoch.
 The exemplars and prompt templates are stored under `prompts` and the initial
 history memories are stored under `history-pools`.
 
+OpenAI API key is configed through `openaiconfig.yaml`
+
 ### About Training Set
 
 In this paper, two training sets are used for WebShop experiments:
